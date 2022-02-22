@@ -32582,19 +32582,17 @@
             "header": [
               {
                 "key": "Content-Type",
-                "value": "multipart/form-data"
+                "value": "multipart/related"
               }
             ],
             "body": {
-              "mode": "formdata",
-              "formdata": [
-                {
-                  "key": "evidence-file",
-                  "description": "A file with evidence.",
-                  "type": "file",
-                  "value": null
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
                 }
-              ]
+              }
             },
             "url": {
               "raw": "{{base_url}}/v1/customer/disputes/:dispute_id/appeal",
@@ -32620,7 +32618,7 @@
           "response": [
             {
               "id": "4d20f4d5-18dc-489a-9577-681d5ee3a56c",
-              "name": "403",
+              "name": "403 FORBIDDEN",
               "originalRequest": {
                 "method": "POST",
                 "header": [
@@ -32701,6 +32699,1126 @@
               "cookie": [],
               "responseTime": null,
               "body": null
+            },
+            {
+              "id": "9e4e566d-38df-4000-bed1-c207ee1e0b12",
+              "name": "500 INTERNAL SERVER ERROR",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "multipart/related"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{base_url}}/v1/customer/disputes/:dispute_id/appeal",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "customer",
+                    "disputes",
+                    ":dispute_id",
+                    "appeal"
+                  ],
+                  "variable": [
+                    {
+                      "id": "4e94d5ea-faf5-4cd4-aaef-68a889d1351e",
+                      "key": "dispute_id",
+                      "value": "{{dispute_id}}"
+                    }
+                  ]
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "178"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Date",
+                  "value": "Tue, 22 Feb 2022 22:28:19 GMT"
+                },
+                {
+                  "key": "Application_id",
+                  "value": "APP-80W284485P519543T"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "max-age=0, no-cache, no-store, must-revalidate"
+                },
+                {
+                  "key": "Caller_acct_num",
+                  "value": "AV2BEMEWLWGGE"
+                },
+                {
+                  "key": "Paypal-Debug-Id",
+                  "value": "92371a5aa8d10"
+                },
+                {
+                  "key": "X-Slr-Retry",
+                  "value": "500"
+                },
+                {
+                  "key": "X-Slr-Retry-Api",
+                  "value": "/v1/customer/disputes/{id}/appeal"
+                },
+                {
+                  "key": "Strict-Transport-Security",
+                  "value": "max-age=31536000; includeSubDomains"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n    \"name\": \"UNKNOWN_ERROR\",\n    \"debug_id\": \"92371a5aa8d10\",\n    \"message\": \"An unknown error occured. \",\n    \"information_link\": \"https://developer.paypal.com/docs/api/customer-disputes/v1/#errors\"\n}"
+            },
+            {
+              "id": "17dd695c-f075-46aa-a5ce-4bb917b720da",
+              "name": "404 NOT FOUND",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "multipart/related"
+                  }
+                ],
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "key": "evidence-file",
+                      "description": "A file with evidence.",
+                      "type": "file",
+                      "src": "1Vfot4gaP/test.json"
+                    }
+                  ],
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": "{{base_url}}/v1/customer/disputes/ERRDIS067/appeal"
+              },
+              "status": "Not Found",
+              "code": 404,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "122"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Date",
+                  "value": "Tue, 22 Feb 2022 22:45:16 GMT"
+                },
+                {
+                  "key": "Application_id",
+                  "value": "APP-80W284485P519543T"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "max-age=0, no-cache, no-store, must-revalidate"
+                },
+                {
+                  "key": "Caller_acct_num",
+                  "value": "AV2BEMEWLWGGE"
+                },
+                {
+                  "key": "Matched-Stub-Id",
+                  "value": "69eefd21-214c-44c0-a3fa-a1166195525b"
+                },
+                {
+                  "key": "Paypal-Debug-Id",
+                  "value": "caefaed69fcdf"
+                },
+                {
+                  "key": "Strict-Transport-Security",
+                  "value": "max-age=31536000; includeSubDomains"
+                }
+              ],
+              "cookie": [
+                {
+                  "expires": "Invalid Date"
+                }
+              ],
+              "responseTime": null,
+              "body": "{\n    \"name\": \"INVALID_RESOURCE_ID\",\n    \"message\": \"The requested resource ID was not found\",\n    \"debug_id\": \"e90ec082e0e4d\"\n}"
+            },
+            {
+              "id": "f921d82f-a111-41d7-8cc9-e4e95699a5db",
+              "name": "415 UNSUPPORTED_MEDIA_TYPE",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "multipart/related"
+                  }
+                ],
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "key": "evidence-file",
+                      "description": "A file with evidence.",
+                      "type": "file",
+                      "src": "1Vfot4gaP/test.json"
+                    }
+                  ],
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": "{{base_url}}/v1/customer/disputes/ERRDIS069/appeal"
+              },
+              "status": "Unsupported Media Type",
+              "code": 415,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "122"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Date",
+                  "value": "Tue, 22 Feb 2022 22:47:51 GMT"
+                },
+                {
+                  "key": "Application_id",
+                  "value": "APP-80W284485P519543T"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "max-age=0, no-cache, no-store, must-revalidate"
+                },
+                {
+                  "key": "Caller_acct_num",
+                  "value": "AV2BEMEWLWGGE"
+                },
+                {
+                  "key": "Matched-Stub-Id",
+                  "value": "ff682bed-70a4-4416-9486-34f81a80550a"
+                },
+                {
+                  "key": "Paypal-Debug-Id",
+                  "value": "7171b722d1690"
+                },
+                {
+                  "key": "Strict-Transport-Security",
+                  "value": "max-age=31536000; includeSubDomains"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n    \"name\": \"UNSUPPORTED_MEDIA_TYPE\",\n    \"message\": \"The request payload is not supported\",\n    \"debug_id\": \"e90ec082e0e4d\"\n}"
+            },
+            {
+              "id": "b1befe78-93fb-4843-a065-26cf523bf557",
+              "name": "401 AUTHORIZATION_ERROR",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "multipart/related"
+                  }
+                ],
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "key": "evidence-file",
+                      "description": "A file with evidence.",
+                      "type": "file",
+                      "src": "1Vfot4gaP/test.json"
+                    }
+                  ],
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": "{{base_url}}/v1/customer/disputes/ERRDIS073/appeal"
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "112"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Date",
+                  "value": "Tue, 22 Feb 2022 22:49:09 GMT"
+                },
+                {
+                  "key": "Application_id",
+                  "value": "APP-80W284485P519543T"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "max-age=0, no-cache, no-store, must-revalidate"
+                },
+                {
+                  "key": "Caller_acct_num",
+                  "value": "AV2BEMEWLWGGE"
+                },
+                {
+                  "key": "Matched-Stub-Id",
+                  "value": "eb3fbde3-d316-43c2-a834-06797e2250d6"
+                },
+                {
+                  "key": "Paypal-Debug-Id",
+                  "value": "5ca5fb39ab7e3"
+                },
+                {
+                  "key": "Strict-Transport-Security",
+                  "value": "max-age=31536000; includeSubDomains"
+                }
+              ],
+              "cookie": [
+                {
+                  "expires": "Invalid Date"
+                }
+              ],
+              "responseTime": null,
+              "body": "{\n    \"name\": \"AUTHORIZATION_ERROR\",\n    \"message\": \"Authorization error occurred.\",\n    \"debug_id\": \"e90ec082e0e4d\"\n}"
+            },
+            {
+              "id": "52173a61-bc43-4d07-8a09-4b0d92284913",
+              "name": "429 RATE_LIMIT_REACHED",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "multipart/related"
+                  }
+                ],
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "key": "evidence-file",
+                      "description": "A file with evidence.",
+                      "type": "file",
+                      "src": "1Vfot4gaP/test.json"
+                    }
+                  ],
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": "{{base_url}}/v1/customer/disputes/ERRDIS070/appeal"
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "129"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Date",
+                  "value": "Tue, 22 Feb 2022 22:51:15 GMT"
+                },
+                {
+                  "key": "Application_id",
+                  "value": "APP-80W284485P519543T"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "max-age=0, no-cache, no-store, must-revalidate"
+                },
+                {
+                  "key": "Caller_acct_num",
+                  "value": "AV2BEMEWLWGGE"
+                },
+                {
+                  "key": "Matched-Stub-Id",
+                  "value": "aa915759-93c1-4619-bce7-cb8119bf9803"
+                },
+                {
+                  "key": "Paypal-Debug-Id",
+                  "value": "9720e8eeac1b4"
+                },
+                {
+                  "key": "Strict-Transport-Security",
+                  "value": "max-age=31536000; includeSubDomains"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n    \"name\": \"RATE_LIMIT_REACHED\",\n    \"message\": \"Too many requests. Blocked due to rate limiting\",\n    \"debug_id\": \"e90ec082e0e4d\"\n}"
+            },
+            {
+              "id": "92344930-36ef-4ae4-875a-17fb59ffd8bf",
+              "name": "503 SERVICE_UNAVAILABLE",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "multipart/related"
+                  }
+                ],
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "key": "evidence-file",
+                      "description": "A file with evidence.",
+                      "type": "file",
+                      "src": "1Vfot4gaP/test.json"
+                    }
+                  ],
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": "{{base_url}}/v1/customer/disputes/ERRDIS071/appeal"
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "141"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Date",
+                  "value": "Tue, 22 Feb 2022 22:51:50 GMT"
+                },
+                {
+                  "key": "Application_id",
+                  "value": "APP-80W284485P519543T"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "max-age=0, no-cache, no-store, must-revalidate"
+                },
+                {
+                  "key": "Caller_acct_num",
+                  "value": "AV2BEMEWLWGGE"
+                },
+                {
+                  "key": "Matched-Stub-Id",
+                  "value": "65e330f6-178f-4359-a889-b3438bf6d330"
+                },
+                {
+                  "key": "Paypal-Debug-Id",
+                  "value": "7069a83c5721c"
+                },
+                {
+                  "key": "Strict-Transport-Security",
+                  "value": "max-age=31536000; includeSubDomains"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n    \"name\": \"SERVICE_UNAVAILABLE\",\n    \"message\": \"The server is not able to handle your request at this time\",\n    \"debug_id\": \"e90ec082e0e4d\"\n}"
+            },
+            {
+              "id": "e2c058d1-5ba1-49f1-aab9-e4544e61388c",
+              "name": "422 UNPROCESSABLE_ENTITY",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "multipart/related"
+                  }
+                ],
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "key": "evidence-file",
+                      "description": "A file with evidence.",
+                      "type": "file",
+                      "src": "1Vfot4gaP/test.json"
+                    }
+                  ],
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": "{{base_url}}/v1/customer/disputes/ERRDIS074/appeal"
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "300"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Date",
+                  "value": "Tue, 22 Feb 2022 22:52:21 GMT"
+                },
+                {
+                  "key": "Application_id",
+                  "value": "APP-80W284485P519543T"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "max-age=0, no-cache, no-store, must-revalidate"
+                },
+                {
+                  "key": "Caller_acct_num",
+                  "value": "AV2BEMEWLWGGE"
+                },
+                {
+                  "key": "Matched-Stub-Id",
+                  "value": "d159cb8c-8749-42ba-9d99-a506d8e15aa7"
+                },
+                {
+                  "key": "Paypal-Debug-Id",
+                  "value": "4e1cb405e03a5"
+                },
+                {
+                  "key": "Strict-Transport-Security",
+                  "value": "max-age=31536000; includeSubDomains"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n    \"name\": \"UNPROCESSABLE_ENTITY\",\n    \"message\": \"The requested action cannot be performed, and may require interaction with APIs or processes outside of the current request\",\n    \"debug_id\": \"e90ec082e0e4d\",\n    \"details\": [\n        {\n            \"issue\": \"ACTION_NOT_ALLOWED_IN_CURRENT_DISPUTE_STATE\"\n        }\n    ]\n}"
+            },
+            {
+              "id": "b88f38e0-2748-421c-b5e5-b76ebcb8a3f4",
+              "name": "400 INVALID_EVIDENCE_FILE",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "multipart/related"
+                  }
+                ],
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "key": "evidence-file",
+                      "description": "A file with evidence.",
+                      "type": "file",
+                      "src": "1Vfot4gaP/test.json"
+                    }
+                  ],
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": "{{base_url}}/v1/customer/disputes/ERRDIS075/appeal"
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "180"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Date",
+                  "value": "Tue, 22 Feb 2022 22:53:00 GMT"
+                },
+                {
+                  "key": "Application_id",
+                  "value": "APP-80W284485P519543T"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "max-age=0, no-cache, no-store, must-revalidate"
+                },
+                {
+                  "key": "Caller_acct_num",
+                  "value": "AV2BEMEWLWGGE"
+                },
+                {
+                  "key": "Matched-Stub-Id",
+                  "value": "f666ea0a-6751-4975-b939-7a9706686e72"
+                },
+                {
+                  "key": "Paypal-Debug-Id",
+                  "value": "e7511903c9258"
+                },
+                {
+                  "key": "Strict-Transport-Security",
+                  "value": "max-age=31536000; includeSubDomains"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n    \"name\": \"VALIDATION_ERROR\",\n    \"message\": \"Invalid request - see details\",\n    \"debug_id\": \"e90ec082e0e4d\",\n    \"details\": [\n        {\n            \"issue\": \"INVALID_EVIDENCE_FILE\"\n        }\n    ]\n}"
+            },
+            {
+              "id": "98669576-0eb3-4a56-8861-d5df51dbd842",
+              "name": "400 INVALID_EVIDENCE_TYPE_PROOF_OF_FULFILLMENT",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "multipart/related"
+                  }
+                ],
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "key": "evidence-file",
+                      "description": "A file with evidence.",
+                      "type": "file",
+                      "src": "1Vfot4gaP/test.json"
+                    }
+                  ],
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": "{{base_url}}/v1/customer/disputes/ERRDIS076/appeal"
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "201"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Date",
+                  "value": "Tue, 22 Feb 2022 22:54:12 GMT"
+                },
+                {
+                  "key": "Application_id",
+                  "value": "APP-80W284485P519543T"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "max-age=0, no-cache, no-store, must-revalidate"
+                },
+                {
+                  "key": "Caller_acct_num",
+                  "value": "AV2BEMEWLWGGE"
+                },
+                {
+                  "key": "Matched-Stub-Id",
+                  "value": "ff9509e0-d9d3-49ea-8eab-2873641ab506"
+                },
+                {
+                  "key": "Paypal-Debug-Id",
+                  "value": "15436b9ddf6e"
+                },
+                {
+                  "key": "Strict-Transport-Security",
+                  "value": "max-age=31536000; includeSubDomains"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n    \"name\": \"VALIDATION_ERROR\",\n    \"message\": \"Invalid request - see details\",\n    \"debug_id\": \"e90ec082e0e4d\",\n    \"details\": [\n        {\n            \"issue\": \"INVALID_EVIDENCE_TYPE_PROOF_OF_FULFILLMENT\"\n        }\n    ]\n}"
+            },
+            {
+              "id": "32aa2d92-3ca5-45c6-9c27-0415eccfaac1",
+              "name": "400 ITEM_ID_IS_MANDATORY_FOR_MULTIPLE_EVIDENCES",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "multipart/related"
+                  }
+                ],
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "key": "evidence-file",
+                      "description": "A file with evidence.",
+                      "type": "file",
+                      "src": "1Vfot4gaP/test.json"
+                    }
+                  ],
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": "{{base_url}}/v1/customer/disputes/ERRDIS077/appeal"
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "202"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Date",
+                  "value": "Tue, 22 Feb 2022 22:55:34 GMT"
+                },
+                {
+                  "key": "Application_id",
+                  "value": "APP-80W284485P519543T"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "max-age=0, no-cache, no-store, must-revalidate"
+                },
+                {
+                  "key": "Caller_acct_num",
+                  "value": "AV2BEMEWLWGGE"
+                },
+                {
+                  "key": "Matched-Stub-Id",
+                  "value": "e3dfd49e-a395-4239-a143-aefd6ae894aa"
+                },
+                {
+                  "key": "Paypal-Debug-Id",
+                  "value": "e13963d9caf15"
+                },
+                {
+                  "key": "Strict-Transport-Security",
+                  "value": "max-age=31536000; includeSubDomains"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n    \"name\": \"VALIDATION_ERROR\",\n    \"message\": \"Invalid request - see details\",\n    \"debug_id\": \"e90ec082e0e4d\",\n    \"details\": [\n        {\n            \"issue\": \"ITEM_ID_IS_MANDATORY_FOR_MULTIPLE_EVIDENCES\"\n        }\n    ]\n}"
+            },
+            {
+              "id": "232c662d-04b0-4835-9b2d-98db65abfee2",
+              "name": "400 MISSING_EVIDENCE_INFO",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "multipart/related"
+                  }
+                ],
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "key": "evidence-file",
+                      "description": "A file with evidence.",
+                      "type": "file",
+                      "src": "1Vfot4gaP/test.json"
+                    }
+                  ],
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": "{{base_url}}/v1/customer/disputes/ERRDIS078/appeal"
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "180"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Date",
+                  "value": "Tue, 22 Feb 2022 22:56:20 GMT"
+                },
+                {
+                  "key": "Application_id",
+                  "value": "APP-80W284485P519543T"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "max-age=0, no-cache, no-store, must-revalidate"
+                },
+                {
+                  "key": "Caller_acct_num",
+                  "value": "AV2BEMEWLWGGE"
+                },
+                {
+                  "key": "Matched-Stub-Id",
+                  "value": "97c7e388-b378-41ed-b7d0-73459ac4dc6f"
+                },
+                {
+                  "key": "Paypal-Debug-Id",
+                  "value": "ba9f86a699121"
+                },
+                {
+                  "key": "Strict-Transport-Security",
+                  "value": "max-age=31536000; includeSubDomains"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n    \"name\": \"VALIDATION_ERROR\",\n    \"message\": \"Invalid request - see details\",\n    \"debug_id\": \"e90ec082e0e4d\",\n    \"details\": [\n        {\n            \"issue\": \"MISSING_EVIDENCE_INFO\"\n        }\n    ]\n}"
+            },
+            {
+              "id": "73aaa6c5-39cd-40bf-a7f6-84171afb3e27",
+              "name": "400 MISSING_EVIDENCE_TYPE",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "multipart/related"
+                  }
+                ],
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "key": "evidence-file",
+                      "description": "A file with evidence.",
+                      "type": "file",
+                      "src": "1Vfot4gaP/test.json"
+                    }
+                  ],
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": "{{base_url}}/v1/customer/disputes/ERRDIS079/appeal"
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "180"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Date",
+                  "value": "Tue, 22 Feb 2022 22:56:47 GMT"
+                },
+                {
+                  "key": "Application_id",
+                  "value": "APP-80W284485P519543T"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "max-age=0, no-cache, no-store, must-revalidate"
+                },
+                {
+                  "key": "Caller_acct_num",
+                  "value": "AV2BEMEWLWGGE"
+                },
+                {
+                  "key": "Matched-Stub-Id",
+                  "value": "7e8d96d1-323e-4f46-9d79-8bd018685f25"
+                },
+                {
+                  "key": "Paypal-Debug-Id",
+                  "value": "5e270b6665a6d"
+                },
+                {
+                  "key": "Strict-Transport-Security",
+                  "value": "max-age=31536000; includeSubDomains"
+                }
+              ],
+              "cookie": [
+                {
+                  "expires": "Invalid Date"
+                }
+              ],
+              "responseTime": null,
+              "body": "{\n    \"name\": \"VALIDATION_ERROR\",\n    \"message\": \"Invalid request - see details\",\n    \"debug_id\": \"e90ec082e0e4d\",\n    \"details\": [\n        {\n            \"issue\": \"MISSING_EVIDENCE_TYPE\"\n        }\n    ]\n}"
+            },
+            {
+              "id": "3e995a8d-4a90-411c-8c85-6580454433d3",
+              "name": "400 MISSING_REFUND_ID",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "multipart/related"
+                  }
+                ],
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "key": "evidence-file",
+                      "description": "A file with evidence.",
+                      "type": "file",
+                      "src": "1Vfot4gaP/test.json"
+                    }
+                  ],
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": "{{base_url}}/v1/customer/disputes/ERRDIS080/appeal"
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "176"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Date",
+                  "value": "Tue, 22 Feb 2022 22:59:31 GMT"
+                },
+                {
+                  "key": "Application_id",
+                  "value": "APP-80W284485P519543T"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "max-age=0, no-cache, no-store, must-revalidate"
+                },
+                {
+                  "key": "Caller_acct_num",
+                  "value": "AV2BEMEWLWGGE"
+                },
+                {
+                  "key": "Matched-Stub-Id",
+                  "value": "75693ac0-cca0-4548-9e83-ca446a6d71c5"
+                },
+                {
+                  "key": "Paypal-Debug-Id",
+                  "value": "3b640f3a152c0"
+                },
+                {
+                  "key": "Strict-Transport-Security",
+                  "value": "max-age=31536000; includeSubDomains"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n    \"name\": \"VALIDATION_ERROR\",\n    \"message\": \"Invalid request - see details\",\n    \"debug_id\": \"e90ec082e0e4d\",\n    \"details\": [\n        {\n            \"issue\": \"MISSING_REFUND_ID\"\n        }\n    ]\n}"
+            },
+            {
+              "id": "16df35c3-51d1-4934-ad29-5f8389866bec",
+              "name": "400 MISSING_TRACKING_INFO",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "multipart/related"
+                  }
+                ],
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "key": "evidence-file",
+                      "description": "A file with evidence.",
+                      "type": "file",
+                      "src": "1Vfot4gaP/test.json"
+                    }
+                  ],
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": "{{base_url}}/v1/customer/disputes/ERRDIS081/appeal"
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "180"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Date",
+                  "value": "Tue, 22 Feb 2022 23:00:06 GMT"
+                },
+                {
+                  "key": "Application_id",
+                  "value": "APP-80W284485P519543T"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "max-age=0, no-cache, no-store, must-revalidate"
+                },
+                {
+                  "key": "Caller_acct_num",
+                  "value": "AV2BEMEWLWGGE"
+                },
+                {
+                  "key": "Matched-Stub-Id",
+                  "value": "4f12085d-902b-4fc3-b275-455b9b76c260"
+                },
+                {
+                  "key": "Paypal-Debug-Id",
+                  "value": "d52245b4f6419"
+                },
+                {
+                  "key": "Strict-Transport-Security",
+                  "value": "max-age=31536000; includeSubDomains"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n    \"name\": \"VALIDATION_ERROR\",\n    \"message\": \"Invalid request - see details\",\n    \"debug_id\": \"e90ec082e0e4d\",\n    \"details\": [\n        {\n            \"issue\": \"MISSING_TRACKING_INFO\"\n        }\n    ]\n}"
             }
           ]
         },
@@ -34833,92 +35951,92 @@
   ],
   "variable": [
     {
-      "id": "774841c3-4db3-4435-bc93-9878ad29a959",
+      "id": "60302a5b-3c9c-4ea8-9155-daf7d8b6ccb5",
       "key": "base_url",
       "value": "https://api.sandbox.paypal.com"
     },
     {
-      "id": "dc15cef4-767e-4d4c-bae6-0a2eb1223edb",
+      "id": "828f0df7-817a-4687-ada4-38f98b19fdde",
       "key": "client_id",
       "value": "AUC1CwUIt5XDl4Kco9-oXcewk0jZbPIxDs1JWHDzATNSnYU36xnTtS0Tp-4kDlCpgCbpudXcStc8HAsV"
     },
     {
-      "id": "ea4663fe-7eaa-4da8-aa56-f84538850b67",
+      "id": "657d8ffe-fbe2-47b6-b76f-cc7a07acf554",
       "key": "client_secret",
       "value": "EDIDlZWQMpgfztWzVGYSjw-tcRvLblFnv4JZh4BBWtFQt4qNx43wc-U-FBcynTcRFXJ_uw1l_iTok_Nm"
     },
     {
-      "id": "27b821c6-a7b9-4f7b-99c2-398c33c6769d",
+      "id": "cc33d0a9-3059-445a-a09c-defa6e543b46",
       "key": "paypal_partner_attribution_id",
       "value": "TEST_ATTRIBUTION_ID"
     },
     {
-      "id": "a645b44b-34c7-44c8-abca-693cdf035323",
+      "id": "5ebd714d-01d2-42ee-99f9-32ddffddb86c",
       "key": "prefer_representation_min",
       "value": "return=minimal"
     },
     {
-      "id": "707036f9-19a0-468a-881c-e4f65330d2b3",
+      "id": "1a1e2ed5-e6b6-4b11-a910-4fba8eff420b",
       "key": "prefer_representation_detailed",
       "value": "return=representation"
     },
     {
-      "id": "f8d9736b-2ad7-4a35-aede-39f381381edb",
+      "id": "d036f112-6de3-4ced-9bd4-752bd444fde6",
       "key": "paypal_client_metadata_Id",
       "value": ""
     },
     {
-      "id": "1a5c7b7a-6bca-40cd-b351-7ed9ee212084",
+      "id": "0bc54832-6379-4b1c-81e3-16d288cc3bbb",
       "key": "paypal_auth_assertion",
       "value": ""
     },
     {
-      "id": "14176cad-f0f2-447f-a016-4f43f6e0f3f9",
+      "id": "e2330a89-8d37-48c5-b5ba-6623c0d14f3f",
       "key": "access_token_expiry",
       "value": ""
     },
     {
-      "id": "2eb215a0-86d3-4c9c-a94d-df3302e82a8a",
+      "id": "6db7f468-e8ba-4d69-b6d4-e03213ff3199",
       "key": "access_token_for",
       "value": ""
     },
     {
-      "id": "7dd91ea3-e931-4ede-8a0d-26c3b5f302f7",
+      "id": "68b7e459-2f47-4a1c-82c2-803fe0fb8ff7",
       "key": "order_id",
       "value": ""
     },
     {
-      "id": "a9368445-ff17-4c3f-b636-40ca6bebf9cc",
+      "id": "a656cd11-07dd-4433-a6c1-96622f3ac0a4",
       "key": "capture_id",
       "value": ""
     },
     {
-      "id": "e0b6783f-ccea-401c-8dae-7e0bb176a423",
+      "id": "6064f5e8-b0a6-4d72-acff-62e7e2f364db",
       "key": "billing_plan_id",
       "value": ""
     },
     {
-      "id": "3ff855c2-932b-4741-9fc8-35d263312fbf",
+      "id": "16f2b767-9bb2-48bb-9411-bd9e8a16ff0e",
       "key": "product_id",
       "value": ""
     },
     {
-      "id": "2934a5e9-2fc9-417c-bb63-34b23bf29fd0",
+      "id": "c1f50c61-bd1a-44b1-b514-0db8bc128d71",
       "key": "subscription_id",
       "value": ""
     },
     {
-      "id": "a60c5feb-4c01-4b9b-978b-7f971afb9b89",
+      "id": "ff9c0fd8-1ba6-46fa-a4d7-ef5c684deeca",
       "key": "access_token",
       "value": ""
     },
     {
-      "id": "9acfe54e-53a4-4bf9-ae7c-cc6f9ecb924b",
+      "id": "63ae7c80-d76a-43ef-91f1-de87b4fa5faa",
       "key": "dispute_id",
       "value": ""
     },
     {
-      "id": "229ed438-ebdb-45d8-9aa2-53856be9b4f6",
+      "id": "46ce0cfb-0898-40ad-82e3-493ce3c8aa88",
       "key": "authorization_id",
       "value": ""
     }
