@@ -2,7 +2,7 @@
   "info": {
     "_postman_id": "92a85d0e-51e7-47da-9f83-c45dcb1cdf24",
     "name": "PayPal Public APIs",
-    "description": "# Getting Started\n\n## Step 1: Fork the collection using Run in Postman\n\n[]([https://app.getpostman.com/run-collection/19024122-92a85d0e-51e7-47da-9f83-c45dcb1cdf24?action=collection/fork&collection-url=entityId=19024122-92a85d0e-51e7-47da-9f83-c45dcb1cdf24&entityType=collection&workspaceId=345300e6-346e-42e0-aed1-53717919aef0](https://app.getpostman.com/run-collection/19024122-92a85d0e-51e7-47da-9f83-c45dcb1cdf24?action=collection/fork&collection-url=entityId=19024122-92a85d0e-51e7-47da-9f83-c45dcb1cdf24&entityType=collection&workspaceId=345300e6-346e-42e0-aed1-53717919aef0))\n\n[]([https://app.getpostman.com/run-collection/19024122-92a85d0e-51e7-47da-9f83-c45dcb1cdf24?action=collection/fork&collection-url=entityId=19024122-92a85d0e-51e7-47da-9f83-c45dcb1cdf24&entityType=collection&workspaceId=345300e6-346e-42e0-aed1-53717919aef0](https://app.getpostman.com/run-collection/19024122-92a85d0e-51e7-47da-9f83-c45dcb1cdf24?action=collection/fork&collection-url=entityId=19024122-92a85d0e-51e7-47da-9f83-c45dcb1cdf24&entityType=collection&workspaceId=345300e6-346e-42e0-aed1-53717919aef0))\n\n[![](https://run.pstmn.io/button.svg)]([https://app.getpostman.com/run-collection/19024122-92a85d0e-51e7-47da-9f83-c45dcb1cdf24?action=collection/fork&collection-url=entityId=19024122-92a85d0e-51e7-47da-9f83-c45dcb1cdf24&entityType=collection&workspaceId=345300e6-346e-42e0-aed1-53717919aef0](https://app.getpostman.com/run-collection/19024122-92a85d0e-51e7-47da-9f83-c45dcb1cdf24?action=collection/fork&collection-url=entityId=19024122-92a85d0e-51e7-47da-9f83-c45dcb1cdf24&entityType=collection&workspaceId=345300e6-346e-42e0-aed1-53717919aef0))\n\n## Step 2: Get your access token\n\nPayPal REST APIs follow [OAuth 2.0](https://datatracker.ietf.org/doc/html/rfc6749) standard protocol for authorization. This Postman collection is pre-configured with a default/test `client_id` and `secret`. A pre-request script will generate and manage the `access_token` automatically.\n\n\\[Optional\\] You may bring your own `client_id` and `secret` from [developer.paypal.com](developer.paypal.com) and replace it under Postman Collection/Environment variables. Please note you may have different scopes than default/test\n\n## Step 3: Make your first API call\n\nYou are ready to begin making API calls. Try creating an order by navigating to **Orders** > **Create order** in your fork. Select **Send** to create the order. On a successful call the api returns a 201 order created response.",
+    "description": "# Getting Started\n\n## Step 1: Fork the collection using Run in Postman\n\n[![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/19024122-92a85d0e-51e7-47da-9f83-c45dcb1cdf24?action=collection%2Ffork&collection-url=entityId%3D19024122-92a85d0e-51e7-47da-9f83-c45dcb1cdf24%26entityType%3Dcollection%26workspaceId%3D345300e6-346e-42e0-aed1-53717919aef0)\n\n## Step 2: Get your access token\n\nPayPal REST APIs follow [OAuth 2.0](https://datatracker.ietf.org/doc/html/rfc6749) standard protocol for authorization. This Postman collection is pre-configured with a default/test `client_id` and `secret`. A pre-request script will generate and manage the `access_token` automatically.\n\n\\[Optional\\] You may bring your own `client_id` and `secret` from [developer.paypal.com](developer.paypal.com) and replace it under Postman Collection/Environment variables. Please note you may have different scopes than default/test\n\n## Step 3: Make your first API call\n\nYou are ready to begin making API calls. Try creating an order by navigating to **Orders** > **Create order** in your fork. Select **Send** to create the order. On a successful call the api returns a 201 order created response.",
     "schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
   },
   "item": [
@@ -35951,92 +35951,92 @@
   ],
   "variable": [
     {
-      "id": "60302a5b-3c9c-4ea8-9155-daf7d8b6ccb5",
+      "id": "b3594e7e-b06a-498f-b15a-0859ce4e0bf7",
       "key": "base_url",
       "value": "https://api.sandbox.paypal.com"
     },
     {
-      "id": "828f0df7-817a-4687-ada4-38f98b19fdde",
+      "id": "65a83018-6a6e-4a6c-a2f0-301e4d809289",
       "key": "client_id",
       "value": "AUC1CwUIt5XDl4Kco9-oXcewk0jZbPIxDs1JWHDzATNSnYU36xnTtS0Tp-4kDlCpgCbpudXcStc8HAsV"
     },
     {
-      "id": "657d8ffe-fbe2-47b6-b76f-cc7a07acf554",
+      "id": "5d1624af-a29c-4a59-8b35-d74352a4eb52",
       "key": "client_secret",
       "value": "EDIDlZWQMpgfztWzVGYSjw-tcRvLblFnv4JZh4BBWtFQt4qNx43wc-U-FBcynTcRFXJ_uw1l_iTok_Nm"
     },
     {
-      "id": "cc33d0a9-3059-445a-a09c-defa6e543b46",
+      "id": "38847142-6151-4b72-aac3-e0cabc57c325",
       "key": "paypal_partner_attribution_id",
       "value": "TEST_ATTRIBUTION_ID"
     },
     {
-      "id": "5ebd714d-01d2-42ee-99f9-32ddffddb86c",
+      "id": "b0cbd646-b37a-44f9-8f97-a9324fbb82bc",
       "key": "prefer_representation_min",
       "value": "return=minimal"
     },
     {
-      "id": "1a1e2ed5-e6b6-4b11-a910-4fba8eff420b",
+      "id": "49817291-20d2-48c9-b9cd-81eeca8e264c",
       "key": "prefer_representation_detailed",
       "value": "return=representation"
     },
     {
-      "id": "d036f112-6de3-4ced-9bd4-752bd444fde6",
+      "id": "6f01597d-5c23-446c-acaf-9ecb492fb771",
       "key": "paypal_client_metadata_Id",
       "value": ""
     },
     {
-      "id": "0bc54832-6379-4b1c-81e3-16d288cc3bbb",
+      "id": "55694fea-cecb-40e8-bfe0-b84f344b8b00",
       "key": "paypal_auth_assertion",
       "value": ""
     },
     {
-      "id": "e2330a89-8d37-48c5-b5ba-6623c0d14f3f",
+      "id": "f8b181c1-aa81-4478-a883-0140e8f3a568",
       "key": "access_token_expiry",
       "value": ""
     },
     {
-      "id": "6db7f468-e8ba-4d69-b6d4-e03213ff3199",
+      "id": "42cb4794-cdc2-4047-b8b9-283c235a8672",
       "key": "access_token_for",
       "value": ""
     },
     {
-      "id": "68b7e459-2f47-4a1c-82c2-803fe0fb8ff7",
+      "id": "c0b2b7c0-bdc8-4cac-8453-b50e054558a4",
       "key": "order_id",
       "value": ""
     },
     {
-      "id": "a656cd11-07dd-4433-a6c1-96622f3ac0a4",
+      "id": "4573bd79-abaf-449a-862f-768e8afaef78",
       "key": "capture_id",
       "value": ""
     },
     {
-      "id": "6064f5e8-b0a6-4d72-acff-62e7e2f364db",
+      "id": "2d005303-3b6a-48c9-b804-823a31b526e9",
       "key": "billing_plan_id",
       "value": ""
     },
     {
-      "id": "16f2b767-9bb2-48bb-9411-bd9e8a16ff0e",
+      "id": "7480f962-12ee-440c-8c84-3b60c03580b3",
       "key": "product_id",
       "value": ""
     },
     {
-      "id": "c1f50c61-bd1a-44b1-b514-0db8bc128d71",
+      "id": "04fa6952-7df9-4550-9ffa-11ff8a84150c",
       "key": "subscription_id",
       "value": ""
     },
     {
-      "id": "ff9c0fd8-1ba6-46fa-a4d7-ef5c684deeca",
+      "id": "ad9470e1-383c-4531-b581-c5bb3598f678",
       "key": "access_token",
       "value": ""
     },
     {
-      "id": "63ae7c80-d76a-43ef-91f1-de87b4fa5faa",
+      "id": "e7a61951-c3d2-405d-8b0b-081482390f44",
       "key": "dispute_id",
       "value": ""
     },
     {
-      "id": "46ce0cfb-0898-40ad-82e3-493ce3c8aa88",
+      "id": "a397c835-44bb-456e-8540-9b3366747eff",
       "key": "authorization_id",
       "value": ""
     }
