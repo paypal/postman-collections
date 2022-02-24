@@ -34560,7 +34560,7 @@
       "description": "Occasionally, something goes wrong with a customer's order. To dispute a charge, a customer can create a dispute with PayPal. PayPal merchants, partners, and external developers can use the PayPal Disputes API to manage customer disputes.<blockquote><strong>Note:</strong> In the live environment, merchants cannot create disputes but can only respond to customer-created disputes. However, merchants can create disputes in the sandbox environment. When you create an app, enable Disputes in the App feature options section.</blockquote>A customer can also ask his or her bank or credit card company to dispute and reverse a charge, which is known as a <i>chargeback</i>. For more information, see <a href=\"https://www.paypal.com/us/brc/article/customer-disputes-claims-chargebacks-bank-reversals\">Disputes, claims, chargebacks, and bank reversals</a>.<br/><br/>When a customer disputes a charge, you can use this API to provide evidence that the charge is legitimate. To provide evidence or appeal a dispute, you submit a proof of delivery or proof of refund document or notes, which can include logs.<br/><br/>Normally, an agent at PayPal creates a dispute, updates the dispute status, and settles disputes, but now you can run test cases in the sandbox that complete these operations.<br/><br/><blockquote><strong>Important:</strong> The create, cancel, compute metrics, change reason, and validate eligibility methods are available as a limited-release solution at this time. For more information, reach out to your PayPal account manager.</blockquote><br/>For details, see <a href=\"/docs/integration/direct/customer-disputes/\">Disputes Overview</a> documentation."
     },
     {
-      "name": "MISC",
+      "name": "Miscellaneous-DRAFT",
       "item": [
         {
           "name": "User Info-TO_BE_REMOVED",
@@ -35951,92 +35951,92 @@
   ],
   "variable": [
     {
-      "id": "b3594e7e-b06a-498f-b15a-0859ce4e0bf7",
+      "id": "1bf281cb-7b4c-4afe-a274-ec5d45013252",
       "key": "base_url",
       "value": "https://api.sandbox.paypal.com"
     },
     {
-      "id": "65a83018-6a6e-4a6c-a2f0-301e4d809289",
+      "id": "972aba83-bedc-411e-9dd0-f65d1257e8e4",
       "key": "client_id",
       "value": "AUC1CwUIt5XDl4Kco9-oXcewk0jZbPIxDs1JWHDzATNSnYU36xnTtS0Tp-4kDlCpgCbpudXcStc8HAsV"
     },
     {
-      "id": "5d1624af-a29c-4a59-8b35-d74352a4eb52",
+      "id": "df0d3808-8e54-48dc-8e37-52d9bf482e39",
       "key": "client_secret",
       "value": "EDIDlZWQMpgfztWzVGYSjw-tcRvLblFnv4JZh4BBWtFQt4qNx43wc-U-FBcynTcRFXJ_uw1l_iTok_Nm"
     },
     {
-      "id": "38847142-6151-4b72-aac3-e0cabc57c325",
+      "id": "d4e19113-0f1d-4704-8fd3-66632d3197bf",
       "key": "paypal_partner_attribution_id",
       "value": "TEST_ATTRIBUTION_ID"
     },
     {
-      "id": "b0cbd646-b37a-44f9-8f97-a9324fbb82bc",
+      "id": "581cd8d1-e14d-4c34-98bd-857434ecdc6d",
       "key": "prefer_representation_min",
       "value": "return=minimal"
     },
     {
-      "id": "49817291-20d2-48c9-b9cd-81eeca8e264c",
+      "id": "514628d5-e7eb-400f-bebd-b7fbee13e043",
       "key": "prefer_representation_detailed",
       "value": "return=representation"
     },
     {
-      "id": "6f01597d-5c23-446c-acaf-9ecb492fb771",
+      "id": "182249f5-1f88-4c11-b553-28579bfa0837",
       "key": "paypal_client_metadata_Id",
       "value": ""
     },
     {
-      "id": "55694fea-cecb-40e8-bfe0-b84f344b8b00",
+      "id": "dbad3106-06c3-4917-86bd-a9409279ea17",
       "key": "paypal_auth_assertion",
       "value": ""
     },
     {
-      "id": "f8b181c1-aa81-4478-a883-0140e8f3a568",
+      "id": "347cf71d-08cf-4aff-840e-d8ff34057b99",
       "key": "access_token_expiry",
       "value": ""
     },
     {
-      "id": "42cb4794-cdc2-4047-b8b9-283c235a8672",
+      "id": "0ddc0e84-eef8-4c93-8f9e-c21df5092d41",
       "key": "access_token_for",
       "value": ""
     },
     {
-      "id": "c0b2b7c0-bdc8-4cac-8453-b50e054558a4",
+      "id": "6c0509b4-0c26-4878-8f73-8f372cfa3a11",
       "key": "order_id",
       "value": ""
     },
     {
-      "id": "4573bd79-abaf-449a-862f-768e8afaef78",
+      "id": "212076d9-18c2-477b-98d1-99367285ea69",
       "key": "capture_id",
       "value": ""
     },
     {
-      "id": "2d005303-3b6a-48c9-b804-823a31b526e9",
+      "id": "35b6fde0-7306-4016-bf34-c6d89ba5de60",
       "key": "billing_plan_id",
       "value": ""
     },
     {
-      "id": "7480f962-12ee-440c-8c84-3b60c03580b3",
+      "id": "3d42cc3b-a09b-4c7a-b33b-a642557762ac",
       "key": "product_id",
       "value": ""
     },
     {
-      "id": "04fa6952-7df9-4550-9ffa-11ff8a84150c",
+      "id": "47b5fcc5-73ea-4c61-8568-e072fe98a0fb",
       "key": "subscription_id",
       "value": ""
     },
     {
-      "id": "ad9470e1-383c-4531-b581-c5bb3598f678",
+      "id": "57fbf63b-4696-45c4-87db-a39808634b39",
       "key": "access_token",
       "value": ""
     },
     {
-      "id": "e7a61951-c3d2-405d-8b0b-081482390f44",
+      "id": "ce4c0069-a445-4d20-b2d3-3f6c72d252d3",
       "key": "dispute_id",
       "value": ""
     },
     {
-      "id": "a397c835-44bb-456e-8540-9b3366747eff",
+      "id": "dfa4bda1-2d3f-4016-8964-73a9ae33b46e",
       "key": "authorization_id",
       "value": ""
     }
