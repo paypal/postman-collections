@@ -1,4 +1,4 @@
-![PayPal Developer](https://res.cloudinary.com/postman/image/upload/t_team_logo/v1644443606/team/87b7e197a57247ba2fa19b5a24ad16d5977b000bc0cd4ce2fa8652110a43e732.png)
+<img src="https://res.cloudinary.com/postman/image/upload/t_team_logo/v1644443606/team/87b7e197a57247ba2fa19b5a24ad16d5977b000bc0cd4ce2fa8652110a43e732.png" width="100">
 
 This repository maintains a [backup](https://blog.postman.com/backup-and-sync-your-postman-collections-on-github/) of PayPal Postman Collections published on [postman.com/paypal](postman.com/paypal). 
 
