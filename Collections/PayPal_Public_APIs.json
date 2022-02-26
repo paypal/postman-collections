@@ -25392,279 +25392,6 @@
       "name": "Payment Experience Web Profiles",
       "item": [
         {
-          "name": "web-profiles",
-          "item": [
-            {
-              "name": "Show web experience profile details by ID",
-              "id": "318b34bf-e8a1-4935-9993-f9da5a272765",
-              "protocolProfileBehavior": {
-                "disableBodyPruning": true
-              },
-              "request": {
-                "method": "GET",
-                "header": [],
-                "url": {
-                  "raw": "{{base_url}}/v1/payment-experience/web-profiles/:web_profile_id",
-                  "host": [
-                    "{{base_url}}"
-                  ],
-                  "path": [
-                    "v1",
-                    "payment-experience",
-                    "web-profiles",
-                    ":web_profile_id"
-                  ],
-                  "variable": [
-                    {
-                      "key": "web_profile_id",
-                      "value": "{{web_profile_id}}"
-                    }
-                  ]
-                },
-                "description": "Shows details for a web experience profile, by ID."
-              },
-              "response": [
-                {
-                  "id": "d2df03f9-2774-4f33-8447-babc201903da",
-                  "name": "Show web experience profile details by ID",
-                  "originalRequest": {
-                    "method": "GET",
-                    "header": [],
-                    "url": {
-                      "raw": "{{base_url}}/v1/payment-experience/web-profiles/:web_profile_id",
-                      "host": [
-                        "{{base_url}}"
-                      ],
-                      "path": [
-                        "v1",
-                        "payment-experience",
-                        "web-profiles",
-                        ":web_profile_id"
-                      ],
-                      "variable": [
-                        {
-                          "key": "web_profile_id",
-                          "value": "{{web_profile_id}}"
-                        }
-                      ]
-                    }
-                  },
-                  "status": "OK",
-                  "code": 200,
-                  "_postman_previewlanguage": "json",
-                  "header": [
-                    {
-                      "key": "Content-Type",
-                      "value": "application/json"
-                    },
-                    {
-                      "key": "Content-Length",
-                      "value": "187"
-                    },
-                    {
-                      "key": "Connection",
-                      "value": "keep-alive"
-                    },
-                    {
-                      "key": "Date",
-                      "value": "Wed, 02 Feb 2022 05:13:37 GMT"
-                    },
-                    {
-                      "key": "Application_id",
-                      "value": "APP-80W284485P519543T"
-                    },
-                    {
-                      "key": "Cache-Control",
-                      "value": "max-age=0, no-cache, no-store, must-revalidate"
-                    },
-                    {
-                      "key": "Caller_acct_num",
-                      "value": "ER87FV8ER63HJ"
-                    },
-                    {
-                      "key": "Paypal-Debug-Id",
-                      "value": "a54841fa7c0e5"
-                    },
-                    {
-                      "key": "Strict-Transport-Security",
-                      "value": "max-age=31536000; includeSubDomains"
-                    }
-                  ],
-                  "cookie": [],
-                  "responseTime": null,
-                  "body": "{\n    \"id\": \"XP-PMWX-P8EY-AH2Y-9AK3\",\n    \"name\": \"Braintree 2017-09-29T04:49:41+00:00\",\n    \"temporary\": false,\n    \"input_fields\": {\n        \"no_shipping\": 1,\n        \"address_override\": 0\n    },\n    \"presentation\": {\n        \"brand_name\": \"PayPal\"\n    }\n}"
-                },
-                {
-                  "id": "4fcb61c7-15c0-4d53-ac22-e36e893bee56",
-                  "name": "Show web experience profile details by ID",
-                  "originalRequest": {
-                    "method": "GET",
-                    "header": [],
-                    "url": {
-                      "raw": "{{base_url}}/v1/payment-experience/web-profiles/:web_profile_id",
-                      "host": [
-                        "{{base_url}}"
-                      ],
-                      "path": [
-                        "v1",
-                        "payment-experience",
-                        "web-profiles",
-                        ":web_profile_id"
-                      ],
-                      "variable": [
-                        {
-                          "key": "web_profile_id",
-                          "value": "{{web_profile_id}}"
-                        }
-                      ]
-                    }
-                  },
-                  "status": "OK",
-                  "code": 200,
-                  "_postman_previewlanguage": "json",
-                  "header": [
-                    {
-                      "key": "Content-Type",
-                      "value": "application/json"
-                    },
-                    {
-                      "key": "Content-Length",
-                      "value": "378"
-                    },
-                    {
-                      "key": "Connection",
-                      "value": "keep-alive"
-                    },
-                    {
-                      "key": "Date",
-                      "value": "Wed, 02 Feb 2022 05:26:59 GMT"
-                    },
-                    {
-                      "key": "Application_id",
-                      "value": "APP-80W284485P519543T"
-                    },
-                    {
-                      "key": "Cache-Control",
-                      "value": "max-age=0, no-cache, no-store, must-revalidate"
-                    },
-                    {
-                      "key": "Caller_acct_num",
-                      "value": "ER87FV8ER63HJ"
-                    },
-                    {
-                      "key": "Paypal-Debug-Id",
-                      "value": "1ee36e4597a01"
-                    },
-                    {
-                      "key": "Strict-Transport-Security",
-                      "value": "max-age=31536000; includeSubDomains"
-                    }
-                  ],
-                  "cookie": [],
-                  "responseTime": null,
-                  "body": "{\n    \"id\": \"XP-XK79-B6DA-GV8A-UYMH\",\n    \"name\": \"sample-profile-1643779582\",\n    \"temporary\": false,\n    \"flow_config\": {\n        \"landing_page_type\": \"billing\",\n        \"bank_txn_pending_url\": \"https://example.com/flow_config/\",\n        \"user_action\": \"commit\",\n        \"return_uri_http_method\": \"GET\"\n    },\n    \"input_fields\": {\n        \"allow_note\": true,\n        \"no_shipping\": 1,\n        \"address_override\": 1\n    },\n    \"presentation\": {\n        \"logo_image\": \"https://example.com/logo_image/\"\n    }\n}"
-                }
-              ]
-            },
-            {
-              "name": "Delete web experience profile",
-              "id": "2dc27d34-eaa2-4d5c-9a8d-2bdbee6ceaa3",
-              "protocolProfileBehavior": {
-                "disableBodyPruning": true
-              },
-              "request": {
-                "method": "DELETE",
-                "header": [],
-                "url": {
-                  "raw": "{{base_url}}/v1/payment-experience/web-profiles/:web_profile_id",
-                  "host": [
-                    "{{base_url}}"
-                  ],
-                  "path": [
-                    "v1",
-                    "payment-experience",
-                    "web-profiles",
-                    ":web_profile_id"
-                  ],
-                  "variable": [
-                    {
-                      "key": "web_profile_id",
-                      "value": "{{web_profile_id}}"
-                    }
-                  ]
-                },
-                "description": "Deletes a web experience profile, by ID."
-              },
-              "response": [
-                {
-                  "id": "15900a43-d64f-4b08-a99f-5399c1ac6038",
-                  "name": "Deleted Profile By ID",
-                  "originalRequest": {
-                    "method": "DELETE",
-                    "header": [],
-                    "url": {
-                      "raw": "{{base_url}}/v1/payment-experience/web-profiles/:web_profile_id",
-                      "host": [
-                        "{{base_url}}"
-                      ],
-                      "path": [
-                        "v1",
-                        "payment-experience",
-                        "web-profiles",
-                        ":web_profile_id"
-                      ],
-                      "variable": [
-                        {
-                          "key": "web_profile_id",
-                          "value": "{{web_profile_id}}"
-                        }
-                      ]
-                    }
-                  },
-                  "status": "No Content",
-                  "code": 204,
-                  "_postman_previewlanguage": "plain",
-                  "header": [
-                    {
-                      "key": "Connection",
-                      "value": "keep-alive"
-                    },
-                    {
-                      "key": "Date",
-                      "value": "Wed, 02 Feb 2022 05:45:00 GMT"
-                    },
-                    {
-                      "key": "Application_id",
-                      "value": "APP-80W284485P519543T"
-                    },
-                    {
-                      "key": "Cache-Control",
-                      "value": "max-age=0, no-cache, no-store, must-revalidate"
-                    },
-                    {
-                      "key": "Caller_acct_num",
-                      "value": "ER87FV8ER63HJ"
-                    },
-                    {
-                      "key": "Paypal-Debug-Id",
-                      "value": "fc54be1992db3"
-                    },
-                    {
-                      "key": "Strict-Transport-Security",
-                      "value": "max-age=31536000; includeSubDomains"
-                    }
-                  ],
-                  "cookie": [],
-                  "responseTime": null,
-                  "body": null
-                }
-              ]
-            }
-          ],
-          "id": "9e973137-2869-4777-90a0-a950344d43b2",
-          "description": "Use the `/payment-experience/web-profiles` resource to create, show details for, list, update, partially update, and delete web experience profiles."
-        },
-        {
           "name": "Create web experience profile",
           "event": [
             {
@@ -26460,6 +26187,272 @@
                 {
                   "key": "Paypal-Debug-Id",
                   "value": "82ba0e0a0c54d"
+                },
+                {
+                  "key": "Strict-Transport-Security",
+                  "value": "max-age=31536000; includeSubDomains"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": null
+            }
+          ]
+        },
+        {
+          "name": "Show web experience profile details by ID",
+          "id": "318b34bf-e8a1-4935-9993-f9da5a272765",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/v1/payment-experience/web-profiles/:web_profile_id",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "v1",
+                "payment-experience",
+                "web-profiles",
+                ":web_profile_id"
+              ],
+              "variable": [
+                {
+                  "key": "web_profile_id",
+                  "value": "{{web_profile_id}}"
+                }
+              ]
+            },
+            "description": "Shows details for a web experience profile, by ID."
+          },
+          "response": [
+            {
+              "id": "d2df03f9-2774-4f33-8447-babc201903da",
+              "name": "Show web experience profile details by ID",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{base_url}}/v1/payment-experience/web-profiles/:web_profile_id",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "payment-experience",
+                    "web-profiles",
+                    ":web_profile_id"
+                  ],
+                  "variable": [
+                    {
+                      "key": "web_profile_id",
+                      "value": "{{web_profile_id}}"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "187"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Date",
+                  "value": "Wed, 02 Feb 2022 05:13:37 GMT"
+                },
+                {
+                  "key": "Application_id",
+                  "value": "APP-80W284485P519543T"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "max-age=0, no-cache, no-store, must-revalidate"
+                },
+                {
+                  "key": "Caller_acct_num",
+                  "value": "ER87FV8ER63HJ"
+                },
+                {
+                  "key": "Paypal-Debug-Id",
+                  "value": "a54841fa7c0e5"
+                },
+                {
+                  "key": "Strict-Transport-Security",
+                  "value": "max-age=31536000; includeSubDomains"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n    \"id\": \"XP-PMWX-P8EY-AH2Y-9AK3\",\n    \"name\": \"Braintree 2017-09-29T04:49:41+00:00\",\n    \"temporary\": false,\n    \"input_fields\": {\n        \"no_shipping\": 1,\n        \"address_override\": 0\n    },\n    \"presentation\": {\n        \"brand_name\": \"PayPal\"\n    }\n}"
+            },
+            {
+              "id": "4fcb61c7-15c0-4d53-ac22-e36e893bee56",
+              "name": "Show web experience profile details by ID",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{base_url}}/v1/payment-experience/web-profiles/:web_profile_id",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "payment-experience",
+                    "web-profiles",
+                    ":web_profile_id"
+                  ],
+                  "variable": [
+                    {
+                      "key": "web_profile_id",
+                      "value": "{{web_profile_id}}"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "378"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Date",
+                  "value": "Wed, 02 Feb 2022 05:26:59 GMT"
+                },
+                {
+                  "key": "Application_id",
+                  "value": "APP-80W284485P519543T"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "max-age=0, no-cache, no-store, must-revalidate"
+                },
+                {
+                  "key": "Caller_acct_num",
+                  "value": "ER87FV8ER63HJ"
+                },
+                {
+                  "key": "Paypal-Debug-Id",
+                  "value": "1ee36e4597a01"
+                },
+                {
+                  "key": "Strict-Transport-Security",
+                  "value": "max-age=31536000; includeSubDomains"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n    \"id\": \"XP-XK79-B6DA-GV8A-UYMH\",\n    \"name\": \"sample-profile-1643779582\",\n    \"temporary\": false,\n    \"flow_config\": {\n        \"landing_page_type\": \"billing\",\n        \"bank_txn_pending_url\": \"https://example.com/flow_config/\",\n        \"user_action\": \"commit\",\n        \"return_uri_http_method\": \"GET\"\n    },\n    \"input_fields\": {\n        \"allow_note\": true,\n        \"no_shipping\": 1,\n        \"address_override\": 1\n    },\n    \"presentation\": {\n        \"logo_image\": \"https://example.com/logo_image/\"\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "Delete web experience profile",
+          "id": "2dc27d34-eaa2-4d5c-9a8d-2bdbee6ceaa3",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/v1/payment-experience/web-profiles/:web_profile_id",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "v1",
+                "payment-experience",
+                "web-profiles",
+                ":web_profile_id"
+              ],
+              "variable": [
+                {
+                  "key": "web_profile_id",
+                  "value": "{{web_profile_id}}"
+                }
+              ]
+            },
+            "description": "Deletes a web experience profile, by ID."
+          },
+          "response": [
+            {
+              "id": "15900a43-d64f-4b08-a99f-5399c1ac6038",
+              "name": "Deleted Profile By ID",
+              "originalRequest": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "{{base_url}}/v1/payment-experience/web-profiles/:web_profile_id",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "payment-experience",
+                    "web-profiles",
+                    ":web_profile_id"
+                  ],
+                  "variable": [
+                    {
+                      "key": "web_profile_id",
+                      "value": "{{web_profile_id}}"
+                    }
+                  ]
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "_postman_previewlanguage": "plain",
+              "header": [
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Date",
+                  "value": "Wed, 02 Feb 2022 05:45:00 GMT"
+                },
+                {
+                  "key": "Application_id",
+                  "value": "APP-80W284485P519543T"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "max-age=0, no-cache, no-store, must-revalidate"
+                },
+                {
+                  "key": "Caller_acct_num",
+                  "value": "ER87FV8ER63HJ"
+                },
+                {
+                  "key": "Paypal-Debug-Id",
+                  "value": "fc54be1992db3"
                 },
                 {
                   "key": "Strict-Transport-Security",
@@ -37693,7 +37686,7 @@
     {
       "listen": "prerequest",
       "script": {
-        "id": "e67d6f67-d88f-4cfd-8f44-dd42ec9e39b7",
+        "id": "b6e621b5-7777-4376-828e-207f085005d0",
         "type": "text/javascript",
         "exec": [
           "// Following script is executed before every request in this collection. ",
@@ -37762,7 +37755,7 @@
     {
       "listen": "test",
       "script": {
-        "id": "8df420ce-a2be-4b70-8d80-002e447cc20c",
+        "id": "a01ccc3e-c5d3-408c-9758-0eb38e60a630",
         "type": "text/javascript",
         "exec": [
           "var successHttpStatuses = [200, 201, 202, 204];",
@@ -37779,97 +37772,97 @@
   ],
   "variable": [
     {
-      "id": "0f1521fb-6510-4be3-8502-4d7d98ced846",
+      "id": "84fd4af2-ca6f-4473-8b2b-59c931052ee2",
       "key": "base_url",
       "value": "https://api-m.sandbox.paypal.com"
     },
     {
-      "id": "4c70f9ac-33d9-4dde-9f24-ad52683ee67a",
+      "id": "d01a1d90-dc41-45c8-a76f-c645a38caa64",
       "key": "client_id",
       "value": "AUC1CwUIt5XDl4Kco9-oXcewk0jZbPIxDs1JWHDzATNSnYU36xnTtS0Tp-4kDlCpgCbpudXcStc8HAsV"
     },
     {
-      "id": "a49d5bed-e808-4943-9b76-5919ab4a3b6e",
+      "id": "e405690f-db4e-4fa7-ad27-d18b6427f81f",
       "key": "client_secret",
       "value": "EDIDlZWQMpgfztWzVGYSjw-tcRvLblFnv4JZh4BBWtFQt4qNx43wc-U-FBcynTcRFXJ_uw1l_iTok_Nm"
     },
     {
-      "id": "64f945cb-65fc-4e87-a83d-bbd0bd1a977d",
+      "id": "5871ff93-8e67-4d5f-8e9a-ddbda72fae6b",
       "key": "paypal_partner_attribution_id",
       "value": "TEST_ATTRIBUTION_ID"
     },
     {
-      "id": "a238c600-35cd-42a3-b1c4-e55d11aad862",
+      "id": "27d02b3a-9848-40c8-a819-4313485b76a5",
       "key": "prefer_representation_min",
       "value": "return=minimal"
     },
     {
-      "id": "6cbb2811-3190-44bb-8ec3-3078c979f782",
+      "id": "cbe219cc-531e-4997-b159-6f30fbc72884",
       "key": "prefer_representation_detailed",
       "value": "return=representation"
     },
     {
-      "id": "98349341-9d00-4fd3-8a5c-85745401a463",
+      "id": "eb076621-32a4-4d27-86a6-cb26dd37d4d8",
       "key": "paypal_client_metadata_Id",
       "value": ""
     },
     {
-      "id": "217ee759-c37a-4b60-ac66-e0629f76ef40",
+      "id": "b6b7ecc1-4544-4e9d-a8f5-4fa540938ba9",
       "key": "paypal_auth_assertion",
       "value": ""
     },
     {
-      "id": "d057b8c3-d01b-45ea-b910-761d9f604104",
+      "id": "a144874b-e407-4c0d-adbe-d75c83099a40",
       "key": "access_token_expiry",
       "value": ""
     },
     {
-      "id": "70126f9b-561c-4cfd-a492-fd859f9d5a26",
+      "id": "8f00da9f-7a1d-4d0e-a30f-e5fc9c189c58",
       "key": "access_token_for",
       "value": ""
     },
     {
-      "id": "c47fe3ac-3025-4f4f-a9f8-2f6a74945534",
+      "id": "ef93bd16-2a37-41b1-a879-bc6ab60e15aa",
       "key": "order_id",
       "value": ""
     },
     {
-      "id": "1e4ae410-5d13-4c11-bf7a-12803e7cd46a",
+      "id": "9a3554c0-170d-4d89-ad45-e04a3973b58b",
       "key": "capture_id",
       "value": ""
     },
     {
-      "id": "5e41c29b-c0b0-4a3a-835d-d84f66a7976b",
+      "id": "09d56ec1-a90a-44fa-aa25-73c3cb72990e",
       "key": "billing_plan_id",
       "value": ""
     },
     {
-      "id": "213a64f0-0e83-48bf-9b47-6a4057d094f2",
+      "id": "3f5e28aa-b1f0-464b-a3c5-4d8e61448a5e",
       "key": "product_id",
-      "value": ""
+      "value": "1645840190"
     },
     {
-      "id": "13738d8b-0475-4f70-abfe-5ff113470605",
+      "id": "cceb9bf1-9ee1-4c16-a63d-79a460586fb2",
       "key": "subscription_id",
       "value": ""
     },
     {
-      "id": "402b5eb1-b7d1-4f3a-9669-f37322ea781c",
+      "id": "240cdc86-1ba4-4161-9efa-2de39aea7824",
       "key": "dispute_id",
       "value": ""
     },
     {
-      "id": "2d42faad-cdc2-4236-8568-9d7d5ceae2fd",
+      "id": "a4cf2e78-a102-459f-8c03-08e6d89eb7d5",
       "key": "authorization_id",
       "value": ""
     },
     {
-      "id": "36c85f8e-75f4-436f-ba56-e70762dc3cfb",
+      "id": "697f092a-8813-4825-8ccb-6f97a417b58f",
       "key": "refund_id",
       "value": ""
     },
     {
-      "id": "1c896243-482f-4306-8d3e-e213576e11a3",
+      "id": "73b4ce07-a63e-4169-8e57-68200371aa0a",
       "key": "access_token",
       "value": ""
     }
