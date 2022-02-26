@@ -25392,6 +25392,695 @@
       "name": "Payment Experience Web Profiles",
       "item": [
         {
+          "name": "web-profiles",
+          "item": [
+            {
+              "name": "Update web experience profile",
+              "id": "95f54489-014e-4bb9-aa4a-45c813ae3370",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text",
+                    "description": "The Content-Type header field is used to specify the nature of the data in the body of an entity. PayPal REST APIs support application/json."
+                  },
+                  {
+                    "key": "PayPal-Request-Id",
+                    "value": "{{$guid}}",
+                    "type": "text",
+                    "description": "The server stores keys for 6 hours. The API callers can request the times to up to 72 hours by speaking to their Account Manager."
+                  },
+                  {
+                    "key": "PayPal-Client-Metadata-Id",
+                    "value": "{{paypal_client_metadata_Id}}",
+                    "type": "text",
+                    "description": "Optional. Verifies that the payment originates from a valid, user-consented device and application. Reduces fraud and decreases declines. Transactions that do not include a client metadata ID are not eligible for PayPal Seller Protection.",
+                    "disabled": true
+                  },
+                  {
+                    "key": "PayPal-Partner-Attribution-Id",
+                    "value": "{{paypal_partner_attribution_id}}",
+                    "type": "text",
+                    "description": "Optional. Identifies the caller as a PayPal partner. To receive revenue attribution, specify a unique build notation (BN) code. BN codes provide tracking on all transactions that originate or are associated with a particular partner. To find your BN code, see Code and Credential Reference.",
+                    "disabled": true
+                  },
+                  {
+                    "key": "PayPal-Auth-Assertion",
+                    "value": "{{paypal_auth_assertion}}",
+                    "type": "text",
+                    "description": "An API client-provided JSON Web Token (JWT) assertion that identifies the merchant. To use this header, you must get consent to act on behalf of a merchant.\n",
+                    "disabled": true
+                  },
+                  {
+                    "key": "Prefer",
+                    "value": "{{prefer_representation_detailed}}",
+                    "type": "text",
+                    "description": "The preferred server response upon successful completion of the request. Value is:<ul><li><code>return=minimal</code>. The server returns a minimal response to optimize communication between the API caller and the server. A minimal response includes the <code>id</code>, <code>status</code> and HATEOAS links.</li><li><code>return=representation</code>. The server returns a complete resource representation, including the current state of the resource.</li></ul>",
+                    "disabled": true
+                  },
+                  {
+                    "key": "Prefer",
+                    "value": "{{prefer_representation_minimal}}",
+                    "description": "The preferred server response upon successful completion of the request. Value is:<ul><li><code>return=minimal</code>. The server returns a minimal response to optimize communication between the API caller and the server. A minimal response includes the <code>id</code>, <code>status</code> and HATEOAS links.</li><li><code>return=representation</code>. The server returns a complete resource representation, including the current state of the resource.</li></ul>",
+                    "type": "text",
+                    "disabled": true
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"name\": \"sample-profile-{{$timestamp}}\",\n    \"temporary\": false,\n    \"presentation\": {\n        \"logo_image\": \"https://example.com/logo_image/\"\n    },\n    \"input_fields\": {\n        \"no_shipping\": 1,\n        \"address_override\": 1,\n        \"allow_note\": true\n    },\n    \"flow_config\": {\n        \"landing_page_type\": \"billing\",\n        \"bank_txn_pending_url\": \"https://example.com/flow_config/\",\n        \"user_action\": \"commit\",\n        \"return_uri_http_method\": \"POST\"\n    }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{base_url}}/v1/payment-experience/web-profiles/:web_profile_id",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "payment-experience",
+                    "web-profiles",
+                    ":web_profile_id"
+                  ],
+                  "variable": [
+                    {
+                      "key": "web_profile_id",
+                      "value": "{{web_profile_id}}"
+                    }
+                  ]
+                },
+                "description": "Updates a web experience profile, by ID. In the JSON request body, specify the profile details. If your request omits any profile parameters, any previously set values for those parameters are removed."
+              },
+              "response": [
+                {
+                  "id": "37a67df1-00e3-4991-a3bd-1bbd94cf6e41",
+                  "name": "Updated various fields",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json",
+                        "type": "text",
+                        "description": "The Content-Type header field is used to specify the nature of the data in the body of an entity. PayPal REST APIs support application/json."
+                      },
+                      {
+                        "key": "PayPal-Request-Id",
+                        "value": "{{$guid}}",
+                        "type": "text",
+                        "description": "The server stores keys for 6 hours. The API callers can request the times to up to 72 hours by speaking to their Account Manager."
+                      },
+                      {
+                        "key": "PayPal-Client-Metadata-Id",
+                        "value": "{{paypal_client_metadata_Id}}",
+                        "type": "text",
+                        "description": "Optional. Verifies that the payment originates from a valid, user-consented device and application. Reduces fraud and decreases declines. Transactions that do not include a client metadata ID are not eligible for PayPal Seller Protection.",
+                        "disabled": true
+                      },
+                      {
+                        "key": "PayPal-Partner-Attribution-Id",
+                        "value": "{{paypal_partner_attribution_id}}",
+                        "type": "text",
+                        "description": "Optional. Identifies the caller as a PayPal partner. To receive revenue attribution, specify a unique build notation (BN) code. BN codes provide tracking on all transactions that originate or are associated with a particular partner. To find your BN code, see Code and Credential Reference.",
+                        "disabled": true
+                      },
+                      {
+                        "key": "PayPal-Auth-Assertion",
+                        "value": "{{paypal_auth_assertion}}",
+                        "type": "text",
+                        "description": "An API client-provided JSON Web Token (JWT) assertion that identifies the merchant. To use this header, you must get consent to act on behalf of a merchant.\n",
+                        "disabled": true
+                      },
+                      {
+                        "key": "Prefer",
+                        "value": "{{prefer_representation_detailed}}",
+                        "type": "text",
+                        "description": "The preferred server response upon successful completion of the request. Value is:<ul><li><code>return=minimal</code>. The server returns a minimal response to optimize communication between the API caller and the server. A minimal response includes the <code>id</code>, <code>status</code> and HATEOAS links.</li><li><code>return=representation</code>. The server returns a complete resource representation, including the current state of the resource.</li></ul>",
+                        "disabled": true
+                      },
+                      {
+                        "key": "Prefer",
+                        "value": "{{prefer_representation_minimal}}",
+                        "description": "The preferred server response upon successful completion of the request. Value is:<ul><li><code>return=minimal</code>. The server returns a minimal response to optimize communication between the API caller and the server. A minimal response includes the <code>id</code>, <code>status</code> and HATEOAS links.</li><li><code>return=representation</code>. The server returns a complete resource representation, including the current state of the resource.</li></ul>",
+                        "type": "text",
+                        "disabled": true
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n    \"name\": \"sample-profile-{{$timestamp}}\",\n    \"temporary\": false,\n    \"presentation\": {\n        \"logo_image\": \"https://merchant.com/logo_image/\"\n    },\n    \"input_fields\": {\n        \"no_shipping\": 1,\n        \"address_override\": 1,\n        \"allow_note\": true\n    },\n    \"flow_config\": {\n        \"landing_page_type\": \"Login\",\n        \"bank_txn_pending_url\": \"https://merchant.com/flow_config/\",\n        \"user_action\": \"commit\",\n        \"return_uri_http_method\": \"POST\"\n    }\n}",
+                      "options": {
+                        "raw": {
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{base_url}}/v1/payment-experience/web-profiles/:web_profile_id",
+                      "host": [
+                        "{{base_url}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "payment-experience",
+                        "web-profiles",
+                        ":web_profile_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "web_profile_id",
+                          "value": "{{web_profile_id}}"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "No Content",
+                  "code": 204,
+                  "_postman_previewlanguage": "plain",
+                  "header": [
+                    {
+                      "key": "Connection",
+                      "value": "keep-alive"
+                    },
+                    {
+                      "key": "Date",
+                      "value": "Wed, 02 Feb 2022 05:38:14 GMT"
+                    },
+                    {
+                      "key": "Application_id",
+                      "value": "APP-80W284485P519543T"
+                    },
+                    {
+                      "key": "Cache-Control",
+                      "value": "max-age=0, no-cache, no-store, must-revalidate"
+                    },
+                    {
+                      "key": "Caller_acct_num",
+                      "value": "ER87FV8ER63HJ"
+                    },
+                    {
+                      "key": "Paypal-Debug-Id",
+                      "value": "88490c04710fc"
+                    },
+                    {
+                      "key": "Strict-Transport-Security",
+                      "value": "max-age=31536000; includeSubDomains"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null
+                }
+              ]
+            },
+            {
+              "name": "Partially update web experience profile",
+              "id": "265cf73b-9820-4fe4-a63e-d99406e1e1c3",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "PATCH",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text",
+                    "description": "The Content-Type header field is used to specify the nature of the data in the body of an entity. PayPal REST APIs support application/json."
+                  },
+                  {
+                    "key": "PayPal-Request-Id",
+                    "value": "{{$guid}}",
+                    "type": "text",
+                    "description": "The server stores keys for 6 hours. The API callers can request the times to up to 72 hours by speaking to their Account Manager."
+                  },
+                  {
+                    "key": "PayPal-Client-Metadata-Id",
+                    "value": "{{paypal_client_metadata_Id}}",
+                    "type": "text",
+                    "description": "Optional. Verifies that the payment originates from a valid, user-consented device and application. Reduces fraud and decreases declines. Transactions that do not include a client metadata ID are not eligible for PayPal Seller Protection.",
+                    "disabled": true
+                  },
+                  {
+                    "key": "PayPal-Partner-Attribution-Id",
+                    "value": "{{paypal_partner_attribution_id}}",
+                    "type": "text",
+                    "description": "Optional. Identifies the caller as a PayPal partner. To receive revenue attribution, specify a unique build notation (BN) code. BN codes provide tracking on all transactions that originate or are associated with a particular partner. To find your BN code, see Code and Credential Reference.",
+                    "disabled": true
+                  },
+                  {
+                    "key": "PayPal-Auth-Assertion",
+                    "value": "{{paypal_auth_assertion}}",
+                    "type": "text",
+                    "description": "An API client-provided JSON Web Token (JWT) assertion that identifies the merchant. To use this header, you must get consent to act on behalf of a merchant.\n",
+                    "disabled": true
+                  },
+                  {
+                    "key": "Prefer",
+                    "value": "{{prefer_representation_detailed}}",
+                    "type": "text",
+                    "description": "The preferred server response upon successful completion of the request. Value is:<ul><li><code>return=minimal</code>. The server returns a minimal response to optimize communication between the API caller and the server. A minimal response includes the <code>id</code>, <code>status</code> and HATEOAS links.</li><li><code>return=representation</code>. The server returns a complete resource representation, including the current state of the resource.</li></ul>",
+                    "disabled": true
+                  },
+                  {
+                    "key": "Prefer",
+                    "value": "{{prefer_representation_minimal}}",
+                    "description": "The preferred server response upon successful completion of the request. Value is:<ul><li><code>return=minimal</code>. The server returns a minimal response to optimize communication between the API caller and the server. A minimal response includes the <code>id</code>, <code>status</code> and HATEOAS links.</li><li><code>return=representation</code>. The server returns a complete resource representation, including the current state of the resource.</li></ul>",
+                    "type": "text",
+                    "disabled": true
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n    {\n        \"op\": \"add\",\n        \"path\": \"/presentation/brand_name\",\n        \"value\": \"new_brand_name\"\n    },\n    {\n        \"op\": \"remove\",\n        \"path\": \"/flow_config/landing_page_type\"\n    }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{base_url}}/v1/payment-experience/web-profiles/:web_profile_id",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "payment-experience",
+                    "web-profiles",
+                    ":web_profile_id"
+                  ],
+                  "variable": [
+                    {
+                      "key": "web_profile_id",
+                      "value": "{{web_profile_id}}"
+                    }
+                  ]
+                },
+                "description": "Partially-updates a web experience profile, by ID. In the JSON request body, specify a patch object, the path of the profile location to update, and a new value."
+              },
+              "response": [
+                {
+                  "id": "d031ed56-d83a-419d-8b24-2892f745ed88",
+                  "name": "Partially update web experience profile",
+                  "originalRequest": {
+                    "method": "PATCH",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json",
+                        "type": "text",
+                        "description": "The Content-Type header field is used to specify the nature of the data in the body of an entity. PayPal REST APIs support application/json."
+                      },
+                      {
+                        "key": "PayPal-Request-Id",
+                        "value": "{{$guid}}",
+                        "type": "text",
+                        "description": "The server stores keys for 6 hours. The API callers can request the times to up to 72 hours by speaking to their Account Manager."
+                      },
+                      {
+                        "key": "PayPal-Client-Metadata-Id",
+                        "value": "{{paypal_client_metadata_Id}}",
+                        "type": "text",
+                        "description": "Optional. Verifies that the payment originates from a valid, user-consented device and application. Reduces fraud and decreases declines. Transactions that do not include a client metadata ID are not eligible for PayPal Seller Protection.",
+                        "disabled": true
+                      },
+                      {
+                        "key": "PayPal-Partner-Attribution-Id",
+                        "value": "{{paypal_partner_attribution_id}}",
+                        "type": "text",
+                        "description": "Optional. Identifies the caller as a PayPal partner. To receive revenue attribution, specify a unique build notation (BN) code. BN codes provide tracking on all transactions that originate or are associated with a particular partner. To find your BN code, see Code and Credential Reference.",
+                        "disabled": true
+                      },
+                      {
+                        "key": "PayPal-Auth-Assertion",
+                        "value": "{{paypal_auth_assertion}}",
+                        "type": "text",
+                        "description": "An API client-provided JSON Web Token (JWT) assertion that identifies the merchant. To use this header, you must get consent to act on behalf of a merchant.\n",
+                        "disabled": true
+                      },
+                      {
+                        "key": "Prefer",
+                        "value": "{{prefer_representation_detailed}}",
+                        "type": "text",
+                        "description": "The preferred server response upon successful completion of the request. Value is:<ul><li><code>return=minimal</code>. The server returns a minimal response to optimize communication between the API caller and the server. A minimal response includes the <code>id</code>, <code>status</code> and HATEOAS links.</li><li><code>return=representation</code>. The server returns a complete resource representation, including the current state of the resource.</li></ul>",
+                        "disabled": true
+                      },
+                      {
+                        "key": "Prefer",
+                        "value": "{{prefer_representation_minimal}}",
+                        "description": "The preferred server response upon successful completion of the request. Value is:<ul><li><code>return=minimal</code>. The server returns a minimal response to optimize communication between the API caller and the server. A minimal response includes the <code>id</code>, <code>status</code> and HATEOAS links.</li><li><code>return=representation</code>. The server returns a complete resource representation, including the current state of the resource.</li></ul>",
+                        "type": "text",
+                        "disabled": true
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "[\n    {\n        \"op\": \"add\",\n        \"path\": \"/presentation/brand_name\",\n        \"value\": \"new_brand_name\"\n    },\n    {\n        \"op\": \"remove\",\n        \"path\": \"/flow_config/landing_page_type\"\n    }\n]",
+                      "options": {
+                        "raw": {
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{base_url}}/v1/payment-experience/web-profiles/:web_profile_id",
+                      "host": [
+                        "{{base_url}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "payment-experience",
+                        "web-profiles",
+                        ":web_profile_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "web_profile_id",
+                          "value": "{{web_profile_id}}"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "No Content",
+                  "code": 204,
+                  "_postman_previewlanguage": "plain",
+                  "header": [
+                    {
+                      "key": "Connection",
+                      "value": "keep-alive"
+                    },
+                    {
+                      "key": "Date",
+                      "value": "Wed, 02 Feb 2022 05:44:16 GMT"
+                    },
+                    {
+                      "key": "Application_id",
+                      "value": "APP-80W284485P519543T"
+                    },
+                    {
+                      "key": "Cache-Control",
+                      "value": "max-age=0, no-cache, no-store, must-revalidate"
+                    },
+                    {
+                      "key": "Caller_acct_num",
+                      "value": "ER87FV8ER63HJ"
+                    },
+                    {
+                      "key": "Paypal-Debug-Id",
+                      "value": "82ba0e0a0c54d"
+                    },
+                    {
+                      "key": "Strict-Transport-Security",
+                      "value": "max-age=31536000; includeSubDomains"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null
+                }
+              ]
+            },
+            {
+              "name": "Show web experience profile details by ID",
+              "id": "318b34bf-e8a1-4935-9993-f9da5a272765",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{base_url}}/v1/payment-experience/web-profiles/:web_profile_id",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "payment-experience",
+                    "web-profiles",
+                    ":web_profile_id"
+                  ],
+                  "variable": [
+                    {
+                      "key": "web_profile_id",
+                      "value": "{{web_profile_id}}"
+                    }
+                  ]
+                },
+                "description": "Shows details for a web experience profile, by ID."
+              },
+              "response": [
+                {
+                  "id": "d2df03f9-2774-4f33-8447-babc201903da",
+                  "name": "Show web experience profile details by ID",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [],
+                    "url": {
+                      "raw": "{{base_url}}/v1/payment-experience/web-profiles/:web_profile_id",
+                      "host": [
+                        "{{base_url}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "payment-experience",
+                        "web-profiles",
+                        ":web_profile_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "web_profile_id",
+                          "value": "{{web_profile_id}}"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    },
+                    {
+                      "key": "Content-Length",
+                      "value": "187"
+                    },
+                    {
+                      "key": "Connection",
+                      "value": "keep-alive"
+                    },
+                    {
+                      "key": "Date",
+                      "value": "Wed, 02 Feb 2022 05:13:37 GMT"
+                    },
+                    {
+                      "key": "Application_id",
+                      "value": "APP-80W284485P519543T"
+                    },
+                    {
+                      "key": "Cache-Control",
+                      "value": "max-age=0, no-cache, no-store, must-revalidate"
+                    },
+                    {
+                      "key": "Caller_acct_num",
+                      "value": "ER87FV8ER63HJ"
+                    },
+                    {
+                      "key": "Paypal-Debug-Id",
+                      "value": "a54841fa7c0e5"
+                    },
+                    {
+                      "key": "Strict-Transport-Security",
+                      "value": "max-age=31536000; includeSubDomains"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n    \"id\": \"XP-PMWX-P8EY-AH2Y-9AK3\",\n    \"name\": \"Braintree 2017-09-29T04:49:41+00:00\",\n    \"temporary\": false,\n    \"input_fields\": {\n        \"no_shipping\": 1,\n        \"address_override\": 0\n    },\n    \"presentation\": {\n        \"brand_name\": \"PayPal\"\n    }\n}"
+                },
+                {
+                  "id": "4fcb61c7-15c0-4d53-ac22-e36e893bee56",
+                  "name": "Show web experience profile details by ID",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [],
+                    "url": {
+                      "raw": "{{base_url}}/v1/payment-experience/web-profiles/:web_profile_id",
+                      "host": [
+                        "{{base_url}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "payment-experience",
+                        "web-profiles",
+                        ":web_profile_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "web_profile_id",
+                          "value": "{{web_profile_id}}"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    },
+                    {
+                      "key": "Content-Length",
+                      "value": "378"
+                    },
+                    {
+                      "key": "Connection",
+                      "value": "keep-alive"
+                    },
+                    {
+                      "key": "Date",
+                      "value": "Wed, 02 Feb 2022 05:26:59 GMT"
+                    },
+                    {
+                      "key": "Application_id",
+                      "value": "APP-80W284485P519543T"
+                    },
+                    {
+                      "key": "Cache-Control",
+                      "value": "max-age=0, no-cache, no-store, must-revalidate"
+                    },
+                    {
+                      "key": "Caller_acct_num",
+                      "value": "ER87FV8ER63HJ"
+                    },
+                    {
+                      "key": "Paypal-Debug-Id",
+                      "value": "1ee36e4597a01"
+                    },
+                    {
+                      "key": "Strict-Transport-Security",
+                      "value": "max-age=31536000; includeSubDomains"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n    \"id\": \"XP-XK79-B6DA-GV8A-UYMH\",\n    \"name\": \"sample-profile-1643779582\",\n    \"temporary\": false,\n    \"flow_config\": {\n        \"landing_page_type\": \"billing\",\n        \"bank_txn_pending_url\": \"https://example.com/flow_config/\",\n        \"user_action\": \"commit\",\n        \"return_uri_http_method\": \"GET\"\n    },\n    \"input_fields\": {\n        \"allow_note\": true,\n        \"no_shipping\": 1,\n        \"address_override\": 1\n    },\n    \"presentation\": {\n        \"logo_image\": \"https://example.com/logo_image/\"\n    }\n}"
+                }
+              ]
+            },
+            {
+              "name": "Delete web experience profile",
+              "id": "2dc27d34-eaa2-4d5c-9a8d-2bdbee6ceaa3",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "{{base_url}}/v1/payment-experience/web-profiles/:web_profile_id",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "payment-experience",
+                    "web-profiles",
+                    ":web_profile_id"
+                  ],
+                  "variable": [
+                    {
+                      "key": "web_profile_id",
+                      "value": "{{web_profile_id}}"
+                    }
+                  ]
+                },
+                "description": "Deletes a web experience profile, by ID."
+              },
+              "response": [
+                {
+                  "id": "15900a43-d64f-4b08-a99f-5399c1ac6038",
+                  "name": "Deleted Profile By ID",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [],
+                    "url": {
+                      "raw": "{{base_url}}/v1/payment-experience/web-profiles/:web_profile_id",
+                      "host": [
+                        "{{base_url}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "payment-experience",
+                        "web-profiles",
+                        ":web_profile_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "web_profile_id",
+                          "value": "{{web_profile_id}}"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "No Content",
+                  "code": 204,
+                  "_postman_previewlanguage": "plain",
+                  "header": [
+                    {
+                      "key": "Connection",
+                      "value": "keep-alive"
+                    },
+                    {
+                      "key": "Date",
+                      "value": "Wed, 02 Feb 2022 05:45:00 GMT"
+                    },
+                    {
+                      "key": "Application_id",
+                      "value": "APP-80W284485P519543T"
+                    },
+                    {
+                      "key": "Cache-Control",
+                      "value": "max-age=0, no-cache, no-store, must-revalidate"
+                    },
+                    {
+                      "key": "Caller_acct_num",
+                      "value": "ER87FV8ER63HJ"
+                    },
+                    {
+                      "key": "Paypal-Debug-Id",
+                      "value": "fc54be1992db3"
+                    },
+                    {
+                      "key": "Strict-Transport-Security",
+                      "value": "max-age=31536000; includeSubDomains"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null
+                }
+              ]
+            }
+          ],
+          "id": "9e973137-2869-4777-90a0-a950344d43b2",
+          "description": "Use the `/payment-experience/web-profiles` resource to create, show details for, list, update, partially update, and delete web experience profiles."
+        },
+        {
           "name": "Create web experience profile",
           "event": [
             {
@@ -25780,688 +26469,6 @@
               "cookie": [],
               "responseTime": null,
               "body": "[\n    {\n        \"id\": \"XP-PMWX-P8EY-AH2Y-9AK3\",\n        \"name\": \"Braintree 2017-09-29T04:49:41+00:00\",\n        \"temporary\": false,\n        \"input_fields\": {\n            \"no_shipping\": 1,\n            \"address_override\": 0\n        },\n        \"presentation\": {\n            \"brand_name\": \"PayPal\"\n        }\n    },\n    {\n        \"id\": \"XP-QDLJ-U9PR-QUV7-JBPN\",\n        \"name\": \"Braintree 2020-10-15T05:46:40+00:00\",\n        \"temporary\": false,\n        \"input_fields\": {\n            \"no_shipping\": 1,\n            \"address_override\": 0\n        },\n        \"presentation\": {\n            \"brand_name\": \"PayPal\"\n        }\n    },\n    {\n        \"id\": \"XP-6BMU-AD9S-FTL6-JTXG\",\n        \"name\": \"Braintree 2020-10-15T22:02:03+00:00\",\n        \"temporary\": false,\n        \"input_fields\": {\n            \"no_shipping\": 1,\n            \"address_override\": 0\n        },\n        \"presentation\": {\n            \"brand_name\": \"PayPal\"\n        }\n    },\n    {\n        \"id\": \"XP-Y8GL-WFWJ-DG3K-XM32\",\n        \"name\": \"Braintree 2020-10-15T05:40:22+00:00\",\n        \"temporary\": false,\n        \"input_fields\": {\n            \"no_shipping\": 1,\n            \"address_override\": 0\n        },\n        \"presentation\": {\n            \"brand_name\": \"PayPal\"\n        }\n    },\n    {\n        \"id\": \"XP-8LCQ-PF5U-SNEY-7Z24\",\n        \"name\": \"profile_17352968400459133052029905839\",\n        \"temporary\": false,\n        \"flow_config\": {\n            \"landing_page_type\": \"login\"\n        },\n        \"input_fields\": {\n            \"allow_note\": true,\n            \"no_shipping\": 2\n        },\n        \"presentation\": {\n            \"logo_image\": \"https://example.com/logo.PNG\"\n        }\n    },\n    {\n        \"id\": \"XP-BBT8-BDR4-9WLD-5UPN\",\n        \"name\": \"Braintree 2017-10-13T23:44:09+00:00\",\n        \"temporary\": false,\n        \"input_fields\": {\n            \"no_shipping\": 1,\n            \"address_override\": 0\n        },\n        \"presentation\": {\n            \"brand_name\": \"PayPal\",\n            \"locale_code\": \"us\"\n        }\n    }\n]"
-            }
-          ]
-        },
-        {
-          "name": "Update web experience profile",
-          "id": "95f54489-014e-4bb9-aa4a-45c813ae3370",
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          },
-          "request": {
-            "method": "PUT",
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json",
-                "type": "text",
-                "description": "The Content-Type header field is used to specify the nature of the data in the body of an entity. PayPal REST APIs support application/json."
-              },
-              {
-                "key": "PayPal-Request-Id",
-                "value": "{{$guid}}",
-                "type": "text",
-                "description": "The server stores keys for 6 hours. The API callers can request the times to up to 72 hours by speaking to their Account Manager."
-              },
-              {
-                "key": "PayPal-Client-Metadata-Id",
-                "value": "{{paypal_client_metadata_Id}}",
-                "type": "text",
-                "description": "Optional. Verifies that the payment originates from a valid, user-consented device and application. Reduces fraud and decreases declines. Transactions that do not include a client metadata ID are not eligible for PayPal Seller Protection.",
-                "disabled": true
-              },
-              {
-                "key": "PayPal-Partner-Attribution-Id",
-                "value": "{{paypal_partner_attribution_id}}",
-                "type": "text",
-                "description": "Optional. Identifies the caller as a PayPal partner. To receive revenue attribution, specify a unique build notation (BN) code. BN codes provide tracking on all transactions that originate or are associated with a particular partner. To find your BN code, see Code and Credential Reference.",
-                "disabled": true
-              },
-              {
-                "key": "PayPal-Auth-Assertion",
-                "value": "{{paypal_auth_assertion}}",
-                "type": "text",
-                "description": "An API client-provided JSON Web Token (JWT) assertion that identifies the merchant. To use this header, you must get consent to act on behalf of a merchant.\n",
-                "disabled": true
-              },
-              {
-                "key": "Prefer",
-                "value": "{{prefer_representation_detailed}}",
-                "type": "text",
-                "description": "The preferred server response upon successful completion of the request. Value is:<ul><li><code>return=minimal</code>. The server returns a minimal response to optimize communication between the API caller and the server. A minimal response includes the <code>id</code>, <code>status</code> and HATEOAS links.</li><li><code>return=representation</code>. The server returns a complete resource representation, including the current state of the resource.</li></ul>",
-                "disabled": true
-              },
-              {
-                "key": "Prefer",
-                "value": "{{prefer_representation_minimal}}",
-                "description": "The preferred server response upon successful completion of the request. Value is:<ul><li><code>return=minimal</code>. The server returns a minimal response to optimize communication between the API caller and the server. A minimal response includes the <code>id</code>, <code>status</code> and HATEOAS links.</li><li><code>return=representation</code>. The server returns a complete resource representation, including the current state of the resource.</li></ul>",
-                "type": "text",
-                "disabled": true
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": "{\n    \"name\": \"sample-profile-{{$timestamp}}\",\n    \"temporary\": false,\n    \"presentation\": {\n        \"logo_image\": \"https://example.com/logo_image/\"\n    },\n    \"input_fields\": {\n        \"no_shipping\": 1,\n        \"address_override\": 1,\n        \"allow_note\": true\n    },\n    \"flow_config\": {\n        \"landing_page_type\": \"billing\",\n        \"bank_txn_pending_url\": \"https://example.com/flow_config/\",\n        \"user_action\": \"commit\",\n        \"return_uri_http_method\": \"POST\"\n    }\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            },
-            "url": {
-              "raw": "{{base_url}}/v1/payment-experience/web-profiles/:web_profile_id",
-              "host": [
-                "{{base_url}}"
-              ],
-              "path": [
-                "v1",
-                "payment-experience",
-                "web-profiles",
-                ":web_profile_id"
-              ],
-              "variable": [
-                {
-                  "key": "web_profile_id",
-                  "value": "{{web_profile_id}}"
-                }
-              ]
-            },
-            "description": "Updates a web experience profile, by ID. In the JSON request body, specify the profile details. If your request omits any profile parameters, any previously set values for those parameters are removed."
-          },
-          "response": [
-            {
-              "id": "37a67df1-00e3-4991-a3bd-1bbd94cf6e41",
-              "name": "Updated various fields",
-              "originalRequest": {
-                "method": "PUT",
-                "header": [
-                  {
-                    "key": "Content-Type",
-                    "value": "application/json",
-                    "type": "text",
-                    "description": "The Content-Type header field is used to specify the nature of the data in the body of an entity. PayPal REST APIs support application/json."
-                  },
-                  {
-                    "key": "PayPal-Request-Id",
-                    "value": "{{$guid}}",
-                    "type": "text",
-                    "description": "The server stores keys for 6 hours. The API callers can request the times to up to 72 hours by speaking to their Account Manager."
-                  },
-                  {
-                    "key": "PayPal-Client-Metadata-Id",
-                    "value": "{{paypal_client_metadata_Id}}",
-                    "type": "text",
-                    "description": "Optional. Verifies that the payment originates from a valid, user-consented device and application. Reduces fraud and decreases declines. Transactions that do not include a client metadata ID are not eligible for PayPal Seller Protection.",
-                    "disabled": true
-                  },
-                  {
-                    "key": "PayPal-Partner-Attribution-Id",
-                    "value": "{{paypal_partner_attribution_id}}",
-                    "type": "text",
-                    "description": "Optional. Identifies the caller as a PayPal partner. To receive revenue attribution, specify a unique build notation (BN) code. BN codes provide tracking on all transactions that originate or are associated with a particular partner. To find your BN code, see Code and Credential Reference.",
-                    "disabled": true
-                  },
-                  {
-                    "key": "PayPal-Auth-Assertion",
-                    "value": "{{paypal_auth_assertion}}",
-                    "type": "text",
-                    "description": "An API client-provided JSON Web Token (JWT) assertion that identifies the merchant. To use this header, you must get consent to act on behalf of a merchant.\n",
-                    "disabled": true
-                  },
-                  {
-                    "key": "Prefer",
-                    "value": "{{prefer_representation_detailed}}",
-                    "type": "text",
-                    "description": "The preferred server response upon successful completion of the request. Value is:<ul><li><code>return=minimal</code>. The server returns a minimal response to optimize communication between the API caller and the server. A minimal response includes the <code>id</code>, <code>status</code> and HATEOAS links.</li><li><code>return=representation</code>. The server returns a complete resource representation, including the current state of the resource.</li></ul>",
-                    "disabled": true
-                  },
-                  {
-                    "key": "Prefer",
-                    "value": "{{prefer_representation_minimal}}",
-                    "description": "The preferred server response upon successful completion of the request. Value is:<ul><li><code>return=minimal</code>. The server returns a minimal response to optimize communication between the API caller and the server. A minimal response includes the <code>id</code>, <code>status</code> and HATEOAS links.</li><li><code>return=representation</code>. The server returns a complete resource representation, including the current state of the resource.</li></ul>",
-                    "type": "text",
-                    "disabled": true
-                  }
-                ],
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n    \"name\": \"sample-profile-{{$timestamp}}\",\n    \"temporary\": false,\n    \"presentation\": {\n        \"logo_image\": \"https://merchant.com/logo_image/\"\n    },\n    \"input_fields\": {\n        \"no_shipping\": 1,\n        \"address_override\": 1,\n        \"allow_note\": true\n    },\n    \"flow_config\": {\n        \"landing_page_type\": \"Login\",\n        \"bank_txn_pending_url\": \"https://merchant.com/flow_config/\",\n        \"user_action\": \"commit\",\n        \"return_uri_http_method\": \"POST\"\n    }\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                },
-                "url": {
-                  "raw": "{{base_url}}/v1/payment-experience/web-profiles/:web_profile_id",
-                  "host": [
-                    "{{base_url}}"
-                  ],
-                  "path": [
-                    "v1",
-                    "payment-experience",
-                    "web-profiles",
-                    ":web_profile_id"
-                  ],
-                  "variable": [
-                    {
-                      "key": "web_profile_id",
-                      "value": "{{web_profile_id}}"
-                    }
-                  ]
-                }
-              },
-              "status": "No Content",
-              "code": 204,
-              "_postman_previewlanguage": "plain",
-              "header": [
-                {
-                  "key": "Connection",
-                  "value": "keep-alive"
-                },
-                {
-                  "key": "Date",
-                  "value": "Wed, 02 Feb 2022 05:38:14 GMT"
-                },
-                {
-                  "key": "Application_id",
-                  "value": "APP-80W284485P519543T"
-                },
-                {
-                  "key": "Cache-Control",
-                  "value": "max-age=0, no-cache, no-store, must-revalidate"
-                },
-                {
-                  "key": "Caller_acct_num",
-                  "value": "ER87FV8ER63HJ"
-                },
-                {
-                  "key": "Paypal-Debug-Id",
-                  "value": "88490c04710fc"
-                },
-                {
-                  "key": "Strict-Transport-Security",
-                  "value": "max-age=31536000; includeSubDomains"
-                }
-              ],
-              "cookie": [],
-              "responseTime": null,
-              "body": null
-            }
-          ]
-        },
-        {
-          "name": "Partially update web experience profile",
-          "id": "265cf73b-9820-4fe4-a63e-d99406e1e1c3",
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          },
-          "request": {
-            "method": "PATCH",
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json",
-                "type": "text",
-                "description": "The Content-Type header field is used to specify the nature of the data in the body of an entity. PayPal REST APIs support application/json."
-              },
-              {
-                "key": "PayPal-Request-Id",
-                "value": "{{$guid}}",
-                "type": "text",
-                "description": "The server stores keys for 6 hours. The API callers can request the times to up to 72 hours by speaking to their Account Manager."
-              },
-              {
-                "key": "PayPal-Client-Metadata-Id",
-                "value": "{{paypal_client_metadata_Id}}",
-                "type": "text",
-                "description": "Optional. Verifies that the payment originates from a valid, user-consented device and application. Reduces fraud and decreases declines. Transactions that do not include a client metadata ID are not eligible for PayPal Seller Protection.",
-                "disabled": true
-              },
-              {
-                "key": "PayPal-Partner-Attribution-Id",
-                "value": "{{paypal_partner_attribution_id}}",
-                "type": "text",
-                "description": "Optional. Identifies the caller as a PayPal partner. To receive revenue attribution, specify a unique build notation (BN) code. BN codes provide tracking on all transactions that originate or are associated with a particular partner. To find your BN code, see Code and Credential Reference.",
-                "disabled": true
-              },
-              {
-                "key": "PayPal-Auth-Assertion",
-                "value": "{{paypal_auth_assertion}}",
-                "type": "text",
-                "description": "An API client-provided JSON Web Token (JWT) assertion that identifies the merchant. To use this header, you must get consent to act on behalf of a merchant.\n",
-                "disabled": true
-              },
-              {
-                "key": "Prefer",
-                "value": "{{prefer_representation_detailed}}",
-                "type": "text",
-                "description": "The preferred server response upon successful completion of the request. Value is:<ul><li><code>return=minimal</code>. The server returns a minimal response to optimize communication between the API caller and the server. A minimal response includes the <code>id</code>, <code>status</code> and HATEOAS links.</li><li><code>return=representation</code>. The server returns a complete resource representation, including the current state of the resource.</li></ul>",
-                "disabled": true
-              },
-              {
-                "key": "Prefer",
-                "value": "{{prefer_representation_minimal}}",
-                "description": "The preferred server response upon successful completion of the request. Value is:<ul><li><code>return=minimal</code>. The server returns a minimal response to optimize communication between the API caller and the server. A minimal response includes the <code>id</code>, <code>status</code> and HATEOAS links.</li><li><code>return=representation</code>. The server returns a complete resource representation, including the current state of the resource.</li></ul>",
-                "type": "text",
-                "disabled": true
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": "[\n    {\n        \"op\": \"add\",\n        \"path\": \"/presentation/brand_name\",\n        \"value\": \"new_brand_name\"\n    },\n    {\n        \"op\": \"remove\",\n        \"path\": \"/flow_config/landing_page_type\"\n    }\n]",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            },
-            "url": {
-              "raw": "{{base_url}}/v1/payment-experience/web-profiles/:web_profile_id",
-              "host": [
-                "{{base_url}}"
-              ],
-              "path": [
-                "v1",
-                "payment-experience",
-                "web-profiles",
-                ":web_profile_id"
-              ],
-              "variable": [
-                {
-                  "key": "web_profile_id",
-                  "value": "{{web_profile_id}}"
-                }
-              ]
-            },
-            "description": "Partially-updates a web experience profile, by ID. In the JSON request body, specify a patch object, the path of the profile location to update, and a new value."
-          },
-          "response": [
-            {
-              "id": "d031ed56-d83a-419d-8b24-2892f745ed88",
-              "name": "Partially update web experience profile",
-              "originalRequest": {
-                "method": "PATCH",
-                "header": [
-                  {
-                    "key": "Content-Type",
-                    "value": "application/json",
-                    "type": "text",
-                    "description": "The Content-Type header field is used to specify the nature of the data in the body of an entity. PayPal REST APIs support application/json."
-                  },
-                  {
-                    "key": "PayPal-Request-Id",
-                    "value": "{{$guid}}",
-                    "type": "text",
-                    "description": "The server stores keys for 6 hours. The API callers can request the times to up to 72 hours by speaking to their Account Manager."
-                  },
-                  {
-                    "key": "PayPal-Client-Metadata-Id",
-                    "value": "{{paypal_client_metadata_Id}}",
-                    "type": "text",
-                    "description": "Optional. Verifies that the payment originates from a valid, user-consented device and application. Reduces fraud and decreases declines. Transactions that do not include a client metadata ID are not eligible for PayPal Seller Protection.",
-                    "disabled": true
-                  },
-                  {
-                    "key": "PayPal-Partner-Attribution-Id",
-                    "value": "{{paypal_partner_attribution_id}}",
-                    "type": "text",
-                    "description": "Optional. Identifies the caller as a PayPal partner. To receive revenue attribution, specify a unique build notation (BN) code. BN codes provide tracking on all transactions that originate or are associated with a particular partner. To find your BN code, see Code and Credential Reference.",
-                    "disabled": true
-                  },
-                  {
-                    "key": "PayPal-Auth-Assertion",
-                    "value": "{{paypal_auth_assertion}}",
-                    "type": "text",
-                    "description": "An API client-provided JSON Web Token (JWT) assertion that identifies the merchant. To use this header, you must get consent to act on behalf of a merchant.\n",
-                    "disabled": true
-                  },
-                  {
-                    "key": "Prefer",
-                    "value": "{{prefer_representation_detailed}}",
-                    "type": "text",
-                    "description": "The preferred server response upon successful completion of the request. Value is:<ul><li><code>return=minimal</code>. The server returns a minimal response to optimize communication between the API caller and the server. A minimal response includes the <code>id</code>, <code>status</code> and HATEOAS links.</li><li><code>return=representation</code>. The server returns a complete resource representation, including the current state of the resource.</li></ul>",
-                    "disabled": true
-                  },
-                  {
-                    "key": "Prefer",
-                    "value": "{{prefer_representation_minimal}}",
-                    "description": "The preferred server response upon successful completion of the request. Value is:<ul><li><code>return=minimal</code>. The server returns a minimal response to optimize communication between the API caller and the server. A minimal response includes the <code>id</code>, <code>status</code> and HATEOAS links.</li><li><code>return=representation</code>. The server returns a complete resource representation, including the current state of the resource.</li></ul>",
-                    "type": "text",
-                    "disabled": true
-                  }
-                ],
-                "body": {
-                  "mode": "raw",
-                  "raw": "[\n    {\n        \"op\": \"add\",\n        \"path\": \"/presentation/brand_name\",\n        \"value\": \"new_brand_name\"\n    },\n    {\n        \"op\": \"remove\",\n        \"path\": \"/flow_config/landing_page_type\"\n    }\n]",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                },
-                "url": {
-                  "raw": "{{base_url}}/v1/payment-experience/web-profiles/:web_profile_id",
-                  "host": [
-                    "{{base_url}}"
-                  ],
-                  "path": [
-                    "v1",
-                    "payment-experience",
-                    "web-profiles",
-                    ":web_profile_id"
-                  ],
-                  "variable": [
-                    {
-                      "key": "web_profile_id",
-                      "value": "{{web_profile_id}}"
-                    }
-                  ]
-                }
-              },
-              "status": "No Content",
-              "code": 204,
-              "_postman_previewlanguage": "plain",
-              "header": [
-                {
-                  "key": "Connection",
-                  "value": "keep-alive"
-                },
-                {
-                  "key": "Date",
-                  "value": "Wed, 02 Feb 2022 05:44:16 GMT"
-                },
-                {
-                  "key": "Application_id",
-                  "value": "APP-80W284485P519543T"
-                },
-                {
-                  "key": "Cache-Control",
-                  "value": "max-age=0, no-cache, no-store, must-revalidate"
-                },
-                {
-                  "key": "Caller_acct_num",
-                  "value": "ER87FV8ER63HJ"
-                },
-                {
-                  "key": "Paypal-Debug-Id",
-                  "value": "82ba0e0a0c54d"
-                },
-                {
-                  "key": "Strict-Transport-Security",
-                  "value": "max-age=31536000; includeSubDomains"
-                }
-              ],
-              "cookie": [],
-              "responseTime": null,
-              "body": null
-            }
-          ]
-        },
-        {
-          "name": "Show web experience profile details by ID",
-          "id": "318b34bf-e8a1-4935-9993-f9da5a272765",
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          },
-          "request": {
-            "method": "GET",
-            "header": [],
-            "url": {
-              "raw": "{{base_url}}/v1/payment-experience/web-profiles/:web_profile_id",
-              "host": [
-                "{{base_url}}"
-              ],
-              "path": [
-                "v1",
-                "payment-experience",
-                "web-profiles",
-                ":web_profile_id"
-              ],
-              "variable": [
-                {
-                  "key": "web_profile_id",
-                  "value": "{{web_profile_id}}"
-                }
-              ]
-            },
-            "description": "Shows details for a web experience profile, by ID."
-          },
-          "response": [
-            {
-              "id": "d2df03f9-2774-4f33-8447-babc201903da",
-              "name": "Show web experience profile details by ID",
-              "originalRequest": {
-                "method": "GET",
-                "header": [],
-                "url": {
-                  "raw": "{{base_url}}/v1/payment-experience/web-profiles/:web_profile_id",
-                  "host": [
-                    "{{base_url}}"
-                  ],
-                  "path": [
-                    "v1",
-                    "payment-experience",
-                    "web-profiles",
-                    ":web_profile_id"
-                  ],
-                  "variable": [
-                    {
-                      "key": "web_profile_id",
-                      "value": "{{web_profile_id}}"
-                    }
-                  ]
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "_postman_previewlanguage": "json",
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                },
-                {
-                  "key": "Content-Length",
-                  "value": "187"
-                },
-                {
-                  "key": "Connection",
-                  "value": "keep-alive"
-                },
-                {
-                  "key": "Date",
-                  "value": "Wed, 02 Feb 2022 05:13:37 GMT"
-                },
-                {
-                  "key": "Application_id",
-                  "value": "APP-80W284485P519543T"
-                },
-                {
-                  "key": "Cache-Control",
-                  "value": "max-age=0, no-cache, no-store, must-revalidate"
-                },
-                {
-                  "key": "Caller_acct_num",
-                  "value": "ER87FV8ER63HJ"
-                },
-                {
-                  "key": "Paypal-Debug-Id",
-                  "value": "a54841fa7c0e5"
-                },
-                {
-                  "key": "Strict-Transport-Security",
-                  "value": "max-age=31536000; includeSubDomains"
-                }
-              ],
-              "cookie": [],
-              "responseTime": null,
-              "body": "{\n    \"id\": \"XP-PMWX-P8EY-AH2Y-9AK3\",\n    \"name\": \"Braintree 2017-09-29T04:49:41+00:00\",\n    \"temporary\": false,\n    \"input_fields\": {\n        \"no_shipping\": 1,\n        \"address_override\": 0\n    },\n    \"presentation\": {\n        \"brand_name\": \"PayPal\"\n    }\n}"
-            },
-            {
-              "id": "4fcb61c7-15c0-4d53-ac22-e36e893bee56",
-              "name": "Show web experience profile details by ID",
-              "originalRequest": {
-                "method": "GET",
-                "header": [],
-                "url": {
-                  "raw": "{{base_url}}/v1/payment-experience/web-profiles/:web_profile_id",
-                  "host": [
-                    "{{base_url}}"
-                  ],
-                  "path": [
-                    "v1",
-                    "payment-experience",
-                    "web-profiles",
-                    ":web_profile_id"
-                  ],
-                  "variable": [
-                    {
-                      "key": "web_profile_id",
-                      "value": "{{web_profile_id}}"
-                    }
-                  ]
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "_postman_previewlanguage": "json",
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                },
-                {
-                  "key": "Content-Length",
-                  "value": "378"
-                },
-                {
-                  "key": "Connection",
-                  "value": "keep-alive"
-                },
-                {
-                  "key": "Date",
-                  "value": "Wed, 02 Feb 2022 05:26:59 GMT"
-                },
-                {
-                  "key": "Application_id",
-                  "value": "APP-80W284485P519543T"
-                },
-                {
-                  "key": "Cache-Control",
-                  "value": "max-age=0, no-cache, no-store, must-revalidate"
-                },
-                {
-                  "key": "Caller_acct_num",
-                  "value": "ER87FV8ER63HJ"
-                },
-                {
-                  "key": "Paypal-Debug-Id",
-                  "value": "1ee36e4597a01"
-                },
-                {
-                  "key": "Strict-Transport-Security",
-                  "value": "max-age=31536000; includeSubDomains"
-                }
-              ],
-              "cookie": [],
-              "responseTime": null,
-              "body": "{\n    \"id\": \"XP-XK79-B6DA-GV8A-UYMH\",\n    \"name\": \"sample-profile-1643779582\",\n    \"temporary\": false,\n    \"flow_config\": {\n        \"landing_page_type\": \"billing\",\n        \"bank_txn_pending_url\": \"https://example.com/flow_config/\",\n        \"user_action\": \"commit\",\n        \"return_uri_http_method\": \"GET\"\n    },\n    \"input_fields\": {\n        \"allow_note\": true,\n        \"no_shipping\": 1,\n        \"address_override\": 1\n    },\n    \"presentation\": {\n        \"logo_image\": \"https://example.com/logo_image/\"\n    }\n}"
-            }
-          ]
-        },
-        {
-          "name": "Delete web experience profile",
-          "id": "2dc27d34-eaa2-4d5c-9a8d-2bdbee6ceaa3",
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          },
-          "request": {
-            "method": "DELETE",
-            "header": [],
-            "url": {
-              "raw": "{{base_url}}/v1/payment-experience/web-profiles/:web_profile_id",
-              "host": [
-                "{{base_url}}"
-              ],
-              "path": [
-                "v1",
-                "payment-experience",
-                "web-profiles",
-                ":web_profile_id"
-              ],
-              "variable": [
-                {
-                  "key": "web_profile_id",
-                  "value": "{{web_profile_id}}"
-                }
-              ]
-            },
-            "description": "Deletes a web experience profile, by ID."
-          },
-          "response": [
-            {
-              "id": "15900a43-d64f-4b08-a99f-5399c1ac6038",
-              "name": "Deleted Profile By ID",
-              "originalRequest": {
-                "method": "DELETE",
-                "header": [],
-                "url": {
-                  "raw": "{{base_url}}/v1/payment-experience/web-profiles/:web_profile_id",
-                  "host": [
-                    "{{base_url}}"
-                  ],
-                  "path": [
-                    "v1",
-                    "payment-experience",
-                    "web-profiles",
-                    ":web_profile_id"
-                  ],
-                  "variable": [
-                    {
-                      "key": "web_profile_id",
-                      "value": "{{web_profile_id}}"
-                    }
-                  ]
-                }
-              },
-              "status": "No Content",
-              "code": 204,
-              "_postman_previewlanguage": "plain",
-              "header": [
-                {
-                  "key": "Connection",
-                  "value": "keep-alive"
-                },
-                {
-                  "key": "Date",
-                  "value": "Wed, 02 Feb 2022 05:45:00 GMT"
-                },
-                {
-                  "key": "Application_id",
-                  "value": "APP-80W284485P519543T"
-                },
-                {
-                  "key": "Cache-Control",
-                  "value": "max-age=0, no-cache, no-store, must-revalidate"
-                },
-                {
-                  "key": "Caller_acct_num",
-                  "value": "ER87FV8ER63HJ"
-                },
-                {
-                  "key": "Paypal-Debug-Id",
-                  "value": "fc54be1992db3"
-                },
-                {
-                  "key": "Strict-Transport-Security",
-                  "value": "max-age=31536000; includeSubDomains"
-                }
-              ],
-              "cookie": [],
-              "responseTime": null,
-              "body": null
             }
           ]
         }
@@ -37772,97 +37779,97 @@
   ],
   "variable": [
     {
-      "id": "e6b2c35e-e0e0-42f0-a81e-021309160136",
+      "id": "d4390785-30a9-4be4-988a-2311e4c3a707",
       "key": "base_url",
       "value": "https://api-m.sandbox.paypal.com"
     },
     {
-      "id": "13ba7535-370d-463c-8f4b-0d7ee66ddbb2",
+      "id": "1d334284-774d-420e-bb6e-67802e828e9c",
       "key": "client_id",
       "value": "AUC1CwUIt5XDl4Kco9-oXcewk0jZbPIxDs1JWHDzATNSnYU36xnTtS0Tp-4kDlCpgCbpudXcStc8HAsV"
     },
     {
-      "id": "2a5e939e-3ca7-4f26-bafb-fec3151381d8",
+      "id": "9f958c02-2bbb-46bc-bdda-e6d0b3614a9b",
       "key": "client_secret",
       "value": "EDIDlZWQMpgfztWzVGYSjw-tcRvLblFnv4JZh4BBWtFQt4qNx43wc-U-FBcynTcRFXJ_uw1l_iTok_Nm"
     },
     {
-      "id": "d5e311b7-9221-44f7-8cf1-c64f6b56ffba",
+      "id": "249238b8-3fa5-47c3-83c0-76ee98b2622b",
       "key": "paypal_partner_attribution_id",
       "value": "TEST_ATTRIBUTION_ID"
     },
     {
-      "id": "45ee197a-62b7-4007-bd92-d686c98121c2",
+      "id": "50da6d4d-b1c6-43bb-891a-20c489cafdde",
       "key": "prefer_representation_min",
       "value": "return=minimal"
     },
     {
-      "id": "f3305ef8-cd35-4d67-a619-db935b7336ce",
+      "id": "851ca0bb-67dd-4993-8408-e7e24edb97ab",
       "key": "prefer_representation_detailed",
       "value": "return=representation"
     },
     {
-      "id": "1ba6b6e5-6bcd-45cc-bcc4-e7ca9b8233c1",
+      "id": "265e9f0e-67f7-47a0-9023-5ca47d680fe3",
       "key": "paypal_client_metadata_Id",
       "value": ""
     },
     {
-      "id": "bcf7f2ac-d521-4e4a-b2cb-206b6cfea03a",
+      "id": "fc6f68fd-2df4-4dfd-b239-1d3e1f259080",
       "key": "paypal_auth_assertion",
       "value": ""
     },
     {
-      "id": "7b3a470c-7b20-4d1a-9678-0edfda895262",
+      "id": "bc1b53fe-461d-4566-81b6-a011e6c08d5d",
       "key": "access_token_expiry",
       "value": ""
     },
     {
-      "id": "a6b5721b-154e-42a6-a2bb-0cd39e380e1c",
+      "id": "134fd112-2b97-4df6-a6a2-75dca04ea564",
       "key": "access_token_for",
       "value": ""
     },
     {
-      "id": "30873d33-8828-48f5-89a7-7257d67f3493",
+      "id": "248829cf-8216-45e6-a8ad-01c578df5dae",
       "key": "order_id",
       "value": ""
     },
     {
-      "id": "39fbe27b-f782-466e-8392-54972eb45b7d",
+      "id": "1da7623f-6e34-41e5-8b69-aa6047a3f717",
       "key": "capture_id",
       "value": ""
     },
     {
-      "id": "7c73759e-7742-47dd-83e6-59e3b487b303",
+      "id": "bae77b83-e3e6-42d4-966f-738dd8c3939c",
       "key": "billing_plan_id",
       "value": ""
     },
     {
-      "id": "8da9a294-d749-41df-895e-b101ab454115",
+      "id": "a839be3e-209f-4d48-aac3-573c19bf8ea7",
       "key": "product_id",
       "value": ""
     },
     {
-      "id": "7d3e6ecd-6843-41c0-bfaa-b5e0e8ed6696",
+      "id": "6b3d69ac-fcd6-4041-8bcb-226d900738f7",
       "key": "subscription_id",
       "value": ""
     },
     {
-      "id": "c7a80ece-2078-42ad-9eaf-7357a5ea37ac",
+      "id": "f2a79a9c-2b4b-44cd-8fbd-9395ffce8896",
       "key": "dispute_id",
       "value": ""
     },
     {
-      "id": "11a5e615-cd3c-4527-858f-2812f801f7d4",
+      "id": "e0497cd0-ac54-46ea-89bf-21883e4412ed",
       "key": "authorization_id",
       "value": ""
     },
     {
-      "id": "95e6185e-8b97-4b5b-82b8-49400d714091",
+      "id": "e6ab8059-6372-4609-b97c-4b901d97e393",
       "key": "refund_id",
       "value": ""
     },
     {
-      "id": "28361082-8435-4e20-90ac-a6ee5a1c6b81",
+      "id": "bb90dfc8-3552-451c-857e-a1c72d95bfed",
       "key": "access_token",
       "value": ""
     }
