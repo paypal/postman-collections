@@ -1428,7 +1428,7 @@
           },
           "response": [
             {
-              "id": "07565a05-62d4-4677-97eb-bbe3705261e0",
+              "id": "c8183ecc-ca3f-48b1-9dd1-8e1cac6fc167",
               "name": "Payment Method: Card",
               "originalRequest": {
                 "method": "POST",
@@ -1470,7 +1470,7 @@
                 ],
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n    \"intent\": \"CAPTURE\",\n    \"purchase_units\": [\n        {\n            \"items\": [\n                {\n                    \"name\": \"T-Shirt\",\n                    \"description\": \"Green XL\",\n                    \"quantity\": \"1\",\n                    \"unit_amount\": {\n                        \"currency_code\": \"USD\",\n                        \"value\": \"100.00\"\n                    }\n                }\n            ],\n            \"amount\": {\n                \"currency_code\": \"USD\",\n                \"value\": \"100.00\",\n                \"breakdown\": {\n                    \"item_total\": {\n                        \"currency_code\": \"USD\",\n                        \"value\": \"100.00\"\n                    }\n                }\n            }\n        }\n    ],\n    \"application_context\": {\n        \"return_url\": \"https://example.com/return\",\n        \"cancel_url\": \"https://example.com/cancel\"\n    },\n    \"payment_source\": {\n        \"card\": {\n            \"number\": \"4242424242424242\",\n            \"expiry\": \"2024-02\"\n        }\n    }\n}",
+                  "raw": "{\n    \"intent\": \"CAPTURE\",\n    \"purchase_units\": [\n        {\n            \"amount\": {\n                \"currency_code\": \"USD\",\n                \"value\": \"100.00\"\n            }\n        }\n    ],\n    \"payment_source\": {\n        \"card\": {\n            \"number\": \"4242424242424242\",\n            \"expiry\": \"2024-02\"\n        }\n    }\n}",
                   "options": {
                     "raw": {
                       "language": "json"
@@ -1489,7 +1489,7 @@
                 },
                 {
                   "key": "Content-Length",
-                  "value": "1933"
+                  "value": "1462"
                 },
                 {
                   "key": "Connection",
@@ -1497,7 +1497,7 @@
                 },
                 {
                   "key": "Date",
-                  "value": "Fri, 04 Feb 2022 01:42:40 GMT"
+                  "value": "Sat, 26 Feb 2022 02:05:38 GMT"
                 },
                 {
                   "key": "Application_id",
@@ -1513,7 +1513,7 @@
                 },
                 {
                   "key": "Paypal-Debug-Id",
-                  "value": "457eeaece265f"
+                  "value": "c08f473c16123"
                 },
                 {
                   "key": "Strict-Transport-Security",
@@ -1522,7 +1522,7 @@
               ],
               "cookie": [],
               "responseTime": null,
-              "body": "{\n    \"id\": \"6PC099040T4223441\",\n    \"intent\": \"CAPTURE\",\n    \"status\": \"COMPLETED\",\n    \"payment_source\": {\n        \"card\": {\n            \"last_digits\": \"4242\",\n            \"brand\": \"VISA\",\n            \"type\": \"UNKNOWN\"\n        }\n    },\n    \"purchase_units\": [\n        {\n            \"reference_id\": \"default\",\n            \"amount\": {\n                \"currency_code\": \"USD\",\n                \"value\": \"100.00\",\n                \"breakdown\": {\n                    \"item_total\": {\n                        \"currency_code\": \"USD\",\n                        \"value\": \"100.00\"\n                    },\n                    \"shipping\": {\n                        \"currency_code\": \"USD\",\n                        \"value\": \"0.00\"\n                    },\n                    \"handling\": {\n                        \"currency_code\": \"USD\",\n                        \"value\": \"0.00\"\n                    },\n                    \"insurance\": {\n                        \"currency_code\": \"USD\",\n                        \"value\": \"0.00\"\n                    },\n                    \"shipping_discount\": {\n                        \"currency_code\": \"USD\",\n                        \"value\": \"0.00\"\n                    }\n                }\n            },\n            \"payee\": {\n                \"email_address\": \"etondoze-facilitator@gmail.com\",\n                \"merchant_id\": \"ER87FV8ER63HJ\"\n            },\n            \"description\": \"T-Shirt\",\n            \"soft_descriptor\": \"TESTFACILIT\",\n            \"items\": [\n                {\n                    \"name\": \"T-Shirt\",\n                    \"unit_amount\": {\n                        \"currency_code\": \"USD\",\n                        \"value\": \"100.00\"\n                    },\n                    \"tax\": {\n                        \"currency_code\": \"USD\",\n                        \"value\": \"0.00\"\n                    },\n                    \"quantity\": \"1\",\n                    \"description\": \"Green XL\"\n                }\n            ],\n            \"payments\": {\n                \"captures\": [\n                    {\n                        \"id\": \"7GB14027TU996243A\",\n                        \"status\": \"COMPLETED\",\n                        \"amount\": {\n                            \"currency_code\": \"USD\",\n                            \"value\": \"100.00\"\n                        },\n                        \"final_capture\": true,\n                        \"disbursement_mode\": \"INSTANT\",\n                        \"seller_protection\": {\n                            \"status\": \"NOT_ELIGIBLE\"\n                        },\n                        \"seller_receivable_breakdown\": {\n                            \"gross_amount\": {\n                                \"currency_code\": \"USD\",\n                                \"value\": \"100.00\"\n                            },\n                            \"paypal_fee\": {\n                                \"currency_code\": \"USD\",\n                                \"value\": \"3.98\"\n                            },\n                            \"net_amount\": {\n                                \"currency_code\": \"USD\",\n                                \"value\": \"96.02\"\n                            }\n                        },\n                        \"links\": [\n                            {\n                                \"href\": \"https://api.sandbox.paypal.com/v2/payments/captures/7GB14027TU996243A\",\n                                \"rel\": \"self\",\n                                \"method\": \"GET\"\n                            },\n                            {\n                                \"href\": \"https://api.sandbox.paypal.com/v2/payments/captures/7GB14027TU996243A/refund\",\n                                \"rel\": \"refund\",\n                                \"method\": \"POST\"\n                            },\n                            {\n                                \"href\": \"https://api.sandbox.paypal.com/v2/checkout/orders/6PC099040T4223441\",\n                                \"rel\": \"up\",\n                                \"method\": \"GET\"\n                            }\n                        ],\n                        \"create_time\": \"2022-02-04T01:42:39Z\",\n                        \"update_time\": \"2022-02-04T01:42:39Z\",\n                        \"processor_response\": {\n                            \"avs_code\": \"A\",\n                            \"cvv_code\": \"M\",\n                            \"response_code\": \"0000\"\n                        }\n                    }\n                ]\n            }\n        }\n    ],\n    \"create_time\": \"2022-02-04T01:42:39Z\",\n    \"update_time\": \"2022-02-04T01:42:39Z\",\n    \"links\": [\n        {\n            \"href\": \"https://api.sandbox.paypal.com/v2/checkout/orders/6PC099040T4223441\",\n            \"rel\": \"self\",\n            \"method\": \"GET\"\n        }\n    ]\n}"
+              "body": "{\n    \"id\": \"33M85522TD7006505\",\n    \"intent\": \"CAPTURE\",\n    \"status\": \"COMPLETED\",\n    \"payment_source\": {\n        \"card\": {\n            \"last_digits\": \"4242\",\n            \"brand\": \"VISA\",\n            \"type\": \"UNKNOWN\"\n        }\n    },\n    \"purchase_units\": [\n        {\n            \"reference_id\": \"default\",\n            \"amount\": {\n                \"currency_code\": \"USD\",\n                \"value\": \"100.00\"\n            },\n            \"payee\": {\n                \"email_address\": \"etondoze-facilitator@gmail.com\",\n                \"merchant_id\": \"ER87FV8ER63HJ\"\n            },\n            \"soft_descriptor\": \"TESTFACILIT\",\n            \"payments\": {\n                \"captures\": [\n                    {\n                        \"id\": \"9947722173832463E\",\n                        \"status\": \"COMPLETED\",\n                        \"amount\": {\n                            \"currency_code\": \"USD\",\n                            \"value\": \"100.00\"\n                        },\n                        \"final_capture\": true,\n                        \"disbursement_mode\": \"INSTANT\",\n                        \"seller_protection\": {\n                            \"status\": \"NOT_ELIGIBLE\"\n                        },\n                        \"seller_receivable_breakdown\": {\n                            \"gross_amount\": {\n                                \"currency_code\": \"USD\",\n                                \"value\": \"100.00\"\n                            },\n                            \"paypal_fee\": {\n                                \"currency_code\": \"USD\",\n                                \"value\": \"3.98\"\n                            },\n                            \"net_amount\": {\n                                \"currency_code\": \"USD\",\n                                \"value\": \"96.02\"\n                            }\n                        },\n                        \"links\": [\n                            {\n                                \"href\": \"https://api.sandbox.paypal.com/v2/payments/captures/9947722173832463E\",\n                                \"rel\": \"self\",\n                                \"method\": \"GET\"\n                            },\n                            {\n                                \"href\": \"https://api.sandbox.paypal.com/v2/payments/captures/9947722173832463E/refund\",\n                                \"rel\": \"refund\",\n                                \"method\": \"POST\"\n                            },\n                            {\n                                \"href\": \"https://api.sandbox.paypal.com/v2/checkout/orders/33M85522TD7006505\",\n                                \"rel\": \"up\",\n                                \"method\": \"GET\"\n                            }\n                        ],\n                        \"create_time\": \"2022-02-26T02:05:37Z\",\n                        \"update_time\": \"2022-02-26T02:05:37Z\",\n                        \"processor_response\": {\n                            \"avs_code\": \"A\",\n                            \"cvv_code\": \"M\",\n                            \"response_code\": \"0000\"\n                        }\n                    }\n                ]\n            }\n        }\n    ],\n    \"create_time\": \"2022-02-26T02:05:37Z\",\n    \"update_time\": \"2022-02-26T02:05:37Z\",\n    \"links\": [\n        {\n            \"href\": \"https://api.sandbox.paypal.com/v2/checkout/orders/33M85522TD7006505\",\n            \"rel\": \"self\",\n            \"method\": \"GET\"\n        }\n    ]\n}"
             },
             {
               "id": "74fc78ab-aaaf-4fe7-a40f-879fd7dfc3f9",
@@ -2389,6 +2389,103 @@
               "cookie": [],
               "responseTime": null,
               "body": "{\n    \"name\": \"NOT_AUTHORIZED\",\n    \"details\": [\n        {\n            \"issue\": \"PERMISSION_DENIED\",\n            \"description\": \"You do not have permission to access or perform operations on this resource.\"\n        }\n    ],\n    \"message\": \"Authorization failed due to insufficient permissions.\",\n    \"debug_id\": \"820607d91349d\",\n    \"links\": [\n        {\n            \"href\": \"https://developer.paypal.com/docs/api/orders/v2/#error-PERMISSION_DENIED\",\n            \"rel\": \"information_link\",\n            \"method\": \"GET\"\n        }\n    ]\n}"
+            },
+            {
+              "id": "42e4a9f3-8537-4e9a-bdd1-f992a2eaa282",
+              "name": "422 PAYEE_NOT_ENABLED_FOR_CARD_PROCESSING",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "description": "The Content-Type header field is used to specify the nature of the data in the body of an entity. PayPal REST APIs support application/json."
+                  },
+                  {
+                    "description": "The preferred server response upon successful completion of the request. Value is:<ul><li><code>return=minimal</code>. The server returns a minimal response to optimize communication between the API caller and the server. A minimal response includes the <code>id</code>, <code>status</code> and HATEOAS links.</li><li><code>return=representation</code>. The server returns a complete resource representation, including the current state of the resource.</li></ul>",
+                    "key": "Prefer",
+                    "value": "{{prefer_representation_detailed}}"
+                  },
+                  {
+                    "description": "The server stores keys for 6 hours. The API callers can request the times to up to 72 hours by speaking to their Account Manager.",
+                    "key": "PayPal-Request-Id",
+                    "value": "{{$guid}}"
+                  },
+                  {
+                    "key": "PayPal-Client-Metadata-Id",
+                    "value": "{{paypal_client_metadata_Id}}",
+                    "description": "Optional. Verifies that the payment originates from a valid, user-consented device and application. Reduces fraud and decreases declines. Transactions that do not include a client metadata ID are not eligible for PayPal Seller Protection.",
+                    "disabled": true
+                  },
+                  {
+                    "key": "PayPal-Partner-Attribution-Id",
+                    "value": "{{paypal_partner_attribution_id}}",
+                    "description": "Optional. Identifies the caller as a PayPal partner. To receive revenue attribution, specify a unique build notation (BN) code. BN codes provide tracking on all transactions that originate or are associated with a particular partner. To find your BN code, see Code and Credential Reference.",
+                    "disabled": true
+                  },
+                  {
+                    "key": "PayPal-Auth-Assertion",
+                    "value": "{{paypal_auth_assertion}}",
+                    "description": "An API client-provided JSON Web Token (JWT) assertion that identifies the merchant. To use this header, you must get consent to act on behalf of a merchant.\n\n",
+                    "type": "text",
+                    "disabled": true
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"intent\": \"CAPTURE\",\n    \"purchase_units\": [\n        {\n            \"items\": [\n                {\n                    \"name\": \"T-Shirt\",\n                    \"description\": \"Green XL\",\n                    \"quantity\": \"1\",\n                    \"unit_amount\": {\n                        \"currency_code\": \"USD\",\n                        \"value\": \"100.00\"\n                    }\n                }\n            ],\n            \"amount\": {\n                \"currency_code\": \"USD\",\n                \"value\": \"100.00\",\n                \"breakdown\": {\n                    \"item_total\": {\n                        \"currency_code\": \"USD\",\n                        \"value\": \"100.00\"\n                    }\n                }\n            }\n        }\n    ],\n    \"application_context\": {\n        \"return_url\": \"https://example.com/return\",\n        \"cancel_url\": \"https://example.com/cancel\"\n    },\n    \"payment_source\": {\n        \"card\": {\n            \"number\": \"4242424242424242\",\n            \"expiry\": \"2024-02\"\n        }\n    }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": "{{base_url}}/v2/checkout/orders"
+              },
+              "status": "Unprocessable Entity",
+              "code": 422,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "506"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Date",
+                  "value": "Sat, 26 Feb 2022 02:01:35 GMT"
+                },
+                {
+                  "key": "Application_id",
+                  "value": "APP-80W284485P519543T"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "max-age=0, no-cache, no-store, must-revalidate"
+                },
+                {
+                  "key": "Caller_acct_num",
+                  "value": "UD5V83GGGSKZW"
+                },
+                {
+                  "key": "Paypal-Debug-Id",
+                  "value": "9c00d26a8ce55"
+                },
+                {
+                  "key": "Strict-Transport-Security",
+                  "value": "max-age=31536000; includeSubDomains"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n    \"name\": \"UNPROCESSABLE_ENTITY\",\n    \"details\": [\n        {\n            \"issue\": \"PAYEE_NOT_ENABLED_FOR_CARD_PROCESSING\",\n            \"description\": \"Payee account is not setup to be able to process card payments. Please contact PayPal customer support.\"\n        }\n    ],\n    \"message\": \"The requested action could not be performed, semantically incorrect, or failed business validation.\",\n    \"debug_id\": \"9c00d26a8ce55\",\n    \"links\": [\n        {\n            \"href\": \"https://developer.paypal.com/docs/api/orders/v2/#error-PAYEE_NOT_ENABLED_FOR_CARD_PROCESSING\",\n            \"rel\": \"information_link\",\n            \"method\": \"GET\"\n        }\n    ]\n}"
             },
             {
               "id": "eb329207-2132-4ed2-8de5-0bddb2212121",
@@ -25392,107 +25489,6 @@
       "name": "Payment Experience Web Profiles",
       "item": [
         {
-          "name": "web-profiles",
-          "item": [
-            {
-              "name": "Delete web experience profile",
-              "id": "2dc27d34-eaa2-4d5c-9a8d-2bdbee6ceaa3",
-              "protocolProfileBehavior": {
-                "disableBodyPruning": true
-              },
-              "request": {
-                "method": "DELETE",
-                "header": [],
-                "url": {
-                  "raw": "{{base_url}}/v1/payment-experience/web-profiles/:web_profile_id",
-                  "host": [
-                    "{{base_url}}"
-                  ],
-                  "path": [
-                    "v1",
-                    "payment-experience",
-                    "web-profiles",
-                    ":web_profile_id"
-                  ],
-                  "variable": [
-                    {
-                      "key": "web_profile_id",
-                      "value": "{{web_profile_id}}"
-                    }
-                  ]
-                },
-                "description": "Deletes a web experience profile, by ID."
-              },
-              "response": [
-                {
-                  "id": "15900a43-d64f-4b08-a99f-5399c1ac6038",
-                  "name": "Deleted Profile By ID",
-                  "originalRequest": {
-                    "method": "DELETE",
-                    "header": [],
-                    "url": {
-                      "raw": "{{base_url}}/v1/payment-experience/web-profiles/:web_profile_id",
-                      "host": [
-                        "{{base_url}}"
-                      ],
-                      "path": [
-                        "v1",
-                        "payment-experience",
-                        "web-profiles",
-                        ":web_profile_id"
-                      ],
-                      "variable": [
-                        {
-                          "key": "web_profile_id",
-                          "value": "{{web_profile_id}}"
-                        }
-                      ]
-                    }
-                  },
-                  "status": "No Content",
-                  "code": 204,
-                  "_postman_previewlanguage": "plain",
-                  "header": [
-                    {
-                      "key": "Connection",
-                      "value": "keep-alive"
-                    },
-                    {
-                      "key": "Date",
-                      "value": "Wed, 02 Feb 2022 05:45:00 GMT"
-                    },
-                    {
-                      "key": "Application_id",
-                      "value": "APP-80W284485P519543T"
-                    },
-                    {
-                      "key": "Cache-Control",
-                      "value": "max-age=0, no-cache, no-store, must-revalidate"
-                    },
-                    {
-                      "key": "Caller_acct_num",
-                      "value": "ER87FV8ER63HJ"
-                    },
-                    {
-                      "key": "Paypal-Debug-Id",
-                      "value": "fc54be1992db3"
-                    },
-                    {
-                      "key": "Strict-Transport-Security",
-                      "value": "max-age=31536000; includeSubDomains"
-                    }
-                  ],
-                  "cookie": [],
-                  "responseTime": null,
-                  "body": null
-                }
-              ]
-            }
-          ],
-          "id": "9e973137-2869-4777-90a0-a950344d43b2",
-          "description": "Use the `/payment-experience/web-profiles` resource to create, show details for, list, update, partially update, and delete web experience profiles."
-        },
-        {
           "name": "Create web experience profile",
           "event": [
             {
@@ -26469,6 +26465,100 @@
               "cookie": [],
               "responseTime": null,
               "body": "{\n    \"id\": \"XP-XK79-B6DA-GV8A-UYMH\",\n    \"name\": \"sample-profile-1643779582\",\n    \"temporary\": false,\n    \"flow_config\": {\n        \"landing_page_type\": \"billing\",\n        \"bank_txn_pending_url\": \"https://example.com/flow_config/\",\n        \"user_action\": \"commit\",\n        \"return_uri_http_method\": \"GET\"\n    },\n    \"input_fields\": {\n        \"allow_note\": true,\n        \"no_shipping\": 1,\n        \"address_override\": 1\n    },\n    \"presentation\": {\n        \"logo_image\": \"https://example.com/logo_image/\"\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "Delete web experience profile",
+          "id": "2dc27d34-eaa2-4d5c-9a8d-2bdbee6ceaa3",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/v1/payment-experience/web-profiles/:web_profile_id",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "v1",
+                "payment-experience",
+                "web-profiles",
+                ":web_profile_id"
+              ],
+              "variable": [
+                {
+                  "key": "web_profile_id",
+                  "value": "{{web_profile_id}}"
+                }
+              ]
+            },
+            "description": "Deletes a web experience profile, by ID."
+          },
+          "response": [
+            {
+              "id": "15900a43-d64f-4b08-a99f-5399c1ac6038",
+              "name": "Deleted Profile By ID",
+              "originalRequest": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "{{base_url}}/v1/payment-experience/web-profiles/:web_profile_id",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "payment-experience",
+                    "web-profiles",
+                    ":web_profile_id"
+                  ],
+                  "variable": [
+                    {
+                      "key": "web_profile_id",
+                      "value": "{{web_profile_id}}"
+                    }
+                  ]
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "_postman_previewlanguage": "plain",
+              "header": [
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Date",
+                  "value": "Wed, 02 Feb 2022 05:45:00 GMT"
+                },
+                {
+                  "key": "Application_id",
+                  "value": "APP-80W284485P519543T"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "max-age=0, no-cache, no-store, must-revalidate"
+                },
+                {
+                  "key": "Caller_acct_num",
+                  "value": "ER87FV8ER63HJ"
+                },
+                {
+                  "key": "Paypal-Debug-Id",
+                  "value": "fc54be1992db3"
+                },
+                {
+                  "key": "Strict-Transport-Security",
+                  "value": "max-age=31536000; includeSubDomains"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": null
             }
           ]
         }
@@ -37693,7 +37783,7 @@
     {
       "listen": "prerequest",
       "script": {
-        "id": "e67d6f67-d88f-4cfd-8f44-dd42ec9e39b7",
+        "id": "75a97eba-f1e5-47fd-a262-a687f91b501b",
         "type": "text/javascript",
         "exec": [
           "// Following script is executed before every request in this collection. ",
@@ -37727,10 +37817,10 @@
           "    console.info('access_token or its expiry date are missing.');",
           "} else if (pm.collectionVariables.get('access_token_expiry') <= (new Date()).getTime()) {",
           "    console.info('access_token is expired')",
-          "} else if (pm.collectionVariables.get('access_token_for') != pm.collectionVariables.get(\"client_id\")) {",
+          "} else if (pm.collectionVariables.get('access_token_for') != pm.variables.get(\"client_id\")) {",
           "    console.info('client_id is changed', ",
           "        pm.collectionVariables.get('access_token_for'), ",
-          "        pm.collectionVariables.get(\"client_id\"))",
+          "        pm.variables.get(\"client_id\"))",
           "} else {",
           "    console.log('Reusing previous access_token, valid until ', new Date(pm.collectionVariables.get('access_token_expiry')));",
           "    needNewToken = false;",
@@ -37748,7 +37838,7 @@
           "            //console.log('Saving the access_token_expiry', expiryDate.getTime());",
           "            pm.collectionVariables.set('access_token_expiry', expiryDate.getTime());",
           "            //console.log('Saving the access_token_for');",
-          "            pm.collectionVariables.set('access_token_for', pm.collectionVariables.get(\"client_id\"));",
+          "            pm.collectionVariables.set('access_token_for', pm.variables.get(\"client_id\"));",
           "",
           "        } else {",
           "            console.error(\"Failed to obtain access_token\", err, response.code, response.headers.get('Paypal-Debug-Id'), response.json());",
@@ -37762,7 +37852,7 @@
     {
       "listen": "test",
       "script": {
-        "id": "8df420ce-a2be-4b70-8d80-002e447cc20c",
+        "id": "830b2488-4ed9-497b-a532-64355b355211",
         "type": "text/javascript",
         "exec": [
           "var successHttpStatuses = [200, 201, 202, 204];",
@@ -37779,97 +37869,97 @@
   ],
   "variable": [
     {
-      "id": "fe01ad2b-bc08-4d90-9c52-1806b7182ae5",
+      "id": "20bf30c0-4938-47aa-b6c9-c4ade3223831",
       "key": "base_url",
       "value": "https://api-m.sandbox.paypal.com"
     },
     {
-      "id": "116179d0-eea7-40a3-a167-f5957a7f2e08",
+      "id": "90c6f7a8-3525-455e-a1b8-9f78bdeec703",
       "key": "client_id",
       "value": "AUC1CwUIt5XDl4Kco9-oXcewk0jZbPIxDs1JWHDzATNSnYU36xnTtS0Tp-4kDlCpgCbpudXcStc8HAsV"
     },
     {
-      "id": "ed88b56d-afb3-46b9-acb2-9d5dda7b7eee",
+      "id": "38bbe956-89d4-46d5-9cfc-4e0e61506d4e",
       "key": "client_secret",
       "value": "EDIDlZWQMpgfztWzVGYSjw-tcRvLblFnv4JZh4BBWtFQt4qNx43wc-U-FBcynTcRFXJ_uw1l_iTok_Nm"
     },
     {
-      "id": "6a4ddaa2-10b2-4ee5-8d88-7530d8bfa6d7",
+      "id": "6f7e54fd-b54c-4ebb-900f-22c79769b5ca",
       "key": "paypal_partner_attribution_id",
       "value": "TEST_ATTRIBUTION_ID"
     },
     {
-      "id": "f0833e9b-a522-4e9c-ac1f-0e7ed053a6e3",
+      "id": "c4de8bfc-56bb-4d7f-8761-be5d5b4015f5",
       "key": "prefer_representation_min",
       "value": "return=minimal"
     },
     {
-      "id": "4be94f3a-d2da-4fec-9d5b-6290fe19695f",
+      "id": "d641f24c-71cc-4dcc-976b-9c0861fc72a3",
       "key": "prefer_representation_detailed",
       "value": "return=representation"
     },
     {
-      "id": "0caef6ed-ede3-4589-8cdc-2c21d3895035",
+      "id": "3012e48a-9faf-4753-900e-8280c0e4cb46",
       "key": "paypal_client_metadata_Id",
       "value": ""
     },
     {
-      "id": "5eca8b87-d83d-4823-9188-0968ef95a5eb",
+      "id": "9fb65bba-9631-4a41-81e2-17220992b545",
       "key": "paypal_auth_assertion",
       "value": ""
     },
     {
-      "id": "617ab713-9859-42ba-af6d-35d7386fed2d",
+      "id": "d6dbf60f-d1f2-4715-b296-c008c7e0bd98",
       "key": "access_token_expiry",
       "value": ""
     },
     {
-      "id": "30402b4c-29bb-4df4-a36a-c49d5481a8f8",
+      "id": "04cdd8e4-c144-4497-830c-17291728160a",
       "key": "access_token_for",
       "value": ""
     },
     {
-      "id": "67755ff1-7901-4bd8-93fd-5cd3e14e4433",
+      "id": "5a38d9f2-6821-414c-a0bb-baafd3bd75f8",
       "key": "order_id",
       "value": ""
     },
     {
-      "id": "a9337982-77de-4abf-920b-bb41df2d8a90",
+      "id": "21421edd-3e55-4707-bd4c-bcaac4311d8b",
       "key": "capture_id",
       "value": ""
     },
     {
-      "id": "45e939dd-8d93-4ed0-940b-8b73b033d451",
+      "id": "eff1b180-f867-4a7a-ad52-48139eaad49d",
       "key": "billing_plan_id",
       "value": ""
     },
     {
-      "id": "a160c5fe-42b4-4ab7-be52-da7229d32dc8",
+      "id": "8721a5fe-8fbc-4924-a1c0-479e14d978b9",
       "key": "product_id",
-      "value": ""
+      "value": "1645840190"
     },
     {
-      "id": "7945d568-2c73-49a2-b531-a7c1c31ad750",
+      "id": "5e8ad120-8929-474c-b113-a92a63afc60e",
       "key": "subscription_id",
       "value": ""
     },
     {
-      "id": "0018815b-97fa-47c9-ba24-6b556ec4f68b",
+      "id": "abf59186-8757-4e27-87d9-85f4c8019699",
       "key": "dispute_id",
       "value": ""
     },
     {
-      "id": "38c30b2e-b815-4c2f-b16e-c87248874585",
+      "id": "024aaf62-5bc9-420a-ba5f-ad38bf589407",
       "key": "authorization_id",
       "value": ""
     },
     {
-      "id": "9fbb4320-118d-4c11-a9df-1f59c58224e8",
+      "id": "93c10764-d6ee-4f00-a35b-ecb46dad3ca3",
       "key": "refund_id",
       "value": ""
     },
     {
-      "id": "3d541556-00a6-4b79-9835-e2aa866a1cb9",
+      "id": "445cae62-6612-4ab2-a5a1-c02385ade85e",
       "key": "access_token",
       "value": ""
     }
