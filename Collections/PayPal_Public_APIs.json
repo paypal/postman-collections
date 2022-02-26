@@ -25392,6 +25392,12 @@
       "name": "Payment Experience Web Profiles",
       "item": [
         {
+          "name": "web-profiles",
+          "item": [],
+          "id": "9e973137-2869-4777-90a0-a950344d43b2",
+          "description": "Use the `/payment-experience/web-profiles` resource to create, show details for, list, update, partially update, and delete web experience profiles."
+        },
+        {
           "name": "Create web experience profile",
           "event": [
             {
@@ -37686,7 +37692,7 @@
     {
       "listen": "prerequest",
       "script": {
-        "id": "b6e621b5-7777-4376-828e-207f085005d0",
+        "id": "e67d6f67-d88f-4cfd-8f44-dd42ec9e39b7",
         "type": "text/javascript",
         "exec": [
           "// Following script is executed before every request in this collection. ",
@@ -37755,7 +37761,7 @@
     {
       "listen": "test",
       "script": {
-        "id": "a01ccc3e-c5d3-408c-9758-0eb38e60a630",
+        "id": "8df420ce-a2be-4b70-8d80-002e447cc20c",
         "type": "text/javascript",
         "exec": [
           "var successHttpStatuses = [200, 201, 202, 204];",
@@ -37772,97 +37778,97 @@
   ],
   "variable": [
     {
-      "id": "84fd4af2-ca6f-4473-8b2b-59c931052ee2",
+      "id": "c402b29c-408b-4b41-9c14-222a1df66099",
       "key": "base_url",
       "value": "https://api-m.sandbox.paypal.com"
     },
     {
-      "id": "d01a1d90-dc41-45c8-a76f-c645a38caa64",
+      "id": "907c1ded-8efb-4e9f-854e-c50c979458c4",
       "key": "client_id",
       "value": "AUC1CwUIt5XDl4Kco9-oXcewk0jZbPIxDs1JWHDzATNSnYU36xnTtS0Tp-4kDlCpgCbpudXcStc8HAsV"
     },
     {
-      "id": "e405690f-db4e-4fa7-ad27-d18b6427f81f",
+      "id": "c912fa8f-c921-4d20-98e9-3e1025d0be60",
       "key": "client_secret",
       "value": "EDIDlZWQMpgfztWzVGYSjw-tcRvLblFnv4JZh4BBWtFQt4qNx43wc-U-FBcynTcRFXJ_uw1l_iTok_Nm"
     },
     {
-      "id": "5871ff93-8e67-4d5f-8e9a-ddbda72fae6b",
+      "id": "8d06b7d1-b95b-4a50-af36-1547adaf0ba6",
       "key": "paypal_partner_attribution_id",
       "value": "TEST_ATTRIBUTION_ID"
     },
     {
-      "id": "27d02b3a-9848-40c8-a819-4313485b76a5",
+      "id": "4b064bee-3e2c-419c-a7ad-85648a0ab76b",
       "key": "prefer_representation_min",
       "value": "return=minimal"
     },
     {
-      "id": "cbe219cc-531e-4997-b159-6f30fbc72884",
+      "id": "222758fb-a2f8-4c41-8eab-226db1cfb45a",
       "key": "prefer_representation_detailed",
       "value": "return=representation"
     },
     {
-      "id": "eb076621-32a4-4d27-86a6-cb26dd37d4d8",
+      "id": "8040dc95-bbea-488b-8e89-85c745e39386",
       "key": "paypal_client_metadata_Id",
       "value": ""
     },
     {
-      "id": "b6b7ecc1-4544-4e9d-a8f5-4fa540938ba9",
+      "id": "6f96013f-f4a8-4a0a-8b53-9a4961021b54",
       "key": "paypal_auth_assertion",
       "value": ""
     },
     {
-      "id": "a144874b-e407-4c0d-adbe-d75c83099a40",
+      "id": "911f2c1e-682a-4e60-80db-ab95d42b485b",
       "key": "access_token_expiry",
       "value": ""
     },
     {
-      "id": "8f00da9f-7a1d-4d0e-a30f-e5fc9c189c58",
+      "id": "d56e1dbb-899b-455b-b6bf-10e88a3e5ff9",
       "key": "access_token_for",
       "value": ""
     },
     {
-      "id": "ef93bd16-2a37-41b1-a879-bc6ab60e15aa",
+      "id": "44f89f11-834e-4379-bbdb-839ab72cc797",
       "key": "order_id",
       "value": ""
     },
     {
-      "id": "9a3554c0-170d-4d89-ad45-e04a3973b58b",
+      "id": "8161c11a-2e0e-406e-8005-4b0c70a09e60",
       "key": "capture_id",
       "value": ""
     },
     {
-      "id": "09d56ec1-a90a-44fa-aa25-73c3cb72990e",
+      "id": "60c9d220-d049-4406-95c9-ca529afd5cd9",
       "key": "billing_plan_id",
       "value": ""
     },
     {
-      "id": "3f5e28aa-b1f0-464b-a3c5-4d8e61448a5e",
+      "id": "49fada1a-a582-4420-803e-9db0758b786d",
       "key": "product_id",
-      "value": "1645840190"
+      "value": ""
     },
     {
-      "id": "cceb9bf1-9ee1-4c16-a63d-79a460586fb2",
+      "id": "e8227027-29d7-4a83-b116-e7bd53dac7c7",
       "key": "subscription_id",
       "value": ""
     },
     {
-      "id": "240cdc86-1ba4-4161-9efa-2de39aea7824",
+      "id": "aca38c74-12be-4479-b610-730375acc81d",
       "key": "dispute_id",
       "value": ""
     },
     {
-      "id": "a4cf2e78-a102-459f-8c03-08e6d89eb7d5",
+      "id": "52ede80a-a4b9-44fe-9eb1-e5c1b0f9d38f",
       "key": "authorization_id",
       "value": ""
     },
     {
-      "id": "697f092a-8813-4825-8ccb-6f97a417b58f",
+      "id": "fb6ab9b8-e7c0-4b0c-a334-a36b73c7f5f1",
       "key": "refund_id",
       "value": ""
     },
     {
-      "id": "73b4ce07-a63e-4169-8e57-68200371aa0a",
+      "id": "e2cc4b6a-8b3c-4360-b9fc-84c57519439a",
       "key": "access_token",
       "value": ""
     }
