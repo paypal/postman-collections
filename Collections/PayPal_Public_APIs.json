@@ -1355,6 +1355,7 @@
                 "exec": [
                   "pm.test(\"Extract resource_id\", function() {",
                   "    var jsonData = pm.response.json();",
+                  "    pm.expect(jsonData).to.have.property('id');",
                   "    pm.collectionVariables.set(\"order_id\", jsonData.id);",
                   "",
                   "    if (jsonData.purchase_units && jsonData.purchase_units[0] && jsonData.purchase_units[0].payments) {",
@@ -4827,6 +4828,7 @@
                 "exec": [
                   "pm.test(\"Extract resource_id\", function () {",
                   "    var jsonData = pm.response.json();",
+                  "    pm.expect(jsonData).to.have.property('purchase_units');",
                   "    pm.collectionVariables.set(\"authorization_id\", jsonData.purchase_units[0].payments.authorizations[0].id);",
                   "});"
                 ],
@@ -5759,6 +5761,7 @@
                 "exec": [
                   "pm.test(\"Extract resource_id\", function () {",
                   "    var jsonData = pm.response.json();",
+                  "    pm.expect(jsonData).to.have.property('purchase_units');",
                   "    pm.collectionVariables.set(\"capture_id\", jsonData.purchase_units[0].payments.captures[0].id);",
                   "});"
                 ],
@@ -7597,6 +7600,7 @@
                 "exec": [
                   "pm.test(\"Extract resource id\", function() {",
                   "    var jsonData = pm.response.json();",
+                  "    pm.expect(jsonData).to.have.property('id');",
                   "    pm.collectionVariables.set(\"capture_id\", jsonData.id);",
                   "});"
                 ],
@@ -8190,6 +8194,7 @@
                 "exec": [
                   "pm.test(\"Extract resource_id\", function () {",
                   "    var jsonData = pm.response.json();",
+                  "    pm.expect(jsonData).to.have.property('id');",
                   "    pm.collectionVariables.set(\"refund_id\", jsonData.id);",
                   "});"
                 ],
@@ -8989,6 +8994,7 @@
                     "exec": [
                       "pm.test(\"Extract resource_id\", function() {",
                       "    var jsonData = pm.response.json();",
+                      "    pm.expect(jsonData).to.have.property('id');",
                       "    pm.collectionVariables.set(\"invoice_id\", jsonData.id);",
                       "});"
                     ],
@@ -13405,9 +13411,9 @@
                   "script": {
                     "id": "4fe3540f-d3bf-4967-beda-7f0cfe4eb327",
                     "exec": [
-                      "",
                       "pm.test(\"Extract resource_id\", function() {",
                       "    var jsonData = pm.response.json();",
+                      "    pm.expect(jsonData).to.have.property('payment_id');",
                       "    pm.collectionVariables.set(\"invoice_payment_id\", jsonData.payment_id);",
                       "});",
                       ""
@@ -14709,6 +14715,7 @@
                       "",
                       "pm.test(\"Extract resource_id\", function() {",
                       "    var jsonData = pm.response.json();",
+                      "    pm.expect(jsonData).to.have.property('refund_id');",
                       "    pm.collectionVariables.set(\"invoice_refund_id\", jsonData.refund_id);",
                       "});",
                       ""
@@ -16988,6 +16995,7 @@
                     "exec": [
                       "pm.test(\"Extract resource_id\", function() {",
                       "    var jsonData = pm.response.json();",
+                      "    pm.expect(jsonData).to.have.property('id');",
                       "    pm.collectionVariables.set(\"product_id\", jsonData.id);",
                       "});",
                       ""
@@ -19925,6 +19933,7 @@
                     "exec": [
                       "pm.test(\"Extract resource_id\", function() {",
                       "    var jsonData = pm.response.json();",
+                      "    pm.expect(jsonData).to.have.property('id');",
                       "    pm.collectionVariables.set(\"billing_plan_id\", jsonData.id);",
                       "});",
                       ""
@@ -22022,6 +22031,7 @@
                     "exec": [
                       "pm.test(\"Extract resource_id\", function() {",
                       "    var jsonData = pm.response.json();",
+                      "    pm.expect(jsonData).to.have.property('id');",
                       "    pm.collectionVariables.set(\"subscription_id\", jsonData.id);",
                       "});",
                       ""
@@ -24642,6 +24652,7 @@
                 "exec": [
                   "pm.test(\"Extract resource_id\", function() {",
                   "    var jsonData = pm.response.json();",
+                  "    pm.expect(jsonData).to.have.property('batch_header');",
                   "    pm.collectionVariables.set(\"payout_batch_id\", jsonData.batch_header.payout_batch_id)",
                   "});"
                 ],
@@ -24839,6 +24850,7 @@
                 "exec": [
                   "pm.test(\"Extract resource_id\", function() {",
                   "    var jsonData = pm.response.json();",
+                  "    pm.expect(jsonData).to.have.property('items');",
                   "    pm.collectionVariables.set(\"payout_item_id\", jsonData.items[0].payout_item_id);",
                   "});"
                 ],
@@ -25498,6 +25510,7 @@
                 "exec": [
                   "pm.test(\"Extract resource_id\", function() {",
                   "    var jsonData = pm.response.json();",
+                  "    pm.expect(jsonData).to.have.property('id');",
                   "    pm.collectionVariables.set(\"web_profile_id\", jsonData.id);",
                   "});",
                   ""
@@ -25806,6 +25819,7 @@
                 "exec": [
                   "pm.test(\"Extract resource_id\", function() {",
                   "    var jsonData = pm.response.json();",
+                  "    pm.expect(jsonData).to.have.property('id');",
                   "    pm.collectionVariables.set(\"web_profile_id\", jsonData[0].id);",
                   "});",
                   ""
@@ -26582,6 +26596,7 @@
                     "exec": [
                       "pm.test(\"Extract resource_id\", function() {",
                       "    var jsonData = pm.response.json();",
+                      "    pm.expect(jsonData).to.have.property('webhooks');",
                       "    pm.collectionVariables.set(\"webhook_id\", jsonData.webhooks[0].id);",
                       "    pm.collectionVariables.set(\"webhook_url\", jsonData.webhooks[0].url);",
                       "});",
@@ -27326,6 +27341,7 @@
                     "exec": [
                       "pm.test(\"Extract resource_id\", function() {",
                       "    var jsonData = pm.response.json();",
+                      "    pm.expect(jsonData).to.have.property('id');",
                       "    pm.collectionVariables.set(\"webhook_id\", jsonData.id);",
                       "    pm.collectionVariables.set(\"webhook_url\", jsonData.url);",
                       "});",
@@ -28609,6 +28625,7 @@
                     "exec": [
                       "pm.test(\"Extract resource_id\", function() {",
                       "    var jsonData = pm.response.json();",
+                      "    pm.expect(jsonData).to.have.property('events');",
                       "    pm.collectionVariables.set(\"event_id\", jsonData.events[0].id);",
                       "});",
                       ""
@@ -30766,8 +30783,7 @@
               "script": {
                 "id": "ba9b93ed-63db-4aab-8412-920910fc6563",
                 "exec": [
-                  "pm.test(\"Extract resource_id\", function() {",
-                  "    var jsonData = pm.response.json();",
+                  "pm.test(\"Set Tracking ID\", function() {",
                   "    pm.collectionVariables.set(\"tracking_id\", +\"{{capture_id}}-{{$timestamp}}\");",
                   "});",
                   ""
@@ -32434,6 +32450,7 @@
                 "exec": [
                   "pm.test(\"Extract resource_id\", function() {",
                   "    var jsonData = pm.response.json();",
+                  "    pm.expect(jsonData).to.have.property('items');",
                   "    pm.collectionVariables.set(\"dispute_id\", jsonData.items[0].dispute_id);",
                   "});",
                   ""
@@ -37869,98 +37886,108 @@
   ],
   "variable": [
     {
-      "id": "20bf30c0-4938-47aa-b6c9-c4ade3223831",
+      "id": "2d9cc39c-3954-46ba-b173-e4b7227987d4",
       "key": "base_url",
       "value": "https://api-m.sandbox.paypal.com"
     },
     {
-      "id": "90c6f7a8-3525-455e-a1b8-9f78bdeec703",
+      "id": "d4d6caba-4c00-4019-af93-0827bd27783b",
       "key": "client_id",
       "value": "AUC1CwUIt5XDl4Kco9-oXcewk0jZbPIxDs1JWHDzATNSnYU36xnTtS0Tp-4kDlCpgCbpudXcStc8HAsV"
     },
     {
-      "id": "38bbe956-89d4-46d5-9cfc-4e0e61506d4e",
+      "id": "bcb5d001-80dc-4f78-80b9-0084add4fde4",
       "key": "client_secret",
       "value": "EDIDlZWQMpgfztWzVGYSjw-tcRvLblFnv4JZh4BBWtFQt4qNx43wc-U-FBcynTcRFXJ_uw1l_iTok_Nm"
     },
     {
-      "id": "6f7e54fd-b54c-4ebb-900f-22c79769b5ca",
+      "id": "4c214c8e-5f02-4564-b1fd-0f2b176fda4f",
       "key": "paypal_partner_attribution_id",
       "value": "TEST_ATTRIBUTION_ID"
     },
     {
-      "id": "c4de8bfc-56bb-4d7f-8761-be5d5b4015f5",
+      "id": "c5337909-e485-40f4-9f9c-dc0c08728284",
       "key": "prefer_representation_min",
       "value": "return=minimal"
     },
     {
-      "id": "d641f24c-71cc-4dcc-976b-9c0861fc72a3",
+      "id": "8bdaf591-5f4d-4541-9f96-d6057fbfa660",
       "key": "prefer_representation_detailed",
       "value": "return=representation"
     },
     {
-      "id": "3012e48a-9faf-4753-900e-8280c0e4cb46",
+      "id": "e2c21f59-cde6-425d-a54e-ab136782a026",
       "key": "paypal_client_metadata_Id",
       "value": ""
     },
     {
-      "id": "9fb65bba-9631-4a41-81e2-17220992b545",
+      "id": "00bbd264-a0cb-4e61-9d22-358bb4b846f0",
       "key": "paypal_auth_assertion",
       "value": ""
     },
     {
-      "id": "d6dbf60f-d1f2-4715-b296-c008c7e0bd98",
+      "id": "5d7d3839-393f-456f-b337-7f95abf1bc96",
       "key": "access_token_expiry",
       "value": ""
     },
     {
-      "id": "04cdd8e4-c144-4497-830c-17291728160a",
+      "id": "52fc7fe0-f561-44a6-b78a-02aba4a35701",
       "key": "access_token_for",
       "value": ""
     },
     {
-      "id": "5a38d9f2-6821-414c-a0bb-baafd3bd75f8",
+      "id": "0d974792-76b5-4aad-9dba-faec936ffff3",
       "key": "order_id",
       "value": ""
     },
     {
-      "id": "21421edd-3e55-4707-bd4c-bcaac4311d8b",
+      "id": "85f233ac-1dcf-4761-8750-9b41ada91bc8",
       "key": "capture_id",
       "value": ""
     },
     {
-      "id": "eff1b180-f867-4a7a-ad52-48139eaad49d",
+      "id": "3cc65c06-fc55-427e-acfb-0261e6dc3f8d",
       "key": "billing_plan_id",
       "value": ""
     },
     {
-      "id": "8721a5fe-8fbc-4924-a1c0-479e14d978b9",
+      "id": "ad680ad9-ac1d-440b-a54c-69af2faec663",
       "key": "product_id",
       "value": "1645840190"
     },
     {
-      "id": "5e8ad120-8929-474c-b113-a92a63afc60e",
+      "id": "a96e437c-7dac-4a3f-9c64-66f5deb117ba",
       "key": "subscription_id",
       "value": ""
     },
     {
-      "id": "abf59186-8757-4e27-87d9-85f4c8019699",
+      "id": "37bd0ffd-832d-4ae2-953f-2dc0c78f8097",
       "key": "dispute_id",
       "value": ""
     },
     {
-      "id": "024aaf62-5bc9-420a-ba5f-ad38bf589407",
+      "id": "0222f9f0-0921-4ce3-859c-84b1f4d921a8",
       "key": "authorization_id",
       "value": ""
     },
     {
-      "id": "93c10764-d6ee-4f00-a35b-ecb46dad3ca3",
+      "id": "bbbfb114-58a5-4587-a3d7-640f1469cb89",
       "key": "refund_id",
       "value": ""
     },
     {
-      "id": "445cae62-6612-4ab2-a5a1-c02385ade85e",
+      "id": "6f088c77-380a-4e36-86e9-772929178790",
       "key": "access_token",
+      "value": ""
+    },
+    {
+      "id": "ae98ef4f-cfa3-4c9c-ab1a-f57fec7974a9",
+      "key": "webhook_id",
+      "value": ""
+    },
+    {
+      "id": "5c25c60b-e46d-46aa-bab5-13246e1ac663",
+      "key": "webhook_url",
       "value": ""
     }
   ]
