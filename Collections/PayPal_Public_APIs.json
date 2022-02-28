@@ -31743,6 +31743,178 @@
               "body": "{\n    \"transaction_details\": [\n        {\n            \"transaction_info\": {\n                \"paypal_account_id\": \"A3VCAENK6SMZL\",\n                \"transaction_id\": \"62G97620PP532404S\",\n                \"transaction_event_code\": \"T0005\",\n                \"transaction_initiation_date\": \"2022-02-21T08:03:02+0000\",\n                \"transaction_updated_date\": \"2022-02-21T08:03:02+0000\",\n                \"transaction_amount\": {\n                    \"currency_code\": \"USD\",\n                    \"value\": \"60.00\"\n                },\n                \"fee_amount\": {\n                    \"currency_code\": \"USD\",\n                    \"value\": \"-2.58\"\n                },\n                \"transaction_status\": \"S\",\n                \"protection_eligibility\": \"02\",\n                \"instrument_type\": \"CREDITCARD\",\n                \"instrument_sub_type\": \"V\"\n            }\n        }\n    ],\n    \"account_number\": \"ER87FV8ER63HJ\",\n    \"start_date\": \"2022-02-20T23:59:59+0000\",\n    \"end_date\": \"2022-02-24T17:59:59+0000\",\n    \"last_refreshed_datetime\": \"2022-02-24T17:59:59+0000\",\n    \"page\": 1,\n    \"total_items\": 1,\n    \"total_pages\": 1,\n    \"links\": [\n        {\n            \"href\": \"https://api.sandbox.paypal.com/v1/reporting/transactions?end_date=2022-03-20T00%3A00%3A00.000Z&transaction_id=62G97620PP532404S&start_date=2022-02-20T23%3A59%3A59.999Z&page_size=100&page=1\",\n            \"rel\": \"self\",\n            \"method\": \"GET\"\n        }\n    ]\n}"
             },
             {
+              "id": "bf11d1d2-4085-42c6-8268-ac8e92c6c1ab",
+              "name": "403 PERMISSION_DENIED",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text",
+                    "description": "The Content-Type header field is used to specify the nature of the data in the body of an entity. PayPal REST APIs support application/json.",
+                    "disabled": true
+                  },
+                  {
+                    "key": "PayPal-Request-Id",
+                    "value": "{{$guid}}",
+                    "type": "text",
+                    "description": "The server stores keys for 72 hours.",
+                    "disabled": true
+                  },
+                  {
+                    "key": "PayPal-Client-Metadata-Id",
+                    "value": "{{paypal_client_metadata_Id}}",
+                    "type": "text",
+                    "description": "Optional. Verifies that the payment originates from a valid, user-consented device and application. Reduces fraud and decreases declines. Transactions that do not include a client metadata ID are not eligible for PayPal Seller Protection.",
+                    "disabled": true
+                  },
+                  {
+                    "key": "PayPal-Partner-Attribution-Id",
+                    "value": "{{paypal_partner_attribution_id}}",
+                    "type": "text",
+                    "description": "Optional. Identifies the caller as a PayPal partner. To receive revenue attribution, specify a unique build notation (BN) code. BN codes provide tracking on all transactions that originate or are associated with a particular partner. To find your BN code, see Code and Credential Reference.",
+                    "disabled": true
+                  },
+                  {
+                    "key": "PayPal-Auth-Assertion",
+                    "value": "{{paypal_auth_assertion}}",
+                    "type": "text",
+                    "description": "An API client-provided JSON Web Token (JWT) assertion that identifies the merchant. To use this header, you must get consent to act on behalf of a merchant.\n",
+                    "disabled": true
+                  },
+                  {
+                    "key": "Prefer",
+                    "value": "{{prefer_representation_detailed}}",
+                    "type": "text",
+                    "description": "The preferred server response upon successful completion of the request. Value is:<ul><li><code>return=minimal</code>. The server returns a minimal response to optimize communication between the API caller and the server. A minimal response includes the <code>id</code>, <code>status</code> and HATEOAS links.</li><li><code>return=representation</code>. The server returns a complete resource representation, including the current state of the resource.</li></ul>",
+                    "disabled": true
+                  },
+                  {
+                    "key": "Prefer",
+                    "value": "{{prefer_representation_minimal}}",
+                    "description": "The preferred server response upon successful completion of the request. Value is:<ul><li><code>return=minimal</code>. The server returns a minimal response to optimize communication between the API caller and the server. A minimal response includes the <code>id</code>, <code>status</code> and HATEOAS links.</li><li><code>return=representation</code>. The server returns a complete resource representation, including the current state of the resource.</li></ul>",
+                    "type": "text",
+                    "disabled": true
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/v1/reporting/transactions?fields=transaction_info,payer_info,shipping_info,auction_info,cart_info,incentive_info,store_info&start_date=2022-02-20T23:59:59.999Z&end_date=2022-03-20T00:00:00.000Z",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "reporting",
+                    "transactions"
+                  ],
+                  "query": [
+                    {
+                      "key": "fields",
+                      "value": "transaction_info,payer_info,shipping_info,auction_info,cart_info,incentive_info,store_info",
+                      "description": "Indicates which fields appear in the response. Value is a single field or a comma-separated list of fields. The <code>transaction_info</code> value returns only the transaction details in the response. To include all fields in the response, specify <code>fields=all</code>. Valid fields are:<ul><li><a href=\"/docs/api/transaction-search/v1/#definition-transaction_info\"><code>transaction_info</code></a>. The transaction information. Includes the ID of the PayPal account of the payee, the PayPal-generated transaction ID, the PayPal-generated base ID, the PayPal reference ID type, the transaction event code, the date and time when the transaction was initiated and was last updated, the transaction amounts including the PayPal fee, any discounts, insurance, the transaction status, and other information about the transaction.</li><li><a href=\"/docs/api/transaction-search/v1/#definition-payer_info\"><code>payer_info</code></a>. The payer information. Includes the PayPal customer account ID and the payer's email address, primary phone number, name, country code, address, and whether the payer is verified or unverified.</li><li><a href=\"/docs/api/transaction-search/v1/#definition-shipping_info\"><code>shipping_info</code></a>. The shipping information. Includes the recipient's name, the shipping method for this order, the shipping address for this order, and the secondary address associated with this order.</li><li><a href=\"/docs/api/transaction-search/v1/#definition-auction_info\"><code>auction_info</code></a>. The auction information. Includes the name of the auction site, the auction site URL, the ID of the customer who makes the purchase in the auction, and the date and time when the auction closes.</li><li><a href=\"/docs/api/transaction-search/v1/#definition-cart_info\"><code>cart_info</code></a>. The cart information. Includes an array of item details, whether the item amount or the shipping amount already includes tax, and the ID of the invoice for PayPal-generated invoices.</li><li><a href=\"/docs/api/transaction-search/v1/#definition-incentive_info\"><code>incentive_info</code></a>. An array of incentive detail objects. Each object includes the incentive, such as a special offer or coupon, the incentive amount, and the incentive program code that identifies a merchant loyalty or incentive program.</li><li><a href=\"/docs/api/transaction-search/v1/#definition-store_info\"><code>store_info</code></a>. The store information. Includes the ID of the merchant store and the terminal ID for the checkout stand in the merchant store.</li></ul>"
+                    },
+                    {
+                      "key": "start_date",
+                      "value": "2022-02-20T23:59:59.999Z",
+                      "description": "(Required) Filters the transactions in the response by a start date and time, in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6). Seconds are required. Fractional seconds are optional."
+                    },
+                    {
+                      "key": "end_date",
+                      "value": "2022-03-20T00:00:00.000Z",
+                      "description": "(Required) Filters the transactions in the response by an end date and time, in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6). Seconds are required. Fractional seconds are optional. The maximum supported range is 31 days."
+                    },
+                    {
+                      "key": "transaction_id",
+                      "value": "{{capture_id}}",
+                      "description": "Filters the transactions in the response by a PayPal transaction ID. A valid transaction ID is 17 characters long, except for an <a href=\"/docs/api/payments/v1/#definition-order\">order ID</a>, which is 19 characters long.<blockquote><strong>Note:</strong> A transaction ID is not unique in the reporting system. The response can list two transactions with the same ID. One transaction can be balance affecting while the other is non-balance affecting.</blockquote>",
+                      "disabled": true
+                    },
+                    {
+                      "key": "transaction_type",
+                      "value": "T0005",
+                      "description": "Filters the transactions in the response by a PayPal transaction event code. See [Transaction event codes](/docs/integration/direct/transaction-search/transaction-event-codes/).",
+                      "disabled": true
+                    },
+                    {
+                      "key": "transaction_status",
+                      "value": "S",
+                      "description": "Filters the transactions in the response by a PayPal transaction status code. Value is:<table><thead><tr><th>Status&nbsp;code</th><th>Description</th></tr></thead><tbody><tr><td><code>D</code></td><td>PayPal or merchant rules denied the transaction.</td></tr><tr><td><code>P</code></td><td>The transaction is pending. The transaction was created but waits for another payment process to complete, such as an ACH transaction, before the status changes to <code>S</code>.</td></tr><tr><td><code>S</code></td><td>The transaction successfully completed without a denial and after any pending statuses.</td></tr><tr><td><code>V</code></td><td>A successful transaction was reversed and funds were refunded to the original sender.</td></tr></tbody></table>",
+                      "disabled": true
+                    },
+                    {
+                      "key": "transaction_amount",
+                      "value": "%5B1000%20TO%20100000%5D",
+                      "description": "Filters the transactions in the response by a gross transaction amount range. Specify the range as `<start-range> TO <end-range>`, where `<start-range>` is the lower limit of the gross PayPal transaction amount and `<end-range>` is the upper limit of the gross transaction amount. Specify the amounts in lower denominations. For example, to search for transactions from $5.00 to $10.05, specify `[500 TO 1005]`.<blockquote><strong>Note:</strong>The values must be URL encoded.</blockquote>",
+                      "disabled": true
+                    },
+                    {
+                      "key": "transaction_currency",
+                      "value": "USD",
+                      "description": "Filters the transactions in the response by a [three-character ISO-4217 currency code](/docs/api/reference/currency-codes/) for the PayPal transaction currency.",
+                      "disabled": true
+                    },
+                    {
+                      "key": "payment_instrument_type",
+                      "value": "CREDITCARD",
+                      "description": "Filters the transactions in the response by a payment instrument type. Value is either:<ul><li><code>CREDITCARD</code>. Returns a direct credit card transaction with a corresponding value.</li><li><code>DEBITCARD</code>. Returns a debit card transaction with a corresponding value.</li></ul>If you omit this parameter, the API does not apply this filter.",
+                      "disabled": true
+                    },
+                    {
+                      "key": "balance_affecting_records_only",
+                      "value": "Y",
+                      "description": "Indicates whether the response includes only balance-impacting transactions or all transactions. Value is either:<ul><li><code>Y</code>. The default. The response includes only balance transactions.</li><li><code>N</code>. The response includes all transactions.</li></ul>",
+                      "disabled": true
+                    },
+                    {
+                      "key": "terminal_id",
+                      "value": "",
+                      "description": "Filters the transactions in the response by a terminal ID.",
+                      "disabled": true
+                    },
+                    {
+                      "key": "store_id",
+                      "value": "",
+                      "description": "Filters the transactions in the response by a store ID.",
+                      "disabled": true
+                    },
+                    {
+                      "key": "page",
+                      "value": "1",
+                      "description": "The zero-relative start index of the entire list of items that are returned in the response. So, the combination of `page=1` and `page_size=20` returns the first 20 items.",
+                      "disabled": true
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "100",
+                      "description": "The number of items to return in the response. So, the combination of `page=1` and `page_size=20` returns the first 20 items. The combination of `page=2` and `page_size=20` returns the next 20 items.",
+                      "disabled": true
+                    }
+                  ]
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "cache-control",
+                  "value": "max-age=0, no-cache, no-store, must-revalidate"
+                },
+                {
+                  "key": "content-length",
+                  "value": "387"
+                },
+                {
+                  "key": "content-type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n    \"localizedMessage\": \"No permission for the requested operation. \",\n    \"suppressed\": [],\n    \"name\": \"PERMISSION_DENIED\",\n    \"message\": \"No permission for the requested operation. \",\n    \"details\": [\n        {\n            \"field\": null,\n            \"value\": null,\n            \"location\": null,\n            \"issue\": \"No permission for the requested operation. \"\n        }\n    ],\n    \"information_link\": \"https://developer.paypal.com/docs/classic/products/permissions/\",\n    \"debug_id\": \"3fa06aba36d66\"\n}"
+            },
+            {
               "id": "d901375e-d378-4f64-8f81-deb4c58c592e",
               "name": "400 INVALID_REQUEST",
               "originalRequest": {
@@ -37800,7 +37972,7 @@
     {
       "listen": "prerequest",
       "script": {
-        "id": "75a97eba-f1e5-47fd-a262-a687f91b501b",
+        "id": "2d2e44f6-359a-489f-8565-a9a25b8e00a0",
         "type": "text/javascript",
         "exec": [
           "// Following script is executed before every request in this collection. ",
@@ -37844,6 +38016,12 @@
           "}",
           "",
           "if (needNewToken === true) {",
+          "",
+          "    // clear cached token before obtaining a new one",
+          "    pm.collectionVariables.unset('access_token');",
+          "    pm.collectionVariables.unset('access_token_expiry');",
+          "    pm.collectionVariables.unset('access_token_for');",
+          "",
           "    pm.sendRequest(auth_request, function(err, response) {",
           "        if (response.code === 200) {",
           "            console.log('Saving the access_token')",
@@ -37869,7 +38047,7 @@
     {
       "listen": "test",
       "script": {
-        "id": "830b2488-4ed9-497b-a532-64355b355211",
+        "id": "71b2464a-703f-49ea-aa98-100fb09a889d",
         "type": "text/javascript",
         "exec": [
           "var successHttpStatuses = [200, 201, 202, 204];",
@@ -37886,108 +38064,108 @@
   ],
   "variable": [
     {
-      "id": "2d9cc39c-3954-46ba-b173-e4b7227987d4",
+      "id": "3582fa98-aef6-44e0-953c-a93d632bd94d",
       "key": "base_url",
       "value": "https://api-m.sandbox.paypal.com"
     },
     {
-      "id": "d4d6caba-4c00-4019-af93-0827bd27783b",
+      "id": "2218d7b1-c6ec-436d-af1c-65265064cdf3",
       "key": "client_id",
       "value": "AUC1CwUIt5XDl4Kco9-oXcewk0jZbPIxDs1JWHDzATNSnYU36xnTtS0Tp-4kDlCpgCbpudXcStc8HAsV"
     },
     {
-      "id": "bcb5d001-80dc-4f78-80b9-0084add4fde4",
+      "id": "088d5395-87b2-4610-af18-cea866297bd0",
       "key": "client_secret",
       "value": "EDIDlZWQMpgfztWzVGYSjw-tcRvLblFnv4JZh4BBWtFQt4qNx43wc-U-FBcynTcRFXJ_uw1l_iTok_Nm"
     },
     {
-      "id": "4c214c8e-5f02-4564-b1fd-0f2b176fda4f",
+      "id": "597de52b-586a-4937-816e-36a018355665",
       "key": "paypal_partner_attribution_id",
       "value": "TEST_ATTRIBUTION_ID"
     },
     {
-      "id": "c5337909-e485-40f4-9f9c-dc0c08728284",
+      "id": "aa15247b-bcc6-440e-b7d7-1155faf247cf",
       "key": "prefer_representation_min",
       "value": "return=minimal"
     },
     {
-      "id": "8bdaf591-5f4d-4541-9f96-d6057fbfa660",
+      "id": "ce362be0-0fa7-4f76-8931-2ab47efaf4ed",
       "key": "prefer_representation_detailed",
       "value": "return=representation"
     },
     {
-      "id": "e2c21f59-cde6-425d-a54e-ab136782a026",
+      "id": "6c47df64-c919-40c0-bdc0-5e36df3d9f82",
       "key": "paypal_client_metadata_Id",
       "value": ""
     },
     {
-      "id": "00bbd264-a0cb-4e61-9d22-358bb4b846f0",
+      "id": "c752bff5-6a4c-4883-a462-b9462690969c",
       "key": "paypal_auth_assertion",
       "value": ""
     },
     {
-      "id": "5d7d3839-393f-456f-b337-7f95abf1bc96",
-      "key": "access_token_expiry",
-      "value": ""
-    },
-    {
-      "id": "52fc7fe0-f561-44a6-b78a-02aba4a35701",
-      "key": "access_token_for",
-      "value": ""
-    },
-    {
-      "id": "0d974792-76b5-4aad-9dba-faec936ffff3",
+      "id": "26676ad7-1a77-4624-89d6-c64101215ca2",
       "key": "order_id",
       "value": ""
     },
     {
-      "id": "85f233ac-1dcf-4761-8750-9b41ada91bc8",
+      "id": "fdafdcea-cd7f-4899-a890-d633f124acc5",
       "key": "capture_id",
       "value": ""
     },
     {
-      "id": "3cc65c06-fc55-427e-acfb-0261e6dc3f8d",
+      "id": "7494d1b5-8fbf-4b5e-94fb-fe4e75a0bb11",
       "key": "billing_plan_id",
       "value": ""
     },
     {
-      "id": "ad680ad9-ac1d-440b-a54c-69af2faec663",
+      "id": "33a32039-495e-4811-bfed-d6a576da53d1",
       "key": "product_id",
       "value": "1645840190"
     },
     {
-      "id": "a96e437c-7dac-4a3f-9c64-66f5deb117ba",
+      "id": "1e233f29-87c9-4d6d-b88f-f9617ac1a2f4",
       "key": "subscription_id",
       "value": ""
     },
     {
-      "id": "37bd0ffd-832d-4ae2-953f-2dc0c78f8097",
+      "id": "5ed69d23-af42-4e08-bbcc-d39451bc461d",
       "key": "dispute_id",
       "value": ""
     },
     {
-      "id": "0222f9f0-0921-4ce3-859c-84b1f4d921a8",
+      "id": "f9a3af9d-6cb0-42be-8b1d-fcdf465504be",
       "key": "authorization_id",
       "value": ""
     },
     {
-      "id": "bbbfb114-58a5-4587-a3d7-640f1469cb89",
+      "id": "a91d41ec-f032-4f82-8b8c-19cc87d1de85",
       "key": "refund_id",
       "value": ""
     },
     {
-      "id": "6f088c77-380a-4e36-86e9-772929178790",
-      "key": "access_token",
-      "value": ""
-    },
-    {
-      "id": "ae98ef4f-cfa3-4c9c-ab1a-f57fec7974a9",
+      "id": "19dbe5a8-2039-4aac-a85c-d5aee2a95756",
       "key": "webhook_id",
       "value": ""
     },
     {
-      "id": "5c25c60b-e46d-46aa-bab5-13246e1ac663",
+      "id": "d8bb1130-be59-4408-b027-d518a5eb0597",
       "key": "webhook_url",
+      "value": ""
+    },
+    {
+      "id": "ff11340d-49cb-4b2b-9594-bf08ba86e394",
+      "key": "access_token",
+      "value": ""
+    },
+    {
+      "id": "85514c3f-9cae-4b4b-8335-5df67e79f516",
+      "key": "access_token_expiry",
+      "value": ""
+    },
+    {
+      "id": "61de65bc-5558-4cd7-941d-d7c129a6c80d",
+      "key": "access_token_for",
       "value": ""
     }
   ]
