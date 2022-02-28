@@ -37972,7 +37972,7 @@
     {
       "listen": "prerequest",
       "script": {
-        "id": "8004afc2-c311-4787-b9c8-4f47b8938064",
+        "id": "568b551e-0a41-46fa-977f-42e391738f51",
         "type": "text/javascript",
         "exec": [
           "// Following script is executed before every request in this collection. ",
@@ -37995,6 +37995,7 @@
           "    }",
           "};",
           "",
+          "console.info('Invoking: ', pm.info.requestName, pm.info.requestId);",
           "if(pm.request.url.path.join('/').includes('/oauth2/token')) {",
           "    // excude token generation API from reusing the token.",
           "    return;",
@@ -38003,11 +38004,11 @@
           "if (!pm.collectionVariables.get('access_token_expiry') ||",
           "    !pm.collectionVariables.get('access_token') ||",
           "    !pm.collectionVariables.get('access_token_for')) {",
-          "    console.info('access_token or its expiry date are missing.');",
+          "    console.log('access_token or its expiry date are missing.');",
           "} else if (pm.collectionVariables.get('access_token_expiry') <= (new Date()).getTime()) {",
-          "    console.info('access_token is expired')",
+          "    console.log('access_token is expired')",
           "} else if (pm.collectionVariables.get('access_token_for') != pm.variables.get(\"client_id\")) {",
-          "    console.info('client_id is changed', ",
+          "    console.log('client_id is changed', ",
           "        pm.collectionVariables.get('access_token_for'), ",
           "        pm.variables.get(\"client_id\"))",
           "} else {",
@@ -38047,130 +38048,160 @@
     {
       "listen": "test",
       "script": {
-        "id": "aa06ab6a-90e8-4e13-b6f0-78c10895195a",
+        "id": "40f2f269-3080-4259-b1b8-037a8f4523ad",
         "type": "text/javascript",
         "exec": [
           "var successHttpStatuses = [200, 201, 202, 204];",
-          "pm.test(\"Status code must be 2XX, actual is \"+pm.response.code, function () {",
-          "    pm.expect(pm.response.code).to.be.oneOf(successHttpStatuses);",
-          "});",
-          "if(!successHttpStatuses.includes(pm.response.code)) {",
+          "",
+          "var isFailed = !successHttpStatuses.includes(pm.response.code);",
+          "var message = pm.response.code;",
+          "if(isFailed) {",
+          "    message = message + \", \" + pm.response.text();",
           "    console.error(\"Unexpected Http Code: \", pm.response.code);",
           "    console.error(\"Headers: \", pm.response.headers);",
-          "}"
+          "}",
+          "",
+          "pm.test(\"Status code must be one of \"+successHttpStatuses+\", actual is \"+message, function () {",
+          "    pm.expect(pm.response.code).to.be.oneOf(successHttpStatuses);",
+          "});"
         ]
       }
     }
   ],
   "variable": [
     {
-      "id": "841597d6-c38b-48f5-8329-43b0f7c64571",
+      "id": "69d240f4-d1ce-4e52-8780-6a23174bbf72",
       "key": "PLEASE NOTE -->",
       "value": "< PayPal Public Collection comes with following default public set of credentials stored at the Collection level. \nYou may choose to override these values via environment level variables. You may bring your own credentials from PayPal Developer Dashboard there."
     },
     {
-      "id": "b0943e9f-5d3f-4b04-ac17-2ac568ac0a9c",
+      "id": "0961ffd7-ed50-44e0-921f-b5d8199c1e60",
       "key": "base_url",
       "value": "https://api-m.sandbox.paypal.com"
     },
     {
-      "id": "78b6d178-7b68-4f0f-ad9c-abab78202209",
+      "id": "e0984ea2-20d9-4706-8592-a6d80b6858b3",
       "key": "client_id",
       "value": "AUC1CwUIt5XDl4Kco9-oXcewk0jZbPIxDs1JWHDzATNSnYU36xnTtS0Tp-4kDlCpgCbpudXcStc8HAsV"
     },
     {
-      "id": "62f0bce9-ace9-4a14-9696-7fd57c57acbb",
+      "id": "e0acadea-e974-42cc-93bc-99bdbae1a805",
       "key": "client_secret",
       "value": "EDIDlZWQMpgfztWzVGYSjw-tcRvLblFnv4JZh4BBWtFQt4qNx43wc-U-FBcynTcRFXJ_uw1l_iTok_Nm"
     },
     {
-      "id": "8ae9d3c7-8eb1-47fb-8a1d-8d0ed6b70189",
+      "id": "05d299de-b34c-4c36-965e-472a9107ed63",
       "key": "paypal_partner_attribution_id",
       "value": "TEST_ATTRIBUTION_ID"
     },
     {
-      "id": "d64ef081-b527-4dcb-ade3-898b7dcdab95",
+      "id": "39f69c5a-6d64-4aa3-bf6f-1ea8c937fcff",
       "key": "prefer_representation_min",
       "value": "return=minimal"
     },
     {
-      "id": "0a5714f5-b5b8-4670-bc45-2c4d6017df6d",
+      "id": "77b18429-e357-42ff-ae81-02d4491f5cdc",
       "key": "prefer_representation_detailed",
       "value": "return=representation"
     },
     {
-      "id": "176fbc78-f96a-4525-b6ab-a9e62493001d",
+      "id": "bb92e15f-2665-47f5-a06a-5bbc558fcd79",
       "key": "paypal_client_metadata_Id",
       "value": ""
     },
     {
-      "id": "4a888d35-02ac-4996-9e39-242d05f1b3f1",
+      "id": "3ae4df4b-b893-4917-829e-6e5c6456d213",
       "key": "paypal_auth_assertion",
       "value": ""
     },
     {
-      "id": "a7c01c18-f1e8-4754-935e-3532b2f13476",
+      "id": "9079da1a-e301-491a-97c6-86a882f90c6e",
       "key": "order_id",
       "value": ""
     },
     {
-      "id": "89ab3130-da5f-4fbe-83fe-7c767306e1b4",
+      "id": "7bcdca0b-1f40-4538-b31e-8c2975d0c0a0",
       "key": "capture_id",
       "value": ""
     },
     {
-      "id": "1f7d5810-bd1e-4a45-958c-babb2cf2245e",
+      "id": "202c24fd-fdbe-4dd3-9622-5c6caf72ca70",
       "key": "billing_plan_id",
       "value": ""
     },
     {
-      "id": "3ef49882-1906-4c7b-8d18-cd8c96fcd865",
+      "id": "b777aaf8-0b52-44d0-b887-dc0d12ef47ed",
       "key": "product_id",
       "value": "1645840190"
     },
     {
-      "id": "96c14532-38f0-45f6-a963-54b3caea8936",
+      "id": "1dec17b4-a6b8-4a35-86d7-08902f35b31e",
       "key": "subscription_id",
       "value": ""
     },
     {
-      "id": "564fa092-e7e6-450f-b536-d100787a5049",
+      "id": "32b6ebc7-7079-4af0-8c78-1272c6711c0f",
       "key": "dispute_id",
       "value": ""
     },
     {
-      "id": "3bb89b6f-7711-44d6-80be-a3f9655c496b",
+      "id": "febde9de-dd8e-47e4-98a6-ad9d9b958302",
       "key": "authorization_id",
       "value": ""
     },
     {
-      "id": "42e53afa-937e-407e-a2ec-73672bf7d358",
+      "id": "49ba2c9a-a995-4172-9fea-8d043ce63ec0",
       "key": "refund_id",
       "value": ""
     },
     {
-      "id": "1cba10d1-0083-404f-b28e-956e8f023b26",
+      "id": "c4a10107-d397-428e-95c0-3701451f8e4d",
       "key": "webhook_id",
       "value": ""
     },
     {
-      "id": "f023881f-4934-4359-abfe-17122fe71b52",
+      "id": "08ada64a-4974-4b00-a717-0619342ddd5b",
       "key": "webhook_url",
       "value": ""
     },
     {
-      "id": "99fa09a6-3075-4a1e-a3d3-58ac36d9933c",
-      "key": "access_token",
-      "value": ""
-    },
-    {
-      "id": "b45cbcc5-8538-45d5-8636-963e3dd89ec8",
+      "id": "1ba9c6eb-fe55-4e69-8460-1321d83b9631",
       "key": "access_token_expiry",
       "value": ""
     },
     {
-      "id": "968ca387-85f9-4cf0-844c-a7c064d5cac3",
+      "id": "61badfe9-edf8-423c-96c4-82dc3e33dda7",
       "key": "access_token_for",
+      "value": ""
+    },
+    {
+      "id": "4ad6f3b4-a6e5-449f-8f62-ce71708af7ae",
+      "key": "invoice_id",
+      "value": ""
+    },
+    {
+      "id": "4eaf01e7-61f4-494a-b710-9db4e6dc9502",
+      "key": "invoice_template_id",
+      "value": ""
+    },
+    {
+      "id": "d5b63ff7-2399-4e74-8911-87f07c0fad69",
+      "key": "payout_batch_id",
+      "value": ""
+    },
+    {
+      "id": "0211f251-2037-40ed-94bf-ec8b039ea181",
+      "key": "payout_item_id",
+      "value": ""
+    },
+    {
+      "id": "c3fb818e-e93f-4a90-ab9c-98adeecc39d5",
+      "key": "web_profile_id",
+      "value": ""
+    },
+    {
+      "id": "f0e291c6-acfe-4366-9024-344a84f05dc5",
+      "key": "access_token",
       "value": ""
     }
   ]
