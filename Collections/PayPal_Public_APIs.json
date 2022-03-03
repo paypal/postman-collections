@@ -1715,7 +1715,7 @@
               }
             },
             "url": "{{base_url}}/v2/checkout/orders",
-            "description": "Creates an order.<blockquote><strong>Note:</strong> For error handling and troubleshooting, see <a href=\"/docs/api/reference/orders-v2-errors/#create-order\">Orders v2 errors</a>.</blockquote>"
+            "description": "Creates an order.<blockquote><strong>Note:</strong> For error handling and troubleshooting, see <a href=\"https://developer.paypal.com/api/rest/reference/orders/v2/errors/#create-order\">Orders v2 errors</a>.</blockquote>"
           },
           "response": [
             {
@@ -2550,7 +2550,7 @@
                 }
               ]
             },
-            "description": "Shows details for an order, by ID.<blockquote><strong>Note:</strong> For error handling and troubleshooting, see <a href=\"/docs/api/reference/orders-v2-errors/#get-order\">Orders v2 errors</a>.</blockquote>"
+            "description": "Shows details for an order, by ID.<blockquote><strong>Note:</strong> For error handling and troubleshooting, see <a href=\"https://developer.paypal.com/api/rest/reference/orders/v2/errors/#get-order\">Orders v2 errors</a>.</blockquote>"
           },
           "response": [
             {
@@ -2841,7 +2841,7 @@
                 }
               ]
             },
-            "description": "Updates an order with a `CREATED` or `APPROVED` status. You cannot update an order with the `COMPLETED` status.<br/><br/>To make an update, you must provide a `reference_id`. If you omit this value with an order that contains only one purchase unit, PayPal sets the value to `default` which enables you to use the path: <code>\"/purchase_units/@reference_id=='default'/{attribute-or-object}\"</code>.<blockquote><strong>Note:</strong> For error handling and troubleshooting, see <a href=\"/docs/api/reference/orders-v2-errors/#patch-order\">Orders v2 errors</a>.</blockquote>Patchable attributes or objects:<br/><br/><table><thead><th>Attribute</th><th>Op</th><th>Notes</th></thead><tbody><tr><td><code>intent</code></td><td>replace</td><td></td></tr><tr><td><code>payer</code></td><td>replace, add</td><td>Using replace op for <code>payer</code> will replace the whole <code>payer</code> object with the value sent in request.</td></tr><tr><td><code>purchase_units</code></td><td>replace, add</td><td></td></tr><tr><td><code>purchase_units[].custom_id</code></td><td>replace, add, remove</td><td></td></tr><tr><td><code>purchase_units[].description</code></td><td>replace, add, remove</td><td></td></tr><tr><td><code>purchase_units[].payee.email</code></td><td>replace</td><td></td></tr><tr><td><code>purchase_units[].shipping.name</code></td><td>replace, add</td><td></td></tr><tr><td><code>purchase_units[].shipping.address</code></td><td>replace, add</td><td></td></tr><tr><td><code>purchase_units[].shipping.type</code></td><td>replace, add</td><td></td></tr><tr><td><code>purchase_units[].soft_descriptor</code></td><td>replace, remove</td><td></td></tr><tr><td><code>purchase_units[].amount</code></td><td>replace</td><td></td></tr><tr><td><code>purchase_units[].invoice_id</code></td><td>replace, add, remove</td><td></td></tr><tr><td><code>purchase_units[].payment_instruction</code></td><td>replace</td><td></td></tr><tr><td><code>purchase_units[].payment_instruction.disbursement_mode</code></td><td>replace</td><td>By default, <code>disbursement_mode</code> is <code>INSTANT</code>.</td></tr><tr><td><code>purchase_units[].payment_instruction.platform_fees</code></td><td>replace, add, remove</td><td></td></tr></tbody></table>"
+            "description": "Updates an order with a `CREATED` or `APPROVED` status. You cannot update an order with the `COMPLETED` status.<br/><br/>To make an update, you must provide a `reference_id`. If you omit this value with an order that contains only one purchase unit, PayPal sets the value to `default` which enables you to use the path: <code>\"/purchase_units/@reference_id=='default'/{attribute-or-object}\"</code>.<blockquote><strong>Note:</strong> For error handling and troubleshooting, see <a href=\"https://developer.paypal.com/api/rest/reference/orders/v2/errors/#link-patchorder\">Orders v2 errors</a>.</blockquote>Patchable attributes or objects:<br/><br/><table><thead><th>Attribute</th><th>Op</th><th>Notes</th></thead><tbody><tr><td><code>intent</code></td><td>replace</td><td></td></tr><tr><td><code>payer</code></td><td>replace, add</td><td>Using replace op for <code>payer</code> will replace the whole <code>payer</code> object with the value sent in request.</td></tr><tr><td><code>purchase_units</code></td><td>replace, add</td><td></td></tr><tr><td><code>purchase_units[].custom_id</code></td><td>replace, add, remove</td><td></td></tr><tr><td><code>purchase_units[].description</code></td><td>replace, add, remove</td><td></td></tr><tr><td><code>purchase_units[].payee.email</code></td><td>replace</td><td></td></tr><tr><td><code>purchase_units[].shipping.name</code></td><td>replace, add</td><td></td></tr><tr><td><code>purchase_units[].shipping.address</code></td><td>replace, add</td><td></td></tr><tr><td><code>purchase_units[].shipping.type</code></td><td>replace, add</td><td></td></tr><tr><td><code>purchase_units[].soft_descriptor</code></td><td>replace, remove</td><td></td></tr><tr><td><code>purchase_units[].amount</code></td><td>replace</td><td></td></tr><tr><td><code>purchase_units[].invoice_id</code></td><td>replace, add, remove</td><td></td></tr><tr><td><code>purchase_units[].payment_instruction</code></td><td>replace</td><td></td></tr><tr><td><code>purchase_units[].payment_instruction.disbursement_mode</code></td><td>replace</td><td>By default, <code>disbursement_mode</code> is <code>INSTANT</code>.</td></tr><tr><td><code>purchase_units[].payment_instruction.platform_fees</code></td><td>replace, add, remove</td><td></td></tr></tbody></table>"
           },
           "response": [
             {
@@ -3867,7 +3867,7 @@
                 }
               ]
             },
-            "description": "Authorizes payment for an order. To successfully authorize payment for an order, the buyer must first approve the order or a valid payment_source must be provided in the request. A buyer can approve the order upon being redirected to the rel:approve URL that was returned in the HATEOAS links in the create order response.<blockquote><strong>Note:</strong> For error handling and troubleshooting, see <a href=\"/docs/api/reference/orders-v2-errors/#authorize-order\">Orders v2 errors</a>.</blockquote>"
+            "description": "Authorizes payment for an order. To successfully authorize payment for an order, the buyer must first approve the order or a valid payment_source must be provided in the request. A buyer can approve the order upon being redirected to the rel:approve URL that was returned in the HATEOAS links in the create order response.<blockquote><strong>Note:</strong> For error handling and troubleshooting, see <a href=\"https://developer.paypal.com/api/rest/reference/orders/v2/errors/#link-authorizeorder\">Orders v2 errors</a>.</blockquote>"
           },
           "response": [
             {
@@ -4659,7 +4659,7 @@
                 }
               ]
             },
-            "description": "Captures payment for an order. To successfully capture payment for an order, the buyer must first approve the order or a valid payment_source must be provided in the request. A buyer can approve the order upon being redirected to the rel:approve URL that was returned in the HATEOAS links in the create order response.<blockquote><strong>Note:</strong> For error handling and troubleshooting, see <a href=\"/docs/api/reference/orders-v2-errors/#capture-order\">Orders v2 errors</a>.</blockquote>"
+            "description": "Captures payment for an order. To successfully capture payment for an order, the buyer must first approve the order or a valid payment_source must be provided in the request. A buyer can approve the order upon being redirected to the rel:approve URL that was returned in the HATEOAS links in the create order response.<blockquote><strong>Note:</strong> For error handling and troubleshooting, see <a href=\"https://developer.paypal.com/api/rest/reference/orders/v2/errors/#link-captureorder\">Orders v2 errors</a>.</blockquote>"
           },
           "response": [
             {
@@ -7618,7 +7618,7 @@
         }
       ],
       "id": "7b9c53c6-4fe7-458a-8a35-b2e7dec0d930",
-      "description": "Call the Payments API to authorize payments, capture authorized payments, refund payments that have already been captured, and show payment information. Use the Payments API in conjunction with the <a href=\"/docs/api/orders/v2/\">Orders API</a>. For more information, see the <a href=\"/docs/checkout/\">PayPal Checkout Overview</a>."
+      "description": "Call the Payments API to authorize payments, capture authorized payments, refund payments that have already been captured, and show payment information. Use the Payments API in conjunction with the <a href=\"https://developer.paypal.com/api/orders/v2/\">Orders API</a>. For more information, see the <a href=\"https://developer.paypal.com/docs/checkout/\">PayPal Checkout Overview</a>."
     },
     {
       "name": "Invoices",
@@ -11452,7 +11452,7 @@
                     }
                   ]
                 },
-                "description": "Deletes a draft or scheduled invoice, by ID. Deletes invoices in the draft or scheduled state only. For invoices that have already been sent, you can <a href=\"/docs/api/invoicing/v2/#invoices_cancel\">cancel the invoice</a>. After you delete a draft or scheduled invoice, you can no longer use it or show its details. However, you can reuse its invoice number."
+                "description": "Deletes a draft or scheduled invoice, by ID. Deletes invoices in the draft or scheduled state only. For invoices that have already been sent, you can <a href=\"https://developer.paypal.com/api/invoicing/v2/#invoices_cancel\">cancel the invoice</a>. After you delete a draft or scheduled invoice, you can no longer use it or show its details. However, you can reuse its invoice number."
               },
               "response": [
                 {
@@ -15700,7 +15700,7 @@
         }
       ],
       "id": "db88df78-226d-4d3d-9482-d0bf3d32f1eb",
-      "description": "Use the Invoicing API to create, send, and manage invoices. You can also use the API or webhooks to track invoice payments. When you send an invoice to a customer, the invoice moves from draft to payable state. PayPal then emails the customer a link to the invoice on the PayPal website. Customers with a PayPal account can log in and pay the invoice with PayPal. Alternatively, customers can pay as a guest with a debit card or credit card. For more information, see the <a href=\"/docs/invoicing/\">Invoicing Overview</a> and the <a href=\"/docs/invoicing/basic-integration/\">Invoicing Integration Guide</a>."
+      "description": "Use the Invoicing API to create, send, and manage invoices. You can also use the API or webhooks to track invoice payments. When you send an invoice to a customer, the invoice moves from draft to payable state. PayPal then emails the customer a link to the invoice on the PayPal website. Customers with a PayPal account can log in and pay the invoice with PayPal. Alternatively, customers can pay as a guest with a debit card or credit card. For more information, see the <a href=\"https://developer.paypal.com/docs/invoicing/\">Invoicing Overview</a> and the <a href=\"https://developer.paypal.com/docs/invoicing/basic-integration/\">Invoicing Integration Guide</a>."
     },
     {
       "name": "Subscriptions",
@@ -23362,7 +23362,7 @@
         }
       ],
       "id": "99e80b9d-3e8d-46f9-bb25-43efc936d48e",
-      "description": "You can use billing plans and subscriptions to create subscriptions that process recurring PayPal payments for physical or digital goods, or services. A plan includes pricing and billing cycle information that defines the amount and frequency of charge for a subscription. You can also define a fixed plan, such as a $5 basic plan or a volume- or graduated-based plan with pricing tiers based on the quantity purchased. For more information, see <a href=\"/docs/subscriptions/\">Subscriptions Overview</a>."
+      "description": "You can use billing plans and subscriptions to create subscriptions that process recurring PayPal payments for physical or digital goods, or services. A plan includes pricing and billing cycle information that defines the amount and frequency of charge for a subscription. You can also define a fixed plan, such as a $5 basic plan or a volume- or graduated-based plan with pricing tiers based on the quantity purchased. For more information, see <a href=\"https://developer.paypal.com/docs/subscriptions/\">Subscriptions Overview</a>."
     },
     {
       "name": "Payouts",
@@ -23450,7 +23450,7 @@
               }
             },
             "url": "{{base_url}}/v1/payments/payouts",
-            "description": "Creates a batch payout. In the JSON request body, pass a `sender_batch_header` and an `items` array. The `sender_batch_header` defines how to handle the payout. The `items` array defines the payout items.<br/>You can make payouts to one or more recipients.<blockquote><strong>Notes:</strong> <ul><li><p>PayPal does not process duplicate payouts. If you specify a <code>sender_batch_id</code> that was used in the last 30 days, the API rejects the request with an error message that shows the duplicate <code>sender_batch_id</code> and includes a HATEOAS link to the original payout with the same <code>sender_batch_id</code>.</p><p>If you receive an HTTP <code>5<i>nn</i></code> status code, you can safely retry the request with the same <code>sender_batch_id</code>.</p></li><li><p>The Payouts API does not support build notation (BN) codes. In a future Payouts release, you can optionally provide BN codes in the <code>PayPal-Partner-Attribution-Id</code> request header.</p><p>For information about the <code>PayPal-Partner-Attribution-Id</code> header, see <a href=\"/docs/api/reference/api-requests/#http-request-headers\">HTTP request headers</a>. To learn about or request a BN code, contact your partner manager or see <a href=\"https://www.paypal.com/us/webapps/mpp/partner-program\">PayPal Partner Program</a>.</p></li></ul></blockquote>"
+            "description": "Creates a batch payout. In the JSON request body, pass a `sender_batch_header` and an `items` array. The `sender_batch_header` defines how to handle the payout. The `items` array defines the payout items.<br/>You can make payouts to one or more recipients.<blockquote><strong>Notes:</strong> <ul><li><p>PayPal does not process duplicate payouts. If you specify a <code>sender_batch_id</code> that was used in the last 30 days, the API rejects the request with an error message that shows the duplicate <code>sender_batch_id</code> and includes a HATEOAS link to the original payout with the same <code>sender_batch_id</code>.</p><p>If you receive an HTTP <code>5<i>nn</i></code> status code, you can safely retry the request with the same <code>sender_batch_id</code>.</p></li><li><p>The Payouts API does not support build notation (BN) codes. In a future Payouts release, you can optionally provide BN codes in the <code>PayPal-Partner-Attribution-Id</code> request header.</p><p>For information about the <code>PayPal-Partner-Attribution-Id</code> header, see <a href=\"https://developer.paypal.com/api/rest/requests/#http-request-headers\">HTTP request headers</a>. To learn about or request a BN code, contact your partner manager or see <a href=\"https://www.paypal.com/us/webapps/mpp/partner-program\">PayPal Partner Program</a>.</p></li></ul></blockquote>"
           },
           "response": [
             {
@@ -24220,7 +24220,7 @@
         }
       ],
       "id": "2ef6cad5-5beb-4832-867a-efc6b1752dbb",
-      "description": "Use the Payouts API to make payments to multiple PayPal or Venmo recipients. The Payouts API is a fast, convenient way to send commissions, rebates, rewards, and general disbursements. You can send up to 15,000 payments per call. If you integrated the Payouts API before September 1, 2017, you receive transaction reports through <a href=\"/docs/archive/mass-pay/integration-guide/MassPayReporting/\">Mass Payments Reporting</a>. Otherwise, <a href=\"/docs/payouts/features/view-reports/\">view reports from your PayPal Business account</a>. The Payouts API uses the <a href=\"https://tools.ietf.org/html/rfc3339#section-5.6\">ISO 8601 Internet date and time format</a>."
+      "description": "Use the Payouts API to make payments to multiple PayPal or Venmo recipients. The Payouts API is a fast, convenient way to send commissions, rebates, rewards, and general disbursements. You can send up to 15,000 payments per call. If you integrated the Payouts API before September 1, 2017, you receive transaction reports through <a href=\"https://developer.paypal.com/docs/archive/mass-pay/integration-guide/MassPayReporting/\">Mass Payments Reporting</a>. Otherwise, <a href=\"https://developer.paypal.com/docs/payouts/features/view-reports/\">view reports from your PayPal Business account</a>. The Payouts API uses the <a href=\"https://tools.ietf.org/html/rfc3339#section-5.6\">ISO 8601 Internet date and time format</a>."
     },
     {
       "name": "Webhooks",
@@ -27297,7 +27297,7 @@
               }
             ],
             "url": "{{base_url}}/v1/notifications/webhooks-event-types",
-            "description": "Lists available events to which any webhook can subscribe. For a list of supported events, see [Webhook event names](/docs/api/notifications/webhooks/event-names/)."
+            "description": "Lists available events to which any webhook can subscribe. For a list of supported events, see [Webhook event names](https://developer.paypal.com/docs/api/notifications/webhooks/event-names/)."
           },
           "response": [
             {
@@ -27472,7 +27472,7 @@
               }
             },
             "url": "{{base_url}}/v1/notifications/simulate-event",
-            "description": "Use the `/simulate-event` resource to use a sample payload to simulate a webhook event. The events that this call generates only serve to validate the connection to the listener URL and to show how webhook events look. <blockquote><strong>Note:</strong> You can also use the <a href=\"/docs/api/notifications/webhooks/simulator/\">Webhooks simulator</a> to simulate webhook events.</blockquote>\n\nSimulates a webhook event. In the JSON request body, specify a sample payload."
+            "description": "Use the `/simulate-event` resource to use a sample payload to simulate a webhook event. The events that this call generates only serve to validate the connection to the listener URL and to show how webhook events look. <blockquote><strong>Note:</strong> You can also use the <a href=\"https://developer.paypal.com/developer/webhooksSimulator/\">Webhooks simulator</a> to simulate webhook events.</blockquote>\n\nSimulates a webhook event. In the JSON request body, specify a sample payload."
           },
           "response": [
             {
@@ -27881,7 +27881,7 @@
         }
       ],
       "id": "a62a80fa-5950-4c84-b880-5d30479ea464",
-      "description": "The PayPal REST APIs use <a href=\"/docs/api/notifications/webhooks/\"/>webhooks</a> for event notification. Webhooks are HTTP callbacks that receive notification messages for events. After you configure a webhook listener for your app, you can <a href=\"#webhooks_create\">create a webhook</a>, which subscribes the webhook listener for your app to events. The <code>notifications</code> namespace contains resource collections for webhooks."
+      "description": "The PayPal REST APIs use <a href=\"https://developer.paypal.com/api/rest/webhooks/\"/>webhooks</a> for event notification. Webhooks are HTTP callbacks that receive notification messages for events. After you configure a webhook listener for your app, you can <a href=\"#webhooks_create\">create a webhook</a>, which subscribes the webhook listener for your app to events. The <code>notifications</code> namespace contains resource collections for webhooks."
     },
     {
       "name": "Shipment Tracking",
@@ -27980,7 +27980,7 @@
               }
             },
             "url": "{{base_url}}/v1/shipping/trackers-batch",
-            "description": "Adds tracking information, with or without tracking numbers, for multiple PayPal transactions. Accepts up to 20 tracking IDs. For more information, see <a href=\"/docs/tracking/integrate/#add-tracking-information-with-tracking-numbers\">Add tracking information with tracking numbers</a> and <a href=\"/docs/tracking/integrate/#add-tracking-information-without-tracking-numbers\">Add tracking information without tracking numbers</a>."
+            "description": "Adds tracking information, with or without tracking numbers, for multiple PayPal transactions. Accepts up to 20 tracking IDs. For more information, see <a href=\"https://developer.paypal.com/docs/tracking/integrate/#add-tracking-information-with-tracking-numbers\">Add tracking information with tracking numbers</a> and <a href=\"https://developer.paypal.com/docs/tracking/integrate/#add-tracking-information-without-tracking-numbers\">Add tracking information without tracking numbers</a>."
           },
           "response": [
             {
@@ -28516,7 +28516,7 @@
                 }
               ]
             },
-            "description": "Updates or cancels the tracking information for a PayPal transaction, by ID. To cancel tracking information, call this method and set the status to CANCELLED. For more information, see <a href=\"/docs/tracking/integrate/#update-or-cancel-tracking-information\">Update or cancel tracking information</a>."
+            "description": "Updates or cancels the tracking information for a PayPal transaction, by ID. To cancel tracking information, call this method and set the status to CANCELLED. For more information, see <a href=\"https://developer.paypal.com/docs/tracking/integrate/#update-or-cancel-tracking-information\">Update or cancel tracking information</a>."
           },
           "response": [
             {
@@ -28642,7 +28642,7 @@
         }
       ],
       "id": "582af29f-974c-4742-aaa5-b837fc390da8",
-      "description": "Merchants can use the PayPal Add Tracking API to manage tracking information. Merchants can add tracking numbers and associated information to PayPal. After adding these details to PayPal, merchants can:<ul><li>Update tracking details.</li><li>Show tracking details.</li><li>Cancel tracking numbers.</li></ul>For more information, see the <a href=\"/docs/tracking/\">Add Tracking API Overview</a> and <a href=\"/docs/tracking/integrate/\">Add Tracking API Integration Guide</a>."
+      "description": "Merchants can use the PayPal Add Tracking API to manage tracking information. Merchants can add tracking numbers and associated information to PayPal. After adding these details to PayPal, merchants can:<ul><li>Update tracking details.</li><li>Show tracking details.</li><li>Cancel tracking numbers.</li></ul>For more information, see the <a href=\"https://developer.paypal.com/docs/tracking/\">Add Tracking API Overview</a> and <a href=\"https://developer.paypal.com/docs/tracking/integrate/\">Add Tracking API Integration Guide</a>."
     },
     {
       "name": "Transaction Search",
@@ -28720,7 +28720,7 @@
                 {
                   "key": "fields",
                   "value": "transaction_info,payer_info,shipping_info,auction_info,cart_info,incentive_info,store_info",
-                  "description": "Indicates which fields appear in the response. Value is a single field or a comma-separated list of fields. The <code>transaction_info</code> value returns only the transaction details in the response. To include all fields in the response, specify <code>fields=all</code>. Valid fields are:<ul><li><a href=\"/docs/api/transaction-search/v1/#definition-transaction_info\"><code>transaction_info</code></a>. The transaction information. Includes the ID of the PayPal account of the payee, the PayPal-generated transaction ID, the PayPal-generated base ID, the PayPal reference ID type, the transaction event code, the date and time when the transaction was initiated and was last updated, the transaction amounts including the PayPal fee, any discounts, insurance, the transaction status, and other information about the transaction.</li><li><a href=\"/docs/api/transaction-search/v1/#definition-payer_info\"><code>payer_info</code></a>. The payer information. Includes the PayPal customer account ID and the payer's email address, primary phone number, name, country code, address, and whether the payer is verified or unverified.</li><li><a href=\"/docs/api/transaction-search/v1/#definition-shipping_info\"><code>shipping_info</code></a>. The shipping information. Includes the recipient's name, the shipping method for this order, the shipping address for this order, and the secondary address associated with this order.</li><li><a href=\"/docs/api/transaction-search/v1/#definition-auction_info\"><code>auction_info</code></a>. The auction information. Includes the name of the auction site, the auction site URL, the ID of the customer who makes the purchase in the auction, and the date and time when the auction closes.</li><li><a href=\"/docs/api/transaction-search/v1/#definition-cart_info\"><code>cart_info</code></a>. The cart information. Includes an array of item details, whether the item amount or the shipping amount already includes tax, and the ID of the invoice for PayPal-generated invoices.</li><li><a href=\"/docs/api/transaction-search/v1/#definition-incentive_info\"><code>incentive_info</code></a>. An array of incentive detail objects. Each object includes the incentive, such as a special offer or coupon, the incentive amount, and the incentive program code that identifies a merchant loyalty or incentive program.</li><li><a href=\"/docs/api/transaction-search/v1/#definition-store_info\"><code>store_info</code></a>. The store information. Includes the ID of the merchant store and the terminal ID for the checkout stand in the merchant store.</li></ul>"
+                  "description": "Indicates which fields appear in the response. Value is a single field or a comma-separated list of fields. The <code>transaction_info</code> value returns only the transaction details in the response. To include all fields in the response, specify <code>fields=all</code>. Valid fields are:<ul><li><a href=\"https://developer.paypal.com/api/transaction-search/v1/#definition-transaction_info\"><code>transaction_info</code></a>. The transaction information. Includes the ID of the PayPal account of the payee, the PayPal-generated transaction ID, the PayPal-generated base ID, the PayPal reference ID type, the transaction event code, the date and time when the transaction was initiated and was last updated, the transaction amounts including the PayPal fee, any discounts, insurance, the transaction status, and other information about the transaction.</li><li><a href=\"https://developer.paypal.com/api/transaction-search/v1/#definition-definition-payer_info\"><code>payer_info</code></a>. The payer information. Includes the PayPal customer account ID and the payer's email address, primary phone number, name, country code, address, and whether the payer is verified or unverified.</li><li><a href=\"https://developer.paypal.com/api/transaction-search/v1/#definition-shipping_info\"><code>shipping_info</code></a>. The shipping information. Includes the recipient's name, the shipping method for this order, the shipping address for this order, and the secondary address associated with this order.</li><li><a href=\"https://developer.paypal.com/api/transaction-search/v1/#definition-auction_info\"><code>auction_info</code></a>. The auction information. Includes the name of the auction site, the auction site URL, the ID of the customer who makes the purchase in the auction, and the date and time when the auction closes.</li><li><a href=\"https://developer.paypal.com/api/transaction-search/v1/#definition-cart_info\"><code>cart_info</code></a>. The cart information. Includes an array of item details, whether the item amount or the shipping amount already includes tax, and the ID of the invoice for PayPal-generated invoices.</li><li><a href=\"https://developer.paypal.com/api/transaction-search/v1/#definition-incentive_info\"><code>incentive_info</code></a>. An array of incentive detail objects. Each object includes the incentive, such as a special offer or coupon, the incentive amount, and the incentive program code that identifies a merchant loyalty or incentive program.</li><li><a href=\"https://developer.paypal.com/api/transaction-search/v1/#definition-store_info\"><code>store_info</code></a>. The store information. Includes the ID of the merchant store and the terminal ID for the checkout stand in the merchant store.</li></ul>"
                 },
                 {
                   "key": "start_date",
@@ -28735,13 +28735,13 @@
                 {
                   "key": "transaction_id",
                   "value": "{{capture_id}}",
-                  "description": "Filters the transactions in the response by a PayPal transaction ID. A valid transaction ID is 17 characters long, except for an <a href=\"/docs/api/payments/v1/#definition-order\">order ID</a>, which is 19 characters long.<blockquote><strong>Note:</strong> A transaction ID is not unique in the reporting system. The response can list two transactions with the same ID. One transaction can be balance affecting while the other is non-balance affecting.</blockquote>",
+                  "description": "Filters the transactions in the response by a PayPal transaction ID. A valid transaction ID is 17 characters long, except for an <a href=\"https://developer.paypal.com/api/payments/v1/#definition-order>order ID</a>, which is 19 characters long.<blockquote><strong>Note:</strong> A transaction ID is not unique in the reporting system. The response can list two transactions with the same ID. One transaction can be balance affecting while the other is non-balance affecting.</blockquote>",
                   "disabled": true
                 },
                 {
                   "key": "transaction_type",
                   "value": "T0005",
-                  "description": "Filters the transactions in the response by a PayPal transaction event code. See [Transaction event codes](/docs/integration/direct/transaction-search/transaction-event-codes/).",
+                  "description": "Filters the transactions in the response by a PayPal transaction event code. See [Transaction event codes](https://developer.paypal.com/docs/integration/direct/transaction-search/transaction-event-codes/).",
                   "disabled": true
                 },
                 {
@@ -28759,7 +28759,7 @@
                 {
                   "key": "transaction_currency",
                   "value": "USD",
-                  "description": "Filters the transactions in the response by a [three-character ISO-4217 currency code](/docs/api/reference/currency-codes/) for the PayPal transaction currency.",
+                  "description": "Filters the transactions in the response by a [three-character ISO-4217 currency code](https://developer.paypal.com/api/rest/reference/currency-codes/) for the PayPal transaction currency.",
                   "disabled": true
                 },
                 {
@@ -29835,13 +29835,12 @@
                 {
                   "key": "currency_code",
                   "value": "ALL",
-                  "description": "Filters the transactions in the response by a [three-character ISO-4217 currency code](/docs/api/reference/currency-codes/) for the PayPal transaction currency."
+                  "description": "Filters the transactions in the response by a [three-character ISO-4217 currency code](https://developer.paypal.com/docs/api/reference/currency-codes/) for the PayPal transaction currency."
                 },
                 {
                   "key": "include_crypto_currencies",
                   "value": "true",
-                  "description": "Indicates whether the response list balances including crypto transactions. Value is either:<ul><li><code>false</code>. The default. The response doesn't include crypto transactions.</li><li><code>true</code>. The response also includes crypto transactions.</li></ul>",
-                  "type": "text"
+                  "description": "Indicates whether the response list balances including crypto transactions. Value is either:<ul><li><code>false</code>. The default. The response doesn't include crypto transactions.</li><li><code>true</code>. The response also includes crypto transactions.</li></ul>"
                 }
               ]
             },
@@ -30243,7 +30242,7 @@
         }
       ],
       "id": "e0cf992c-0fb6-47af-8662-c55b5085a99c",
-      "description": "Use the Transaction Search API to get the history of transactions for a PayPal account. To use the API on behalf of third parties, you must be part of the PayPal partner network. Reach out to your partner manager for the next steps. To enroll in the partner program, see <a href=\"https://www.paypal.com/webapps/mpp/partner-program\">Partner with PayPal</a>. For more information about the API, see the <a href=\"/docs/integration/direct/transaction-search/\">Transaction Search API Integration Guide</a>."
+      "description": "Use the Transaction Search API to get the history of transactions for a PayPal account. To use the API on behalf of third parties, you must be part of the PayPal partner network. Reach out to your partner manager for the next steps. To enroll in the partner program, see <a href=\"https://www.paypal.com/webapps/mpp/partner-program\">Partner with PayPal</a>. For more information about the API, see the <a href=\"https://developer.paypal.com/docs/transaction-search/\">Transaction Search API Integration Guide</a>."
     },
     {
       "name": "Disputes",
@@ -30356,7 +30355,7 @@
                 {
                   "key": "next_page_token",
                   "value": "",
-                  "description": "The token that describes the next page of results to fetch. The <a href=\"/docs/api/customer-disputes/v1/#disputes_list\">list disputes</a> call returns this token in the HATEOAS links in the response.",
+                  "description": "The token that describes the next page of results to fetch. The <a href=\"https://developer.paypal.com/api/customer-disputes/v1/#disputes_list\">list disputes</a> call returns this token in the HATEOAS links in the response.",
                   "disabled": true
                 },
                 {
@@ -31605,7 +31604,7 @@
                 }
               ]
             },
-            "description": "Accepts liability for a claim, by ID. When you accept liability for a claim, the dispute closes in the customer’s favor and PayPal automatically refunds money to the customer from the merchant's account. Allowed accept_claim_type values for the request is available in dispute details <a href=\"/docs/api/customer-disputes/v1/#definition-allowed_response_options\">allowed response options</a> object."
+            "description": "Accepts liability for a claim, by ID. When you accept liability for a claim, the dispute closes in the customer’s favor and PayPal automatically refunds money to the customer from the merchant's account. Allowed accept_claim_type values for the request is available in dispute details <a href=\"https://developer.paypal.com/api/customer-disputes/v1/#definition-allowed_response_options\">allowed response options</a> object."
           },
           "response": [
             {
@@ -32345,7 +32344,7 @@
                 }
               ]
             },
-            "description": "Appeals a dispute, by ID. To appeal a dispute, use the <code>appeal</code> link in the <a href=\"/docs/api/reference/api-responses/#hateoas-links/\">HATEOAS links</a> from the show dispute details response. If this link does not appear, you cannot appeal the dispute. Submit new evidence as a document or notes in the JSON request body. The following rules apply to document file types and sizes:<ul><li>The merchant can upload up to 50 MB of files for a case.</li><li>Individual files must be smaller than 10 MB.</li><li>The supported file formats are JPG, GIF, PNG, and PDF.</li></ul><br/>To make this request, specify the dispute ID in the URI and specify the evidence in the JSON request body. For information about dispute reasons, see <a href=\"/docs/integration/direct/customer-disputes/integration-guide/#dispute-reasons\">dispute reasons</a>."
+            "description": "Appeals a dispute, by ID. To appeal a dispute, use the <code>appeal</code> link in the <a href=\"https://developer.paypal.com/api/rest/responses/#hateoas-links/\">HATEOAS links</a> from the show dispute details response. If this link does not appear, you cannot appeal the dispute. Submit new evidence as a document or notes in the JSON request body. The following rules apply to document file types and sizes:<ul><li>The merchant can upload up to 50 MB of files for a case.</li><li>Individual files must be smaller than 10 MB.</li><li>The supported file formats are JPG, GIF, PNG, and PDF.</li></ul><br/>To make this request, specify the dispute ID in the URI and specify the evidence in the JSON request body. For information about dispute reasons, see <a href=\"https://developer.paypal.com/docs/integration/direct/customer-disputes/integration-guide/#dispute-reasons\">dispute reasons</a>."
           },
           "response": [
             {
@@ -33687,7 +33686,7 @@
                 }
               ]
             },
-            "description": "Makes an offer to the other party to resolve a dispute, by ID. To make this call, the stage in the dispute lifecycle must be `INQUIRY`. If the customer accepts the offer, PayPal automatically makes a refund. Allowed offer_type values for the request is available in dispute details <a href=\"/docs/api/customer-disputes/v1/#definition-allowed_response_options\">allowed response options</a> object."
+            "description": "Makes an offer to the other party to resolve a dispute, by ID. To make this call, the stage in the dispute lifecycle must be `INQUIRY`. If the customer accepts the offer, PayPal automatically makes a refund. Allowed offer_type values for the request is available in dispute details <a href=\"https://developer.paypal.com/api/customer-disputes/v1/#definition-allowed_response_options\">allowed response options</a> object."
           },
           "response": []
         },
@@ -33735,7 +33734,7 @@
                 }
               ]
             },
-            "description": "Provides evidence for a dispute, by ID. A merchant can provide evidence for disputes with the <code>WAITING_FOR_SELLER_RESPONSE</code> status while customers can provide evidence for disputes with the <code>WAITING_FOR_BUYER_RESPONSE</code> status. Evidence can be a proof of delivery or proof of refund document or notes, which can include logs. A proof of delivery document includes a tracking number while a proof of refund document includes a refund ID. For other evidence type, notes and documents can be given. The following rules apply to document file types and sizes:<ul><li>The merchant can upload up to 50 MB of files for a case.</li><li>Individual files must be smaller than 10 MB.</li><li>The supported file formats are JPG, GIF, PNG, and PDF.</li></ul><br/>To make this request, specify the dispute ID in the URI and specify the evidence in the JSON request body. For information about dispute reasons, see <a href=\"/docs/integration/direct/customer-disputes/integration-guide/#dispute-reasons\">dispute reasons</a>."
+            "description": "Provides evidence for a dispute, by ID. A merchant can provide evidence for disputes with the <code>WAITING_FOR_SELLER_RESPONSE</code> status while customers can provide evidence for disputes with the <code>WAITING_FOR_BUYER_RESPONSE</code> status. Evidence can be a proof of delivery or proof of refund document or notes, which can include logs. A proof of delivery document includes a tracking number while a proof of refund document includes a refund ID. For other evidence type, notes and documents can be given. The following rules apply to document file types and sizes:<ul><li>The merchant can upload up to 50 MB of files for a case.</li><li>Individual files must be smaller than 10 MB.</li><li>The supported file formats are JPG, GIF, PNG, and PDF.</li></ul><br/>To make this request, specify the dispute ID in the URI and specify the evidence in the JSON request body. For information about dispute reasons, see <a href=\"https://developer.paypal.com/docs/integration/direct/customer-disputes/integration-guide/#dispute-reasons\">dispute reasons</a>."
           },
           "response": []
         },
@@ -33824,7 +33823,7 @@
                 }
               ]
             },
-            "description": "Acknowledges that the customer returned an item for a dispute, by ID. A merchant can make this request for disputes with the `MERCHANDISE_OR_SERVICE_NOT_AS_DESCRIBED` reason. Allowed acknowledgement_type values for the request is available in dispute details <a href=\"/docs/api/customer-disputes/v1/#definition-allowed_response_options\">allowed response options</a> object."
+            "description": "Acknowledges that the customer returned an item for a dispute, by ID. A merchant can make this request for disputes with the `MERCHANDISE_OR_SERVICE_NOT_AS_DESCRIBED` reason. Allowed acknowledgement_type values for the request is available in dispute details <a href=\"https://developer.paypal.com/api/customer-disputes/v1/#definition-allowed_response_options\">allowed response options</a> object."
           },
           "response": []
         },
@@ -34289,7 +34288,7 @@
         }
       ],
       "id": "3b877c21-61de-42c1-9e25-842fa87b143e",
-      "description": "Occasionally, something goes wrong with a customer's order. To dispute a charge, a customer can create a dispute with PayPal. PayPal merchants, partners, and external developers can use the PayPal Disputes API to manage customer disputes.<blockquote><strong>Note:</strong> In the live environment, merchants cannot create disputes but can only respond to customer-created disputes. However, merchants can create disputes in the sandbox environment. When you create an app, enable Disputes in the App feature options section.</blockquote>A customer can also ask his or her bank or credit card company to dispute and reverse a charge, which is known as a <i>chargeback</i>. For more information, see <a href=\"https://www.paypal.com/us/brc/article/customer-disputes-claims-chargebacks-bank-reversals\">Disputes, claims, chargebacks, and bank reversals</a>.<br/><br/>When a customer disputes a charge, you can use this API to provide evidence that the charge is legitimate. To provide evidence or appeal a dispute, you submit a proof of delivery or proof of refund document or notes, which can include logs.<br/><br/>Normally, an agent at PayPal creates a dispute, updates the dispute status, and settles disputes, but now you can run test cases in the sandbox that complete these operations.<br/><br/><blockquote><strong>Important:</strong> The create, cancel, compute metrics, change reason, and validate eligibility methods are available as a limited-release solution at this time. For more information, reach out to your PayPal account manager.</blockquote><br/>For details, see <a href=\"/docs/integration/direct/customer-disputes/\">Disputes Overview</a> documentation."
+      "description": "Occasionally, something goes wrong with a customer's order. To dispute a charge, a customer can create a dispute with PayPal. PayPal merchants, partners, and external developers can use the PayPal Disputes API to manage customer disputes.<blockquote><strong>Note:</strong> In the live environment, merchants cannot create disputes but can only respond to customer-created disputes. However, merchants can create disputes in the sandbox environment. When you create an app, enable Disputes in the App feature options section.</blockquote>A customer can also ask his or her bank or credit card company to dispute and reverse a charge, which is known as a <i>chargeback</i>. For more information, see <a href=\"https://www.paypal.com/us/brc/article/customer-disputes-claims-chargebacks-bank-reversals\">Disputes, claims, chargebacks, and bank reversals</a>.<br/><br/>When a customer disputes a charge, you can use this API to provide evidence that the charge is legitimate. To provide evidence or appeal a dispute, you submit a proof of delivery or proof of refund document or notes, which can include logs.<br/><br/>Normally, an agent at PayPal creates a dispute, updates the dispute status, and settles disputes, but now you can run test cases in the sandbox that complete these operations.<br/><br/><blockquote><strong>Important:</strong> The create, cancel, compute metrics, change reason, and validate eligibility methods are available as a limited-release solution at this time. For more information, reach out to your PayPal account manager.</blockquote><br/>For details, see <a href=\"https://developer.paypal.com/docs/disputes/#link-customerdisputes\">Disputes Overview</a> documentation."
     }
   ],
   "auth": {
@@ -34400,142 +34399,142 @@
   ],
   "variable": [
     {
-      "id": "2d860bc9-2a4c-4fad-9cc3-ce0f2946b0e0",
+      "id": "cdd9427c-f8d2-4f2b-af87-4664029b89a5",
       "key": "PLEASE NOTE -->",
       "value": "< PayPal Public Collection comes with following default public set of credentials stored at the Collection level. \nYou may choose to override these values via environment level variables. You may bring your own credentials from PayPal Developer Dashboard there."
     },
     {
-      "id": "e38a8acf-a7ab-479a-ad74-b84748a88568",
+      "id": "468786a8-cbb9-428a-b5da-7ccae1d4e5ad",
       "key": "base_url",
       "value": "https://api-m.sandbox.paypal.com"
     },
     {
-      "id": "9d1c497c-099b-4d0a-af68-fa7282da0783",
+      "id": "5e052649-2409-4d3a-bb24-e9a122c1e6eb",
       "key": "client_id",
       "value": "AUC1CwUIt5XDl4Kco9-oXcewk0jZbPIxDs1JWHDzATNSnYU36xnTtS0Tp-4kDlCpgCbpudXcStc8HAsV"
     },
     {
-      "id": "f7a62780-069a-419e-babe-610d1b8457ef",
+      "id": "a6a69ede-1b33-4d38-9fe7-7e69222c45b0",
       "key": "client_secret",
       "value": "EDIDlZWQMpgfztWzVGYSjw-tcRvLblFnv4JZh4BBWtFQt4qNx43wc-U-FBcynTcRFXJ_uw1l_iTok_Nm"
     },
     {
-      "id": "4c6de2df-5d73-47e4-be4e-0927c469186e",
+      "id": "16f00dc3-fe31-4572-ab74-a381d3ad1044",
       "key": "paypal_partner_attribution_id",
       "value": "TEST_ATTRIBUTION_ID"
     },
     {
-      "id": "ea7c11fa-8e0b-4e96-be7f-566cf5c40ebd",
+      "id": "35bda79c-6c9b-4a89-acc3-4a47e8ae62c4",
       "key": "prefer_representation_min",
       "value": "return=minimal"
     },
     {
-      "id": "05948faa-7b2b-4343-8acb-a3a25a816681",
+      "id": "b151d6ec-4ad0-4c69-a439-f129d6f44ef4",
       "key": "prefer_representation_detailed",
       "value": "return=representation"
     },
     {
-      "id": "cb391418-2cb7-489a-8683-97ac5f059245",
+      "id": "973ef528-5d12-4ee2-bb28-3d5ba38d20ff",
       "key": "paypal_client_metadata_Id",
       "value": ""
     },
     {
-      "id": "c7b661ba-d4be-46a0-ae77-5f60fb2c1343",
+      "id": "f4a0a534-aba2-446f-ba97-a25d3e7bd762",
       "key": "paypal_auth_assertion",
       "value": ""
     },
     {
-      "id": "6645ec9c-ddd2-4450-b16c-b5ea4cd6c9c8",
+      "id": "ebd45e28-411c-4da2-ad5f-aa40650476f0",
       "key": "capture_id",
       "value": ""
     },
     {
-      "id": "28b07823-b897-4544-8a40-c59cebbafdc1",
+      "id": "ef861a76-0519-430e-8b0d-eae058602885",
       "key": "billing_plan_id",
       "value": ""
     },
     {
-      "id": "1c1102b0-4e51-4744-8a0d-e8a6f97af198",
+      "id": "b07364cf-2880-4f17-b92c-1d7539921dc0",
       "key": "product_id",
       "value": "1645840190"
     },
     {
-      "id": "590c92e5-4b50-419b-b943-9715ef267e7d",
+      "id": "ca3510e6-d8ee-4191-8912-ef073fcfbb15",
       "key": "subscription_id",
       "value": ""
     },
     {
-      "id": "d44ec616-c14f-42d9-bf45-f13479222b5f",
+      "id": "2480d11c-67da-4b1e-a1cc-4e2b29a4c5b2",
       "key": "dispute_id",
       "value": ""
     },
     {
-      "id": "9dea4ecb-187f-4e59-8a58-95119462766d",
+      "id": "cab920b9-49f6-4dd2-a796-5833564b9e38",
       "key": "authorization_id",
       "value": ""
     },
     {
-      "id": "8fcfd804-6226-431a-bc5d-c5c461e380b4",
+      "id": "3e9138a9-8274-4351-a446-3c83357068ed",
       "key": "refund_id",
       "value": ""
     },
     {
-      "id": "6e645065-d700-4dcf-a903-41af1caa19bb",
+      "id": "52d670d7-034f-4eb1-a299-d03b49332d9c",
       "key": "webhook_id",
       "value": ""
     },
     {
-      "id": "a80c8f9e-9f57-45e5-9d10-29e5a081a190",
+      "id": "c9301bc1-9036-4f6a-af1b-c09e7093dd18",
       "key": "webhook_url",
       "value": ""
     },
     {
-      "id": "5e619bb4-d3a5-46c8-8823-ee2ce7b9a938",
+      "id": "3f423b56-c725-4dd9-9b76-3d04b5d0c71b",
       "key": "invoice_id",
       "value": ""
     },
     {
-      "id": "e9c04978-919e-4551-a958-6e93142b6ecb",
+      "id": "606961f0-9aee-4bec-bb01-793253cc808c",
       "key": "invoice_template_id",
       "value": ""
     },
     {
-      "id": "4a25011b-999c-4656-9931-cfe5d59ca47a",
+      "id": "f19404ab-17da-4d2f-8df9-7c2a602d34ec",
       "key": "payout_batch_id",
       "value": ""
     },
     {
-      "id": "d64138bb-8a27-473d-b70e-949e966bf89c",
+      "id": "402c4cf2-9099-4c68-8ce1-772a09cf2018",
       "key": "payout_item_id",
       "value": ""
     },
     {
-      "id": "ca571ff1-79c4-403b-ab89-7ca1c0ab94dc",
+      "id": "41a794d3-d9fa-4bb8-b2ef-883611db9442",
       "key": "web_profile_id",
       "value": ""
     },
     {
-      "id": "16b561c8-c776-43aa-b9cd-77534c1fe44a",
+      "id": "00a0f87f-8bf4-4264-85e8-d788cf34815b",
       "key": "todays_date",
       "value": ""
     },
     {
-      "id": "59d3ef19-6f7d-443a-b284-13035907a95c",
+      "id": "185a59cb-4ddd-480f-bb09-597860bde65e",
       "key": "tracking_number",
       "value": ""
     },
     {
-      "id": "c6d856f2-1c7f-4217-8ceb-3d5195a1af36",
+      "id": "5c6eb489-d2f3-4c4a-a3ac-cc5077397387",
       "key": "tracking_id",
       "value": ""
     },
     {
-      "id": "7af5f0ef-97eb-447d-a37e-03d0b3121b20",
+      "id": "09935c4a-c08b-4f1b-ba83-586c6d21aa80",
       "key": "order_id",
       "value": ""
     },
     {
-      "id": "f9e477e2-bc2a-4a81-a9e0-d978ce0eeb26",
+      "id": "b98902bd-d0f2-4209-8635-c9b2db632543",
       "key": "invoice_payment_id",
       "value": ""
     }
