@@ -1,7 +1,7 @@
 {
   "info": {
     "_postman_id": "92a85d0e-51e7-47da-9f83-c45dcb1cdf24",
-    "name": "PayPal Public APIs",
+    "name": "PayPal Public APIs 03/02/2022",
     "description": "# Getting Started\n\n## Step 1: Fork the collection using Run in Postman\n\n[![Run in Postman](https://run.pstmn.io/button.svg)](https://god.gw.postman.com/run-collection/19024122-92a85d0e-51e7-47da-9f83-c45dcb1cdf24?action=collection%2Ffork&collection-url=entityId%3D19024122-92a85d0e-51e7-47da-9f83-c45dcb1cdf24%26entityType%3Dcollection%26workspaceId%3D345300e6-346e-42e0-aed1-53717919aef0#?env%5BPayPal%20Override%20Env%5D=W3sia2V5IjoiUGxlYXNlIE5vdGUgLS0+IiwidmFsdWUiOiI8IFBheVBhbCBQdWJsaWMgQ29sbGVjdGlvbiBjb21lcyB3aXRoIGRlZmF1bHQgcHVibGljIHNldCBvZiBjcmVkZW50aWFscyBzdG9yZWQgYXQgdGhlIENvbGxlY3Rpb24gbGV2ZWwuIFxuVGhpcyBlbnZpcm9ubWVudCBvdmVycmlkZXMgdGhvc2UgZGVmYXVsdCB2YXJpYWJsZXMuIFlvdSBtYXkgYnJpbmcgeW91ciBvd24gY3JlZGVudGlhbHMgZnJvbSBQYXlQYWwgRGV2ZWxvcGVyIERhc2hib2FyZCBhbmQgcGFzdGUgdGhlbSBoZXJlLiBEbyBub3QgZm9yZ290IHRvIGVuYWJsZSB0aGUgdmFpYWJsZSBieSBjaGVja2luZyB0aGUgYm94IGFuZCBoaXQgXCJTYXZlXCIgYmVmb3JlIGludm9raW5nIHRoZSBQYXlQYWwgQVBJcy4gPiIsImVuYWJsZWQiOnRydWV9LHsia2V5IjoiY2xpZW50X2lkIiwidmFsdWUiOiI8IGNvcHkgY3JlZGVudGlhbHMgZnJvbSB5b3VyIGRldmVsb3Blci5wYXlwYWwuY29tIGFuZCBwYXN0ZSB0aGVtIGhlcmUgPiIsImVuYWJsZWQiOmZhbHNlfSx7ImtleSI6ImNsaWVudF9zZWNyZXQiLCJ2YWx1ZSI6IjwgY29weSBjcmVkZW50aWFscyBmcm9tIHlvdXIgZGV2ZWxvcGVyLnBheXBhbC5jb20gYW5kIHBhc3RlIHRoZW0gaGVyZSA+IiwiZW5hYmxlZCI6ZmFsc2V9XQ==)\n\n## Step 2: Get your access token\n\nYour access token is automatically generated using a default/test `client_id` and `secret`. A pre-request script will generate and manage the `access_token` automatically.\n\n\\[Optional\\] You can use your own `client_id` and `secret` from [developer.paypal.com](developer.paypal.com) by entering the values under Postman Collection/Environment variables. Please note you may have different scopes than the default/test `client_id` and `secret`.\n\n## Step 3: Make your first API call\n\nYou are ready to begin making API calls. Try creating an order by navigating to **Orders** > **Create order** in your fork. Select **Send** to create the order. On a successful call the api returns a 201 order created response.",
     "schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
   },
@@ -34399,142 +34399,142 @@
   ],
   "variable": [
     {
-      "id": "cdd9427c-f8d2-4f2b-af87-4664029b89a5",
+      "id": "d6077200-a180-47d9-a38c-ebdf8743a430",
       "key": "PLEASE NOTE -->",
       "value": "< PayPal Public Collection comes with following default public set of credentials stored at the Collection level. \nYou may choose to override these values via environment level variables. You may bring your own credentials from PayPal Developer Dashboard there."
     },
     {
-      "id": "468786a8-cbb9-428a-b5da-7ccae1d4e5ad",
+      "id": "30e0e0c3-bfc7-4498-8ebc-ad4fdf163505",
       "key": "base_url",
       "value": "https://api-m.sandbox.paypal.com"
     },
     {
-      "id": "5e052649-2409-4d3a-bb24-e9a122c1e6eb",
+      "id": "57a10da5-bcaf-463b-8f33-e43d7531b952",
       "key": "client_id",
       "value": "AUC1CwUIt5XDl4Kco9-oXcewk0jZbPIxDs1JWHDzATNSnYU36xnTtS0Tp-4kDlCpgCbpudXcStc8HAsV"
     },
     {
-      "id": "a6a69ede-1b33-4d38-9fe7-7e69222c45b0",
+      "id": "d14633d2-0144-4ec4-abd2-426a0c0ac35b",
       "key": "client_secret",
       "value": "EDIDlZWQMpgfztWzVGYSjw-tcRvLblFnv4JZh4BBWtFQt4qNx43wc-U-FBcynTcRFXJ_uw1l_iTok_Nm"
     },
     {
-      "id": "16f00dc3-fe31-4572-ab74-a381d3ad1044",
+      "id": "0f48af0e-3f46-4961-b090-096295b4c47c",
       "key": "paypal_partner_attribution_id",
       "value": "TEST_ATTRIBUTION_ID"
     },
     {
-      "id": "35bda79c-6c9b-4a89-acc3-4a47e8ae62c4",
+      "id": "7d0f8128-282d-42c6-911e-6dea0977b716",
       "key": "prefer_representation_min",
       "value": "return=minimal"
     },
     {
-      "id": "b151d6ec-4ad0-4c69-a439-f129d6f44ef4",
+      "id": "b0ef457b-0b2f-4455-b14f-8583a813bb26",
       "key": "prefer_representation_detailed",
       "value": "return=representation"
     },
     {
-      "id": "973ef528-5d12-4ee2-bb28-3d5ba38d20ff",
+      "id": "6171c910-e493-4d91-9251-f6430851bdc7",
       "key": "paypal_client_metadata_Id",
       "value": ""
     },
     {
-      "id": "f4a0a534-aba2-446f-ba97-a25d3e7bd762",
+      "id": "0c19b978-e89a-4268-8540-dea2a4f85cf6",
       "key": "paypal_auth_assertion",
       "value": ""
     },
     {
-      "id": "ebd45e28-411c-4da2-ad5f-aa40650476f0",
+      "id": "89a069d9-f9f5-4b57-b7e8-e3fea363a10d",
       "key": "capture_id",
       "value": ""
     },
     {
-      "id": "ef861a76-0519-430e-8b0d-eae058602885",
+      "id": "14ba62aa-a5ff-4e56-95cf-c60fc4690526",
       "key": "billing_plan_id",
       "value": ""
     },
     {
-      "id": "b07364cf-2880-4f17-b92c-1d7539921dc0",
+      "id": "210d7f55-f6f0-4b1e-882d-62dd55ae94ed",
       "key": "product_id",
       "value": "1645840190"
     },
     {
-      "id": "ca3510e6-d8ee-4191-8912-ef073fcfbb15",
+      "id": "1ce5f81b-2937-4f53-b694-50bddc404878",
       "key": "subscription_id",
       "value": ""
     },
     {
-      "id": "2480d11c-67da-4b1e-a1cc-4e2b29a4c5b2",
+      "id": "4feba607-d1df-4b36-a938-038382b6e09b",
       "key": "dispute_id",
       "value": ""
     },
     {
-      "id": "cab920b9-49f6-4dd2-a796-5833564b9e38",
+      "id": "f9314bcf-d2a9-44d4-9b1b-e94323df7b0e",
       "key": "authorization_id",
       "value": ""
     },
     {
-      "id": "3e9138a9-8274-4351-a446-3c83357068ed",
+      "id": "1804d942-6d29-4297-b824-20c6c9b72bba",
       "key": "refund_id",
       "value": ""
     },
     {
-      "id": "52d670d7-034f-4eb1-a299-d03b49332d9c",
+      "id": "406ae849-3a63-4583-ac09-61c37f18ba75",
       "key": "webhook_id",
       "value": ""
     },
     {
-      "id": "c9301bc1-9036-4f6a-af1b-c09e7093dd18",
+      "id": "0e969112-2d90-459e-a8f6-68e12b4b62c4",
       "key": "webhook_url",
       "value": ""
     },
     {
-      "id": "3f423b56-c725-4dd9-9b76-3d04b5d0c71b",
+      "id": "712452dd-fa20-4440-84f4-31ab594d124b",
       "key": "invoice_id",
       "value": ""
     },
     {
-      "id": "606961f0-9aee-4bec-bb01-793253cc808c",
+      "id": "79e0b271-d582-419f-b965-f81c857ffc01",
       "key": "invoice_template_id",
       "value": ""
     },
     {
-      "id": "f19404ab-17da-4d2f-8df9-7c2a602d34ec",
+      "id": "b2e86c65-7cf7-414e-aff4-8beab6ef30c8",
       "key": "payout_batch_id",
       "value": ""
     },
     {
-      "id": "402c4cf2-9099-4c68-8ce1-772a09cf2018",
+      "id": "7aeaaa10-0513-4b33-b596-de5cabfe5fe7",
       "key": "payout_item_id",
       "value": ""
     },
     {
-      "id": "41a794d3-d9fa-4bb8-b2ef-883611db9442",
+      "id": "0145973f-279e-44ea-add5-c8ffb2322c41",
       "key": "web_profile_id",
       "value": ""
     },
     {
-      "id": "00a0f87f-8bf4-4264-85e8-d788cf34815b",
+      "id": "a1dfa960-80c0-43ba-bda5-4f43cc7509ab",
       "key": "todays_date",
       "value": ""
     },
     {
-      "id": "185a59cb-4ddd-480f-bb09-597860bde65e",
+      "id": "298c9cdc-1e18-4bbc-a8b1-6eaec6c2c517",
       "key": "tracking_number",
       "value": ""
     },
     {
-      "id": "5c6eb489-d2f3-4c4a-a3ac-cc5077397387",
+      "id": "0f9241bf-616d-4643-8247-efad7308ece4",
       "key": "tracking_id",
       "value": ""
     },
     {
-      "id": "09935c4a-c08b-4f1b-ba83-586c6d21aa80",
+      "id": "736f91f0-b3ad-4854-9012-149f6e6ba826",
       "key": "order_id",
       "value": ""
     },
     {
-      "id": "b98902bd-d0f2-4209-8635-c9b2db632543",
+      "id": "87b0f7c2-da70-46d8-8898-aad5fb7b72e4",
       "key": "invoice_payment_id",
       "value": ""
     }
