@@ -15720,10 +15720,7 @@
                       "    var jsonData = pm.response.json();",
                       "    pm.expect(jsonData).to.have.property('id');",
                       "    pm.collectionVariables.set(\"product_id\", jsonData.id);",
-                      "});",
-                      "",
-                      "// skip all remaining APIs",
-                      "postman.setNextRequest(null); "
+                      "});"
                     ],
                     "type": "text/javascript"
                   }
@@ -19890,320 +19887,6 @@
               ]
             },
             {
-              "name": "Activate plan",
-              "id": "3695686d-caff-4966-b04c-e58a76a1a89e",
-              "protocolProfileBehavior": {
-                "disableBodyPruning": true
-              },
-              "request": {
-                "method": "POST",
-                "header": [
-                  {
-                    "key": "Content-Type",
-                    "value": "application/json",
-                    "type": "text",
-                    "description": "The Content-Type header field is used to specify the nature of the data in the body of an entity. PayPal REST APIs support application/json.",
-                    "disabled": true
-                  },
-                  {
-                    "key": "PayPal-Request-Id",
-                    "value": "{{$guid}}",
-                    "type": "text",
-                    "description": "The server stores keys for 72 hours."
-                  },
-                  {
-                    "key": "PayPal-Client-Metadata-Id",
-                    "value": "{{paypal_client_metadata_Id}}",
-                    "type": "text",
-                    "description": "Optional. Verifies that the payment originates from a valid, user-consented device and application. Reduces fraud and decreases declines. Transactions that do not include a client metadata ID are not eligible for PayPal Seller Protection.",
-                    "disabled": true
-                  },
-                  {
-                    "key": "PayPal-Partner-Attribution-Id",
-                    "value": "{{paypal_partner_attribution_id}}",
-                    "type": "text",
-                    "description": "Optional. Identifies the caller as a PayPal partner. To receive revenue attribution, specify a unique build notation (BN) code. BN codes provide tracking on all transactions that originate or are associated with a particular partner. To find your BN code, see Code and Credential Reference.",
-                    "disabled": true
-                  },
-                  {
-                    "key": "PayPal-Auth-Assertion",
-                    "value": "{{paypal_auth_assertion}}",
-                    "type": "text",
-                    "description": "An API client-provided JSON Web Token (JWT) assertion that identifies the merchant. To use this header, you must get consent to act on behalf of a merchant.\n",
-                    "disabled": true
-                  },
-                  {
-                    "key": "Prefer",
-                    "value": "{{prefer_representation_detailed}}",
-                    "type": "text",
-                    "description": "The preferred server response upon successful completion of the request. Value is:<ul><li><code>return=minimal</code>. The server returns a minimal response to optimize communication between the API caller and the server. A minimal response includes the <code>id</code>, <code>status</code> and HATEOAS links.</li><li><code>return=representation</code>. The server returns a complete resource representation, including the current state of the resource.</li></ul>"
-                  },
-                  {
-                    "key": "Prefer",
-                    "value": "{{prefer_representation_minimal}}",
-                    "description": "The preferred server response upon successful completion of the request. Value is:<ul><li><code>return=minimal</code>. The server returns a minimal response to optimize communication between the API caller and the server. A minimal response includes the <code>id</code>, <code>status</code> and HATEOAS links.</li><li><code>return=representation</code>. The server returns a complete resource representation, including the current state of the resource.</li></ul>",
-                    "type": "text",
-                    "disabled": true
-                  }
-                ],
-                "url": {
-                  "raw": "{{base_url}}/v1/billing/plans/:billing_plan_id/activate",
-                  "host": [
-                    "{{base_url}}"
-                  ],
-                  "path": [
-                    "v1",
-                    "billing",
-                    "plans",
-                    ":billing_plan_id",
-                    "activate"
-                  ],
-                  "variable": [
-                    {
-                      "key": "billing_plan_id",
-                      "value": "{{billing_plan_id}}"
-                    },
-                    {
-                      "value": "anim pariatur",
-                      "key": "id"
-                    }
-                  ]
-                },
-                "description": "Activates a plan, by ID."
-              },
-              "response": [
-                {
-                  "id": "d1971e34-d676-42a5-91f8-5ef86d86baac",
-                  "name": "Activated",
-                  "originalRequest": {
-                    "method": "POST",
-                    "header": [
-                      {
-                        "key": "Content-Type",
-                        "value": "application/json",
-                        "type": "text",
-                        "description": "The Content-Type header field is used to specify the nature of the data in the body of an entity. PayPal REST APIs support application/json.",
-                        "disabled": true
-                      },
-                      {
-                        "key": "PayPal-Request-Id",
-                        "value": "{{$guid}}",
-                        "type": "text",
-                        "description": "The server stores keys for 72 hours."
-                      },
-                      {
-                        "key": "PayPal-Client-Metadata-Id",
-                        "value": "{{paypal_client_metadata_Id}}",
-                        "type": "text",
-                        "description": "Optional. Verifies that the payment originates from a valid, user-consented device and application. Reduces fraud and decreases declines. Transactions that do not include a client metadata ID are not eligible for PayPal Seller Protection.",
-                        "disabled": true
-                      },
-                      {
-                        "key": "PayPal-Partner-Attribution-Id",
-                        "value": "{{paypal_partner_attribution_id}}",
-                        "type": "text",
-                        "description": "Optional. Identifies the caller as a PayPal partner. To receive revenue attribution, specify a unique build notation (BN) code. BN codes provide tracking on all transactions that originate or are associated with a particular partner. To find your BN code, see Code and Credential Reference.",
-                        "disabled": true
-                      },
-                      {
-                        "key": "PayPal-Auth-Assertion",
-                        "value": "{{paypal_auth_assertion}}",
-                        "type": "text",
-                        "description": "An API client-provided JSON Web Token (JWT) assertion that identifies the merchant. To use this header, you must get consent to act on behalf of a merchant.\n",
-                        "disabled": true
-                      },
-                      {
-                        "key": "Prefer",
-                        "value": "{{prefer_representation_detailed}}",
-                        "type": "text",
-                        "description": "The preferred server response upon successful completion of the request. Value is:<ul><li><code>return=minimal</code>. The server returns a minimal response to optimize communication between the API caller and the server. A minimal response includes the <code>id</code>, <code>status</code> and HATEOAS links.</li><li><code>return=representation</code>. The server returns a complete resource representation, including the current state of the resource.</li></ul>"
-                      },
-                      {
-                        "key": "Prefer",
-                        "value": "{{prefer_representation_minimal}}",
-                        "description": "The preferred server response upon successful completion of the request. Value is:<ul><li><code>return=minimal</code>. The server returns a minimal response to optimize communication between the API caller and the server. A minimal response includes the <code>id</code>, <code>status</code> and HATEOAS links.</li><li><code>return=representation</code>. The server returns a complete resource representation, including the current state of the resource.</li></ul>",
-                        "type": "text",
-                        "disabled": true
-                      }
-                    ],
-                    "url": {
-                      "raw": "{{base_url}}/v1/billing/plans/:billing_plan_id/activate",
-                      "host": [
-                        "{{base_url}}"
-                      ],
-                      "path": [
-                        "v1",
-                        "billing",
-                        "plans",
-                        ":billing_plan_id",
-                        "activate"
-                      ],
-                      "variable": [
-                        {
-                          "key": "billing_plan_id",
-                          "value": "{{billing_plan_id}}"
-                        }
-                      ]
-                    }
-                  },
-                  "status": "No Content",
-                  "code": 204,
-                  "_postman_previewlanguage": "plain",
-                  "header": [
-                    {
-                      "key": "Connection",
-                      "value": "keep-alive"
-                    },
-                    {
-                      "key": "Date",
-                      "value": "Tue, 08 Feb 2022 22:04:08 GMT"
-                    },
-                    {
-                      "key": "Application_id",
-                      "value": "APP-80W284485P519543T"
-                    },
-                    {
-                      "key": "Cache-Control",
-                      "value": "max-age=0, no-cache, no-store, must-revalidate"
-                    },
-                    {
-                      "key": "Caller_acct_num",
-                      "value": "ER87FV8ER63HJ"
-                    },
-                    {
-                      "key": "Paypal-Debug-Id",
-                      "value": "57776002e68ad"
-                    },
-                    {
-                      "key": "Strict-Transport-Security",
-                      "value": "max-age=31536000; includeSubDomains"
-                    }
-                  ],
-                  "cookie": [],
-                  "responseTime": null,
-                  "body": null
-                },
-                {
-                  "id": "e342f9d9-ecc1-4750-8ef3-2e54fcdb16ed",
-                  "name": "422 PLAN_STATUS_INVALID",
-                  "originalRequest": {
-                    "method": "POST",
-                    "header": [
-                      {
-                        "key": "Content-Type",
-                        "value": "application/json",
-                        "type": "text",
-                        "description": "The Content-Type header field is used to specify the nature of the data in the body of an entity. PayPal REST APIs support application/json."
-                      },
-                      {
-                        "key": "PayPal-Request-Id",
-                        "value": "{{$guid}}",
-                        "type": "text",
-                        "description": "The server stores keys for 72 hours."
-                      },
-                      {
-                        "key": "PayPal-Client-Metadata-Id",
-                        "value": "{{paypal_client_metadata_Id}}",
-                        "type": "text",
-                        "description": "Optional. Verifies that the payment originates from a valid, user-consented device and application. Reduces fraud and decreases declines. Transactions that do not include a client metadata ID are not eligible for PayPal Seller Protection.",
-                        "disabled": true
-                      },
-                      {
-                        "key": "PayPal-Partner-Attribution-Id",
-                        "value": "{{paypal_partner_attribution_id}}",
-                        "type": "text",
-                        "description": "Optional. Identifies the caller as a PayPal partner. To receive revenue attribution, specify a unique build notation (BN) code. BN codes provide tracking on all transactions that originate or are associated with a particular partner. To find your BN code, see Code and Credential Reference.",
-                        "disabled": true
-                      },
-                      {
-                        "key": "PayPal-Auth-Assertion",
-                        "value": "{{paypal_auth_assertion}}",
-                        "type": "text",
-                        "description": "An API client-provided JSON Web Token (JWT) assertion that identifies the merchant. To use this header, you must get consent to act on behalf of a merchant.\n",
-                        "disabled": true
-                      },
-                      {
-                        "key": "Prefer",
-                        "value": "{{prefer_representation_detailed}}",
-                        "type": "text",
-                        "description": "The preferred server response upon successful completion of the request. Value is:<ul><li><code>return=minimal</code>. The server returns a minimal response to optimize communication between the API caller and the server. A minimal response includes the <code>id</code>, <code>status</code> and HATEOAS links.</li><li><code>return=representation</code>. The server returns a complete resource representation, including the current state of the resource.</li></ul>"
-                      },
-                      {
-                        "key": "Prefer",
-                        "value": "{{prefer_representation_minimal}}",
-                        "description": "The preferred server response upon successful completion of the request. Value is:<ul><li><code>return=minimal</code>. The server returns a minimal response to optimize communication between the API caller and the server. A minimal response includes the <code>id</code>, <code>status</code> and HATEOAS links.</li><li><code>return=representation</code>. The server returns a complete resource representation, including the current state of the resource.</li></ul>",
-                        "type": "text",
-                        "disabled": true
-                      }
-                    ],
-                    "url": {
-                      "raw": "{{base_url}}/v1/billing/plans/:billing_plan_id/activate",
-                      "host": [
-                        "{{base_url}}"
-                      ],
-                      "path": [
-                        "v1",
-                        "billing",
-                        "plans",
-                        ":billing_plan_id",
-                        "activate"
-                      ],
-                      "variable": [
-                        {
-                          "key": "billing_plan_id",
-                          "value": "{{billing_plan_id}}"
-                        }
-                      ]
-                    }
-                  },
-                  "status": "Unprocessable Entity",
-                  "code": 422,
-                  "_postman_previewlanguage": "json",
-                  "header": [
-                    {
-                      "key": "Content-Type",
-                      "value": "application/json"
-                    },
-                    {
-                      "key": "Content-Length",
-                      "value": "466"
-                    },
-                    {
-                      "key": "Connection",
-                      "value": "keep-alive"
-                    },
-                    {
-                      "key": "Date",
-                      "value": "Tue, 08 Feb 2022 22:02:18 GMT"
-                    },
-                    {
-                      "key": "Application_id",
-                      "value": "APP-80W284485P519543T"
-                    },
-                    {
-                      "key": "Cache-Control",
-                      "value": "max-age=0, no-cache, no-store, must-revalidate"
-                    },
-                    {
-                      "key": "Caller_acct_num",
-                      "value": "ER87FV8ER63HJ"
-                    },
-                    {
-                      "key": "Paypal-Debug-Id",
-                      "value": "405c9b8d7220e"
-                    },
-                    {
-                      "key": "Strict-Transport-Security",
-                      "value": "max-age=31536000; includeSubDomains"
-                    }
-                  ],
-                  "cookie": [],
-                  "responseTime": null,
-                  "body": "{\n    \"name\": \"UNPROCESSABLE_ENTITY\",\n    \"message\": \"The requested action could not be performed, semantically incorrect, or failed business validation.\",\n    \"debug_id\": \"405c9b8d7220e\",\n    \"details\": [\n        {\n            \"issue\": \"PLAN_STATUS_INVALID\",\n            \"description\": \"Invalid plan status for activate action; plan status should be either created or inactive.\"\n        }\n    ],\n    \"links\": [\n        {\n            \"href\": \"https://developer.paypal.com/docs/api/v1/billing/subscriptions#UNPROCESSABLE_ENTITY\",\n            \"rel\": \"information_link\",\n            \"method\": \"GET\"\n        }\n    ]\n}"
-                }
-              ]
-            },
-            {
               "name": "Deactivate plan",
               "id": "82890f8f-35ac-4c40-a134-17999be3c6a1",
               "protocolProfileBehavior": {
@@ -20515,6 +20198,320 @@
                   "cookie": [],
                   "responseTime": null,
                   "body": "{\n    \"name\": \"UNPROCESSABLE_ENTITY\",\n    \"message\": \"The requested action could not be performed, semantically incorrect, or failed business validation.\",\n    \"debug_id\": \"25c8c3fbf94af\",\n    \"details\": [\n        {\n            \"issue\": \"PLAN_STATUS_INVALID\",\n            \"description\": \"Invalid plan status for deactivate action; plan status should be active.\"\n        }\n    ],\n    \"links\": [\n        {\n            \"href\": \"https://developer.paypal.com/docs/api/v1/billing/subscriptions#UNPROCESSABLE_ENTITY\",\n            \"rel\": \"information_link\",\n            \"method\": \"GET\"\n        }\n    ]\n}"
+                }
+              ]
+            },
+            {
+              "name": "Activate plan",
+              "id": "3695686d-caff-4966-b04c-e58a76a1a89e",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text",
+                    "description": "The Content-Type header field is used to specify the nature of the data in the body of an entity. PayPal REST APIs support application/json.",
+                    "disabled": true
+                  },
+                  {
+                    "key": "PayPal-Request-Id",
+                    "value": "{{$guid}}",
+                    "type": "text",
+                    "description": "The server stores keys for 72 hours."
+                  },
+                  {
+                    "key": "PayPal-Client-Metadata-Id",
+                    "value": "{{paypal_client_metadata_Id}}",
+                    "type": "text",
+                    "description": "Optional. Verifies that the payment originates from a valid, user-consented device and application. Reduces fraud and decreases declines. Transactions that do not include a client metadata ID are not eligible for PayPal Seller Protection.",
+                    "disabled": true
+                  },
+                  {
+                    "key": "PayPal-Partner-Attribution-Id",
+                    "value": "{{paypal_partner_attribution_id}}",
+                    "type": "text",
+                    "description": "Optional. Identifies the caller as a PayPal partner. To receive revenue attribution, specify a unique build notation (BN) code. BN codes provide tracking on all transactions that originate or are associated with a particular partner. To find your BN code, see Code and Credential Reference.",
+                    "disabled": true
+                  },
+                  {
+                    "key": "PayPal-Auth-Assertion",
+                    "value": "{{paypal_auth_assertion}}",
+                    "type": "text",
+                    "description": "An API client-provided JSON Web Token (JWT) assertion that identifies the merchant. To use this header, you must get consent to act on behalf of a merchant.\n",
+                    "disabled": true
+                  },
+                  {
+                    "key": "Prefer",
+                    "value": "{{prefer_representation_detailed}}",
+                    "type": "text",
+                    "description": "The preferred server response upon successful completion of the request. Value is:<ul><li><code>return=minimal</code>. The server returns a minimal response to optimize communication between the API caller and the server. A minimal response includes the <code>id</code>, <code>status</code> and HATEOAS links.</li><li><code>return=representation</code>. The server returns a complete resource representation, including the current state of the resource.</li></ul>"
+                  },
+                  {
+                    "key": "Prefer",
+                    "value": "{{prefer_representation_minimal}}",
+                    "description": "The preferred server response upon successful completion of the request. Value is:<ul><li><code>return=minimal</code>. The server returns a minimal response to optimize communication between the API caller and the server. A minimal response includes the <code>id</code>, <code>status</code> and HATEOAS links.</li><li><code>return=representation</code>. The server returns a complete resource representation, including the current state of the resource.</li></ul>",
+                    "type": "text",
+                    "disabled": true
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/v1/billing/plans/:billing_plan_id/activate",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "billing",
+                    "plans",
+                    ":billing_plan_id",
+                    "activate"
+                  ],
+                  "variable": [
+                    {
+                      "key": "billing_plan_id",
+                      "value": "{{billing_plan_id}}"
+                    },
+                    {
+                      "value": "anim pariatur",
+                      "key": "id"
+                    }
+                  ]
+                },
+                "description": "Activates a plan, by ID."
+              },
+              "response": [
+                {
+                  "id": "d1971e34-d676-42a5-91f8-5ef86d86baac",
+                  "name": "Activated",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json",
+                        "type": "text",
+                        "description": "The Content-Type header field is used to specify the nature of the data in the body of an entity. PayPal REST APIs support application/json.",
+                        "disabled": true
+                      },
+                      {
+                        "key": "PayPal-Request-Id",
+                        "value": "{{$guid}}",
+                        "type": "text",
+                        "description": "The server stores keys for 72 hours."
+                      },
+                      {
+                        "key": "PayPal-Client-Metadata-Id",
+                        "value": "{{paypal_client_metadata_Id}}",
+                        "type": "text",
+                        "description": "Optional. Verifies that the payment originates from a valid, user-consented device and application. Reduces fraud and decreases declines. Transactions that do not include a client metadata ID are not eligible for PayPal Seller Protection.",
+                        "disabled": true
+                      },
+                      {
+                        "key": "PayPal-Partner-Attribution-Id",
+                        "value": "{{paypal_partner_attribution_id}}",
+                        "type": "text",
+                        "description": "Optional. Identifies the caller as a PayPal partner. To receive revenue attribution, specify a unique build notation (BN) code. BN codes provide tracking on all transactions that originate or are associated with a particular partner. To find your BN code, see Code and Credential Reference.",
+                        "disabled": true
+                      },
+                      {
+                        "key": "PayPal-Auth-Assertion",
+                        "value": "{{paypal_auth_assertion}}",
+                        "type": "text",
+                        "description": "An API client-provided JSON Web Token (JWT) assertion that identifies the merchant. To use this header, you must get consent to act on behalf of a merchant.\n",
+                        "disabled": true
+                      },
+                      {
+                        "key": "Prefer",
+                        "value": "{{prefer_representation_detailed}}",
+                        "type": "text",
+                        "description": "The preferred server response upon successful completion of the request. Value is:<ul><li><code>return=minimal</code>. The server returns a minimal response to optimize communication between the API caller and the server. A minimal response includes the <code>id</code>, <code>status</code> and HATEOAS links.</li><li><code>return=representation</code>. The server returns a complete resource representation, including the current state of the resource.</li></ul>"
+                      },
+                      {
+                        "key": "Prefer",
+                        "value": "{{prefer_representation_minimal}}",
+                        "description": "The preferred server response upon successful completion of the request. Value is:<ul><li><code>return=minimal</code>. The server returns a minimal response to optimize communication between the API caller and the server. A minimal response includes the <code>id</code>, <code>status</code> and HATEOAS links.</li><li><code>return=representation</code>. The server returns a complete resource representation, including the current state of the resource.</li></ul>",
+                        "type": "text",
+                        "disabled": true
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{base_url}}/v1/billing/plans/:billing_plan_id/activate",
+                      "host": [
+                        "{{base_url}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "billing",
+                        "plans",
+                        ":billing_plan_id",
+                        "activate"
+                      ],
+                      "variable": [
+                        {
+                          "key": "billing_plan_id",
+                          "value": "{{billing_plan_id}}"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "No Content",
+                  "code": 204,
+                  "_postman_previewlanguage": "plain",
+                  "header": [
+                    {
+                      "key": "Connection",
+                      "value": "keep-alive"
+                    },
+                    {
+                      "key": "Date",
+                      "value": "Tue, 08 Feb 2022 22:04:08 GMT"
+                    },
+                    {
+                      "key": "Application_id",
+                      "value": "APP-80W284485P519543T"
+                    },
+                    {
+                      "key": "Cache-Control",
+                      "value": "max-age=0, no-cache, no-store, must-revalidate"
+                    },
+                    {
+                      "key": "Caller_acct_num",
+                      "value": "ER87FV8ER63HJ"
+                    },
+                    {
+                      "key": "Paypal-Debug-Id",
+                      "value": "57776002e68ad"
+                    },
+                    {
+                      "key": "Strict-Transport-Security",
+                      "value": "max-age=31536000; includeSubDomains"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null
+                },
+                {
+                  "id": "e342f9d9-ecc1-4750-8ef3-2e54fcdb16ed",
+                  "name": "422 PLAN_STATUS_INVALID",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json",
+                        "type": "text",
+                        "description": "The Content-Type header field is used to specify the nature of the data in the body of an entity. PayPal REST APIs support application/json."
+                      },
+                      {
+                        "key": "PayPal-Request-Id",
+                        "value": "{{$guid}}",
+                        "type": "text",
+                        "description": "The server stores keys for 72 hours."
+                      },
+                      {
+                        "key": "PayPal-Client-Metadata-Id",
+                        "value": "{{paypal_client_metadata_Id}}",
+                        "type": "text",
+                        "description": "Optional. Verifies that the payment originates from a valid, user-consented device and application. Reduces fraud and decreases declines. Transactions that do not include a client metadata ID are not eligible for PayPal Seller Protection.",
+                        "disabled": true
+                      },
+                      {
+                        "key": "PayPal-Partner-Attribution-Id",
+                        "value": "{{paypal_partner_attribution_id}}",
+                        "type": "text",
+                        "description": "Optional. Identifies the caller as a PayPal partner. To receive revenue attribution, specify a unique build notation (BN) code. BN codes provide tracking on all transactions that originate or are associated with a particular partner. To find your BN code, see Code and Credential Reference.",
+                        "disabled": true
+                      },
+                      {
+                        "key": "PayPal-Auth-Assertion",
+                        "value": "{{paypal_auth_assertion}}",
+                        "type": "text",
+                        "description": "An API client-provided JSON Web Token (JWT) assertion that identifies the merchant. To use this header, you must get consent to act on behalf of a merchant.\n",
+                        "disabled": true
+                      },
+                      {
+                        "key": "Prefer",
+                        "value": "{{prefer_representation_detailed}}",
+                        "type": "text",
+                        "description": "The preferred server response upon successful completion of the request. Value is:<ul><li><code>return=minimal</code>. The server returns a minimal response to optimize communication between the API caller and the server. A minimal response includes the <code>id</code>, <code>status</code> and HATEOAS links.</li><li><code>return=representation</code>. The server returns a complete resource representation, including the current state of the resource.</li></ul>"
+                      },
+                      {
+                        "key": "Prefer",
+                        "value": "{{prefer_representation_minimal}}",
+                        "description": "The preferred server response upon successful completion of the request. Value is:<ul><li><code>return=minimal</code>. The server returns a minimal response to optimize communication between the API caller and the server. A minimal response includes the <code>id</code>, <code>status</code> and HATEOAS links.</li><li><code>return=representation</code>. The server returns a complete resource representation, including the current state of the resource.</li></ul>",
+                        "type": "text",
+                        "disabled": true
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{base_url}}/v1/billing/plans/:billing_plan_id/activate",
+                      "host": [
+                        "{{base_url}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "billing",
+                        "plans",
+                        ":billing_plan_id",
+                        "activate"
+                      ],
+                      "variable": [
+                        {
+                          "key": "billing_plan_id",
+                          "value": "{{billing_plan_id}}"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unprocessable Entity",
+                  "code": 422,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    },
+                    {
+                      "key": "Content-Length",
+                      "value": "466"
+                    },
+                    {
+                      "key": "Connection",
+                      "value": "keep-alive"
+                    },
+                    {
+                      "key": "Date",
+                      "value": "Tue, 08 Feb 2022 22:02:18 GMT"
+                    },
+                    {
+                      "key": "Application_id",
+                      "value": "APP-80W284485P519543T"
+                    },
+                    {
+                      "key": "Cache-Control",
+                      "value": "max-age=0, no-cache, no-store, must-revalidate"
+                    },
+                    {
+                      "key": "Caller_acct_num",
+                      "value": "ER87FV8ER63HJ"
+                    },
+                    {
+                      "key": "Paypal-Debug-Id",
+                      "value": "405c9b8d7220e"
+                    },
+                    {
+                      "key": "Strict-Transport-Security",
+                      "value": "max-age=31536000; includeSubDomains"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n    \"name\": \"UNPROCESSABLE_ENTITY\",\n    \"message\": \"The requested action could not be performed, semantically incorrect, or failed business validation.\",\n    \"debug_id\": \"405c9b8d7220e\",\n    \"details\": [\n        {\n            \"issue\": \"PLAN_STATUS_INVALID\",\n            \"description\": \"Invalid plan status for activate action; plan status should be either created or inactive.\"\n        }\n    ],\n    \"links\": [\n        {\n            \"href\": \"https://developer.paypal.com/docs/api/v1/billing/subscriptions#UNPROCESSABLE_ENTITY\",\n            \"rel\": \"information_link\",\n            \"method\": \"GET\"\n        }\n    ]\n}"
                 }
               ]
             },
@@ -21272,6 +21269,19 @@
             },
             {
               "name": "Show subscription details",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "id": "9beda76e-d353-415b-a53f-2510e01dffc3",
+                    "exec": [
+                      "// skip over rest of the subscription APIs since they needs buyer approval",
+                      "postman.setNextRequest(\"Create batch payout\");"
+                    ],
+                    "type": "text/javascript"
+                  }
+                }
+              ],
               "id": "1a0194cd-44e1-408e-aa4f-0742e2c1e06b",
               "protocolProfileBehavior": {
                 "disableBodyPruning": true
@@ -22349,6 +22359,83 @@
               },
               "response": [
                 {
+                  "id": "76100c35-767a-494c-8fa9-a8c7719adebc",
+                  "name": "Successsful",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n    \"reason\": \"Items are back in stock\"\n}",
+                      "options": {
+                        "raw": {
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{base_url}}/v1/billing/subscriptions/:subscription_id/activate",
+                      "host": [
+                        "{{base_url}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "billing",
+                        "subscriptions",
+                        ":subscription_id",
+                        "activate"
+                      ],
+                      "variable": [
+                        {
+                          "key": "subscription_id",
+                          "value": "{{subscription_id}}"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "No Content",
+                  "code": 204,
+                  "_postman_previewlanguage": "plain",
+                  "header": [
+                    {
+                      "key": "Connection",
+                      "value": "keep-alive"
+                    },
+                    {
+                      "key": "Date",
+                      "value": "Tue, 08 Feb 2022 23:05:47 GMT"
+                    },
+                    {
+                      "key": "Application_id",
+                      "value": "APP-80W284485P519543T"
+                    },
+                    {
+                      "key": "Cache-Control",
+                      "value": "max-age=0, no-cache, no-store, must-revalidate"
+                    },
+                    {
+                      "key": "Caller_acct_num",
+                      "value": "ER87FV8ER63HJ"
+                    },
+                    {
+                      "key": "Paypal-Debug-Id",
+                      "value": "78781d9643b12"
+                    },
+                    {
+                      "key": "Strict-Transport-Security",
+                      "value": "max-age=31536000; includeSubDomains"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null
+                },
+                {
                   "id": "1a33ad79-2fde-47a8-94d1-f0fb36a80917",
                   "name": "422 SUBSCRIPTION_STATUS_INVALID",
                   "originalRequest": {
@@ -22434,8 +22521,8 @@
                   "body": "{\n    \"name\": \"UNPROCESSABLE_ENTITY\",\n    \"message\": \"The requested action could not be performed, semantically incorrect, or failed business validation.\",\n    \"debug_id\": \"6e6f83f725c69\",\n    \"details\": [\n        {\n            \"issue\": \"SUBSCRIPTION_STATUS_INVALID\",\n            \"description\": \"Invalid subscription status for activate action; subscription status should be suspended.\"\n        }\n    ],\n    \"links\": [\n        {\n            \"href\": \"https://developer.paypal.com/docs/api/v1/billing/subscriptions#UNPROCESSABLE_ENTITY\",\n            \"rel\": \"information_link\",\n            \"method\": \"GET\"\n        }\n    ]\n}"
                 },
                 {
-                  "id": "76100c35-767a-494c-8fa9-a8c7719adebc",
-                  "name": "Successsful",
+                  "id": "6343282c-8edf-4633-b2e0-6c797748e3bc",
+                  "name": "422 SESSION_STATE_NOT_VALID",
                   "originalRequest": {
                     "method": "POST",
                     "header": [
@@ -22467,48 +22554,81 @@
                       ],
                       "variable": [
                         {
+                          "id": "40d34c39-5c5d-4b09-912f-ac5dcc30ddb4",
                           "key": "subscription_id",
                           "value": "{{subscription_id}}"
                         }
                       ]
                     }
                   },
-                  "status": "No Content",
-                  "code": 204,
-                  "_postman_previewlanguage": "plain",
+                  "status": "Unprocessable Entity",
+                  "code": 422,
+                  "_postman_previewlanguage": "json",
                   "header": [
                     {
                       "key": "Connection",
                       "value": "keep-alive"
                     },
                     {
-                      "key": "Date",
-                      "value": "Tue, 08 Feb 2022 23:05:47 GMT"
+                      "key": "Content-Length",
+                      "value": "416"
                     },
                     {
-                      "key": "Application_id",
-                      "value": "APP-80W284485P519543T"
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    },
+                    {
+                      "key": "Server",
+                      "value": "nginx/1.18.0 (Ubuntu)"
                     },
                     {
                       "key": "Cache-Control",
                       "value": "max-age=0, no-cache, no-store, must-revalidate"
                     },
                     {
-                      "key": "Caller_acct_num",
-                      "value": "ER87FV8ER63HJ"
-                    },
-                    {
                       "key": "Paypal-Debug-Id",
-                      "value": "78781d9643b12"
+                      "value": "84d0119da4463"
                     },
                     {
                       "key": "Strict-Transport-Security",
                       "value": "max-age=31536000; includeSubDomains"
+                    },
+                    {
+                      "key": "Edge-Control",
+                      "value": "max-age=0"
+                    },
+                    {
+                      "key": "Accept-Ranges",
+                      "value": "bytes"
+                    },
+                    {
+                      "key": "Date",
+                      "value": "Fri, 04 Mar 2022 01:19:56 GMT"
+                    },
+                    {
+                      "key": "Via",
+                      "value": "1.1 varnish"
+                    },
+                    {
+                      "key": "X-Served-By",
+                      "value": "cache-sjc10043-SJC"
+                    },
+                    {
+                      "key": "X-Cache",
+                      "value": "MISS"
+                    },
+                    {
+                      "key": "X-Cache-Hits",
+                      "value": "0"
+                    },
+                    {
+                      "key": "X-Timer",
+                      "value": "S1646356797.797522,VS0,VE163"
                     }
                   ],
                   "cookie": [],
                   "responseTime": null,
-                  "body": null
+                  "body": "{\n    \"name\": \"UNPROCESSABLE_ENTITY\",\n    \"message\": \"The requested action could not be performed, semantically incorrect, or failed business validation.\",\n    \"debug_id\": \"84d0119da4463\",\n    \"details\": [\n        {\n            \"issue\": \"SESSION_STATE_NOT_VALID\",\n            \"description\": \"Buyer has not agreed to subscription\"\n        }\n    ],\n    \"links\": [\n        {\n            \"href\": \"https://developer.paypal.com/docs/api/v1/billing/subscriptions#UNPROCESSABLE_ENTITY\",\n            \"rel\": \"information_link\",\n            \"method\": \"GET\"\n        }\n    ]\n}"
                 }
               ]
             },
@@ -25722,6 +25842,212 @@
               ]
             },
             {
+              "name": "List event subscriptions for webhook",
+              "id": "9c88ce44-f3ef-4bab-ac45-2e064952e763",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text",
+                    "description": "The Content-Type header field is used to specify the nature of the data in the body of an entity. PayPal REST APIs support application/json.",
+                    "disabled": true
+                  },
+                  {
+                    "key": "PayPal-Request-Id",
+                    "value": "{{$guid}}",
+                    "type": "text",
+                    "description": "The server stores keys for 6 hours. The API callers can request the times to up to 72 hours by speaking to their Account Manager.",
+                    "disabled": true
+                  },
+                  {
+                    "key": "PayPal-Client-Metadata-Id",
+                    "value": "{{paypal_client_metadata_Id}}",
+                    "type": "text",
+                    "description": "Optional. Verifies that the payment originates from a valid, user-consented device and application. Reduces fraud and decreases declines. Transactions that do not include a client metadata ID are not eligible for PayPal Seller Protection.",
+                    "disabled": true
+                  },
+                  {
+                    "key": "PayPal-Partner-Attribution-Id",
+                    "value": "{{paypal_partner_attribution_id}}",
+                    "type": "text",
+                    "description": "Optional. Identifies the caller as a PayPal partner. To receive revenue attribution, specify a unique build notation (BN) code. BN codes provide tracking on all transactions that originate or are associated with a particular partner. To find your BN code, see Code and Credential Reference.",
+                    "disabled": true
+                  },
+                  {
+                    "key": "PayPal-Auth-Assertion",
+                    "value": "{{paypal_auth_assertion}}",
+                    "type": "text",
+                    "description": "An API client-provided JSON Web Token (JWT) assertion that identifies the merchant. To use this header, you must get consent to act on behalf of a merchant.\n",
+                    "disabled": true
+                  },
+                  {
+                    "key": "Prefer",
+                    "value": "{{prefer_representation_detailed}}",
+                    "type": "text",
+                    "description": "The preferred server response upon successful completion of the request. Value is:<ul><li><code>return=minimal</code>. The server returns a minimal response to optimize communication between the API caller and the server. A minimal response includes the <code>id</code>, <code>status</code> and HATEOAS links.</li><li><code>return=representation</code>. The server returns a complete resource representation, including the current state of the resource.</li></ul>",
+                    "disabled": true
+                  },
+                  {
+                    "key": "Prefer",
+                    "value": "{{prefer_representation_minimal}}",
+                    "description": "The preferred server response upon successful completion of the request. Value is:<ul><li><code>return=minimal</code>. The server returns a minimal response to optimize communication between the API caller and the server. A minimal response includes the <code>id</code>, <code>status</code> and HATEOAS links.</li><li><code>return=representation</code>. The server returns a complete resource representation, including the current state of the resource.</li></ul>",
+                    "type": "text",
+                    "disabled": true
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/v1/notifications/webhooks/:webhook_id/event-types",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "notifications",
+                    "webhooks",
+                    ":webhook_id",
+                    "event-types"
+                  ],
+                  "variable": [
+                    {
+                      "key": "webhook_id",
+                      "value": "{{webhook_id}}",
+                      "description": "(Required) The ID of the webhook for which to list subscriptions."
+                    }
+                  ]
+                },
+                "description": "Lists event subscriptions for a webhook, by ID."
+              },
+              "response": [
+                {
+                  "id": "f7a09651-2442-4dc0-96a8-a26b7c896d69",
+                  "name": "List events for a given webhook_id",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json",
+                        "type": "text",
+                        "description": "The Content-Type header field is used to specify the nature of the data in the body of an entity. PayPal REST APIs support application/json.",
+                        "disabled": true
+                      },
+                      {
+                        "key": "PayPal-Request-Id",
+                        "value": "{{$guid}}",
+                        "type": "text",
+                        "description": "The server stores keys for 6 hours. The API callers can request the times to up to 72 hours by speaking to their Account Manager.",
+                        "disabled": true
+                      },
+                      {
+                        "key": "PayPal-Client-Metadata-Id",
+                        "value": "{{paypal_client_metadata_Id}}",
+                        "type": "text",
+                        "description": "Optional. Verifies that the payment originates from a valid, user-consented device and application. Reduces fraud and decreases declines. Transactions that do not include a client metadata ID are not eligible for PayPal Seller Protection.",
+                        "disabled": true
+                      },
+                      {
+                        "key": "PayPal-Partner-Attribution-Id",
+                        "value": "{{paypal_partner_attribution_id}}",
+                        "type": "text",
+                        "description": "Optional. Identifies the caller as a PayPal partner. To receive revenue attribution, specify a unique build notation (BN) code. BN codes provide tracking on all transactions that originate or are associated with a particular partner. To find your BN code, see Code and Credential Reference.",
+                        "disabled": true
+                      },
+                      {
+                        "key": "PayPal-Auth-Assertion",
+                        "value": "{{paypal_auth_assertion}}",
+                        "type": "text",
+                        "description": "An API client-provided JSON Web Token (JWT) assertion that identifies the merchant. To use this header, you must get consent to act on behalf of a merchant.\n",
+                        "disabled": true
+                      },
+                      {
+                        "key": "Prefer",
+                        "value": "{{prefer_representation_detailed}}",
+                        "type": "text",
+                        "description": "The preferred server response upon successful completion of the request. Value is:<ul><li><code>return=minimal</code>. The server returns a minimal response to optimize communication between the API caller and the server. A minimal response includes the <code>id</code>, <code>status</code> and HATEOAS links.</li><li><code>return=representation</code>. The server returns a complete resource representation, including the current state of the resource.</li></ul>",
+                        "disabled": true
+                      },
+                      {
+                        "key": "Prefer",
+                        "value": "{{prefer_representation_minimal}}",
+                        "description": "The preferred server response upon successful completion of the request. Value is:<ul><li><code>return=minimal</code>. The server returns a minimal response to optimize communication between the API caller and the server. A minimal response includes the <code>id</code>, <code>status</code> and HATEOAS links.</li><li><code>return=representation</code>. The server returns a complete resource representation, including the current state of the resource.</li></ul>",
+                        "type": "text",
+                        "disabled": true
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{base_url}}/v1/notifications/webhooks/:webhook_id/event-types",
+                      "host": [
+                        "{{base_url}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "notifications",
+                        "webhooks",
+                        ":webhook_id",
+                        "event-types"
+                      ],
+                      "variable": [
+                        {
+                          "key": "webhook_id",
+                          "value": "{{webhook_id}}",
+                          "description": "(Required) The ID of the webhook for which to list subscriptions."
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    },
+                    {
+                      "key": "Content-Length",
+                      "value": "112"
+                    },
+                    {
+                      "key": "Connection",
+                      "value": "keep-alive"
+                    },
+                    {
+                      "key": "Date",
+                      "value": "Wed, 02 Feb 2022 01:30:43 GMT"
+                    },
+                    {
+                      "key": "Application_id",
+                      "value": "APP-80W284485P519543T"
+                    },
+                    {
+                      "key": "Cache-Control",
+                      "value": "max-age=0, no-cache, no-store, must-revalidate"
+                    },
+                    {
+                      "key": "Caller_acct_num",
+                      "value": "ER87FV8ER63HJ"
+                    },
+                    {
+                      "key": "Paypal-Debug-Id",
+                      "value": "ae91ab5fec721"
+                    },
+                    {
+                      "key": "Strict-Transport-Security",
+                      "value": "max-age=31536000; includeSubDomains"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n    \"event_types\": [\n        {\n            \"name\": \"PAYMENT.SALE.REFUNDED\",\n            \"description\": \"A merchant refunds a sale.\",\n            \"status\": \"ENABLED\"\n        }\n    ]\n}"
+                }
+              ]
+            },
+            {
               "name": "Delete webhook",
               "event": [
                 {
@@ -26041,212 +26367,6 @@
                   "cookie": [],
                   "responseTime": null,
                   "body": null
-                }
-              ]
-            },
-            {
-              "name": "List event subscriptions for webhook",
-              "id": "9c88ce44-f3ef-4bab-ac45-2e064952e763",
-              "protocolProfileBehavior": {
-                "disableBodyPruning": true
-              },
-              "request": {
-                "method": "GET",
-                "header": [
-                  {
-                    "key": "Content-Type",
-                    "value": "application/json",
-                    "type": "text",
-                    "description": "The Content-Type header field is used to specify the nature of the data in the body of an entity. PayPal REST APIs support application/json.",
-                    "disabled": true
-                  },
-                  {
-                    "key": "PayPal-Request-Id",
-                    "value": "{{$guid}}",
-                    "type": "text",
-                    "description": "The server stores keys for 6 hours. The API callers can request the times to up to 72 hours by speaking to their Account Manager.",
-                    "disabled": true
-                  },
-                  {
-                    "key": "PayPal-Client-Metadata-Id",
-                    "value": "{{paypal_client_metadata_Id}}",
-                    "type": "text",
-                    "description": "Optional. Verifies that the payment originates from a valid, user-consented device and application. Reduces fraud and decreases declines. Transactions that do not include a client metadata ID are not eligible for PayPal Seller Protection.",
-                    "disabled": true
-                  },
-                  {
-                    "key": "PayPal-Partner-Attribution-Id",
-                    "value": "{{paypal_partner_attribution_id}}",
-                    "type": "text",
-                    "description": "Optional. Identifies the caller as a PayPal partner. To receive revenue attribution, specify a unique build notation (BN) code. BN codes provide tracking on all transactions that originate or are associated with a particular partner. To find your BN code, see Code and Credential Reference.",
-                    "disabled": true
-                  },
-                  {
-                    "key": "PayPal-Auth-Assertion",
-                    "value": "{{paypal_auth_assertion}}",
-                    "type": "text",
-                    "description": "An API client-provided JSON Web Token (JWT) assertion that identifies the merchant. To use this header, you must get consent to act on behalf of a merchant.\n",
-                    "disabled": true
-                  },
-                  {
-                    "key": "Prefer",
-                    "value": "{{prefer_representation_detailed}}",
-                    "type": "text",
-                    "description": "The preferred server response upon successful completion of the request. Value is:<ul><li><code>return=minimal</code>. The server returns a minimal response to optimize communication between the API caller and the server. A minimal response includes the <code>id</code>, <code>status</code> and HATEOAS links.</li><li><code>return=representation</code>. The server returns a complete resource representation, including the current state of the resource.</li></ul>",
-                    "disabled": true
-                  },
-                  {
-                    "key": "Prefer",
-                    "value": "{{prefer_representation_minimal}}",
-                    "description": "The preferred server response upon successful completion of the request. Value is:<ul><li><code>return=minimal</code>. The server returns a minimal response to optimize communication between the API caller and the server. A minimal response includes the <code>id</code>, <code>status</code> and HATEOAS links.</li><li><code>return=representation</code>. The server returns a complete resource representation, including the current state of the resource.</li></ul>",
-                    "type": "text",
-                    "disabled": true
-                  }
-                ],
-                "url": {
-                  "raw": "{{base_url}}/v1/notifications/webhooks/:webhook_id/event-types",
-                  "host": [
-                    "{{base_url}}"
-                  ],
-                  "path": [
-                    "v1",
-                    "notifications",
-                    "webhooks",
-                    ":webhook_id",
-                    "event-types"
-                  ],
-                  "variable": [
-                    {
-                      "key": "webhook_id",
-                      "value": "{{webhook_id}}",
-                      "description": "(Required) The ID of the webhook for which to list subscriptions."
-                    }
-                  ]
-                },
-                "description": "Lists event subscriptions for a webhook, by ID."
-              },
-              "response": [
-                {
-                  "id": "f7a09651-2442-4dc0-96a8-a26b7c896d69",
-                  "name": "List events for a given webhook_id",
-                  "originalRequest": {
-                    "method": "GET",
-                    "header": [
-                      {
-                        "key": "Content-Type",
-                        "value": "application/json",
-                        "type": "text",
-                        "description": "The Content-Type header field is used to specify the nature of the data in the body of an entity. PayPal REST APIs support application/json.",
-                        "disabled": true
-                      },
-                      {
-                        "key": "PayPal-Request-Id",
-                        "value": "{{$guid}}",
-                        "type": "text",
-                        "description": "The server stores keys for 6 hours. The API callers can request the times to up to 72 hours by speaking to their Account Manager.",
-                        "disabled": true
-                      },
-                      {
-                        "key": "PayPal-Client-Metadata-Id",
-                        "value": "{{paypal_client_metadata_Id}}",
-                        "type": "text",
-                        "description": "Optional. Verifies that the payment originates from a valid, user-consented device and application. Reduces fraud and decreases declines. Transactions that do not include a client metadata ID are not eligible for PayPal Seller Protection.",
-                        "disabled": true
-                      },
-                      {
-                        "key": "PayPal-Partner-Attribution-Id",
-                        "value": "{{paypal_partner_attribution_id}}",
-                        "type": "text",
-                        "description": "Optional. Identifies the caller as a PayPal partner. To receive revenue attribution, specify a unique build notation (BN) code. BN codes provide tracking on all transactions that originate or are associated with a particular partner. To find your BN code, see Code and Credential Reference.",
-                        "disabled": true
-                      },
-                      {
-                        "key": "PayPal-Auth-Assertion",
-                        "value": "{{paypal_auth_assertion}}",
-                        "type": "text",
-                        "description": "An API client-provided JSON Web Token (JWT) assertion that identifies the merchant. To use this header, you must get consent to act on behalf of a merchant.\n",
-                        "disabled": true
-                      },
-                      {
-                        "key": "Prefer",
-                        "value": "{{prefer_representation_detailed}}",
-                        "type": "text",
-                        "description": "The preferred server response upon successful completion of the request. Value is:<ul><li><code>return=minimal</code>. The server returns a minimal response to optimize communication between the API caller and the server. A minimal response includes the <code>id</code>, <code>status</code> and HATEOAS links.</li><li><code>return=representation</code>. The server returns a complete resource representation, including the current state of the resource.</li></ul>",
-                        "disabled": true
-                      },
-                      {
-                        "key": "Prefer",
-                        "value": "{{prefer_representation_minimal}}",
-                        "description": "The preferred server response upon successful completion of the request. Value is:<ul><li><code>return=minimal</code>. The server returns a minimal response to optimize communication between the API caller and the server. A minimal response includes the <code>id</code>, <code>status</code> and HATEOAS links.</li><li><code>return=representation</code>. The server returns a complete resource representation, including the current state of the resource.</li></ul>",
-                        "type": "text",
-                        "disabled": true
-                      }
-                    ],
-                    "url": {
-                      "raw": "{{base_url}}/v1/notifications/webhooks/:webhook_id/event-types",
-                      "host": [
-                        "{{base_url}}"
-                      ],
-                      "path": [
-                        "v1",
-                        "notifications",
-                        "webhooks",
-                        ":webhook_id",
-                        "event-types"
-                      ],
-                      "variable": [
-                        {
-                          "key": "webhook_id",
-                          "value": "{{webhook_id}}",
-                          "description": "(Required) The ID of the webhook for which to list subscriptions."
-                        }
-                      ]
-                    }
-                  },
-                  "status": "OK",
-                  "code": 200,
-                  "_postman_previewlanguage": "json",
-                  "header": [
-                    {
-                      "key": "Content-Type",
-                      "value": "application/json"
-                    },
-                    {
-                      "key": "Content-Length",
-                      "value": "112"
-                    },
-                    {
-                      "key": "Connection",
-                      "value": "keep-alive"
-                    },
-                    {
-                      "key": "Date",
-                      "value": "Wed, 02 Feb 2022 01:30:43 GMT"
-                    },
-                    {
-                      "key": "Application_id",
-                      "value": "APP-80W284485P519543T"
-                    },
-                    {
-                      "key": "Cache-Control",
-                      "value": "max-age=0, no-cache, no-store, must-revalidate"
-                    },
-                    {
-                      "key": "Caller_acct_num",
-                      "value": "ER87FV8ER63HJ"
-                    },
-                    {
-                      "key": "Paypal-Debug-Id",
-                      "value": "ae91ab5fec721"
-                    },
-                    {
-                      "key": "Strict-Transport-Security",
-                      "value": "max-age=31536000; includeSubDomains"
-                    }
-                  ],
-                  "cookie": [],
-                  "responseTime": null,
-                  "body": "{\n    \"event_types\": [\n        {\n            \"name\": \"PAYMENT.SALE.REFUNDED\",\n            \"description\": \"A merchant refunds a sale.\",\n            \"status\": \"ENABLED\"\n        }\n    ]\n}"
                 }
               ]
             }
@@ -27589,6 +27709,19 @@
         },
         {
           "name": "Verify webhook signature",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "2f3970d8-cc06-4516-b133-eb385e5bbe7b",
+                "exec": [
+                  "// sip over Shipment Tracking APIs since they need a valid transaction which cannot be created without buyer approval flow.",
+                  "postman.setNextRequest(\"List transaction\");"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
           "id": "e519596f-1bfc-4b49-a8d4-86abbb543bd1",
           "protocolProfileBehavior": {
             "disableBodyPruning": true
@@ -31094,6 +31227,19 @@
         },
         {
           "name": "Show dispute details",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "48489b2f-ffeb-4781-94d1-348e6803fe03",
+                "exec": [
+                  "// skipping over rest of the dispute APIs since they need a valid transaction and that is not available untill buyer approval flow is completed.",
+                  "postman.setNextRequest(null);"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
           "id": "fe2d5c51-2f4a-4a03-8d97-85eada131ba6",
           "protocolProfileBehavior": {
             "disableBodyPruning": true
@@ -34399,143 +34545,163 @@
   ],
   "variable": [
     {
-      "id": "d6077200-a180-47d9-a38c-ebdf8743a430",
+      "id": "3f93142c-7a5f-4724-9e4f-0eb54744825b",
       "key": "PLEASE NOTE -->",
       "value": "< PayPal Public Collection comes with following default public set of credentials stored at the Collection level. \nYou may choose to override these values via environment level variables. You may bring your own credentials from PayPal Developer Dashboard there."
     },
     {
-      "id": "30e0e0c3-bfc7-4498-8ebc-ad4fdf163505",
+      "id": "32d588be-18d5-4449-b2f3-4e92c71afc67",
       "key": "base_url",
       "value": "https://api-m.sandbox.paypal.com"
     },
     {
-      "id": "57a10da5-bcaf-463b-8f33-e43d7531b952",
+      "id": "fe737581-e9e7-4000-9349-d09aba025b08",
       "key": "client_id",
       "value": "AUC1CwUIt5XDl4Kco9-oXcewk0jZbPIxDs1JWHDzATNSnYU36xnTtS0Tp-4kDlCpgCbpudXcStc8HAsV"
     },
     {
-      "id": "d14633d2-0144-4ec4-abd2-426a0c0ac35b",
+      "id": "5a46afa9-df29-4843-bc4a-681a42aeab4d",
       "key": "client_secret",
       "value": "EDIDlZWQMpgfztWzVGYSjw-tcRvLblFnv4JZh4BBWtFQt4qNx43wc-U-FBcynTcRFXJ_uw1l_iTok_Nm"
     },
     {
-      "id": "0f48af0e-3f46-4961-b090-096295b4c47c",
+      "id": "1007703c-7ef0-4d07-a32d-492f8e40c57f",
       "key": "paypal_partner_attribution_id",
       "value": "TEST_ATTRIBUTION_ID"
     },
     {
-      "id": "7d0f8128-282d-42c6-911e-6dea0977b716",
+      "id": "e4592f4c-4baf-44ae-8be2-50b939067ff7",
       "key": "prefer_representation_min",
       "value": "return=minimal"
     },
     {
-      "id": "b0ef457b-0b2f-4455-b14f-8583a813bb26",
+      "id": "c654d9a4-528c-4787-973f-a7db511faddc",
       "key": "prefer_representation_detailed",
       "value": "return=representation"
     },
     {
-      "id": "6171c910-e493-4d91-9251-f6430851bdc7",
+      "id": "ed2aea51-33cf-4c49-9d63-785c73c698c1",
       "key": "paypal_client_metadata_Id",
       "value": ""
     },
     {
-      "id": "0c19b978-e89a-4268-8540-dea2a4f85cf6",
+      "id": "2eb701dc-1095-45b8-be0a-9cfa941a4acb",
       "key": "paypal_auth_assertion",
       "value": ""
     },
     {
-      "id": "89a069d9-f9f5-4b57-b7e8-e3fea363a10d",
+      "id": "a0f7587f-b9f6-4cfb-95c8-e28ddc62d912",
       "key": "capture_id",
       "value": ""
     },
     {
-      "id": "14ba62aa-a5ff-4e56-95cf-c60fc4690526",
+      "id": "d63c424b-7b98-4472-aa42-f66180e1ae65",
       "key": "billing_plan_id",
       "value": ""
     },
     {
-      "id": "210d7f55-f6f0-4b1e-882d-62dd55ae94ed",
+      "id": "dce45519-3612-4873-b5ec-0e5f1db0a844",
       "key": "product_id",
       "value": "1645840190"
     },
     {
-      "id": "1ce5f81b-2937-4f53-b694-50bddc404878",
+      "id": "c9f7461f-54e2-4889-815a-d1f90f634026",
       "key": "subscription_id",
       "value": ""
     },
     {
-      "id": "4feba607-d1df-4b36-a938-038382b6e09b",
+      "id": "97a49b1e-ea32-4274-aca9-53cb5b538307",
       "key": "dispute_id",
       "value": ""
     },
     {
-      "id": "f9314bcf-d2a9-44d4-9b1b-e94323df7b0e",
+      "id": "0c4092aa-229f-40d2-9e3a-aba7fa17894a",
       "key": "authorization_id",
       "value": ""
     },
     {
-      "id": "1804d942-6d29-4297-b824-20c6c9b72bba",
+      "id": "f8afe73d-8985-4185-8d4b-09154376996f",
       "key": "refund_id",
       "value": ""
     },
     {
-      "id": "406ae849-3a63-4583-ac09-61c37f18ba75",
+      "id": "88e7d4bd-d5e1-4afe-bc95-ba1fbbb656c2",
       "key": "webhook_id",
       "value": ""
     },
     {
-      "id": "0e969112-2d90-459e-a8f6-68e12b4b62c4",
+      "id": "c090776f-18d9-4803-b72e-fd87112a7540",
       "key": "webhook_url",
       "value": ""
     },
     {
-      "id": "712452dd-fa20-4440-84f4-31ab594d124b",
+      "id": "7c808dab-6035-4602-8b11-3827ff370cf5",
       "key": "invoice_id",
       "value": ""
     },
     {
-      "id": "79e0b271-d582-419f-b965-f81c857ffc01",
+      "id": "3b7e1262-ae87-4a6e-a189-6903ad1dbaf0",
       "key": "invoice_template_id",
       "value": ""
     },
     {
-      "id": "b2e86c65-7cf7-414e-aff4-8beab6ef30c8",
+      "id": "3e4b5566-21ce-4d67-a3de-c753dc20e91c",
       "key": "payout_batch_id",
       "value": ""
     },
     {
-      "id": "7aeaaa10-0513-4b33-b596-de5cabfe5fe7",
+      "id": "230dd39e-a756-4b29-a4c8-b84c055c3a05",
       "key": "payout_item_id",
       "value": ""
     },
     {
-      "id": "0145973f-279e-44ea-add5-c8ffb2322c41",
+      "id": "8778dd11-6a2c-4cb4-a66b-4f8690aa6ce8",
       "key": "web_profile_id",
       "value": ""
     },
     {
-      "id": "a1dfa960-80c0-43ba-bda5-4f43cc7509ab",
+      "id": "022bcfaa-d02a-4e3e-9b56-6673a319c24a",
       "key": "todays_date",
       "value": ""
     },
     {
-      "id": "298c9cdc-1e18-4bbc-a8b1-6eaec6c2c517",
+      "id": "8d22306a-48da-487e-aa6f-827c7eb43022",
       "key": "tracking_number",
       "value": ""
     },
     {
-      "id": "0f9241bf-616d-4643-8247-efad7308ece4",
+      "id": "8db5b3b0-f758-40e1-af9f-f061cdd93659",
       "key": "tracking_id",
       "value": ""
     },
     {
-      "id": "736f91f0-b3ad-4854-9012-149f6e6ba826",
+      "id": "347476f5-7a8e-40f0-8370-a31865622dbc",
       "key": "order_id",
       "value": ""
     },
     {
-      "id": "87b0f7c2-da70-46d8-8898-aad5fb7b72e4",
+      "id": "d56661cd-7c96-470d-b5a4-0021e8d99323",
       "key": "invoice_payment_id",
+      "value": ""
+    },
+    {
+      "id": "132b9502-0c34-4655-aec8-f35345322241",
+      "key": "access_token",
+      "value": ""
+    },
+    {
+      "id": "6a5fa15d-2464-40df-a155-bbeaa758fd17",
+      "key": "access_token_expiry",
+      "value": ""
+    },
+    {
+      "id": "e8c2f4d6-0024-4327-8412-c76c7041ae74",
+      "key": "access_token_for",
+      "value": ""
+    },
+    {
+      "id": "7a4fc375-62f5-4f13-82fa-00ceed2d9272",
+      "key": "event_id",
       "value": ""
     }
   ]
