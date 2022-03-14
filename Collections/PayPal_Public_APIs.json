@@ -35464,203 +35464,208 @@
   ],
   "variable": [
     {
-      "id": "98a5480f-0644-4542-a9c7-68eee1d102b5",
+      "id": "dad50b20-f166-4a70-92c6-219f5d1d4ef9",
       "key": "PLEASE NOTE -->",
       "value": "< PayPal Public Collection comes with following default public set of credentials stored at the Collection level. \nYou may choose to override these values via environment level variables. You may bring your own credentials from PayPal Developer Dashboard there."
     },
     {
-      "id": "a4aca2c1-04e8-4d82-abf4-407cd221f90e",
+      "id": "6c62ffa9-cad4-4eea-9656-50126a405dda",
       "key": "base_url",
       "value": "https://api-m.sandbox.paypal.com"
     },
     {
-      "id": "1d956efc-c1eb-448f-9568-d81015a853cf",
+      "id": "fb98b421-ee33-4ead-b708-40d2fb3c1552",
       "key": "client_id",
       "value": "AUv8rrc_P-EbP2E0mpb49BV7rFt3Usr-vdUZO8VGOnjRehGHBXkSzchr37SYF2GNdQFYSp72jh5QUhzG"
     },
     {
-      "id": "e1b154f9-8fbc-40f4-b5ad-e856292bc283",
+      "id": "92c5fca4-3a70-4191-afd7-d041163776c0",
       "key": "client_secret",
       "value": "EMnAWe06ioGtouJs7gLYT9chK9-2jJ--7MKRXpI8FesmY_2Kp-d_7aCqff7M9moEJBvuXoBO4clKtY0v"
     },
     {
-      "id": "ed36ac17-19d4-4628-be7c-5b525f8c31dd",
+      "id": "18d10619-e171-4bf1-85eb-7a04a3531df7",
       "key": "paypal_partner_attribution_id",
       "value": "TEST_ATTRIBUTION_ID"
     },
     {
-      "id": "fb70f147-7b15-47d2-a8b5-5d1aa9470c5c",
+      "id": "a28be5be-b5d1-4197-86e5-e3bf64b0c7ef",
       "key": "prefer_representation_min",
       "value": "return=minimal"
     },
     {
-      "id": "d4427ebc-2f6e-4707-a5e4-214789697370",
+      "id": "2ef03faa-ad05-4340-8ca7-5dfbefed229b",
       "key": "prefer_representation_detailed",
       "value": "return=representation"
     },
     {
-      "id": "de597a57-8ee0-43d1-a6a7-1efad60eec87",
+      "id": "c676c570-a0a7-44be-a654-2f03193684a6",
       "key": "paypal_client_metadata_Id",
       "value": ""
     },
     {
-      "id": "2fa63b61-b7b5-41e7-aa77-8cc03d7f7ac2",
+      "id": "ffb72c00-5f2c-42a8-b8c5-3d732de86c7b",
       "key": "paypal_auth_assertion",
       "value": ""
     },
     {
-      "id": "062270f5-e32f-4329-bd30-fc589bf5a6d0",
+      "id": "d49ac6b7-591e-41ed-89c3-af9e0006c6ae",
       "key": "capture_id",
       "value": ""
     },
     {
-      "id": "212fe0a7-80b0-4d85-98ef-5eccd6fb6aa0",
+      "id": "b5a4c415-c675-4cf8-adae-6a19d11226ca",
       "key": "billing_plan_id",
       "value": ""
     },
     {
-      "id": "9dc43ff0-cd6d-4e05-bcaf-67f5c301dad7",
+      "id": "ed5c1fdc-67f6-4959-950f-c2efce87e099",
       "key": "product_id",
       "value": "1645840190"
     },
     {
-      "id": "34242f2a-453a-49c3-acca-528d01ca0c54",
+      "id": "4bbf2f23-b3be-4e58-9a05-cbf8105349f7",
       "key": "subscription_id",
       "value": ""
     },
     {
-      "id": "fa44cebe-982e-4832-b9c8-5ce0ede2963f",
+      "id": "2750c161-2317-44e3-9368-e2a360de20ae",
       "key": "dispute_id",
       "value": ""
     },
     {
-      "id": "5aa878b7-c9cb-4291-a7a7-cdb9311e4831",
+      "id": "40c2f42e-1161-4cd0-ab0d-59a08a97f612",
       "key": "authorization_id",
       "value": ""
     },
     {
-      "id": "cb395e28-a9df-4bbf-8d37-5104d048c5b7",
+      "id": "dde4d151-a823-46d1-a5b8-cd47471c5235",
       "key": "refund_id",
       "value": ""
     },
     {
-      "id": "22953f45-05c5-4af6-9582-c47b9b45d0bc",
+      "id": "c19375cf-19c7-48f3-8444-44ec24286390",
       "key": "webhook_id",
       "value": ""
     },
     {
-      "id": "cf28ff3a-6e97-4609-89d0-362f40902f0d",
+      "id": "cdc342a7-9bda-41bd-91ad-3348394cb9b6",
       "key": "webhook_url",
       "value": ""
     },
     {
-      "id": "f2f7d7e5-9bc3-4189-b25a-0e9e9572eef3",
+      "id": "52ef109f-1549-4d1c-b45c-46a621e6dfbe",
       "key": "invoice_id",
       "value": ""
     },
     {
-      "id": "14aa6082-e630-4219-9b72-5abdce257b38",
+      "id": "a07285d6-dd84-432a-8604-d90e4427f37f",
       "key": "invoice_template_id",
       "value": ""
     },
     {
-      "id": "5658ae79-f565-4ea1-9367-5dc070aea8b5",
+      "id": "c9208fab-d5ed-4e38-bf78-0a736183faf4",
       "key": "payout_batch_id",
       "value": ""
     },
     {
-      "id": "210980da-4d56-4912-a2a0-4fee41a0bcbe",
+      "id": "8fbc76b7-ce1f-4603-9005-05b0467dc7b1",
       "key": "payout_item_id",
       "value": ""
     },
     {
-      "id": "47ff8080-20df-4481-9add-af39a4cf58ef",
+      "id": "e647c41a-ceef-4245-8ca4-0e1b2df89937",
       "key": "web_profile_id",
       "value": ""
     },
     {
-      "id": "39030318-e7af-40a6-9c77-7132f85f2863",
+      "id": "c5bc6f8c-a0cf-4369-9eb1-02c87c547d0c",
       "key": "todays_date",
       "value": ""
     },
     {
-      "id": "75af30be-ead0-4f13-80ef-e6806718f680",
+      "id": "4b6bd2e7-ce53-491e-b572-44b36f9b0c7c",
       "key": "tracking_number",
       "value": ""
     },
     {
-      "id": "a7e8e167-a8c2-49cb-824a-0ca1c647df2c",
+      "id": "c1cd9ad6-01ce-462a-adda-f8ec434aa993",
       "key": "tracking_id",
       "value": ""
     },
     {
-      "id": "7097d0da-d572-4549-9e3d-b1a897052cce",
+      "id": "5f3c07e4-8074-45d2-b5d5-6587a21eb544",
       "key": "order_id",
       "value": ""
     },
     {
-      "id": "9395f739-d79e-4fab-9348-ac1bce921c85",
+      "id": "c7345189-2c57-49fd-951c-ebce079301dc",
       "key": "invoice_payment_id",
       "value": ""
     },
     {
-      "id": "6ae520fb-e2d3-400b-89ce-dbf7b9c47e0e",
+      "id": "d6647135-0352-448e-a815-21025f8f8a78",
       "key": "event_id",
       "value": ""
     },
     {
-      "id": "0fc989e6-d292-4a0b-95cf-422309761177",
+      "id": "9a3532a4-e3ec-4a10-9385-ff9844dfbfaa",
       "key": "access_token_expiry",
       "value": ""
     },
     {
-      "id": "af918d7d-69bb-4c47-96cd-d00457667067",
+      "id": "5552cf5c-4fa4-4233-b9fb-79ee3c2fcc25",
       "key": "access_token_for",
       "value": ""
     },
     {
-      "id": "20cb3c54-4823-4f6b-b586-057142f66727",
+      "id": "2f759969-4c6f-4262-ae62-0f429becb2ec",
       "key": "pipedream_key",
       "value": ""
     },
     {
-      "id": "ff44142f-fd55-4e62-8e0b-4141d9b16052",
+      "id": "ba3a99e4-45f2-41e4-8aca-1d53f0ccd761",
       "key": "event_transmission_id",
       "value": ""
     },
     {
-      "id": "773f9365-086e-4d0c-a6ee-029d9bdebf29",
+      "id": "5a120685-e1de-4145-ad86-8aef35735de7",
       "key": "event_transmission_time",
       "value": ""
     },
     {
-      "id": "2819a052-4b00-4029-b103-86a8ad749151",
+      "id": "06542391-32d0-480e-b36a-4de2bf147a72",
       "key": "event_cert_url",
       "value": ""
     },
     {
-      "id": "d543d054-ff83-46b2-be8a-928f864a6005",
+      "id": "c336338f-4cca-4b94-b137-ffcf174421f4",
       "key": "event_auth_algo",
       "value": ""
     },
     {
-      "id": "fc7d6231-7b56-44e7-bc3e-a1739f5e9d31",
+      "id": "4de6d1b1-1d1a-42b0-be71-8fb77514f8fb",
       "key": "event_transmission_sig",
       "value": ""
     },
     {
-      "id": "a724927d-b3a7-4471-a7fa-b6a0ee7beaba",
+      "id": "b7d273b8-7d3b-412d-8161-82a0fa721d93",
       "key": "event_webhook_event",
       "value": ""
     },
     {
-      "id": "07f09354-86ac-4c3c-9823-c7279c604750",
+      "id": "9308392b-fe6e-4788-8642-94d801f1a0b8",
       "key": "event_webhook_body",
       "value": ""
     },
     {
-      "id": "5b0431bc-85d1-4796-b20a-3a46134c3fc6",
+      "id": "951ed229-10d8-488a-aa49-3ef7eca96c4f",
       "key": "event_webhook_payload",
+      "value": ""
+    },
+    {
+      "id": "5d44d315-8e2e-419d-942f-52ddb433a6e0",
+      "key": "access_token",
       "value": ""
     }
   ]
