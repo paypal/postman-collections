@@ -26656,7 +26656,11 @@
               "script": {
                 "id": "63dc9ec4-f16f-436a-bb26-7ff312c191dc",
                 "exec": [
-                  ""
+                  "pm.test(\"Webhook verification status should be sucessful\", function() {",
+                  "    var jsonData = pm.response.json();",
+                  "    pm.expect(jsonData).to.have.property('verification_status');",
+                  "    pm.expect(jsonData.verification_status).to.eql(\"SUCCESS\");",
+                  "});"
                 ],
                 "type": "text/javascript"
               }
@@ -26669,9 +26673,14 @@
                   "// globally import the btoa library to base64 encoding text",
                   "require(\"atob\");",
                   "",
-                  "validateEvent();",
+                  "validateEvent(0);",
                   "",
-                  "function validateEvent() {",
+                  "function validateEvent(retry) {",
+                  "    if(retry > 3) {",
+                  "       var webhooksView = \"https://requestbin.com/r/\"+pm.collectionVariables.get(\"pipedream_key\");",
+                  "       console.error(\"Failed to receive webhook event at \", webhooksView, \". Nothing to validate.\");",
+                  "       return;",
+                  "    }",
                   "    // Retrieve recent events from webhook endpoint",
                   "    pm.sendRequest(\"https://requestbin-api.pipedream.com/api/v2/events/\"+pm.variables.get(\"pipedream_key\"), (error, response) => {",
                   "        var jsonData = response.json();",
@@ -26679,22 +26688,22 @@
                   "        if(jsonData.data && jsonData.data[0]) {",
                   "            var event = jsonData.data[0].step.data; // ignore the simulated event which ",
                   "            //console.log(\"event=\", event);",
-                  "            pm.collectionVariables.set(\"event_transmission_id\", event.headers[\"paypal-transmission-id\"]);",
-                  "            pm.collectionVariables.set(\"event_transmission_time\", event.headers[\"paypal-transmission-time\"]);",
-                  "            pm.collectionVariables.set(\"event_cert_url\", event.headers[\"paypal-cert-url\"]);",
-                  "            pm.collectionVariables.set(\"event_auth_algo\", event.headers[\"paypal-auth-algo\"]);",
-                  "            pm.collectionVariables.set(\"event_transmission_sig\", event.headers[\"paypal-transmission-sig\"]);",
+                  "            pm.variables.set(\"event_transmission_id\", event.headers[\"paypal-transmission-id\"]);",
+                  "            pm.variables.set(\"event_transmission_time\", event.headers[\"paypal-transmission-time\"]);",
+                  "            pm.variables.set(\"event_cert_url\", event.headers[\"paypal-cert-url\"]);",
+                  "            pm.variables.set(\"event_auth_algo\", event.headers[\"paypal-auth-algo\"]);",
+                  "            pm.variables.set(\"event_transmission_sig\", event.headers[\"paypal-transmission-sig\"]);",
                   "            var payload = atob(event.body);",
                   "            console.log(\"Verifying webhook of type=\", JSON.parse(payload).event_type, \"payload=\", payload);",
-                  "            pm.collectionVariables.set(\"event_webhook_payload\", payload);",
+                  "            pm.variables.set(\"event_webhook_payload\", payload);",
                   "            ",
                   "        } else {",
                   "            // webhooks takes a while to get delivered and appear at requestbin",
                   "            var webhooksView = \"https://requestbin.com/r/\"+pm.collectionVariables.get(\"pipedream_key\");",
-                  "            console.log(\"Waiting 30 seconds for webhooks to appear at \", webhooksView);",
+                  "            console.log(\"Waiting 20 seconds for events to appear at... \", webhooksView);",
                   "            setTimeout(function() {",
-                  "                return validateEvent();",
-                  "            }, 30000);",
+                  "                return validateEvent(retry+1);",
+                  "            }, 20000);",
                   "        }",
                   "    });",
                   "}",
@@ -35745,207 +35754,167 @@
   ],
   "variable": [
     {
-      "id": "2b2be832-5920-403a-87e3-382729f452c4",
+      "id": "7803af7e-7964-4bfb-9530-00d928db336b",
       "key": "PLEASE NOTE -->",
       "value": "< PayPal Public Collection comes with following default public set of credentials stored at the Collection level. \nYou may choose to override these values via environment level variables. You may bring your own credentials from PayPal Developer Dashboard there."
     },
     {
-      "id": "eb987a16-8b6b-4f17-9d38-27161b397bb6",
+      "id": "67c381a5-2012-49f2-904b-5f725bdc902c",
       "key": "base_url",
       "value": "https://api-m.sandbox.paypal.com"
     },
     {
-      "id": "d9d68f4d-ac30-4aa1-8f9e-81d171714454",
+      "id": "9f46648f-246b-452e-bba8-5e66e69dee76",
       "key": "client_id",
       "value": "AUv8rrc_P-EbP2E0mpb49BV7rFt3Usr-vdUZO8VGOnjRehGHBXkSzchr37SYF2GNdQFYSp72jh5QUhzG"
     },
     {
-      "id": "6b137525-8176-4013-91d0-682084576c73",
+      "id": "f82cca7d-25ba-4dfc-8073-56d3b5ffbc79",
       "key": "client_secret",
       "value": "EMnAWe06ioGtouJs7gLYT9chK9-2jJ--7MKRXpI8FesmY_2Kp-d_7aCqff7M9moEJBvuXoBO4clKtY0v"
     },
     {
-      "id": "7fa177b0-ea75-47c6-b9e2-8e46cd2b78d0",
+      "id": "d7bc8ea1-64cd-41a8-9371-c01fcaa07ca7",
       "key": "paypal_partner_attribution_id",
       "value": "TEST_ATTRIBUTION_ID"
     },
     {
-      "id": "5c9f80b0-7b6c-4d45-88c8-c24d2ab897b8",
+      "id": "0e0eb995-4afd-4703-8de9-859baf3ba82d",
       "key": "prefer_representation_min",
       "value": "return=minimal"
     },
     {
-      "id": "8d95c814-e07a-45c6-b749-acb6c0701617",
+      "id": "320de737-0805-4946-af8e-035eec412921",
       "key": "prefer_representation_detailed",
       "value": "return=representation"
     },
     {
-      "id": "1cc06de0-6df5-43ea-9d74-c06c2799a5fe",
+      "id": "91d404b1-71d8-4131-801e-821f8b254f1d",
       "key": "paypal_client_metadata_Id",
       "value": ""
     },
     {
-      "id": "7ca0a080-41f1-4b29-80dc-ed653b327c20",
+      "id": "f28273cd-400d-4323-8ad9-347e6e4e05af",
       "key": "paypal_auth_assertion",
       "value": ""
     },
     {
-      "id": "acaefb37-ee33-4f9b-b333-3e00b745e826",
+      "id": "0f99382f-eeb4-46fe-b23b-ab1db636709c",
       "key": "capture_id",
       "value": ""
     },
     {
-      "id": "7b30cf38-9689-4cb8-bf18-7fc43817f7b0",
+      "id": "ff7c8810-64a0-458e-986e-2e4479126f3b",
       "key": "billing_plan_id",
       "value": ""
     },
     {
-      "id": "1fc34b29-a46b-4bf1-93f7-de9ad7b6cc2f",
+      "id": "407f5791-fc0b-4eeb-9e0b-914d8a839d42",
       "key": "product_id",
       "value": "1645840190"
     },
     {
-      "id": "81b8ee77-c1ba-4dfe-bb0d-81bf3b6234bb",
+      "id": "bacabaf8-3871-4c32-9e01-bfdcf1d109c9",
       "key": "subscription_id",
       "value": ""
     },
     {
-      "id": "2fa67f7d-a371-4aff-9d2e-c5becfde87ce",
+      "id": "2640d19a-9950-48d7-a080-0c6b44fd7f0f",
       "key": "dispute_id",
       "value": ""
     },
     {
-      "id": "6bd63ff4-1834-4efe-827e-c3090f92b87a",
+      "id": "cfc3a061-07c4-486c-96bb-8e2ef099e3e0",
       "key": "authorization_id",
       "value": ""
     },
     {
-      "id": "45764df8-52f6-49d3-bf8a-e93f7e8021dc",
+      "id": "dd72c08c-f06d-4cc1-9c28-4abfcc80037f",
       "key": "refund_id",
       "value": ""
     },
     {
-      "id": "661b2a5a-9c7f-4c6f-abd3-27ce804e19cc",
+      "id": "c508e0bd-7328-4313-bdd1-34260a1aa533",
       "key": "webhook_id",
       "value": ""
     },
     {
-      "id": "caa4238a-b9fa-4f65-accc-5b7fb29991e5",
+      "id": "29b3ab1e-be44-461f-bd8c-57e38bdae401",
       "key": "webhook_url",
       "value": ""
     },
     {
-      "id": "80d8b9b9-a62a-41ee-86f3-07536ba187b6",
+      "id": "fb2c4f59-a198-4a37-a74d-6c93d7e24726",
       "key": "invoice_id",
       "value": ""
     },
     {
-      "id": "f4e0ce2a-48db-4951-87c1-4416c2f8cb26",
+      "id": "28e37a43-e791-4ee1-9089-0e856d32345d",
       "key": "invoice_template_id",
       "value": ""
     },
     {
-      "id": "48c90c75-9e20-433a-8663-6e88170fdc2e",
+      "id": "cd6ccfdf-3e8d-4fb8-a2ef-9f2ac81237d1",
       "key": "payout_batch_id",
       "value": ""
     },
     {
-      "id": "a2fcda6f-f165-4394-8adf-c516ffe350b6",
+      "id": "1fd53000-153d-4c08-9a11-0cd2f5365317",
       "key": "payout_item_id",
       "value": ""
     },
     {
-      "id": "a24ecbed-111e-4df2-b154-09cafe5fc731",
+      "id": "0f8a2689-ae54-4816-9c4a-48cb45409aee",
       "key": "web_profile_id",
       "value": ""
     },
     {
-      "id": "069b7279-125e-4d73-8ea6-9fe6c5f99081",
+      "id": "f2ec16e5-680d-483e-acd7-f4779537ab87",
       "key": "todays_date",
       "value": ""
     },
     {
-      "id": "128a7d7a-500a-4ed6-b6e0-588c59f92d37",
+      "id": "266f1248-51a4-4f6e-ae78-130d866b4816",
       "key": "tracking_number",
       "value": ""
     },
     {
-      "id": "1daa51ea-6dd6-49a6-aa3b-7e0abfe1ce39",
+      "id": "878e60d7-c109-488f-9330-f26712653871",
       "key": "tracking_id",
       "value": ""
     },
     {
-      "id": "cce1b2f1-ec63-4c2e-aa9c-e3a249db8104",
+      "id": "48e7b57e-0737-4f1b-a049-0bf71596873e",
       "key": "order_id",
       "value": ""
     },
     {
-      "id": "7d3268f9-66c1-4623-af77-67cb91ae2746",
+      "id": "4a73e9af-72a4-4e89-9bb7-09edf2edd54d",
       "key": "invoice_payment_id",
       "value": ""
     },
     {
-      "id": "0bf347f2-0556-4e9e-a47e-5ba8587044e1",
+      "id": "a383f4f8-d674-45a4-a500-e773f7cc4570",
       "key": "event_id",
       "value": ""
     },
     {
-      "id": "1754d7fd-ebc5-4152-a2ae-da80381861e1",
+      "id": "ee722259-797f-4e8f-a4e0-02a2674a8cda",
       "key": "access_token_expiry",
       "value": ""
     },
     {
-      "id": "86746d9b-e344-4f2e-a85d-0ed1593573be",
+      "id": "c86506fd-789e-4906-bbff-9c5c365865f2",
       "key": "access_token_for",
       "value": ""
     },
     {
-      "id": "15dcf710-62cc-465e-82ee-5b4035b521ff",
+      "id": "2856d43e-40dc-4bd7-a212-8161d5cd2aed",
       "key": "pipedream_key",
       "value": ""
     },
     {
-      "id": "bdfcf6f0-ac91-4278-996b-e9479b137124",
-      "key": "event_transmission_id",
-      "value": ""
-    },
-    {
-      "id": "822d3a3b-c1a8-4da1-98c0-6fc2729b40cb",
-      "key": "event_transmission_time",
-      "value": ""
-    },
-    {
-      "id": "cb58bdf9-9600-40f5-bccb-27cc6d66fceb",
-      "key": "event_cert_url",
-      "value": ""
-    },
-    {
-      "id": "5098792f-22a8-48e8-a4b5-5416c9c944c3",
-      "key": "event_auth_algo",
-      "value": ""
-    },
-    {
-      "id": "82ca8ca0-8ded-441b-8241-9b23d2a998e1",
-      "key": "event_transmission_sig",
-      "value": ""
-    },
-    {
-      "id": "477e9bd5-55f6-4fcb-9542-007ab081a962",
-      "key": "event_webhook_event",
-      "value": ""
-    },
-    {
-      "id": "c3afdd43-ae37-4086-afdd-8518d6996506",
-      "key": "event_webhook_body",
-      "value": ""
-    },
-    {
-      "id": "267b91d5-b04e-441c-a53c-527f34d93a89",
-      "key": "event_webhook_payload",
-      "value": ""
-    },
-    {
-      "id": "f9549f1a-3803-453d-bcb7-7d639debb218",
+      "id": "75fcb12f-4216-4263-9758-99ebce6a99ae",
       "key": "access_token",
       "value": ""
     }
