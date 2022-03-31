@@ -27373,130 +27373,7 @@
             "url": "{{base_url}}/v1/catalogs/products",
             "description": "Creates a product."
           },
-          "response": [
-            {
-              "id": "ff9260f4-b8ca-4e58-9798-d1dd3d349731",
-              "name": "Trigger a sample event",
-              "originalRequest": {
-                "method": "POST",
-                "header": [
-                  {
-                    "key": "Content-Type",
-                    "value": "application/json",
-                    "type": "text",
-                    "description": "The Content-Type header field is used to specify the nature of the data in the body of an entity. PayPal REST APIs support application/json."
-                  },
-                  {
-                    "key": "PayPal-Request-Id",
-                    "value": "{{$guid}}",
-                    "type": "text",
-                    "description": "The server stores keys for 6 hours. The API callers can request the times to up to 72 hours by speaking to their Account Manager."
-                  },
-                  {
-                    "key": "PayPal-Client-Metadata-Id",
-                    "value": "{{paypal_client_metadata_Id}}",
-                    "type": "text",
-                    "description": "Optional. Verifies that the payment originates from a valid, user-consented device and application. Reduces fraud and decreases declines. Transactions that do not include a client metadata ID are not eligible for PayPal Seller Protection.",
-                    "disabled": true
-                  },
-                  {
-                    "key": "PayPal-Partner-Attribution-Id",
-                    "value": "{{paypal_partner_attribution_id}}",
-                    "type": "text",
-                    "description": "Optional. Identifies the caller as a PayPal partner. To receive revenue attribution, specify a unique build notation (BN) code. BN codes provide tracking on all transactions that originate or are associated with a particular partner. To find your BN code, see Code and Credential Reference.",
-                    "disabled": true
-                  },
-                  {
-                    "key": "PayPal-Auth-Assertion",
-                    "value": "{{paypal_auth_assertion}}",
-                    "type": "text",
-                    "description": "An API client-provided JSON Web Token (JWT) assertion that identifies the merchant. To use this header, you must get consent to act on behalf of a merchant.\n",
-                    "disabled": true
-                  },
-                  {
-                    "key": "Prefer",
-                    "value": "{{prefer_representation_detailed}}",
-                    "type": "text",
-                    "description": "The preferred server response upon successful completion of the request. Value is:<ul><li><code>return=minimal</code>. The server returns a minimal response to optimize communication between the API caller and the server. A minimal response includes the <code>id</code>, <code>status</code> and HATEOAS links.</li><li><code>return=representation</code>. The server returns a complete resource representation, including the current state of the resource.</li></ul>",
-                    "disabled": true
-                  },
-                  {
-                    "key": "Prefer",
-                    "value": "{{prefer_representation_minimal}}",
-                    "description": "The preferred server response upon successful completion of the request. Value is:<ul><li><code>return=minimal</code>. The server returns a minimal response to optimize communication between the API caller and the server. A minimal response includes the <code>id</code>, <code>status</code> and HATEOAS links.</li><li><code>return=representation</code>. The server returns a complete resource representation, including the current state of the resource.</li></ul>",
-                    "type": "text",
-                    "disabled": true
-                  }
-                ],
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n    \"id\": \"evnt_{{$timestamp}}\",\n    \"name\": \"Soccer Event\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                },
-                "url": "{{base_url}}/v1/catalogs/products"
-              },
-              "status": "backend read error",
-              "code": 503,
-              "_postman_previewlanguage": "html",
-              "header": [
-                {
-                  "key": "Connection",
-                  "value": "close"
-                },
-                {
-                  "key": "Content-Length",
-                  "value": "449"
-                },
-                {
-                  "key": "Server",
-                  "value": "Varnish"
-                },
-                {
-                  "key": "Retry-After",
-                  "value": "0"
-                },
-                {
-                  "key": "Content-Type",
-                  "value": "text/html; charset=utf-8"
-                },
-                {
-                  "key": "Accept-Ranges",
-                  "value": "bytes"
-                },
-                {
-                  "key": "Date",
-                  "value": "Thu, 31 Mar 2022 07:21:11 GMT"
-                },
-                {
-                  "key": "Via",
-                  "value": "1.1 varnish"
-                },
-                {
-                  "key": "X-Served-By",
-                  "value": "cache-sjc10051-SJC"
-                },
-                {
-                  "key": "X-Cache",
-                  "value": "MISS"
-                },
-                {
-                  "key": "X-Cache-Hits",
-                  "value": "0"
-                },
-                {
-                  "key": "X-Timer",
-                  "value": "S1648711271.343465,VS0,VE135"
-                }
-              ],
-              "cookie": [],
-              "responseTime": null,
-              "body": "\n<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Strict//EN\"\n \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd\">\n<html>\n    <head>\n        <title>503 backend read error</title>\n    </head>\n    <body>\n        <h1>Error 503 backend read error</h1>\n        <p>backend read error</p>\n        <h3>Guru Mediation:</h3>\n        <p>Details: cache-sjc10051-SJC 1648711271 3470255415</p>\n        <hr>\n        <p>Varnish cache server</p>\n    </body>\n</html>"
-            }
-          ]
+          "response": []
         },
         {
           "name": "Verify webhook signature",
@@ -35926,167 +35803,167 @@
   ],
   "variable": [
     {
-      "id": "4c452582-30d1-4cf0-8faa-fb4d662f8f2b",
+      "id": "d6bbaa5e-aefa-4aa3-9176-e0b6f2142d3a",
       "key": "PLEASE NOTE -->",
       "value": "< PayPal Public Collection comes with following default public set of credentials stored at the Collection level. \nYou may choose to override these values via environment level variables. You may bring your own credentials from PayPal Developer Dashboard there."
     },
     {
-      "id": "12a47918-e46a-4d01-9f69-d27cbb76a2a0",
+      "id": "51ccd980-46bd-402a-8ce6-f52d5df59aa4",
       "key": "base_url",
       "value": "https://api-m.sandbox.paypal.com"
     },
     {
-      "id": "e9da99f3-3712-47fa-8c7d-5247772b486a",
+      "id": "d1ad142f-0a6f-4c35-9621-e3d2d83b2fd3",
       "key": "client_id",
       "value": "AUv8rrc_P-EbP2E0mpb49BV7rFt3Usr-vdUZO8VGOnjRehGHBXkSzchr37SYF2GNdQFYSp72jh5QUhzG"
     },
     {
-      "id": "83262392-af5d-470a-9fdc-f57cfd19fb12",
+      "id": "0d629d19-3313-49f9-bde1-847f3cda5559",
       "key": "client_secret",
       "value": "EMnAWe06ioGtouJs7gLYT9chK9-2jJ--7MKRXpI8FesmY_2Kp-d_7aCqff7M9moEJBvuXoBO4clKtY0v"
     },
     {
-      "id": "45a45876-9df6-4744-8437-afd5bb873518",
+      "id": "9a80a21b-761c-4cc9-b75b-284a991ab32f",
       "key": "paypal_partner_attribution_id",
       "value": "TEST_ATTRIBUTION_ID"
     },
     {
-      "id": "da5cb12c-4c18-4b66-bdbf-5c4e5f5a698c",
+      "id": "46971fb4-8479-4270-ba6c-7e1895784a69",
       "key": "prefer_representation_min",
       "value": "return=minimal"
     },
     {
-      "id": "f64a782c-d2ca-4a4a-b083-d41bcec273b5",
+      "id": "9338dd37-889c-440e-964d-eb479c0aded1",
       "key": "prefer_representation_detailed",
       "value": "return=representation"
     },
     {
-      "id": "d0ea4645-c9ec-4ff3-aca9-3e16374f726a",
+      "id": "dc1da9ef-8af4-4757-8c2a-64e9d0acf0f3",
       "key": "paypal_client_metadata_Id",
       "value": ""
     },
     {
-      "id": "7c608792-55b9-48f7-b6fa-6176b74ddc13",
+      "id": "db16b15a-9155-4bc6-9b0b-c67b07a31f02",
       "key": "paypal_auth_assertion",
       "value": ""
     },
     {
-      "id": "18651775-8726-4525-a2ae-71441832c0db",
+      "id": "4a2c2850-56c5-4baf-9a66-dea04b929da8",
       "key": "capture_id",
       "value": ""
     },
     {
-      "id": "1ce275f2-911f-4e84-a3f6-537dd798f87b",
+      "id": "4167c60a-2622-49fa-9a23-3135fc8ecfeb",
       "key": "billing_plan_id",
       "value": ""
     },
     {
-      "id": "cd331ffe-9546-46b7-8ed1-e23f019b6147",
+      "id": "ea5c184c-9ebc-49ba-9014-7579b9c3e780",
       "key": "product_id",
       "value": "1645840190"
     },
     {
-      "id": "f02c4462-1ae4-43f2-8f1c-553c348d4f39",
+      "id": "0929551b-f931-4871-9081-e894664f2930",
       "key": "subscription_id",
       "value": ""
     },
     {
-      "id": "8e831dc6-6475-48ef-8423-daff430bf64c",
+      "id": "85caa20f-1489-4efe-84ac-45679ddb3ab0",
       "key": "dispute_id",
       "value": ""
     },
     {
-      "id": "70053600-acbc-49e8-8367-fa485e902b25",
+      "id": "7f4e2923-6889-43e1-a80d-36bebed3aeb1",
       "key": "authorization_id",
       "value": ""
     },
     {
-      "id": "e8c72c83-f1a1-4385-8060-dc039b9e3237",
+      "id": "f1153b7f-f398-46de-b823-ad78231d3c29",
       "key": "refund_id",
       "value": ""
     },
     {
-      "id": "8c1be614-8c3e-474b-bcd8-c8cf13e53ad4",
+      "id": "2bd64687-6ae0-4be5-8fc9-cfe5a333f579",
       "key": "webhook_id",
       "value": ""
     },
     {
-      "id": "68d1d22a-957a-458e-aa17-1ae2baa20599",
+      "id": "6ef59fee-a1d8-4471-ab80-62dcce3aaaaf",
       "key": "webhook_url",
       "value": ""
     },
     {
-      "id": "a7348094-88cc-42a9-8361-418b9a3a2023",
+      "id": "bf915b81-85d8-4983-b9bb-983d8517843b",
       "key": "invoice_id",
       "value": ""
     },
     {
-      "id": "50bf0014-39fa-4fff-b041-52042bd032fc",
+      "id": "28f52ecc-0bd6-4c02-867f-778f1bca5757",
       "key": "invoice_template_id",
       "value": ""
     },
     {
-      "id": "6788cf61-f961-45b4-b73f-dc7f04b63c51",
+      "id": "aa4f03d8-98ed-4d25-ae1c-998334cbc89d",
       "key": "payout_batch_id",
       "value": ""
     },
     {
-      "id": "f7937a98-086d-4555-bc6d-2248e58eade4",
+      "id": "88305350-2b51-45ec-987f-6288648976f1",
       "key": "payout_item_id",
       "value": ""
     },
     {
-      "id": "8aab4bca-9167-41a4-9f9b-f893c3ac3689",
+      "id": "d21757b0-98c0-4a1a-98af-abd00df69d7a",
       "key": "web_profile_id",
       "value": ""
     },
     {
-      "id": "abbe5138-5579-412d-a64b-deeab07588f1",
+      "id": "a6477de6-edc1-40dd-b0da-cd8ae8d543f7",
       "key": "todays_date",
       "value": ""
     },
     {
-      "id": "2c915fef-bbbf-415b-8f81-a51641998aec",
+      "id": "ee59ac4f-4694-47b3-88fe-dc79a7ef03a2",
       "key": "tracking_number",
       "value": ""
     },
     {
-      "id": "8272e432-ce4c-4bba-8e7e-94f5997a712d",
+      "id": "3dce65d4-33b2-4ed5-9aea-697e16296000",
       "key": "tracking_id",
       "value": ""
     },
     {
-      "id": "a36453be-6c0f-4dcb-bd3c-4425cdc85efd",
+      "id": "35fd1af9-2e1d-43f2-a2ae-7113618d4be4",
       "key": "order_id",
       "value": ""
     },
     {
-      "id": "0b2d377c-1bc4-43eb-a728-07b0656833b8",
+      "id": "884d30b6-653a-483b-b9d9-2816e5b86cbe",
       "key": "invoice_payment_id",
       "value": ""
     },
     {
-      "id": "2eceb8f2-5d11-4fe7-b77d-45a10b20d2d9",
+      "id": "2b0cc49c-6e6a-482b-9787-b31deb51bafc",
       "key": "event_id",
       "value": ""
     },
     {
-      "id": "bfafdee3-0734-4b0c-98a1-186d1adc3418",
+      "id": "13d64d81-15c5-49bf-9c8d-c5f991114bc2",
       "key": "access_token_expiry",
       "value": ""
     },
     {
-      "id": "95ed3d09-da7d-4e89-ada6-b68711f12e35",
+      "id": "95ac6905-aba4-4ac5-950f-998215f56b3c",
       "key": "access_token_for",
       "value": ""
     },
     {
-      "id": "24450689-a9c5-4e82-93e1-d29e7824bd85",
+      "id": "2ddd4431-4ccd-4ed5-bd9a-6ca5927a167d",
       "key": "pipedream_key",
       "value": ""
     },
     {
-      "id": "c8facb58-01ca-46d9-8891-fd485b5cf52d",
+      "id": "b64361f7-0b49-43c5-8805-d04ceb4a3e90",
       "key": "access_token",
       "value": ""
     }
