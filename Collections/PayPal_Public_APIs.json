@@ -1,7 +1,7 @@
 {
   "info": {
     "_postman_id": "92a85d0e-51e7-47da-9f83-c45dcb1cdf24",
-    "name": "PayPal Public APIs 03/29/2022",
+    "name": "PayPal Public APIs 04/22/2022",
     "description": "# Getting Started\n\n## Step 1: Fork the collection using Run in Postman\n\n[](https://god.gw.postman.com/run-collection/19024122-92a85d0e-51e7-47da-9f83-c45dcb1cdf24?action=collection/fork&collection-url=entityId=19024122-92a85d0e-51e7-47da-9f83-c45dcb1cdf24&entityType=collection&workspaceId=345300e6-346e-42e0-aed1-53717919aef0#?env[PayPal%20Override%20Env]=W3sia2V5IjoiUGxlYXNlIE5vdGUgLS0+IiwidmFsdWUiOiI8IFBheVBhbCBQdWJsaWMgQ29sbGVjdGlvbiBjb21lcyB3aXRoIGRlZmF1bHQgcHVibGljIHNldCBvZiBjcmVkZW50aWFscyBzdG9yZWQgYXQgdGhlIENvbGxlY3Rpb24gbGV2ZWwuIFxuVGhpcyBlbnZpcm9ubWVudCBvdmVycmlkZXMgdGhvc2UgZGVmYXVsdCB2YXJpYWJsZXMuIFlvdSBtYXkgYnJpbmcgeW91ciBvd24gY3JlZGVudGlhbHMgZnJvbSBQYXlQYWwgRGV2ZWxvcGVyIERhc2hib2FyZCBhbmQgcGFzdGUgdGhlbSBoZXJlLiBEbyBub3QgZm9yZ290IHRvIGVuYWJsZSB0aGUgdmFpYWJsZSBieSBjaGVja2luZyB0aGUgYm94IGFuZCBoaXQgXCJTYXZlXCIgYmVmb3JlIGludm9raW5nIHRoZSBQYXlQYWwgQVBJcy4gPiIsImVuYWJsZWQiOnRydWV9LHsia2V5IjoiY2xpZW50X2lkIiwidmFsdWUiOiI8IGNvcHkgY3JlZGVudGlhbHMgZnJvbSB5b3VyIGRldmVsb3Blci5wYXlwYWwuY29tIGFuZCBwYXN0ZSB0aGVtIGhlcmUgPiIsImVuYWJsZWQiOmZhbHNlfSx7ImtleSI6ImNsaWVudF9zZWNyZXQiLCJ2YWx1ZSI6IjwgY29weSBjcmVkZW50aWFscyBmcm9tIHlvdXIgZGV2ZWxvcGVyLnBheXBhbC5jb20gYW5kIHBhc3RlIHRoZW0gaGVyZSA+IiwiZW5hYmxlZCI6ZmFsc2V9XQ==)\n\n[![](https://run.pstmn.io/button.svg)](https://god.gw.postman.com/run-collection/19024122-92a85d0e-51e7-47da-9f83-c45dcb1cdf24?action=collection/fork&collection-url=entityId=19024122-92a85d0e-51e7-47da-9f83-c45dcb1cdf24&entityType=collection&workspaceId=345300e6-346e-42e0-aed1-53717919aef0#?env[PayPal%20Override%20Env]=W3sia2V5IjoiUGxlYXNlIE5vdGUgLS0+IiwidmFsdWUiOiI8IFBheVBhbCBQdWJsaWMgQ29sbGVjdGlvbiBjb21lcyB3aXRoIGRlZmF1bHQgcHVibGljIHNldCBvZiBjcmVkZW50aWFscyBzdG9yZWQgYXQgdGhlIENvbGxlY3Rpb24gbGV2ZWwuIFxuVGhpcyBlbnZpcm9ubWVudCBvdmVycmlkZXMgdGhvc2UgZGVmYXVsdCB2YXJpYWJsZXMuIFlvdSBtYXkgYnJpbmcgeW91ciBvd24gY3JlZGVudGlhbHMgZnJvbSBQYXlQYWwgRGV2ZWxvcGVyIERhc2hib2FyZCBhbmQgcGFzdGUgdGhlbSBoZXJlLiBEbyBub3QgZm9yZ290IHRvIGVuYWJsZSB0aGUgdmFpYWJsZSBieSBjaGVja2luZyB0aGUgYm94IGFuZCBoaXQgXCJTYXZlXCIgYmVmb3JlIGludm9raW5nIHRoZSBQYXlQYWwgQVBJcy4gPiIsImVuYWJsZWQiOnRydWV9LHsia2V5IjoiY2xpZW50X2lkIiwidmFsdWUiOiI8IGNvcHkgY3JlZGVudGlhbHMgZnJvbSB5b3VyIGRldmVsb3Blci5wYXlwYWwuY29tIGFuZCBwYXN0ZSB0aGVtIGhlcmUgPiIsImVuYWJsZWQiOmZhbHNlfSx7ImtleSI6ImNsaWVudF9zZWNyZXQiLCJ2YWx1ZSI6IjwgY29weSBjcmVkZW50aWFscyBmcm9tIHlvdXIgZGV2ZWxvcGVyLnBheXBhbC5jb20gYW5kIHBhc3RlIHRoZW0gaGVyZSA+IiwiZW5hYmxlZCI6ZmFsc2V9XQ==)\n\n## Step 2: Get your access token\n\nAn access token is automatically generated using a default `client_id` and `secret`. PayPal recommends using your own `client_id` and `secret` from the [Developer Dashboard](https://www.paypal.com/signin?intent=developer&returnUri=https%3A%2F%2Fdeveloper.paypal.com%2Fdeveloper%2Fapplication) by entering the values under the **Variables** tab. A pre-request script will generate and manage the `access_token` automatically.\n\n> **Note:** Your developer account `client_id` and `secret` may have a different scope than the default `client_id` and `secret`.\n\n## Step 3: Make your first API call\n\nPayPal recommends starting with the Orders API. These steps will use the Orders API to create an order and capture payment using [sandbox accounts](https://developer.paypal.com/developer/accounts) linked to your Developer Dashboard account.\n\nTo create an order:\n\n1. In your workspace, navigate to your fork of the PayPal collection.\n1. Select **Orders > Create Order**.\n1. Select the **Send** button to create the order. On a successful call, the API returns a 201 order created response code.\n1. In the response, find the **approve** link.\n1. Open the **approve** link in a browser.\n1. Log in with your Developer Dashboard Sandbox Personal Account credentials. You can find those credentials by logging into the Developer Dashboard and selecting **Sandbox > Account**\n1. Select the **Continue** button. Payment has now been made.\n\nTo capture payment:\n\n1. In the response of the order you created, find the `order_id`.\n1. In the **Variables** tab, enter the `order_id` number.\n1. Select **Orders > Capture payment for order**.\n1. Select **Send**. On a successful call, the API returns a 201 order created response code.\n\nYour order has been created and payment has been captured. You can verify the transaction in both the sandbox personal account and the sandbox business account.\n\n![Buyer Payment Verification](https://www.paypalobjects.com/devdoc/transaction-details-buyer.png)\n![Seller Payment Verification](https://www.paypalobjects.com/devdoc/transaction-details-seller.png)",
     "schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
   },
@@ -35827,197 +35827,197 @@
   ],
   "variable": [
     {
-      "id": "509de8d9-2a1c-49a0-b5c5-4961518b537e",
+      "id": "cd4b532c-365d-4a23-a79e-2cbd1ce496b0",
       "key": "PLEASE NOTE -->",
       "value": "< PayPal Public Collection comes with following default public set of credentials stored at the Collection level. \nYou may choose to override these values via environment level variables. You may bring your own credentials from PayPal Developer Dashboard there."
     },
     {
-      "id": "c9c73ad2-f706-4492-a795-ac56dff53596",
+      "id": "bfcd107e-8d3e-4048-b10f-7e483426dbb7",
       "key": "base_url",
       "value": "https://api-m.sandbox.paypal.com"
     },
     {
-      "id": "95bf4423-a6f6-41fd-8965-eb84401fa791",
+      "id": "fc640682-db30-4eb5-9e02-05ca5430b32b",
       "key": "client_id",
       "value": "AUv8rrc_P-EbP2E0mpb49BV7rFt3Usr-vdUZO8VGOnjRehGHBXkSzchr37SYF2GNdQFYSp72jh5QUhzG"
     },
     {
-      "id": "95781165-875f-423a-8abb-99c44c0bcbed",
+      "id": "9a95c53a-ec40-47b5-8960-c43341ec4518",
       "key": "client_secret",
       "value": "EMnAWe06ioGtouJs7gLYT9chK9-2jJ--7MKRXpI8FesmY_2Kp-d_7aCqff7M9moEJBvuXoBO4clKtY0v"
     },
     {
-      "id": "8a56ba8d-89d3-44a9-a9b0-8e5a4221e6ef",
+      "id": "60520a9c-fbac-435e-9501-178ad3ea6024",
       "key": "paypal_partner_attribution_id",
       "value": "TEST_ATTRIBUTION_ID"
     },
     {
-      "id": "18386565-067c-4a29-a138-839283ed9352",
+      "id": "5d66278e-1f6a-4182-988a-510337777c5f",
       "key": "prefer_representation_min",
       "value": "return=minimal"
     },
     {
-      "id": "05c3749f-0ad3-40f5-abbf-ddbc6b9ea6ce",
+      "id": "9390e634-59c4-4c1f-9515-35750376fc02",
       "key": "prefer_representation_detailed",
       "value": "return=representation"
     },
     {
-      "id": "915511b6-66f9-42c0-84f7-d11bc37688b0",
+      "id": "225df820-761a-472f-85ca-5fe638cd2ae0",
       "key": "paypal_client_metadata_Id",
       "value": ""
     },
     {
-      "id": "85588218-39a4-4247-9463-fefcf3508a1b",
+      "id": "73e90bfd-1216-4a0a-b35d-10df7216a6bc",
       "key": "paypal_auth_assertion",
       "value": ""
     },
     {
-      "id": "2153893b-864d-477b-95dc-a41b100ac17d",
+      "id": "47e13c70-7036-4173-bc8e-44c2c183fe1b",
       "key": "capture_id",
       "value": ""
     },
     {
-      "id": "bb16f103-e4a9-490e-963d-5232460b5223",
+      "id": "28f0d36e-bad3-4a5f-a2c0-8190e270096e",
       "key": "billing_plan_id",
       "value": ""
     },
     {
-      "id": "fb23355b-f7e7-4f2d-97c3-c251e6d6980f",
+      "id": "c2aa0349-aa07-4bf3-92a5-fcc453d823fe",
       "key": "product_id",
       "value": "1645840190"
     },
     {
-      "id": "7dedebdf-722c-4ac6-9c25-a7df205bdeeb",
+      "id": "dc7c6520-f0df-4de0-a940-48a5439c7209",
       "key": "subscription_id",
       "value": ""
     },
     {
-      "id": "6ca2447a-3aa0-4af5-8fb2-05bda52494fd",
+      "id": "70e327cb-ae6a-442d-894c-183ccb95ea43",
       "key": "dispute_id",
       "value": ""
     },
     {
-      "id": "46c8c1af-7947-45ed-b53e-f7c97ec0c374",
+      "id": "6d2f164c-6d24-4ab3-a800-b38d12da19f4",
       "key": "authorization_id",
       "value": ""
     },
     {
-      "id": "009b9d12-e539-4e5b-924d-60e526f33bb6",
+      "id": "29bb7b03-a241-429b-924d-ae013969662d",
       "key": "refund_id",
       "value": ""
     },
     {
-      "id": "5f381ef4-e085-4128-9768-979d0857134f",
+      "id": "40577b93-e642-4a7c-9d57-1699f03b819f",
       "key": "webhook_id",
       "value": ""
     },
     {
-      "id": "0a0a2375-e3a0-4d67-8ca2-bc3dc43c5366",
+      "id": "3c19581b-cab1-41a9-bfe2-ea87e05caac4",
       "key": "webhook_url",
       "value": ""
     },
     {
-      "id": "fdc61f91-318a-432c-9a6e-86d8fff951ed",
+      "id": "61b793cb-2b7a-41ff-9783-17964bfd3bf0",
       "key": "invoice_id",
       "value": ""
     },
     {
-      "id": "7d6ebd74-9a16-46b9-a89b-a64b1aaa13ef",
+      "id": "f771c4da-50f0-4e63-ab10-9bcb43404692",
       "key": "invoice_template_id",
       "value": ""
     },
     {
-      "id": "eed38bba-31d3-423c-b321-40ce4826f60a",
+      "id": "8bb05532-5849-4916-b4fd-c0d9456c6b51",
       "key": "payout_batch_id",
       "value": ""
     },
     {
-      "id": "d54b50d9-91dc-4688-a4c0-7960d01045e0",
+      "id": "07f65263-8763-4ffa-b738-9bcf4bab538c",
       "key": "payout_item_id",
       "value": ""
     },
     {
-      "id": "ad0cca94-ed0a-4a99-bd15-1184f64d687c",
+      "id": "0bd171d0-457b-4212-9614-14ee930ca055",
       "key": "web_profile_id",
       "value": ""
     },
     {
-      "id": "1c5283c0-a3bd-495f-a3e3-e0f563e6cebb",
+      "id": "dcd4f832-8064-472e-9b38-42e86c72cb7c",
       "key": "todays_date",
       "value": ""
     },
     {
-      "id": "9eb7dd6e-20ef-41fd-a442-4620464a3ac2",
+      "id": "f5abf9d1-b83f-42c2-a57a-69190c357cc3",
       "key": "tracking_number",
       "value": ""
     },
     {
-      "id": "7cc6967b-a0ae-48d7-8bfa-3e7e37cb4d49",
+      "id": "2a165dbf-0121-4aa8-a404-402f627c5c9f",
       "key": "tracking_id",
       "value": ""
     },
     {
-      "id": "5cc85a6b-e627-4b3f-8e68-dd64fc26b40a",
+      "id": "495b2939-ae23-4680-af31-047c2c6f59ec",
       "key": "order_id",
       "value": ""
     },
     {
-      "id": "ce552f0b-47ad-47ee-8941-8e89204f549b",
+      "id": "e49ee60a-2e96-4753-9ef1-4666798e61c6",
       "key": "invoice_payment_id",
       "value": ""
     },
     {
-      "id": "4e5b0d03-efc3-4a77-b86f-7e5fe9b002dd",
+      "id": "61e05e1f-b14c-4ef8-8b98-8182a1225789",
       "key": "event_id",
       "value": ""
     },
     {
-      "id": "609a4f1c-08ec-497a-a7ab-2ac8a5df6dca",
+      "id": "ecb96b41-7103-4fd3-8f3e-f10d2e51d48e",
       "key": "access_token_expiry",
       "value": ""
     },
     {
-      "id": "2acf840d-7450-4e8d-915c-df7bd8650c14",
+      "id": "f7388f5f-bbdc-4154-a2ab-bf862d73f1ab",
       "key": "access_token_for",
       "value": ""
     },
     {
-      "id": "971b4dd4-74a8-45ba-9cae-66e4cb84f946",
+      "id": "02035075-8862-4a2d-b3af-c427e20d5da0",
       "key": "pipedream_key",
       "value": ""
     },
     {
-      "id": "a62a1a50-a6f0-4b0a-aefc-8c549ce26c0a",
+      "id": "2c9827bc-ec76-4754-a6b7-96a8ec1ae364",
       "key": "access_token",
       "value": ""
     },
     {
-      "id": "3d5ee856-e6e4-4ab9-bd38-ac954dc76a2e",
+      "id": "a611fbf9-3c29-45f3-8849-e3a7c4d309b7",
       "key": "event_transmission_id",
       "value": ""
     },
     {
-      "id": "1ee56b20-b4ff-4f1d-99e4-ed401748ef2c",
+      "id": "b196b780-237d-4edd-aa34-19514933bdff",
       "key": "event_transmission_time",
       "value": ""
     },
     {
-      "id": "550991ad-abbe-43fa-bf58-e7afda7d9e98",
+      "id": "9dfa01bd-95c4-4a46-9cbd-b7fbdfeaa0e2",
       "key": "event_cert_url",
       "value": ""
     },
     {
-      "id": "b094a002-c154-4e52-b862-702d07aa8637",
+      "id": "0a01dbf2-5d9b-4582-99c0-01361e0caace",
       "key": "event_auth_algo",
       "value": ""
     },
     {
-      "id": "8f8233a8-62fa-4e0d-9d01-37fc96677040",
+      "id": "18b89ecb-e415-4f6b-b625-650bdf60e31b",
       "key": "event_transmission_sig",
       "value": ""
     },
     {
-      "id": "17101926-836b-4c93-81a9-f095f94a706d",
+      "id": "590cbb31-89a3-45ca-b26f-c31b6084bf0a",
       "key": "event_webhook_payload",
       "value": ""
     }
