@@ -52358,7 +52358,7 @@
 									"        // skipping over rest of the dispute APIs since...",
 									"        // there are no active disputes created",
 									"        // they need a valid transaction and that is not available until buyer approval flow is completed.",
-									"        postman.setNextRequest(null);",
+									"        postman.setNextRequest(\"Create managed account\");",
 									"    }",
 									"});",
 									""
@@ -53729,7 +53729,7 @@
 								"id": "48489b2f-ffeb-4781-94d1-348e6803fe03",
 								"exec": [
 									"// skipping over rest of the dispute APIs since they need a valid transaction and that is not available until buyer approval flow is completed.",
-									"postman.setNextRequest(null);"
+									"postman.setNextRequest(\"Create managed account\");"
 								],
 								"type": "text/javascript"
 							}
