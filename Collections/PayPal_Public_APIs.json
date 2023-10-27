@@ -2405,7 +2405,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"intent\": \"CAPTURE\",\n    \"purchase_units\": [\n        {\n            \"items\": [\n                {\n                    \"name\": \"T-Shirt\",\n                    \"description\": \"Green XL\",\n                    \"quantity\": \"1\",\n                    \"unit_amount\": {\n                        \"currency_code\": \"USD\",\n                        \"value\": \"100.00\"\n                    }\n                }\n            ],\n            \"amount\": {\n                \"currency_code\": \"USD\",\n                \"value\": \"100.00\",\n                \"breakdown\": {\n                    \"item_total\": {\n                        \"currency_code\": \"USD\",\n                        \"value\": \"100.00\"\n                    }\n                }\n            }\n        }\n    ],\n    \"application_context\": {\n        \"return_url\": \"https://example.com/return\",\n        \"cancel_url\": \"https://example.com/cancel\"\n    }\n}",
+							"raw": "{\n    \"intent\": \"{{order_intent}}\",\n    \"purchase_units\": [\n        {\n            \"items\": [\n                {\n                    \"name\": \"T-Shirt\",\n                    \"description\": \"Green XL\",\n                    \"quantity\": \"1\",\n                    \"unit_amount\": {\n                        \"currency_code\": \"USD\",\n                        \"value\": \"100.00\"\n                    }\n                }\n            ],\n            \"amount\": {\n                \"currency_code\": \"USD\",\n                \"value\": \"100.00\",\n                \"breakdown\": {\n                    \"item_total\": {\n                        \"currency_code\": \"USD\",\n                        \"value\": \"100.00\"\n                    }\n                }\n            }\n        }\n    ],\n    \"application_context\": {\n        \"return_url\": \"https://example.com/return\",\n        \"cancel_url\": \"https://example.com/cancel\"\n    }\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -67547,194 +67547,247 @@
 	],
 	"variable": [
 		{
+			"id": "8ac5794b-7643-4d8d-8742-1837b5ee219a",
 			"key": "PLEASE NOTE -->",
 			"value": "< PayPal Public Collection comes with following default public set of credentials stored at the Collection level. \nYou may choose to override these values via environment level variables. You may bring your own credentials from PayPal Developer Dashboard there."
 		},
 		{
+			"id": "5e5daed5-35e0-49e8-8726-2fa97d79193e",
 			"key": "base_url",
 			"value": "https://api-m.sandbox.paypal.com"
 		},
 		{
+			"id": "68cfc50e-a93e-42b3-9058-e3c4c04ab75d",
 			"key": "client_id",
 			"value": "AUv8rrc_P-EbP2E0mpb49BV7rFt3Usr-vdUZO8VGOnjRehGHBXkSzchr37SYF2GNdQFYSp72jh5QUhzG"
 		},
 		{
+			"id": "eb33a7d3-945d-4ca0-92e2-05a8fe3d1321",
 			"key": "client_secret",
 			"value": "EMnAWe06ioGtouJs7gLYT9chK9-2jJ--7MKRXpI8FesmY_2Kp-d_7aCqff7M9moEJBvuXoBO4clKtY0v"
 		},
 		{
+			"id": "1cc5d4e8-ad4c-411b-8669-22752817206e",
 			"key": "managed_path_client_id",
 			"value": "ASJ7ZDtuc9fT8cDWY-EEt6xtnUCe0QiJa9Zn5Eme_rb3SfVIlbWZlu4KU87hKKFl8wxUCMRZ-HP49FTd"
 		},
 		{
+			"id": "deb28530-3f13-4afc-9dbb-b4dc0c8fc141",
 			"key": "managed_path_client_secret",
 			"value": "EN3AlrRVld1MnsZwYK1o2RJAxSAdv9DnrwNQCo3s3HOm45NAFQtzQhc4U5HsmwBpikVfX8uXUF7Ajb3t"
 		},
 		{
+			"id": "fd6b8dbb-cfd0-4748-85e0-67f89ba0d34a",
 			"key": "access_token",
 			"value": ""
 		},
 		{
+			"id": "0df5061a-6685-4522-babb-bf98dcdf7172",
 			"key": "access_token_expiry",
 			"value": ""
 		},
 		{
+			"id": "9f7a1a9b-90db-40f8-98a6-ee61b61ca4d4",
 			"key": "access_token_for",
 			"value": ""
 		},
 		{
+			"id": "5f11af66-0879-4792-b898-50b077b38eef",
 			"key": "authorization_id",
 			"value": ""
 		},
 		{
+			"id": "9906a0f4-de44-453a-a792-68242fd62242",
 			"key": "billing_plan_id",
 			"value": ""
 		},
 		{
+			"id": "71cc1fa0-8b72-4f4e-b399-409bcd7c8c96",
 			"key": "capture_id",
 			"value": ""
 		},
 		{
+			"id": "f4c3ffb9-ee0e-4963-9ba9-13db571892a1",
 			"key": "dispute_id",
 			"value": ""
 		},
 		{
+			"id": "a2586ab7-6780-4541-a651-9a1fdd619b9f",
 			"key": "event_auth_algo",
 			"value": ""
 		},
 		{
+			"id": "d57758b8-ba1c-40a9-85bd-a85c7fe7c358",
 			"key": "event_cert_url",
 			"value": ""
 		},
 		{
+			"id": "1ffc1420-ca98-4974-85c3-871091359363",
 			"key": "event_id",
 			"value": ""
 		},
 		{
+			"id": "1892758a-62b2-4209-bbb6-d2156753b7ae",
 			"key": "event_transmission_id",
 			"value": ""
 		},
 		{
+			"id": "47a5f080-d07b-4b59-bedb-456bb8ecc3a0",
 			"key": "event_transmission_sig",
 			"value": ""
 		},
 		{
+			"id": "03568822-32c7-4123-aa78-8824bc1c186d",
 			"key": "event_transmission_time",
 			"value": ""
 		},
 		{
+			"id": "b6776b5f-96e4-4853-b8fa-0e271a09c7de",
 			"key": "event_webhook_payload",
 			"value": ""
 		},
 		{
+			"id": "a9107367-87d8-4267-89cb-621bf0be01a2",
 			"key": "invoice_id",
 			"value": ""
 		},
 		{
+			"id": "c5c20841-683f-4a82-8091-7cb18db55a5a",
 			"key": "invoice_payment_id",
 			"value": ""
 		},
 		{
+			"id": "0ccc4f63-539e-437f-8e59-a9cc69452545",
 			"key": "invoice_template_id",
 			"value": ""
 		},
 		{
+			"id": "4b93ecb6-f682-4491-ba1a-ab9fc0444d6d",
 			"key": "managed_path_access_token",
 			"value": ""
 		},
 		{
+			"id": "4584158f-520b-48d1-b910-2b45e23f9a90",
 			"key": "managed_path_access_token_expiry",
 			"value": ""
 		},
 		{
+			"id": "4ca0a7fe-05c2-4ecb-a3e1-7264b766cfdd",
 			"key": "managed_path_access_token_for",
 			"value": ""
 		},
 		{
+			"id": "25ce77a9-87f6-4296-a367-c1c0ba73cad6",
 			"key": "managed_path_account_id",
 			"value": ""
 		},
 		{
+			"id": "2d70bd1d-5565-4f47-aa1e-64936d09bc2c",
 			"key": "managed_path_external_id",
 			"value": ""
 		},
 		{
+			"id": "731a4c41-16c4-429f-a638-2c905a1cb314",
 			"key": "managed_path_organization",
 			"value": "us"
 		},
 		{
+			"id": "dc1e2c69-7d3e-4fc0-9033-cd2ced2f72ea",
 			"key": "managed_path_person_id",
 			"value": ""
 		},
 		{
+			"id": "52c1dffe-92bb-4511-95c0-0cae82b99474",
 			"key": "order_id",
 			"value": ""
 		},
 		{
+			"id": "d42b920e-f03f-4303-8033-a0853fde81c2",
+			"key": "order_intent",
+			"value": "CAPTURE"
+		},
+		{
+			"id": "485fed30-bf2e-4893-85c8-ef08edf9253f",
 			"key": "payout_batch_id",
 			"value": ""
 		},
 		{
+			"id": "e2b0fbc9-8caf-4f11-acc8-8db074c93046",
 			"key": "payout_item_id",
 			"value": ""
 		},
 		{
+			"id": "b6be5688-1ab3-4196-96d8-15d54b0d224e",
 			"key": "paypal_auth_assertion",
 			"value": ""
 		},
 		{
+			"id": "39b758f3-220c-4c6a-9ecf-5f24371154a7",
 			"key": "paypal_client_metadata_Id",
 			"value": ""
 		},
 		{
+			"id": "18bac493-0c30-4ddf-9714-b6a36d48b4a7",
 			"key": "paypal_partner_attribution_id",
 			"value": "TEST_ATTRIBUTION_ID"
 		},
 		{
+			"id": "403bcfda-c620-4398-bd1a-bc979a63cb62",
 			"key": "pipedream_key",
 			"value": ""
 		},
 		{
+			"id": "26e49b6c-c147-468b-bab8-1c7feaccaa19",
 			"key": "prefer_representation_detailed",
 			"value": "return=representation"
 		},
 		{
+			"id": "04261b20-aa16-4753-bbbb-ab4ef97133cc",
 			"key": "prefer_representation_min",
 			"value": "return=minimal"
 		},
 		{
+			"id": "d5db81a4-731c-48d4-bfaa-6edb0ecc0c4e",
 			"key": "product_id",
 			"value": "1645840190"
 		},
 		{
+			"id": "5f418761-c081-483e-8640-a41560e60d0d",
 			"key": "refund_id",
 			"value": ""
 		},
 		{
+			"id": "8fd7c056-f224-4f2c-86d5-6273d22a0f27",
 			"key": "subscription_id",
 			"value": ""
 		},
 		{
+			"id": "ed287d27-55ab-4f56-8764-122173a39618",
 			"key": "todays_date",
 			"value": ""
 		},
 		{
+			"id": "a6cdbb76-f655-41e1-ae77-6f05cc6b4625",
 			"key": "tracking_id",
 			"value": ""
 		},
 		{
+			"id": "304d6ae6-a2e1-44af-a8f3-5f5e34743a63",
 			"key": "tracking_number",
 			"value": ""
 		},
 		{
+			"id": "8e3dbc80-59e7-4440-a833-38c5f386268a",
 			"key": "web_profile_id",
 			"value": ""
 		},
 		{
+			"id": "e633c586-1c13-493e-b29d-8f380c8718a3",
 			"key": "webhook_id",
 			"value": ""
 		},
 		{
+			"id": "8848eae0-86b9-4375-bd9d-b7354d4ea05c",
 			"key": "webhook_url",
 			"value": ""
 		}
