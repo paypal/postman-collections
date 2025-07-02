@@ -1,25 +1,30 @@
 
-function needsNewAccessToken({ accessTokenVar, accessTokenExpiryVar, forClientIdVar, clientIdVar }) {
+import { AccessTokenConfig, RefreshTokenConfig, AccessTokenResponse } from './types';
+
+export function needsNewAccessToken({ accessTokenVar, accessTokenExpiryVar, forClientIdVar, clientIdVar }: AccessTokenConfig): boolean {
   const expiry = pm.collectionVariables.get(accessTokenExpiryVar);
   const token = pm.collectionVariables.get(accessTokenVar);
   const clientId = pm.variables.get(clientIdVar);
   const forClient = pm.collectionVariables.get(forClientIdVar);
 
-  const isExpired = !expiry || expiry <= Date.now();
+  const expiryTime = expiry ? parseInt(expiry, 10) : 0;
+  const isExpired = !expiry || expiryTime <= Date.now();
   const isMissing = !token || !forClient || forClient !== clientId;
   const isTokenEndpoint = pm.request.url.path.join('/').includes('/oauth2/token');
 
   return !isTokenEndpoint && (isExpired || isMissing);
 }
 
-function refreshAccessToken({
-  accessTokenVar,
-  accessTokenExpiryVar,
-  forClientIdVar,
-  clientIdVar,
-  clientSecretVar,
-  baseUrlVar
-}, callback) {
+export function refreshAccessToken(config: RefreshTokenConfig, callback?: () => void): void {
+  const {
+    accessTokenVar,
+    accessTokenExpiryVar,
+    forClientIdVar,
+    clientIdVar,
+    clientSecretVar,
+    baseUrlVar
+  } = config;
+
   const clientId = pm.variables.get(clientIdVar);
   const clientSecret = pm.variables.get(clientSecretVar);
   const baseUrl = pm.variables.get(baseUrlVar);
@@ -41,9 +46,9 @@ function refreshAccessToken({
   pm.collectionVariables.unset(accessTokenExpiryVar);
   pm.collectionVariables.unset(forClientIdVar);
 
-  pm.sendRequest(request, function (err, res) {
+  pm.sendRequest(request, function (err: any, res: any) {
     if (res.code === 200) {
-      const json = res.json();
+      const json: AccessTokenResponse = res.json();
       console.log("Saving the access_token");
       pm.collectionVariables.set(accessTokenVar, json.access_token);
       const expiry = new Date();
@@ -57,12 +62,8 @@ function refreshAccessToken({
   });
 }
 
-function storeAccessToken(responseJson, {
-  accessTokenVar,
-  accessTokenExpiryVar,
-  forClientIdVar,
-  clientIdVar
-}) {
+export function storeAccessToken(responseJson: AccessTokenResponse, config: AccessTokenConfig): void {
+  const { accessTokenVar, accessTokenExpiryVar, forClientIdVar, clientIdVar } = config;
   const clientId = pm.variables.get(clientIdVar);
 
   pm.collectionVariables.set(accessTokenVar, responseJson.access_token);
@@ -76,9 +77,3 @@ function storeAccessToken(responseJson, {
     console.log("Logged in using App =", responseJson.client_metadata.display_name);
   }
 }
-
-module.exports = {
-  needsNewAccessToken,
-  refreshAccessToken,
-  storeAccessToken
-};
