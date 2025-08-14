@@ -40,14 +40,14 @@ Then use the library functions:
 
 ```javascript
 // Check if access token needs refresh
-if (paypalPostman.needsNewAccessToken({
+if (this.PayPalPostmanUtils.needsNewAccessToken({
   accessTokenVar: 'access_token',
   accessTokenExpiryVar: 'access_token_expiry', 
   forClientIdVar: 'for_client_id',
   clientIdVar: 'client_id'
 })) {
   // Refresh the token
-  paypalPostman.refreshAccessToken({
+  this.PayPalPostmanUtils.refreshAccessToken({
     accessTokenVar: 'access_token',
     accessTokenExpiryVar: 'access_token_expiry',
     forClientIdVar: 'for_client_id', 
@@ -58,10 +58,10 @@ if (paypalPostman.needsNewAccessToken({
 }
 
 // Get PayPal Debug ID from response
-const debugId = paypalPostman.getPayPalDebugId();
+const debugId = this.PayPalPostmanUtils.getPayPalDebugId();
 
 // Check if running in sandbox
-const isSandbox = paypalPostman.isSandbox();
+const isSandbox = this.PayPalPostmanUtils.isSandbox();
 ```
 
 ## Available Functions
