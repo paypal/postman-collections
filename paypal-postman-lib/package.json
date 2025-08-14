@@ -1,0 +1,28 @@
+{
+  "name": "paypal-postman-lib",
+  "version": "1.0.0",
+  "description": "A lightweight TypeScript library of reusable helper utilities for PayPal Postman collections. Centralizes shared pre-request and test script code to avoid duplication across collections.",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc && webpack --mode production",
+    "dev": "tsc --watch",
+    "clean": "rm -rf dist",
+    "typecheck": "tsc --noEmit"
+  },
+  "keywords": [
+    "typescript",
+    "javascript",
+    "library",
+    "lightweight"
+  ],
+  "author": "Sam Gabbard",
+  "license": "MIT",
+  "devDependencies": {
+    "typescript": "^5.0.0",
+    "@types/node": "^20.0.0",
+    "webpack": "^5.0.0",
+    "webpack-cli": "^4.0.0",
+    "ts-loader": "^9.0.0"
+  }
+}

@@ -1,0 +1,10 @@
+# Dependencies
+node_modules/
+/paypal-postman-lib/node_modules/
+npm-debug.log
+package-lock.json
+
+# Build outputs
+/paypal-postman-lib/dist/
+*.min.js
+*.bundle.js
