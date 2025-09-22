@@ -1,0 +1,2311 @@
+{
+	"info": {
+		"_postman_id": "605b61ce-368c-4a3a-83d4-70d26e5f4403",
+		"name": "PayPal Checkout Flows",
+		"description": "This folder provides a collection of PayPal Checkout flows. The PayPal + Expanded Checkout folder contains flows for **PayPal standard Checkout, Expanded Checkout** along with **Explanded Checkout with 3DS**. For Expanded Checkout (Save Payment Methods) it includes examples for both **Save During Purchase** (vaulting while completing a purchase) and **Save for Purchase Later** (vaulting a method before a future charge).",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Expanded Checkout - Save Payment Methods",
+			"item": [
+				{
+					"name": "Save for Purchase Later",
+					"item": [
+						{
+							"name": "Vault before checkout, Payment Source: Card Non-3DS",
+							"item": [
+								{
+									"name": "Create Setup Token - Card",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "a5d67880-59db-4e06-88dd-9245c11bb779",
+												"exec": [
+													"",
+													"",
+													"const response = pm.response.json();",
+													"",
+													"pm.collectionVariables.set('setup_token_id', response.id);",
+													"",
+													""
+												],
+												"type": "text/javascript",
+												"packages": {}
+											}
+										},
+										{
+											"listen": "prerequest",
+											"script": {
+												"id": "8023f363-a56c-42ee-9075-103b4d733d01",
+												"exec": [
+													"//These test card numbers comes from here - https://developer.paypal.com/braintree/docs/guides/credit-cards/testing-go-live/java",
+													"var cards = [",
+													"'378282246310005',",
+													"'371449635398431',",
+													"'36259600000004',",
+													"'6011000991300009',",
+													"'3530111333300000',",
+													"'6304000000000000',",
+													"'5555555555554444',",
+													"'2223000048400011',",
+													"'4111111111111111',",
+													"'4005519200000004',",
+													"'4009348888881881',",
+													"'4012000033330026',",
+													"'4012000077777777',",
+													"'4012888888881881',",
+													"'4217651111111119',",
+													"'4500600000000061',",
+													"'6243030000000001',",
+													"'6221261111117766',",
+													"'6223164991230014'];",
+													"",
+													"pm.variables.set(\"card_number\", cards[Math.floor(Math.random() * 5)]);",
+													"const expiry = new Date(new Date().setFullYear(new Date().getFullYear() + 10)).toISOString().slice(0, 7);",
+													"pm.variables.set(\"expiry\", expiry);",
+													""
+												],
+												"type": "text/javascript",
+												"packages": {}
+											}
+										}
+									],
+									"id": "4dcef8b0-4205-4e7c-b733-9c2de1d13a4f",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Bearer {{access_token}}"
+											},
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"payment_source\": {\n        \"card\": {\n            \"number\": \"{{card_number}}\",\n            \"expiry\": \"{{expiry}}\",\n            \"name\": \"John Doe\",\n            \"billing_address\": {\n                    \"address_line_1\": \"2211 N First Street\",\n                    \"address_line_2\": \"Building 17\",\n                    \"admin_area_2\": \"San Jose\",\n                    \"admin_area_1\": \"CA\",\n                    \"postal_code\": \"95131\",\n                    \"country_code\": \"US\"\n             }    \n        }\n    }\n}"
+										},
+										"url": "{{base_url}}/v3/vault/setup-tokens"
+									},
+									"response": []
+								},
+								{
+									"name": "Create Payment Token from Setup Token",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "68f37fcd-a3bb-4e78-a5de-05b08fc9735f",
+												"exec": [
+													"const response = pm.response.json();",
+													"",
+													"pm.collectionVariables.set('payment_token_id', response.id);",
+													"pm.collectionVariables.set('vault_id', response.id);",
+													""
+												],
+												"type": "text/javascript",
+												"packages": {}
+											}
+										}
+									],
+									"id": "c440411d-896c-43d2-b9ab-b369c4151fb4",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Bearer {{access_token}}"
+											},
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"payment_source\": {\n        \"token\": {\n            \"type\": \"SETUP_TOKEN\",\n            \"id\": \"{{setup_token_id}}\"\n        }\n    }\n}"
+										},
+										"url": "{{base_url}}/v3/vault/payment-tokens"
+									},
+									"response": []
+								},
+								{
+									"name": "Create Order with Card Vaulted Payment Method",
+									"id": "efde150c-5f5a-4ce2-89e7-20d71c82d1dc",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Bearer {{access_token}}"
+											},
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"key": "PayPal-Request-Id",
+												"value": "{{$timestamp}}",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"intent\": \"CAPTURE\",\n    \"payment_source\": {\n        \"card\": {\n            \"vault_id\": \"{{vault_id}}\",\n            \"attributes\": {\n                \"customer\": {\n                    \"id\": \"vwxj123\"\n                }\n            }\n        }\n    },\n    \"purchase_units\": [\n        {\n            \"amount\": {\n                \"currency_code\": \"USD\",\n                \"value\": \"63.00\",\n                \"breakdown\": {\n                    \"item_total\": {\n                        \"value\": \"63.00\",\n                        \"currency_code\": \"USD\"\n                    }\n                }\n            },\n            \"items\": [\n                {\n                    \"name\": \"Holiday Sock Pack\",\n                    \"description\": \"Festive Socks - Size L\",\n                    \"unit_amount\": {\n                        \"currency_code\": \"USD\",\n                        \"value\": \"21.00\"\n                    },\n                    \"quantity\": \"3\",\n                    \"category\": \"PHYSICAL_GOODS\",\n                    \"sku\": \"sku01\",\n                    \"upc\": {\n                        \"type\": \"UPC-A\",\n                        \"code\": \"123456789012\"\n                    },\n                    \"image_url\": \"https://example.com/static/images/items/1/holiday_sock_pack.jpg\",\n                    \"url\": \"https://example.com/url-to-the-item-being-purchased-1\"\n                }\n            ]\n        }\n    ]\n}"
+										},
+										"url": "{{base_url}}/v2/checkout/orders"
+									},
+									"response": []
+								},
+								{
+									"name": "Delete  Payment Token",
+									"id": "4b4d6f75-0cdc-417c-ad40-7dacbaceabee",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"auth": {
+											"type": "noauth"
+										},
+										"method": "DELETE",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Bearer {{access_token}}",
+												"type": "text"
+											},
+											{
+												"key": "Content-Type",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"url": "{{base_url}}/v3/vault/payment-tokens/{{vault_id}}"
+									},
+									"response": []
+								}
+							],
+							"id": "ad1c01d6-4fed-494f-9d35-4cd66f1d5f6f",
+							"description": "This collection folder represents the flow for vaulting a payment method **before checkout** using the payment source **‘Card,**’ **without** requiring **3D Secure** authentication.\n\nSee the mapped **flow** here: [https://www.postman.com/paypal/paypal-public-api-workspace/flow/68923109c3fd990013460eb7](https://www.postman.com/paypal/paypal-public-api-workspace/flow/68923109c3fd990013460eb7)"
+						},
+						{
+							"name": "Vault before checkout, Payment Source: Card - 3DS",
+							"item": [
+								{
+									"name": "Create Setup Token - Card 3DS",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "a5d67880-59db-4e06-88dd-9245c11bb779",
+												"exec": [
+													"const response = pm.response.json();",
+													"",
+													"pm.collectionVariables.set('setup_token_id', response.id);",
+													""
+												],
+												"type": "text/javascript",
+												"packages": {}
+											}
+										},
+										{
+											"listen": "prerequest",
+											"script": {
+												"id": "8023f363-a56c-42ee-9075-103b4d733d01",
+												"exec": [
+													"//These test card numbers comes from here - https://developer.paypal.com/braintree/docs/guides/credit-cards/testing-go-live/java",
+													"var cards = [",
+													"'378282246310005',",
+													"'371449635398431',",
+													"'36259600000004',",
+													"'6011000991300009',",
+													"'3530111333300000',",
+													"'6304000000000000',",
+													"'5555555555554444',",
+													"'2223000048400011',",
+													"'4111111111111111',",
+													"'4005519200000004',",
+													"'4009348888881881',",
+													"'4012000033330026',",
+													"'4012000077777777',",
+													"'4012888888881881',",
+													"'4217651111111119',",
+													"'4500600000000061',",
+													"'6243030000000001',",
+													"'6221261111117766',",
+													"'6223164991230014'];",
+													"",
+													"pm.variables.set(\"card_number\", cards[Math.floor(Math.random() * 5)]);",
+													"const expiry = new Date(new Date().setFullYear(new Date().getFullYear() + 10)).toISOString().slice(0, 7);",
+													"pm.variables.set(\"expiry\", expiry);",
+													""
+												],
+												"type": "text/javascript",
+												"packages": {}
+											}
+										}
+									],
+									"id": "0854d10c-7599-4e29-b2f7-255bd61882e8",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Bearer {{access_token}}"
+											},
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"payment_source\": {\n        \"card\": {\n            \"number\": \"{{card_number}}\",\n            \"expiry\": \"{{expiry}}\",\n            \"name\": \"John Doe\",\n            \"billing_address\": {\n                    \"address_line_1\": \"2211 N First Street\",\n                    \"address_line_2\": \"Building 17\",\n                    \"admin_area_2\": \"San Jose\",\n                    \"admin_area_1\": \"CA\",\n                    \"postal_code\": \"95131\",\n                    \"country_code\": \"US\"\n             }    \n        },\n        \"verification_method\": \"3D_SECURE\",\n        \"experience_context\": {\n            \"locale\": \"en-US\",\n            \"return_url\": \"https://example.com/returnUrl\",\n            \"cancel_url\": \"https://example.com/cancelUrl\"\n        }\n    }\n}"
+										},
+										"url": "{{base_url}}/v3/vault/setup-tokens"
+									},
+									"response": []
+								},
+								{
+									"name": "Create Payment Token from Setup Token",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "68f37fcd-a3bb-4e78-a5de-05b08fc9735f",
+												"exec": [
+													"const response = pm.response.json();",
+													"",
+													"pm.collectionVariables.set('payment_token_id', response.id);",
+													"pm.collectionVariables.set('vault_id', response.id);",
+													""
+												],
+												"type": "text/javascript",
+												"packages": {}
+											}
+										}
+									],
+									"id": "d02940ea-7757-4004-b50d-05a1089d386b",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Bearer {{access_token}}"
+											},
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"payment_source\": {\n        \"token\": {\n            \"type\": \"SETUP_TOKEN\",\n            \"id\": \"{{setup_token_id}}\"\n        }\n    }\n}"
+										},
+										"url": "{{base_url}}/v3/vault/payment-tokens"
+									},
+									"response": []
+								},
+								{
+									"name": "Create Order with Card Vaulted Payment Method",
+									"id": "6f258b95-59f5-483f-b486-0c57441eb3d4",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Bearer {{access_token}}"
+											},
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"key": "PayPal-Request-Id",
+												"value": "{{$timestamp}}",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"intent\": \"CAPTURE\",\n    \"payment_source\": {\n        \"card\": {\n            \"vault_id\": \"{{vault_id}}\",\n            \"attributes\": {\n                \"customer\": {\n                    \"id\": \"vwxj123\"\n                }\n            }\n        }\n    },\n    \"purchase_units\": [\n        {\n            \"amount\": {\n                \"currency_code\": \"USD\",\n                \"value\": \"60.00\",\n                \"breakdown\": {\n                    \"item_total\": {\n                        \"value\": \"60.00\",\n                        \"currency_code\": \"USD\"\n                    }\n                }\n            },\n            \"items\": [\n                {\n                    \"name\": \"Holiday Sock Pack\",\n                    \"description\": \"Festive Socks - Size L\",\n                    \"unit_amount\": {\n                        \"currency_code\": \"USD\",\n                        \"value\": \"20.00\"\n                    },\n                    \"quantity\": \"3\",\n                    \"category\": \"PHYSICAL_GOODS\",\n                    \"sku\": \"sku01\",\n                    \"upc\": {\n                        \"type\": \"UPC-A\",\n                        \"code\": \"123456789012\"\n                    },\n                    \"image_url\": \"https://example.com/static/images/items/1/holiday_sock_pack.jpg\",\n                    \"url\": \"https://example.com/url-to-the-item-being-purchased-1\"\n                }\n            ]\n        }\n    ]\n}"
+										},
+										"url": "{{base_url}}/v2/checkout/orders"
+									},
+									"response": []
+								},
+								{
+									"name": "Delete  Payment Token",
+									"id": "90d3869f-24dd-46c8-b8d0-6ad5fbf0873c",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"auth": {
+											"type": "noauth"
+										},
+										"method": "DELETE",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Bearer {{access_token}}",
+												"type": "text"
+											},
+											{
+												"key": "Content-Type",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"url": "{{base_url}}/v3/vault/payment-tokens/{{vault_id}}"
+									},
+									"response": []
+								}
+							],
+							"id": "cb29e3b2-4607-4b4d-a5fb-71407908f123",
+							"description": "This collection folder represents the flow for vaulting a payment method **before checkout** using the payment source **‘Card,**’ requiring **3D Secure** authentication.\n\nSee the mapped **flow** here: [https://www.postman.com/paypal/paypal-public-api-workspace/flow/689230edc3fd990013460ea3](https://www.postman.com/paypal/paypal-public-api-workspace/flow/689230edc3fd990013460ea3)"
+						},
+						{
+							"name": "Vault before checkout,  Payment Source:  PayPal",
+							"item": [
+								{
+									"name": "Create Setup Token with  PayPal",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "a5d67880-59db-4e06-88dd-9245c11bb779",
+												"exec": [
+													"",
+													"",
+													"const response = pm.response.json();",
+													"",
+													"pm.collectionVariables.set('setup_token_id', response.id);",
+													"",
+													""
+												],
+												"type": "text/javascript",
+												"packages": {}
+											}
+										},
+										{
+											"listen": "prerequest",
+											"script": {
+												"packages": {},
+												"type": "text/javascript"
+											}
+										}
+									],
+									"id": "512718ff-7b0b-46d6-810b-5773c86b0771",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Bearer {{access_token}}"
+											},
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"payment_source\": {\n        \"paypal\": {\n            \"description\": \"Description for PayPal to be shown to PayPal payer\",\n            \"shipping\": {\n                \"name\": {\n                    \"full_name\": \"John Doe\"\n                },\n                \"address\": {\n                    \"address_line_1\": \"2211 N First Street\",\n                    \"address_line_2\": \"Building 17\",\n                    \"admin_area_2\": \"San Jose\",\n                    \"admin_area_1\": \"CA\",\n                    \"postal_code\": \"95131\",\n                    \"country_code\": \"US\"\n                }\n            },\n            \"permit_multiple_payment_tokens\": true,\n            \"usage_pattern\": \"{{usage_pattern}}\",\n            \"usage_type\": \"MERCHANT\",\n            \"customer_type\": \"CONSUMER\",\n            \"experience_context\": {\n                \"locale\": \"en-US\",\n                \"return_url\": \"https://example.com/returnUrl\",\n                \"cancel_url\": \"https://example.com/cancelUrl\"\n            }\n        }\n    }\n}"
+										},
+										"url": "{{base_url}}/v3/vault/setup-tokens"
+									},
+									"response": []
+								},
+								{
+									"name": "Create Payment Token from Setup Token",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "68f37fcd-a3bb-4e78-a5de-05b08fc9735f",
+												"exec": [
+													"const response = pm.response.json();",
+													"",
+													"pm.collectionVariables.set('payment_token_id', response.id);",
+													"pm.collectionVariables.set('vault_id', response.id);",
+													""
+												],
+												"type": "text/javascript",
+												"packages": {}
+											}
+										}
+									],
+									"id": "ce6c5051-fd98-4051-a7d7-cba099107c80",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Bearer {{access_token}}"
+											},
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"payment_source\": {\n        \"token\": {\n            \"type\": \"SETUP_TOKEN\",\n            \"id\": \"{{setup_token_id}}\"\n        }\n    }\n}"
+										},
+										"url": "{{base_url}}/v3/vault/payment-tokens"
+									},
+									"response": []
+								},
+								{
+									"name": "Create Order with Paypal Vaulted Payment Method",
+									"id": "94956f6e-d6da-4e4c-8263-a13436d85cc5",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Bearer {{access_token}}"
+											},
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"key": "PayPal-Request-Id",
+												"value": "{{$timestamp}}",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"intent\": \"CAPTURE\",\n    \"payment_source\": {\n        \"paypal\": {\n            \"vault_id\": \"{{vault_id}}\",\n            \"attributes\": {\n                \"customer\": {\n                    \"id\": \"vwxj123\"\n                }\n            }\n        }\n    },\n    \"purchase_units\": [\n        {\n            \"amount\": {\n                \"currency_code\": \"USD\",\n                \"value\": \"60.00\",\n                \"breakdown\": {\n                    \"item_total\": {\n                        \"value\": \"60.00\",\n                        \"currency_code\": \"USD\"\n                    }\n                }\n            },\n            \"items\": [\n                {\n                    \"name\": \"Holiday Sock Pack\",\n                    \"description\": \"Festive Socks - Size L\",\n                    \"unit_amount\": {\n                        \"currency_code\": \"USD\",\n                        \"value\": \"20.00\"\n                    },\n                    \"quantity\": \"3\",\n                    \"category\": \"PHYSICAL_GOODS\",\n                    \"sku\": \"sku01\",\n                    \"upc\": {\n                        \"type\": \"UPC-A\",\n                        \"code\": \"123456789012\"\n                    },\n                    \"image_url\": \"https://example.com/static/images/items/1/holiday_sock_pack.jpg\",\n                    \"url\": \"https://example.com/url-to-the-item-being-purchased-1\"\n                }\n            ]\n        }\n    ]\n}"
+										},
+										"url": "{{base_url}}/v2/checkout/orders"
+									},
+									"response": []
+								},
+								{
+									"name": "Delete  Payment Token",
+									"id": "8e106aca-1c40-4f02-9172-efc9ac198d7c",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"auth": {
+											"type": "noauth"
+										},
+										"method": "DELETE",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Bearer {{access_token}}",
+												"type": "text"
+											},
+											{
+												"key": "Content-Type",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"url": "{{base_url}}/v3/vault/payment-tokens/{{vault_id}}"
+									},
+									"response": []
+								}
+							],
+							"id": "043dd85d-67f6-459c-a1ac-10c36275479f",
+							"description": "This collection folder demonstrates vaulting a payment method **before checkout** using the payment source : **PayPal.**\n\nFind the mapped flow here: [https://www.postman.com/paypal/paypal-public-api-workspace/flow/68922f92772c6500130f67a1](https://www.postman.com/paypal/paypal-public-api-workspace/flow/68922f92772c6500130f67a1)"
+						}
+					],
+					"id": "88ef14dd-9b34-4fc5-a6ef-b8d34bcfbd25",
+					"description": "Save a payment method now and charge the payer later, without requiring their presence at checkout. A common use case is offering a free trial and automatically collecting payment once the trial period ends.\n\n**Example use case:**  \nA subscription service like Netflix lets new customers sign up for a free trial. During signup, the customer’s payment method (Card/PayPal) is vaulted(saved) before any payment is charged. When the trial ends, Netflix (the merhcant) automatically charges the vaulted account without requiring the customer to return to checkout. This can also be initiated by the buyer when they enroll in Autopay."
+				},
+				{
+					"name": "Save During Purchase",
+					"item": [
+						{
+							"name": "Vault at checkout, Payment Source: Card Non-3DS",
+							"item": [
+								{
+									"name": "Create order with Card",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "e0b15f14-8a51-47e4-b4f7-ce163335e29c",
+												"exec": [
+													"responseData = JSON.parse(responseBody);\r",
+													"\r",
+													"pm.collectionVariables.set(\"order_id\", responseData.id);\r",
+													"\r",
+													"\r",
+													"pm.collectionVariables.set(\"capture_id\", responseData.purchase_units[0].payments.captures[0].id);\r",
+													"pm.collectionVariables.set(\"vault_id\", responseData.payment_source.card.attributes.vault.id)\r",
+													""
+												],
+												"type": "text/javascript",
+												"packages": {}
+											}
+										},
+										{
+											"listen": "prerequest",
+											"script": {
+												"id": "bec4dcb5-0003-4488-a122-cf07cac48c4c",
+												"exec": [
+													"//These test card numbers comes from here - https://developer.paypal.com/braintree/docs/guides/credit-cards/testing-go-live/java",
+													"var cards = [",
+													"'378282246310005',",
+													"'371449635398431',",
+													"'36259600000004',",
+													"'6011000991300009',",
+													"'3530111333300000',",
+													"'6304000000000000',",
+													"'5555555555554444',",
+													"'2223000048400011',",
+													"'4111111111111111',",
+													"'4005519200000004',",
+													"'4009348888881881',",
+													"'4012000033330026',",
+													"'4012000077777777',",
+													"'4012888888881881',",
+													"'4217651111111119',",
+													"'4500600000000061',",
+													"'6243030000000001',",
+													"'6221261111117766',",
+													"'6223164991230014'];",
+													"",
+													"pm.variables.set(\"card_number\", cards[Math.floor(Math.random() * 5)]);",
+													"const expiry = new Date(new Date().setFullYear(new Date().getFullYear() + 10)).toISOString().slice(0, 7);",
+													"pm.variables.set(\"expiry\", expiry);",
+													"pm.variables.set(\"order_intent\", \"CAPTURE\");",
+													""
+												],
+												"type": "text/javascript",
+												"packages": {}
+											}
+										}
+									],
+									"id": "ae9768d6-2878-4205-a4cf-aeadf1ea4dae",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "Authorization",
+												"value": "Bearer {{access_token}}",
+												"type": "text"
+											},
+											{
+												"key": "PayPal-Request-Id",
+												"value": "{{$guid}}",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"intent\": \"{{order_intent}}\",\r\n    \"payment_source\": {\r\n        \"card\": {\r\n            \"number\": \"{{card_number}}\",\r\n            \"expiry\": \"{{expiry}}\",\r\n            \"name\": \"John Doe OrderCard3DS\",\r\n            \"billing_address\": {\r\n                \"address_line_1\": \"2211 N First Street\",\r\n                \"address_line_2\": \"Building 17\",\r\n                \"admin_area_2\": \"San Jose\",\r\n                \"admin_area_1\": \"CA\",\r\n                \"postal_code\": \"95131\",\r\n                \"country_code\": \"US\"\r\n                },\r\n             \"attributes\": {\r\n                    \"vault\": {\r\n                        \"store_in_vault\": \"ON_SUCCESS\"\r\n                    }\r\n                },\r\n            \"experience_context\": {\r\n                \"return_url\": \"https://www.example.com/success/\",\r\n                \"cancel_url\": \"https://www.example.com/cancelled/\"\r\n                }\r\n        }\r\n    },\r\n    \"purchase_units\": [\r\n        {\r\n            \"amount\": {\r\n                \"currency_code\": \"USD\",\r\n                \"value\": \"82.04\",\r\n                \"breakdown\": {\r\n                    \"item_total\": {\r\n                        \"currency_code\": \"USD\",\r\n                        \"value\": \"80.00\"\r\n                    },\r\n                    \"shipping\": {\r\n                        \"currency_code\": \"USD\",\r\n                        \"value\": \"2.04\"\r\n                    }\r\n                }\r\n            },\r\n            \"items\": [\r\n                {\r\n                    \"name\": \"Holiday Sock Pack\",\r\n                    \"description\": \"Festive Socks - Size L\",\r\n                    \"unit_amount\": {\r\n                        \"currency_code\": \"USD\",\r\n                        \"value\": \"20.00\"\r\n                    },\r\n                    \"quantity\": \"3\",\r\n                    \"category\": \"PHYSICAL_GOODS\",\r\n                    \"sku\": \"sku01\",\r\n                    \"upc\": {\r\n                        \"type\": \"UPC-A\",\r\n                        \"code\": \"123456789012\"\r\n                    },\r\n                    \"image_url\": \"https://example.com/static/images/items/1/holiday_sock_pack.jpg\",\r\n                    \"url\": \"https://example.com/url-to-the-item-being-purchased-1\"\r\n                },\r\n                {\r\n                    \"name\": \"Socks Rock Shirt\",\r\n                    \"description\": \"Socks Rock Tanktop - L\",\r\n                    \"sku\": \"sku02\",\r\n                    \"unit_amount\": {\r\n                        \"currency_code\": \"USD\",\r\n                        \"value\": \"20.00\"\r\n                    },\r\n                    \"quantity\": \"1\",\r\n                    \"image_url\": \"https://example.com/static/images/items/1/socks_rock_tank.jpg\",\r\n                    \"url\": \"https://example.com/url-to-the-item-being-purchased-2\",\r\n                    \"upc\": {\r\n                        \"type\": \"UPC-A\",\r\n                        \"code\": \"987654321012\"\r\n                    }\r\n                }\r\n            ]\r\n        }\r\n    ]\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": "{{base_url}}/v2/checkout/orders"
+									},
+									"response": []
+								},
+								{
+									"name": "Recurring Order with Paypal Vaulted Payment Method",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "36a4db87-2b1e-45e9-809c-33d1ce826075",
+												"exec": [
+													"responseData = JSON.parse(responseBody);\r",
+													"\r",
+													"pm.collectionVariables.set(\"capture_id\", responseData.purchase_units[0].payments.captures[0].id);"
+												],
+												"type": "text/javascript",
+												"packages": {}
+											}
+										}
+									],
+									"id": "6bf3a845-9bd5-49a1-871d-f7436ac6186e",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "PayPal-Request-Id",
+												"value": "{{$timestamp}}",
+												"type": "text"
+											},
+											{
+												"key": "Authorization",
+												"value": "Bearer {{access_token}}",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"intent\": \"CAPTURE\",\r\n    \"payment_source\": {\r\n        \"card\": {\r\n            \"vault_id\": \"{{vault_id}}\",\r\n            \"attributes\": {\r\n                \"customer\": {\r\n                    \"id\": \"vwxj123\"\r\n                }\r\n            }\r\n        }\r\n    },\r\n    \"purchase_units\": [\r\n        {\r\n            \"amount\": {\r\n                \"currency_code\": \"USD\",\r\n                \"value\": \"60.00\",\r\n                \"breakdown\": {\r\n                    \"item_total\": {\r\n                        \"value\": \"60.00\",\r\n                        \"currency_code\": \"USD\"\r\n                    }\r\n                }\r\n            },\r\n            \"items\": [\r\n                {\r\n                    \"name\": \"Holiday Sock Pack\",\r\n                    \"description\": \"Festive Socks - Size L\",\r\n                    \"unit_amount\": {\r\n                        \"currency_code\": \"USD\",\r\n                        \"value\": \"20.00\"\r\n                    },\r\n                    \"quantity\": \"3\",\r\n                    \"category\": \"PHYSICAL_GOODS\",\r\n                    \"sku\": \"sku01\",\r\n                    \"upc\": {\r\n                        \"type\": \"UPC-A\",\r\n                        \"code\": \"123456789012\"\r\n                    },\r\n                    \"image_url\": \"https://example.com/static/images/items/1/holiday_sock_pack.jpg\",\r\n                    \"url\": \"https://example.com/url-to-the-item-being-purchased-1\"\r\n                }\r\n            ]\r\n        }\r\n    ]\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": "{{base_url}}/v2/checkout/orders"
+									},
+									"response": []
+								},
+								{
+									"name": "Delete  Payment Token",
+									"id": "87aa9404-9a90-42f5-a8da-7a2d8d959b65",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"auth": {
+											"type": "noauth"
+										},
+										"method": "DELETE",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Bearer {{access_token}}",
+												"type": "text"
+											},
+											{
+												"key": "Content-Type",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"url": "{{base_url}}/v3/vault/payment-tokens/{{vault_id}}"
+									},
+									"response": []
+								}
+							],
+							"id": "363410f5-19cc-4baa-902e-8183db37f91c",
+							"description": "This collection folder represents the flow for vaulting a payment method **at checkout** using the payment source **‘Card,’** without requiring **3D Secure** authentication.\n\nSee the mapped **flow** here: [https://www.postman.com/paypal/paypal-public-api-workspace/flow/68922dfbc3fd990013460d77](https://www.postman.com/paypal/paypal-public-api-workspace/flow/68922dfbc3fd990013460d77)"
+						},
+						{
+							"name": "Vault at checkout, Payment Source: Card - 3DS",
+							"item": [
+								{
+									"name": "Create order with Card 3DS",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "e0b15f14-8a51-47e4-b4f7-ce163335e29c",
+												"exec": [
+													"responseData = JSON.parse(responseBody);\r",
+													"\r",
+													"pm.collectionVariables.set(\"order_id\", responseData.id);\r",
+													"\r",
+													"pm.collectionVariables.set(\"capture_id\", responseData.purchase_units[0].payments.captures[0].id);\r",
+													"pm.collectionVariables.set(\"vault_id\", responseData.payment_source.card.attributes.vault.id)\r",
+													""
+												],
+												"type": "text/javascript",
+												"packages": {}
+											}
+										},
+										{
+											"listen": "prerequest",
+											"script": {
+												"id": "bec4dcb5-0003-4488-a122-cf07cac48c4c",
+												"exec": [
+													"//These test card numbers comes from here - https://developer.paypal.com/braintree/docs/guides/credit-cards/testing-go-live/java",
+													"var cards = [",
+													"'378282246310005',",
+													"'371449635398431',",
+													"'36259600000004',",
+													"'6011000991300009',",
+													"'3530111333300000',",
+													"'6304000000000000',",
+													"'5555555555554444',",
+													"'2223000048400011',",
+													"'4111111111111111',",
+													"'4005519200000004',",
+													"'4009348888881881',",
+													"'4012000033330026',",
+													"'4012000077777777',",
+													"'4012888888881881',",
+													"'4217651111111119',",
+													"'4500600000000061',",
+													"'6243030000000001',",
+													"'6221261111117766',",
+													"'6223164991230014'];",
+													"",
+													"pm.variables.set(\"card_number\", cards[Math.floor(Math.random() * 5)]);",
+													"const expiry = new Date(new Date().setFullYear(new Date().getFullYear() + 10)).toISOString().slice(0, 7);",
+													"pm.variables.set(\"expiry\", expiry);",
+													"pm.variables.set(\"order_intent\", \"CAPTURE\");",
+													""
+												],
+												"type": "text/javascript",
+												"packages": {}
+											}
+										}
+									],
+									"id": "2eacbd91-0780-48ac-ba0d-bfa30ab1a2af",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "Authorization",
+												"value": "Bearer {{access_token}}",
+												"type": "text"
+											},
+											{
+												"key": "PayPal-Request-Id",
+												"value": "{{$guid}}",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"intent\": \"{{order_intent}}\",\r\n    \"payment_source\": {\r\n        \"card\": {\r\n            \"number\": \"{{card_number}}\",\r\n            \"expiry\": \"{{expiry}}\",\r\n            \"name\": \"John Doe\",\r\n            \"billing_address\": {\r\n                \"address_line_1\": \"2211 N First Street\",\r\n                \"address_line_2\": \"Building 17\",\r\n                \"admin_area_2\": \"San Jose\",\r\n                \"admin_area_1\": \"CA\",\r\n                \"postal_code\": \"95131\",\r\n                \"country_code\": \"US\"\r\n                },\r\n             \"attributes\": {\r\n                    \"vault\": {\r\n                        \"store_in_vault\": \"ON_SUCCESS\"\r\n                    },\r\n                    \"verification\": {\r\n                        \"methode\" : \"3D_SECURE\"\r\n                    }\r\n                },\r\n            \"experience_context\": {\r\n                \"return_url\": \"https://www.example.com/success/\",\r\n                \"cancel_url\": \"https://www.example.com/cancelled/\"\r\n                }\r\n        }\r\n    },\r\n    \"purchase_units\": [\r\n        {\r\n            \"amount\": {\r\n                \"currency_code\": \"USD\",\r\n                \"value\": \"82.04\",\r\n                \"breakdown\": {\r\n                    \"item_total\": {\r\n                        \"currency_code\": \"USD\",\r\n                        \"value\": \"80.00\"\r\n                    },\r\n                    \"shipping\": {\r\n                        \"currency_code\": \"USD\",\r\n                        \"value\": \"2.04\"\r\n                    }\r\n                }\r\n            },\r\n            \"items\": [\r\n                {\r\n                    \"name\": \"Holiday Sock Pack\",\r\n                    \"description\": \"Festive Socks - Size L\",\r\n                    \"unit_amount\": {\r\n                        \"currency_code\": \"USD\",\r\n                        \"value\": \"20.00\"\r\n                    },\r\n                    \"quantity\": \"3\",\r\n                    \"category\": \"PHYSICAL_GOODS\",\r\n                    \"sku\": \"sku01\",\r\n                    \"upc\": {\r\n                        \"type\": \"UPC-A\",\r\n                        \"code\": \"123456789012\"\r\n                    },\r\n                    \"image_url\": \"https://example.com/static/images/items/1/holiday_sock_pack.jpg\",\r\n                    \"url\": \"https://example.com/url-to-the-item-being-purchased-1\"\r\n                },\r\n                {\r\n                    \"name\": \"Socks Rock Shirt\",\r\n                    \"description\": \"Socks Rock Tanktop - L\",\r\n                    \"sku\": \"sku02\",\r\n                    \"unit_amount\": {\r\n                        \"currency_code\": \"USD\",\r\n                        \"value\": \"20.00\"\r\n                    },\r\n                    \"quantity\": \"1\",\r\n                    \"image_url\": \"https://example.com/static/images/items/1/socks_rock_tank.jpg\",\r\n                    \"url\": \"https://example.com/url-to-the-item-being-purchased-2\",\r\n                    \"upc\": {\r\n                        \"type\": \"UPC-A\",\r\n                        \"code\": \"987654321012\"\r\n                    }\r\n                }\r\n            ]\r\n        }\r\n    ]\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": "{{base_url}}/v2/checkout/orders"
+									},
+									"response": []
+								},
+								{
+									"name": "Recurring Order with Paypal Vaulted Payment Method",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "36a4db87-2b1e-45e9-809c-33d1ce826075",
+												"exec": [
+													"responseData = JSON.parse(responseBody);\r",
+													"\r",
+													"pm.collectionVariables.set(\"capture_id\", responseData.purchase_units[0].payments.captures[0].id);"
+												],
+												"type": "text/javascript",
+												"packages": {}
+											}
+										}
+									],
+									"id": "da7ff587-27a6-4cb5-a98e-0538e20284bf",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "PayPal-Request-Id",
+												"value": "{{$timestamp}}",
+												"type": "text"
+											},
+											{
+												"key": "Authorization",
+												"value": "Bearer {{access_token}}",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"intent\": \"CAPTURE\",\r\n    \"payment_source\": {\r\n        \"card\": {\r\n            \"vault_id\": \"{{vault_id}}\",\r\n            \"attributes\": {\r\n                \"customer\": {\r\n                    \"id\": \"vwxj123\"\r\n                }\r\n            }\r\n        }\r\n    },\r\n    \"purchase_units\": [\r\n        {\r\n            \"amount\": {\r\n                \"currency_code\": \"USD\",\r\n                \"value\": \"60.00\",\r\n                \"breakdown\": {\r\n                    \"item_total\": {\r\n                        \"value\": \"60.00\",\r\n                        \"currency_code\": \"USD\"\r\n                    }\r\n                }\r\n            },\r\n            \"items\": [\r\n                {\r\n                    \"name\": \"Holiday Sock Pack\",\r\n                    \"description\": \"Festive Socks - Size L\",\r\n                    \"unit_amount\": {\r\n                        \"currency_code\": \"USD\",\r\n                        \"value\": \"20.00\"\r\n                    },\r\n                    \"quantity\": \"3\",\r\n                    \"category\": \"PHYSICAL_GOODS\",\r\n                    \"sku\": \"sku01\",\r\n                    \"upc\": {\r\n                        \"type\": \"UPC-A\",\r\n                        \"code\": \"123456789012\"\r\n                    },\r\n                    \"image_url\": \"https://example.com/static/images/items/1/holiday_sock_pack.jpg\",\r\n                    \"url\": \"https://example.com/url-to-the-item-being-purchased-1\"\r\n                }\r\n            ]\r\n        }\r\n    ]\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": "{{base_url}}/v2/checkout/orders"
+									},
+									"response": []
+								},
+								{
+									"name": "Delete  Payment Token",
+									"id": "ab8fff1c-4f12-4772-b884-6e21dd36612b",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"auth": {
+											"type": "noauth"
+										},
+										"method": "DELETE",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Bearer {{access_token}}",
+												"type": "text"
+											},
+											{
+												"key": "Content-Type",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"url": "{{base_url}}/v3/vault/payment-tokens/{{vault_id}}"
+									},
+									"response": []
+								}
+							],
+							"id": "c049ce1b-21b2-4327-a380-d30455962f4e",
+							"description": "This collection folder represents the flow for vaulting a payment method **at checkout** using the payment source **‘Card,’** requiring **3D Secure** authentication.\n\nSee the mapped **flow** here: [https://www.postman.com/paypal/paypal-public-api-workspace/flow/68922e97772c6500130f6749](https://www.postman.com/paypal/paypal-public-api-workspace/flow/68922e97772c6500130f6749)"
+						},
+						{
+							"name": "Vault at checkout, Payment Source: PayPal",
+							"item": [
+								{
+									"name": "Create order with PayPal",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "e0b15f14-8a51-47e4-b4f7-ce163335e29c",
+												"exec": [
+													"responseData = JSON.parse(responseBody);\r",
+													"\r",
+													"pm.collectionVariables.set(\"order_id\", responseData.id);\r",
+													"\r",
+													"\r",
+													""
+												],
+												"type": "text/javascript",
+												"packages": {}
+											}
+										},
+										{
+											"listen": "prerequest",
+											"script": {
+												"id": "bec4dcb5-0003-4488-a122-cf07cac48c4c",
+												"exec": [
+													"pm.variables.set(\"order_intent\", \"CAPTURE\");"
+												],
+												"type": "text/javascript",
+												"packages": {}
+											}
+										}
+									],
+									"id": "0e9282e1-1dc1-42ba-92a9-51156ef25530",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "Authorization",
+												"value": "Bearer {{access_token}}",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"intent\": \"{{order_intent}}\",\r\n    \"payment_source\": {\r\n        \"paypal\": {\r\n            \"attributes\": {\r\n                \"vault\": {\r\n                    \"store_in_vault\": \"ON_SUCCESS\",\r\n                    \"usage_type\": \"MERCHANT\"\r\n                }\r\n            },\r\n            \"experience_context\": {\r\n                \"return_url\": \"https://www.example.com/success/\",\r\n                \"cancel_url\": \"https://www.example.com/cancelled/\",\r\n                \"user_action\": \"PAY_NOW\",\r\n                \"shipping_preference\": \"GET_FROM_FILE\"\r\n            }\r\n        }\r\n    },\r\n    \"purchase_units\": [\r\n        {\r\n            \"amount\": {\r\n                \"currency_code\": \"USD\",\r\n                \"value\": \"81.04\",\r\n                \"breakdown\": {\r\n                    \"item_total\": {\r\n                        \"currency_code\": \"USD\",\r\n                        \"value\": \"80.00\"\r\n                    },\r\n                    \"shipping\": {\r\n                        \"currency_code\": \"USD\",\r\n                        \"value\": \"1.04\"\r\n                    }\r\n                }\r\n            },\r\n            \"items\": [\r\n                {\r\n                    \"name\": \"Holiday Sock Pack\",\r\n                    \"description\": \"Festive Socks - Size L\",\r\n                    \"unit_amount\": {\r\n                        \"currency_code\": \"USD\",\r\n                        \"value\": \"20.00\"\r\n                    },\r\n                    \"quantity\": \"3\",\r\n                    \"category\": \"PHYSICAL_GOODS\",\r\n                    \"sku\": \"sku01\",\r\n                    \"upc\": {\r\n                        \"type\": \"UPC-A\",\r\n                        \"code\": \"123456789012\"\r\n                    },\r\n                    \"image_url\": \"https://example.com/static/images/items/1/holiday_sock_pack.jpg\",\r\n                    \"url\": \"https://example.com/url-to-the-item-being-purchased-1\"\r\n                },\r\n                {\r\n                    \"name\": \"Socks Rock Shirt\",\r\n                    \"description\": \"Socks Rock Tanktop - L\",\r\n                    \"sku\": \"sku02\",\r\n                    \"unit_amount\": {\r\n                        \"currency_code\": \"USD\",\r\n                        \"value\": \"20.00\"\r\n                    },\r\n                    \"quantity\": \"1\",\r\n                    \"image_url\": \"https://example.com/static/images/items/1/socks_rock_tank.jpg\",\r\n                    \"url\": \"https://example.com/url-to-the-item-being-purchased-2\",\r\n                    \"upc\": {\r\n                        \"type\": \"UPC-A\",\r\n                        \"code\": \"987654321012\"\r\n                    }\r\n                }\r\n            ]\r\n        }\r\n    ]\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": "{{base_url}}/v2/checkout/orders"
+									},
+									"response": []
+								},
+								{
+									"name": "Capture order",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "7f125c6b-6462-4a2b-9b8e-b92c1e5ca5db",
+												"exec": [
+													"responseData = JSON.parse(responseBody);\r",
+													"\r",
+													"pm.collectionVariables.set(\"capture_id\", responseData.purchase_units[0].payments.captures[0].id);\r",
+													"pm.collectionVariables.set(\"vault_id\", responseData.payment_source.paypal.attributes.vault.id)"
+												],
+												"type": "text/javascript",
+												"packages": {}
+											}
+										}
+									],
+									"id": "a2525b0a-26ef-4a11-8c26-eb2e3e2df24c",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "Authorization",
+												"value": "Bearer {{access_token}}",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": "{{base_url}}/v2/checkout/orders/{{order_id}}/capture"
+									},
+									"response": []
+								},
+								{
+									"name": "Recurring Order with Paypal Vaulted Payment Method",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "36a4db87-2b1e-45e9-809c-33d1ce826075",
+												"exec": [
+													"responseData = JSON.parse(responseBody);\r",
+													"\r",
+													"pm.collectionVariables.set(\"capture_id\", responseData.purchase_units[0].payments.captures[0].id);"
+												],
+												"type": "text/javascript",
+												"packages": {}
+											}
+										}
+									],
+									"id": "0321d152-7d14-4f8b-a422-c88376033c7c",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "PayPal-Request-Id",
+												"value": "{{$timestamp}}",
+												"type": "text"
+											},
+											{
+												"key": "Authorization",
+												"value": "Bearer {{access_token}}",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"intent\": \"CAPTURE\",\r\n    \"payment_source\": {\r\n        \"paypal\": {\r\n            \"vault_id\": \"{{vault_id}}\",\r\n            \"attributes\": {\r\n                \"customer\": {\r\n                    \"id\": \"vwxj123\"\r\n                }\r\n            }\r\n        }\r\n    },\r\n    \"purchase_units\": [\r\n        {\r\n            \"amount\": {\r\n                \"currency_code\": \"USD\",\r\n                \"value\": \"60.00\",\r\n                \"breakdown\": {\r\n                    \"item_total\": {\r\n                        \"value\": \"60.00\",\r\n                        \"currency_code\": \"USD\"\r\n                    }\r\n                }\r\n            },\r\n            \"items\": [\r\n                {\r\n                    \"name\": \"Holiday Sock Pack\",\r\n                    \"description\": \"Festive Socks - Size L\",\r\n                    \"unit_amount\": {\r\n                        \"currency_code\": \"USD\",\r\n                        \"value\": \"20.00\"\r\n                    },\r\n                    \"quantity\": \"3\",\r\n                    \"category\": \"PHYSICAL_GOODS\",\r\n                    \"sku\": \"sku01\",\r\n                    \"upc\": {\r\n                        \"type\": \"UPC-A\",\r\n                        \"code\": \"123456789012\"\r\n                    },\r\n                    \"image_url\": \"https://example.com/static/images/items/1/holiday_sock_pack.jpg\",\r\n                    \"url\": \"https://example.com/url-to-the-item-being-purchased-1\"\r\n                }\r\n            ]\r\n        }\r\n    ]\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": "{{base_url}}/v2/checkout/orders"
+									},
+									"response": []
+								},
+								{
+									"name": "Delete  Payment Token",
+									"id": "89e9413e-c6bf-4fca-b86a-e3256f15cf40",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"auth": {
+											"type": "noauth"
+										},
+										"method": "DELETE",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Bearer {{access_token}}",
+												"type": "text"
+											},
+											{
+												"key": "Content-Type",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"url": "{{base_url}}/v3/vault/payment-tokens/{{vault_id}}"
+									},
+									"response": []
+								}
+							],
+							"id": "1ab985aa-716d-4706-83cd-bd7cae86f635",
+							"description": "This collection folder represents the flow for vaulting a payment method **at checkout** using the payment source **'PayPal'.**\n\nSee the mapped **flow** here: [https://www.postman.com/paypal/paypal-public-api-workspace/flow/68922cdd772c6500130f6676](https://www.postman.com/paypal/paypal-public-api-workspace/flow/68922cdd772c6500130f6676)"
+						}
+					],
+					"id": "a4677837-b15f-4086-8960-3269b358d1c5",
+					"description": "Save payment methods as part of the checkout process. For example, a payer can add a card or PayPal account while completing a transaction, and the payment method is vaulted at the same time. On future purchases, the payer can simply select the saved method for a faster, streamlined checkout experience.\n\n**Example use case:**  \nA service like **Uber Eats** lets a new customer pay for their first food order using a card or PayPal. During that checkout, the payment method is saved (vaulted). On their next order, the customer can simply select the saved method to pay instantly, without re-entering details."
+				},
+				{
+					"name": "Recurring Revenue with Saved Payment Method",
+					"item": [
+						{
+							"name": "Create order",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "e0b15f14-8a51-47e4-b4f7-ce163335e29c",
+										"exec": [
+											"responseData = JSON.parse(responseBody);\r",
+											"\r",
+											"pm.collectionVariables.set(\"order_id\", responseData.id);\r",
+											"\r",
+											"\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "bec4dcb5-0003-4488-a122-cf07cac48c4c",
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"id": "63b79520-a004-4d47-b040-b06c8373e215",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"intent\": \"CAPTURE\",\r\n    \"payment_source\": {\r\n        \"paypal\": {\r\n            \"attributes\": {\r\n                \"vault\": {\r\n                    \"store_in_vault\": \"ON_SUCCESS\",\r\n                    \"usage_type\": \"MERCHANT\"\r\n                }\r\n            },\r\n            \"experience_context\": {\r\n                \"return_url\": \"https://developer.paypal.com/developer-program/\",\r\n                \"cancel_url\": \"https://www.bing.com\",\r\n                \"user_action\": \"PAY_NOW\",\r\n                \"shipping_preference\": \"GET_FROM_FILE\"\r\n            }\r\n        }\r\n    },\r\n    \"purchase_units\": [\r\n        {\r\n            \"amount\": {\r\n                \"currency_code\": \"USD\",\r\n                \"value\": \"81.04\",\r\n                \"breakdown\": {\r\n                    \"item_total\": {\r\n                        \"currency_code\": \"USD\",\r\n                        \"value\": \"80.00\"\r\n                    },\r\n                    \"shipping\": {\r\n                        \"currency_code\": \"USD\",\r\n                        \"value\": \"1.04\"\r\n                    }\r\n                }\r\n            },\r\n            \"items\": [\r\n                {\r\n                    \"name\": \"Holiday Sock Pack\",\r\n                    \"description\": \"Festive Socks - Size L\",\r\n                    \"unit_amount\": {\r\n                        \"currency_code\": \"USD\",\r\n                        \"value\": \"20.00\"\r\n                    },\r\n                    \"quantity\": \"3\",\r\n                    \"category\": \"PHYSICAL_GOODS\",\r\n                    \"sku\": \"sku01\",\r\n                    \"upc\": {\r\n                        \"type\": \"UPC-A\",\r\n                        \"code\": \"123456789012\"\r\n                    },\r\n                    \"image_url\": \"https://example.com/static/images/items/1/holiday_sock_pack.jpg\",\r\n                    \"url\": \"https://example.com/url-to-the-item-being-purchased-1\"\r\n                },\r\n                {\r\n                    \"name\": \"Socks Rock Shirt\",\r\n                    \"description\": \"Socks Rock Tanktop - L\",\r\n                    \"sku\": \"sku02\",\r\n                    \"unit_amount\": {\r\n                        \"currency_code\": \"USD\",\r\n                        \"value\": \"20.00\"\r\n                    },\r\n                    \"quantity\": \"1\",\r\n                    \"image_url\": \"https://example.com/static/images/items/1/socks_rock_tank.jpg\",\r\n                    \"url\": \"https://example.com/url-to-the-item-being-purchased-2\",\r\n                    \"upc\": {\r\n                        \"type\": \"UPC-A\",\r\n                        \"code\": \"987654321012\"\r\n                    }\r\n                }\r\n            ]\r\n        }\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{base_url}}/v2/checkout/orders"
+							},
+							"response": []
+						},
+						{
+							"name": "Capture order",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"responseData = JSON.parse(responseBody);\r",
+											"\r",
+											"pm.collectionVariables.set(\"capture_id\", responseData.purchase_units[0].payments.captures[0].id);\r",
+											"pm.collectionVariables.set(\"vault_id\", responseData.payment_source.paypal.attributes.vault.id)"
+										],
+										"type": "text/javascript",
+										"packages": {},
+										"id": "7f125c6b-6462-4a2b-9b8e-b92c1e5ca5db"
+									}
+								}
+							],
+							"id": "308156c8-8017-4267-9b68-ee154a07da56",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{base_url}}/v2/checkout/orders/{{order_id}}/capture"
+							},
+							"response": []
+						},
+						{
+							"name": "Create order tracker",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"responseData = JSON.parse(responseBody);\r",
+											"\r",
+											"pm.collectionVariables.set(\"tracker_id\", responseData.purchase_units[0].shipping.trackers[0].id);\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {},
+										"id": "7ee34efe-c49e-4710-bc93-0f4107c5d48a"
+									}
+								}
+							],
+							"id": "dd3b35de-858b-496d-8c74-e94c55c659c3",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"capture_id\": \"{{capture_id}}\",\r\n    \"tracking_number\": \"123412341235\",\r\n    \"carrier\": \"FEDEX\",\r\n    \"notify_payer\": false,\r\n    \"items\": [\r\n        {\r\n            \"name\": \"Socks Rock Shirt\",\r\n            \"description\": \"Socks Rock Tanktop - L\",\r\n            \"sku\": \"sku03\",\r\n            \"unit_amount\": {\r\n                \"currency_code\": \"USD\",\r\n                \"value\": \"20.00\"\r\n            },\r\n            \"quantity\": \"1\",\r\n            \"category\": \"PHYSICAL_GOODS\",\r\n            \"image_url\": \"https://www.example.com/static/images/items/1/running_shirt.jpg\",\r\n            \"url\": \"https://www.example.com/items/1/running_shirt\",\r\n            \"upc\": {\r\n                \"type\": \"UPC-A\",\r\n                \"code\": \"987654321015\"\r\n            }\r\n        },\r\n        {\r\n            \"name\": \"Holiday Sock Pack\",\r\n            \"description\": \"Festive Socks - Size L\",\r\n            \"sku\": \"sku02\",\r\n            \"unit_amount\": {\r\n                \"currency_code\": \"USD\",\r\n                \"value\": \"100.00\"\r\n            },\r\n            \"quantity\": \"3\",\r\n            \"category\": \"PHYSICAL_GOODS\",\r\n            \"image_url\": \"https://www.example.com/static/images/items/1/shoes_running.jpg\",\r\n            \"url\": \"https://www.example.com/items/1/shoes_running\",\r\n            \"upc\": {\r\n                \"type\": \"UPC-A\",\r\n                \"code\": \"987654321012\"\r\n            }\r\n        }\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{base_url}}/v2/checkout/orders/{{order_id}}/track"
+							},
+							"response": []
+						},
+						{
+							"name": "Refund captured payment",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Extract resource_id\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData).to.have.property('id');",
+											"    pm.collectionVariables.set(\"refund_id\", jsonData.id);",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {},
+										"id": "020db3f6-48ba-44f6-b668-a6ec0dc03730"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {},
+										"id": "c8f5ca0a-2f4e-4bf3-9628-7e57be3c4624"
+									}
+								}
+							],
+							"id": "e9807047-20ea-4155-b517-68b09d30a885",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"description": "The Content-Type header field is used to specify the nature of the data in the body of an entity. PayPal REST APIs support application/json.",
+										"type": "text"
+									},
+									{
+										"key": "PayPal-Request-Id",
+										"value": "{{$timestamp}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"amount\": {\n        \"value\": \"10.00\",\n        \"currency_code\": \"USD\"\n    },\n    \"invoice_id\": \"{{$timestamp}}\",\n    \"note_to_payer\": \"Defective product\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/v2/payments/captures/:capture_id/refund",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"v2",
+										"payments",
+										"captures",
+										":capture_id",
+										"refund"
+									],
+									"variable": [
+										{
+											"id": "f21183f8-9056-47e1-a2b3-903e96aa6edc",
+											"key": "capture_id",
+											"value": "{{capture_id}}",
+											"description": "(Required) The PayPal-generated ID for the captured payment to refund."
+										}
+									]
+								},
+								"description": "Refunds a captured payment, by ID. For a full refund, include an empty payload in the JSON request body. For a partial refund, include an <code>amount</code> object in the JSON request body."
+							},
+							"response": []
+						},
+						{
+							"name": "Returning Buyer - Pay with Vault",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"responseData = JSON.parse(responseBody);\r",
+											"\r",
+											"pm.collectionVariables.set(\"capture_id\", responseData.purchase_units[0].payments.captures[0].id);"
+										],
+										"type": "text/javascript",
+										"packages": {},
+										"id": "36a4db87-2b1e-45e9-809c-33d1ce826075"
+									}
+								}
+							],
+							"id": "9df72070-7e77-4494-a806-061ac2d05e91",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "PayPal-Request-Id",
+										"value": "{{$timestamp}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"intent\": \"CAPTURE\",\r\n    \"payment_source\": {\r\n        \"paypal\": {\r\n            \"vault_id\": \"{{vault_id}}\",\r\n            \"attributes\": {\r\n                \"customer\": {\r\n                    \"id\": \"vwxj123\"\r\n                }\r\n            }\r\n        }\r\n    },\r\n    \"purchase_units\": [\r\n        {\r\n            \"amount\": {\r\n                \"currency_code\": \"USD\",\r\n                \"value\": \"60.00\",\r\n                \"breakdown\": {\r\n                    \"item_total\": {\r\n                        \"value\": \"60.00\",\r\n                        \"currency_code\": \"USD\"\r\n                    }\r\n                }\r\n            },\r\n            \"items\": [\r\n                {\r\n                    \"name\": \"Holiday Sock Pack\",\r\n                    \"description\": \"Festive Socks - Size L\",\r\n                    \"unit_amount\": {\r\n                        \"currency_code\": \"USD\",\r\n                        \"value\": \"20.00\"\r\n                    },\r\n                    \"quantity\": \"3\",\r\n                    \"category\": \"PHYSICAL_GOODS\",\r\n                    \"sku\": \"sku01\",\r\n                    \"upc\": {\r\n                        \"type\": \"UPC-A\",\r\n                        \"code\": \"123456789012\"\r\n                    },\r\n                    \"image_url\": \"https://example.com/static/images/items/1/holiday_sock_pack.jpg\",\r\n                    \"url\": \"https://example.com/url-to-the-item-being-purchased-1\"\r\n                }\r\n            ]\r\n        }\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{base_url}}/v2/checkout/orders"
+							},
+							"response": []
+						},
+						{
+							"name": "Customer Deletes PMT when canceling their subscription",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {},
+										"id": "982fefd2-1b56-49f8-ab37-5973e5a6326e"
+									}
+								}
+							],
+							"id": "3bae6298-931a-4b1c-9659-f146a7cfa76b",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{base_url}}/v3/vault/payment-tokens/{{vault_id}}"
+							},
+							"response": []
+						}
+					],
+					"id": "35e6cb83-130b-4ed4-b94a-cf0973ebd110"
+				}
+			],
+			"id": "9f1dc7ab-dc15-4cdc-a641-697813664536",
+			"description": "**Saved payment methods** allow payers to securely store their details once and use them for future transactions. Once a payer **consents** to saving a payment method, they can check out faster or pay without being present.  \n  \nA payment method is saved and exchanged for a unique **token** through a process called **tokenization**. The token is stored securely and used instead of the original account number.\n\nBenefits of using saved payment tokens\n\n- **Increased security** – reduces risk of data theft by removing direct handling of card numbers.\n    \n- **Simplified processing** – streamlines repeat payments.\n    \n- **Compliance support** – Helps maintain Payment Card Industry Data Security Standard (PCI DSS)compliance.\n    \n\n### Save payment methods: **during purchase** or **for purchase later**\n\n- **Save during purchase** – The payment method is stored as part of the checkout. For future transactions, the payer can quickly select the saved method for a faster checkout experience.\n    \n- **Save for purchase later** – The payment method is stored without requiring an immediate checkout. This allows future payments when the payer is not present. A common use case is free trials that convert into paid subscriptions."
+		},
+		{
+			"name": "PayPal + Expanded Checkout",
+			"item": [
+				{
+					"name": "Confirm Payment Source - 3DS",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "10f640f1-8411-4a32-bdb9-60d57e864f20",
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"id": "976c2efb-f737-4eb1-a34d-183354d98a96",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{access_token}}"
+							}
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": "The Content-Type header field is used to specify the nature of the data in the body of an entity. PayPal REST APIs support application/json."
+							},
+							{
+								"key": "Prefer",
+								"value": "return=representation",
+								"description": "The preferred server response upon successful completion of the request. Value is:<ul><li><code>return=minimal</code>. The server returns a minimal response to optimize communication between the API caller and the server. A minimal response includes the <code>id</code>, <code>status</code> and HATEOAS links.</li><li><code>return=representation</code>. The server returns a complete resource representation, including the current state of the resource.</li></ul>"
+							},
+							{
+								"key": "PayPal-Request-Id",
+								"value": "{{$guid}}",
+								"description": "The server stores keys for 6 hours. The API callers can request the times to up to 72 hours by speaking to their Account Manager."
+							},
+							{
+								"key": "PayPal-Client-Metadata-Id",
+								"value": "{{paypal_client_metadata_Id}}",
+								"description": "Optional. Verifies that the payment originates from a valid, user-consented device and application. Reduces fraud and decreases declines. Transactions that do not include a client metadata ID are not eligible for PayPal Seller Protection.",
+								"disabled": true
+							},
+							{
+								"key": "PayPal-Partner-Attribution-Id",
+								"value": "{{paypal_partner_attribution_id}}",
+								"description": "Optional. Identifies the caller as a PayPal partner. To receive revenue attribution, specify a unique build notation (BN) code. BN codes provide tracking on all transactions that originate or are associated with a particular partner. To find your BN code, see Code and Credential Reference.",
+								"disabled": true
+							},
+							{
+								"key": "PayPal-Auth-Assertion",
+								"value": "{{paypal_auth_assertion}}",
+								"description": "An API client-provided JSON Web Token (JWT) assertion that identifies the merchant. To use this header, you must get consent to act on behalf of a merchant.\n\n",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"payment_source\": {\n        \"card\": {\n            \"number\": \"4032037064388131\",\n            \"expiry\": \"2035-12\",\n            \"name\": \"John Doe\",\n            \"billing_address\": {\n                \"address_line_1\": \"2211 N First Street\",\n                \"address_line_2\": \"17.3.160\",\n                \"admin_area_1\": \"CA\",\n                \"admin_area_2\": \"San Jose\",\n                \"postal_code\": \"95131\",\n                \"country_code\": \"US\"\n            },\n            \"attributes\": {\n                \"verification\": {\n                    \"method\": \"{{card_verification_method}}\"\n                }\n            }\n        }\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/v2/checkout/orders/:order_id/confirm-payment-source",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"v2",
+								"checkout",
+								"orders",
+								":order_id",
+								"confirm-payment-source"
+							],
+							"variable": [
+								{
+									"id": "9999e17d-85c9-4359-b38b-58b0cea025bb",
+									"key": "order_id",
+									"value": "{{order_id}}"
+								}
+							]
+						},
+						"description": "Payer confirms their intent to pay for the the Order with the given payment source.\n\n<blockquote><b>Note:</b> For error handling and troubleshooting, see <a href=\"https://developer.paypal.com/docs/api/orders/v2/#orders_confirm\" target=\"_blank\" url=\"https://developer.paypal.com/docs/api/orders/v2/#orders_confirm\">Confirm the Order</a>.</blockquote>"
+					},
+					"response": []
+				},
+				{
+					"name": "Confirm Payment Source",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "10f640f1-8411-4a32-bdb9-60d57e864f20",
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"id": "72d74e94-4eb0-467e-89d2-674456f8feb3",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{access_token}}"
+							}
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": "The Content-Type header field is used to specify the nature of the data in the body of an entity. PayPal REST APIs support application/json."
+							},
+							{
+								"key": "Prefer",
+								"value": "return=representation",
+								"description": "The preferred server response upon successful completion of the request. Value is:<ul><li><code>return=minimal</code>. The server returns a minimal response to optimize communication between the API caller and the server. A minimal response includes the <code>id</code>, <code>status</code> and HATEOAS links.</li><li><code>return=representation</code>. The server returns a complete resource representation, including the current state of the resource.</li></ul>"
+							},
+							{
+								"key": "PayPal-Request-Id",
+								"value": "{{$guid}}",
+								"description": "The server stores keys for 6 hours. The API callers can request the times to up to 72 hours by speaking to their Account Manager."
+							},
+							{
+								"key": "PayPal-Client-Metadata-Id",
+								"value": "{{paypal_client_metadata_Id}}",
+								"description": "Optional. Verifies that the payment originates from a valid, user-consented device and application. Reduces fraud and decreases declines. Transactions that do not include a client metadata ID are not eligible for PayPal Seller Protection.",
+								"disabled": true
+							},
+							{
+								"key": "PayPal-Partner-Attribution-Id",
+								"value": "{{paypal_partner_attribution_id}}",
+								"description": "Optional. Identifies the caller as a PayPal partner. To receive revenue attribution, specify a unique build notation (BN) code. BN codes provide tracking on all transactions that originate or are associated with a particular partner. To find your BN code, see Code and Credential Reference.",
+								"disabled": true
+							},
+							{
+								"key": "PayPal-Auth-Assertion",
+								"value": "{{paypal_auth_assertion}}",
+								"description": "An API client-provided JSON Web Token (JWT) assertion that identifies the merchant. To use this header, you must get consent to act on behalf of a merchant.\n\n",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"payment_source\": {\n        \"card\": {\n            \"number\": \"4111111111111111\",\n            \"expiry\": \"2035-12\"\n        }\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/v2/checkout/orders/:order_id/confirm-payment-source",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"v2",
+								"checkout",
+								"orders",
+								":order_id",
+								"confirm-payment-source"
+							],
+							"variable": [
+								{
+									"id": "2b2cae2c-f59b-4c38-84cb-0ad3f227e77b",
+									"key": "order_id",
+									"value": "{{order_id}}"
+								}
+							]
+						},
+						"description": "Payer confirms their intent to pay for the the Order with the given payment source.\n\n<blockquote><b>Note:</b> For error handling and troubleshooting, see <a href=\"https://developer.paypal.com/docs/api/orders/v2/#orders_confirm\" target=\"_blank\" url=\"https://developer.paypal.com/docs/api/orders/v2/#orders_confirm\">Confirm the Order</a>.</blockquote>"
+					},
+					"response": []
+				},
+				{
+					"name": "Authorize payment for order",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "8cd992dc-9996-4899-9f31-a009e6b14232",
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "ce9a9b75-3628-4190-81ce-669c91a1f312",
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"id": "b0f2e56d-9cac-419a-8a80-310275fe3339",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{access_token}}"
+							}
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": "The Content-Type header field is used to specify the nature of the data in the body of an entity. PayPal REST APIs support application/json."
+							},
+							{
+								"key": "Prefer",
+								"value": "return=representation",
+								"description": "The preferred server response upon successful completion of the request. Value is:<ul><li><code>return=minimal</code>. The server returns a minimal response to optimize communication between the API caller and the server. A minimal response includes the <code>id</code>, <code>status</code> and HATEOAS links.</li><li><code>return=representation</code>. The server returns a complete resource representation, including the current state of the resource.</li></ul>"
+							},
+							{
+								"key": "PayPal-Request-Id",
+								"value": "{{$guid}}",
+								"description": "The server stores keys for 6 hours. The API callers can request the times to up to 72 hours by speaking to their Account Manager."
+							},
+							{
+								"key": "PayPal-Client-Metadata-Id",
+								"value": "{{paypal_client_metadata_Id}}",
+								"description": "Optional. Verifies that the payment originates from a valid, user-consented device and application. Reduces fraud and decreases declines. Transactions that do not include a client metadata ID are not eligible for PayPal Seller Protection.",
+								"disabled": true
+							},
+							{
+								"key": "PayPal-Partner-Attribution-Id",
+								"value": "{{paypal_partner_attribution_id}}",
+								"description": "Optional. Identifies the caller as a PayPal partner. To receive revenue attribution, specify a unique build notation (BN) code. BN codes provide tracking on all transactions that originate or are associated with a particular partner. To find your BN code, see Code and Credential Reference.",
+								"disabled": true
+							},
+							{
+								"key": "PayPal-Auth-Assertion",
+								"value": "{{paypal_auth_assertion}}",
+								"description": "An API client-provided JSON Web Token (JWT) assertion that identifies the merchant. To use this header, you must get consent to act on behalf of a merchant.\n",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/v2/checkout/orders/:order_id/authorize",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"v2",
+								"checkout",
+								"orders",
+								":order_id",
+								"authorize"
+							],
+							"variable": [
+								{
+									"id": "9dba723b-8516-4945-94de-25eb7efb881b",
+									"key": "order_id",
+									"value": "{{order_id}}"
+								}
+							]
+						},
+						"description": "Authorizes payment for an order. To successfully authorize payment for an order, the buyer must first approve the order or a valid payment_source must be provided in the request. A buyer can approve the order upon being redirected to the rel:approve URL that was returned in the HATEOAS links in the create order response.<blockquote><strong>Note:</strong> For error handling and troubleshooting, see <a href=\"https://developer.paypal.com/api/rest/reference/orders/v2/errors/#link-authorizeorder\">Orders v2 errors</a>.</blockquote>"
+					},
+					"response": []
+				},
+				{
+					"name": "Capture authorized payment",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "8cd992dc-9996-4899-9f31-a009e6b14232",
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "e0e8c181-b8cb-495c-928a-e761c120f02c",
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"id": "89672661-d471-4fc8-9502-c07137259127",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{access_token}}"
+							}
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": "The Content-Type header field is used to specify the nature of the data in the body of an entity. PayPal REST APIs support application/json."
+							},
+							{
+								"key": "Prefer",
+								"value": "return=representation",
+								"description": "The preferred server response upon successful completion of the request. Value is:<ul><li><code>return=minimal</code>. The server returns a minimal response to optimize communication between the API caller and the server. A minimal response includes the <code>id</code>, <code>status</code> and HATEOAS links.</li><li><code>return=representation</code>. The server returns a complete resource representation, including the current state of the resource.</li></ul>"
+							},
+							{
+								"key": "PayPal-Request-Id",
+								"value": "{{$guid}}",
+								"description": "The server stores keys for 6 hours. The API callers can request the times to up to 72 hours by speaking to their Account Manager."
+							},
+							{
+								"key": "PayPal-Client-Metadata-Id",
+								"value": "{{paypal_client_metadata_Id}}",
+								"description": "Optional. Verifies that the payment originates from a valid, user-consented device and application. Reduces fraud and decreases declines. Transactions that do not include a client metadata ID are not eligible for PayPal Seller Protection.",
+								"disabled": true
+							},
+							{
+								"key": "PayPal-Partner-Attribution-Id",
+								"value": "{{paypal_partner_attribution_id}}",
+								"description": "Optional. Identifies the caller as a PayPal partner. To receive revenue attribution, specify a unique build notation (BN) code. BN codes provide tracking on all transactions that originate or are associated with a particular partner. To find your BN code, see Code and Credential Reference.",
+								"disabled": true
+							},
+							{
+								"key": "PayPal-Auth-Assertion",
+								"value": "{{paypal_auth_assertion}}",
+								"description": "An API client-provided JSON Web Token (JWT) assertion that identifies the merchant. To use this header, you must get consent to act on behalf of a merchant.\n",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"amount\": {\n        \"value\": \"60\",\n        \"currency_code\": \"USD\"\n    },\n    \"invoice_id\": \"{{$timestamp}}\",\n    \"final_capture\": true,\n    \"note_to_payer\": \"If the ordered color is not available, we will substitute with a different color free of charge.\",\n    \"soft_descriptor\": \"Bob's Custom Sweaters\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/v2/payments/authorizations/:authorization_id/capture",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"v2",
+								"payments",
+								"authorizations",
+								":authorization_id",
+								"capture"
+							],
+							"variable": [
+								{
+									"id": "347c1fe1-52c6-4c98-b943-eb3b29c1a467",
+									"key": "authorization_id",
+									"value": "{{authorization_id}}",
+									"description": "(Required) The PayPal-generated ID for the authorized payment to capture."
+								}
+							]
+						},
+						"description": "Authorizes payment for an order. To successfully authorize payment for an order, the buyer must first approve the order or a valid payment_source must be provided in the request. A buyer can approve the order upon being redirected to the rel:approve URL that was returned in the HATEOAS links in the create order response.<blockquote><strong>Note:</strong> For error handling and troubleshooting, see <a href=\"https://developer.paypal.com/api/rest/reference/orders/v2/errors/#link-authorizeorder\">Orders v2 errors</a>.</blockquote>"
+					},
+					"response": []
+				},
+				{
+					"name": "Show order details",
+					"id": "1dc6ccb3-294d-47b4-bddb-3da203409c16",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{access_token}}"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/v2/checkout/orders/:order_id",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"v2",
+								"checkout",
+								"orders",
+								":order_id"
+							],
+							"variable": [
+								{
+									"id": "205efd1c-414b-4b3c-af13-2ba12ac211ad",
+									"key": "order_id",
+									"value": "{{order_id}}"
+								}
+							]
+						},
+						"description": "Shows details for an order, by ID.<blockquote><strong>Note:</strong> For error handling and troubleshooting, see <a href=\"https://developer.paypal.com/api/rest/reference/orders/v2/errors/#get-order\">Orders v2 errors</a>.</blockquote>"
+					},
+					"response": []
+				},
+				{
+					"name": "Capture payment for order",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "d099a489-67b8-47b0-98ce-5fb2c6e63b78",
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "8ce526c9-a937-4c8f-8994-d19e6b987944",
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"id": "1be5b75d-c0a3-4930-9de1-cf6718533704",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{access_token}}"
+							}
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Prefer",
+								"value": "return=representation",
+								"description": "The preferred server response upon successful completion of the request. Value is:<ul><li><code>return=minimal</code>. The server returns a minimal response to optimize communication between the API caller and the server. A minimal response includes the <code>id</code>, <code>status</code> and HATEOAS links.</li><li><code>return=representation</code>. The server returns a complete resource representation, including the current state of the resource.</li></ul>"
+							},
+							{
+								"key": "PayPal-Request-Id",
+								"value": "{{$guid}}",
+								"description": "The server stores keys for 6 hours. The API callers can request the times to up to 72 hours by speaking to their Account Manager."
+							},
+							{
+								"key": "PayPal-Client-Metadata-Id",
+								"value": "{{paypal_client_metadata_Id}}",
+								"description": "Optional. Verifies that the payment originates from a valid, user-consented device and application. Reduces fraud and decreases declines. Transactions that do not include a client metadata ID are not eligible for PayPal Seller Protection.",
+								"disabled": true
+							},
+							{
+								"key": "PayPal-Partner-Attribution-Id",
+								"value": "{{paypal_partner_attribution_id}}",
+								"description": "Optional. Identifies the caller as a PayPal partner. To receive revenue attribution, specify a unique build notation (BN) code. BN codes provide tracking on all transactions that originate or are associated with a particular partner. To find your BN code, see Code and Credential Reference.",
+								"disabled": true
+							},
+							{
+								"key": "PayPal-Auth-Assertion",
+								"value": "{{paypal_auth_assertion}}",
+								"description": "An API client-provided JSON Web Token (JWT) assertion that identifies the merchant. To use this header, you must get consent to act on behalf of a merchant.",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/v2/checkout/orders/:order_id/capture",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"v2",
+								"checkout",
+								"orders",
+								":order_id",
+								"capture"
+							],
+							"variable": [
+								{
+									"id": "9e74fd63-3ed3-41da-ad70-49121953fc79",
+									"key": "order_id",
+									"value": "{{order_id}}"
+								}
+							]
+						},
+						"description": "Captures payment for an order. To successfully capture payment for an order, the buyer must first approve the order or a valid payment_source must be provided in the request. A buyer can approve the order upon being redirected to the rel:approve URL that was returned in the HATEOAS links in the create order response.<blockquote><strong>Note:</strong> For error handling and troubleshooting, see <a href=\"https://developer.paypal.com/api/rest/reference/orders/v2/errors/#link-captureorder\">Orders v2 errors</a>.</blockquote>"
+					},
+					"response": []
+				},
+				{
+					"name": "Create order",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "10fb9cd7-0f5f-452b-ad97-a3ef040382cb",
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "2a152015-7bd1-4d49-9cbd-394fb4c141fc",
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"id": "47855cc7-c9cf-4c81-97e7-ecd47a8aa9d6",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{access_token}}"
+							}
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": "The Content-Type header field is used to specify the nature of the data in the body of an entity. PayPal REST APIs support application/json."
+							},
+							{
+								"key": "Prefer",
+								"value": "return=representation",
+								"description": "The preferred server response upon successful completion of the request. Value is:<ul><li><code>return=minimal</code>. The server returns a minimal response to optimize communication between the API caller and the server. A minimal response includes the <code>id</code>, <code>status</code> and HATEOAS links.</li><li><code>return=representation</code>. The server returns a complete resource representation, including the current state of the resource.</li></ul>"
+							},
+							{
+								"key": "PayPal-Request-Id",
+								"value": "{{$guid}}",
+								"description": "The server stores keys for 6 hours. The API callers can request the times to up to 72 hours by speaking to their Account Manager."
+							},
+							{
+								"key": "PayPal-Client-Metadata-Id",
+								"value": "{{paypal_client_metadata_Id}}",
+								"description": "Optional. Verifies that the payment originates from a valid, user-consented device and application. Reduces fraud and decreases declines. Transactions that do not include a client metadata ID are not eligible for PayPal Seller Protection.",
+								"disabled": true
+							},
+							{
+								"key": "PayPal-Partner-Attribution-Id",
+								"value": "{{paypal_partner_attribution_id}}",
+								"description": "Optional. Identifies the caller as a PayPal partner. To receive revenue attribution, specify a unique build notation (BN) code. BN codes provide tracking on all transactions that originate or are associated with a particular partner. To find your BN code, see Code and Credential Reference.",
+								"disabled": true
+							},
+							{
+								"key": "PayPal-Auth-Assertion",
+								"value": "{{paypal_auth_assertion}}",
+								"description": "An API client-provided JSON Web Token (JWT) assertion that identifies the merchant. To use this header, you must get consent to act on behalf of a merchant.\n\n",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"intent\": \"{{order_intent}}\",\n    \"purchase_units\": [\n        {\n            \"amount\": {\n                \"currency_code\": \"USD\",\n                \"value\": \"100.00\"\n            }\n        }\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{base_url}}/v2/checkout/orders",
+						"description": "Creates an order.<blockquote><strong>Note:</strong> For error handling and troubleshooting, see <a href=\"https://developer.paypal.com/api/rest/reference/orders/v2/errors/#create-order\">Orders v2 errors</a>.</blockquote>"
+					},
+					"response": []
+				},
+				{
+					"name": "Generate access_token",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "87552d00-9107-404c-afc2-0f77b40db724",
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "89896032-ce53-4f9b-9439-131ee84c80ba",
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"id": "d323b213-c83d-4c62-8621-ff974b8d0c77",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": {
+								"password": "{{client_secret}}",
+								"username": "{{client_id}}"
+							}
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "grant_type",
+									"value": "client_credentials",
+									"type": "text",
+									"description": "The credential type to exchange for an access token."
+								},
+								{
+									"key": "ignoreCache",
+									"value": "true",
+									"type": "text",
+									"description": "A new token is issued ignoring the previously issued and still not expired token."
+								},
+								{
+									"key": "return_authn_schemes",
+									"value": "true",
+									"description": "Lists user authentication options and returns a first-party access token to authenticate an end user. Valid for all grant types except the `authzcode` authorization code, which indicates that the user is already authenticated.",
+									"type": "text"
+								},
+								{
+									"key": "return_client_metadata",
+									"value": "true",
+									"description": "Lists client metadata attributes. Valid for all grant types.",
+									"type": "text"
+								},
+								{
+									"key": "return_unconsented_scopes",
+									"value": "true",
+									"description": "Lists unconsented scopes between the user and client. Valid for all grant types except `client_credentials`.",
+									"type": "text"
+								}
+							]
+						},
+						"url": "{{base_url}}/v1/oauth2/token",
+						"description": "Shows user profile information. Filters the response by a schema. Supported schema value is `paypalv1.1`."
+					},
+					"response": []
+				}
+			],
+			"id": "ca9c2d5b-2e22-4e22-8883-810c54126b10",
+			"description": "The requests in this folder are used in the checkout process in these Postman Flows:\n\n- **PayPal Checkout**\n    \n- **Expanded Checkout**\n    \n- **Expanded Checkout with 3D Secure**\n    \n\nThe requests are designed to support automated workflows and testing in Postman Flows. While the collection can be used manually, it's primarily maintained for Flow-based automation.",
+			"auth": {
+				"type": "noauth"
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "37ea746b-868e-45bc-bdab-68f09a77faee",
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "1c1c2bf4-18bc-40f9-bbde-e3a68c086b4c",
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": {
+			"token": "{{access_token}}"
+		}
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "cf201135-0980-478d-bfea-8fede136859e",
+				"type": "text/javascript",
+				"exec": [
+					"// import functions from environmental",
+					"eval(pm.collectionVariables.get(\"paypal_postman_scripts\"));",
+					"",
+					"",
+					"// Check if access token needs refresh",
+					"if (this.PayPalPostmanUtils.needsNewAccessToken({",
+					"  accessTokenVar: 'access_token',",
+					"  accessTokenExpiryVar: 'access_token_expiry', ",
+					"  forClientIdVar: 'for_client_id',",
+					"  clientIdVar: 'client_id'",
+					"})) {",
+					"  // Refresh the token",
+					"  this.PayPalPostmanUtils.refreshAccessToken({",
+					"    accessTokenVar: 'access_token',",
+					"    accessTokenExpiryVar: 'access_token_expiry',",
+					"    forClientIdVar: 'for_client_id', ",
+					"    clientIdVar: 'client_id',",
+					"    clientSecretVar: 'client_secret',",
+					"    baseUrlVar: 'base_url'",
+					"  });",
+					"}",
+					"",
+					"// Get PayPal Debug ID from response",
+					"const debugId = this.PayPalPostmanUtils.getPayPalDebugId();",
+					"",
+					"// Check if running in sandbox",
+					"const isSandbox = this.PayPalPostmanUtils.isSandbox();",
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "0507073f-30cd-46a4-a2b9-6fbd3ebc8fec",
+				"type": "text/javascript",
+				"exec": [
+					"let successHttpStatuses = [200, 201, 202, 204];",
+					"let message = pm.response.code +\", Paypal-Debug-Id=\"+getPayPalDebugId();",
+					"",
+					"if(!isSuccessful()) {",
+					"    console.error(\"Unexpected HTTP Status Code: \", message, pm.response.text());",
+					"    console.error(\"https://developer.paypal.com/developer/dashboard/sandbox?Paypal-Debug-Id=\"+getPayPalDebugId());",
+					"    message = message + \", \"+pm.response.text();",
+					"}",
+					"",
+					"pm.test(\"HTTP Status Code must be one of \"+successHttpStatuses+\", actual is \"+message, function () {",
+					"    pm.expect(pm.response.code).to.be.oneOf(successHttpStatuses);",
+					"});",
+					"",
+					"function getPayPalDebugId() {",
+					"    if(pm && pm.response && pm.response.headers) {",
+					"        return pm.response.headers.get('Paypal-Debug-Id');",
+					"    } ",
+					"}",
+					"",
+					"function isSuccessful() {",
+					"    return successHttpStatuses.includes(pm.response.code);",
+					"}"
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "paypal_postman_scripts",
+			"value": "!function(e,t){\"object\"==typeof exports&&\"object\"==typeof module?module.exports=t():\"function\"==typeof define&&define.amd?define([],t):\"object\"==typeof exports?exports.PayPalPostmanUtils=t():e.PayPalPostmanUtils=t()}(this,()=>(()=>{\"use strict\";var e={d:(t,o)=>{for(var n in o)e.o(o,n)&&!e.o(t,n)&&Object.defineProperty(t,n,{enumerable:!0,get:o[n]})},o:(e,t)=>Object.prototype.hasOwnProperty.call(e,t)},t={};function o(e,t,o,a){const s={alg:o},r={iss:e,...t},c=`${n(JSON.stringify(s))}.${n(JSON.stringify(r))}`;return`${c}.${o&&\"none\"!==o?n(CryptoJS.HmacSHA256(c,a||\"\").toString()):\"\"}`}function n(e){return Buffer.from(e).toString(\"base64\").replace(/=+$/,\"\").replace(/\\+/g,\"-\").replace(/\\//g,\"_\")}e.d(t,{default:()=>a});const a={needsNewAccessToken:function({accessTokenVar:e,accessTokenExpiryVar:t,forClientIdVar:o,clientIdVar:n}){const a=pm.collectionVariables.get(t),s=pm.collectionVariables.get(e),r=pm.variables.get(n),c=pm.collectionVariables.get(o),i=a?parseInt(a,10):0,l=!a||i<=Date.now(),p=!s||!c||c!==r;return!pm.request.url.path.join(\"/\").includes(\"/oauth2/token\")&&(l||p)},refreshAccessToken:function(e,t){const{accessTokenVar:o,accessTokenExpiryVar:n,forClientIdVar:a,clientIdVar:s,clientSecretVar:r,baseUrlVar:c}=e,i=pm.variables.get(s),l=pm.variables.get(r),p={url:pm.variables.get(c)+\"/v1/oauth2/token\",method:\"POST\",header:{\"content-type\":\"application/x-www-form-urlencoded\",authorization:\"Basic \"+Buffer.from(i+\":\"+l).toString(\"base64\")},body:{mode:\"urlencoded\",urlencoded:[{key:\"grant_type\",value:\"client_credentials\"}]}};pm.collectionVariables.unset(o),pm.collectionVariables.unset(n),pm.collectionVariables.unset(a),pm.sendRequest(p,function(e,s){if(200===s.code){const e=s.json();console.log(\"Saving the access_token\"),pm.collectionVariables.set(o,e.access_token);const t=new Date;t.setSeconds(t.getSeconds()+e.expires_in),pm.collectionVariables.set(n,t.getTime()),pm.collectionVariables.set(a,i)}else console.error(\"Failed to obtain access_token\",e,s.code,s.headers.get(\"Paypal-Debug-Id\"),s.json());t&&t()})},storeAccessToken:function(e,t){var o;const{accessTokenVar:n,accessTokenExpiryVar:a,forClientIdVar:s,clientIdVar:r}=t,c=pm.variables.get(r);pm.collectionVariables.set(n,e.access_token);const i=new Date;i.setSeconds(i.getSeconds()+e.expires_in),pm.collectionVariables.set(a,i.getTime()),pm.collectionVariables.set(s,c),(null===(o=e.client_metadata)||void 0===o?void 0:o.display_name)&&console.log(\"Logged in using App =\",e.client_metadata.display_name)},isSandbox:function(){return pm.variables.get(\"base_url\").includes(\"sandbox.paypal.com\")},getPayPalDebugId:function(){if(pm&&pm.response&&pm.response.headers)return pm.response.headers.get(\"Paypal-Debug-Id\")},base64Url:n,getJWT:o,getAuthAssertionFor:function(e,t){return o(e,{payer_id:t},\"none\")}};return t.default})());"
+		},
+		{
+			"key": "PLEASE NOTE -->",
+			"value": "< PayPal Public Collection comes with following default public set of credentials stored at the Collection level. \nYou may choose to override these values via environment level variables. You may bring your own credentials from PayPal Developer Dashboard there."
+		},
+		{
+			"key": "base_url",
+			"value": "https://api-m.sandbox.paypal.com"
+		},
+		{
+			"key": "client_id",
+			"value": "AUv8rrc_P-EbP2E0mpb49BV7rFt3Usr-vdUZO8VGOnjRehGHBXkSzchr37SYF2GNdQFYSp72jh5QUhzG"
+		},
+		{
+			"key": "client_secret",
+			"value": "EMnAWe06ioGtouJs7gLYT9chK9-2jJ--7MKRXpI8FesmY_2Kp-d_7aCqff7M9moEJBvuXoBO4clKtY0v"
+		},
+		{
+			"key": "access_token",
+			"value": ""
+		},
+		{
+			"key": "access_token_expiry",
+			"value": ""
+		},
+		{
+			"key": "for_client_id",
+			"value": ""
+		},
+		{
+			"key": "order_id",
+			"value": ""
+		}
+	]
+}
