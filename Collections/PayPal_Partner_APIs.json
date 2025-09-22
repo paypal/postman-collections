@@ -15,33 +15,34 @@
 						{
 							"listen": "test",
 							"script": {
+								"id": "f9283020-b521-494c-b510-88ad0d4de674",
 								"exec": [
 									"pm.test(\"Save access_token as collection variable for subsequent API invocations\", function () {\r",
-									"    var responseJson = pm.response.json();\r",
-									"    pm.collectionVariables.set('access_token', responseJson.access_token)\r",
-									"    var expiryDate = new Date();\r",
-									"    expiryDate.setSeconds(expiryDate.getSeconds() + responseJson.expires_in);\r",
-									"    pm.collectionVariables.set('access_token_expiry', expiryDate.getTime());\r",
-									"    pm.collectionVariables.set('access_token_for', pm.collectionVariables.get(\"client_id\"));\r",
-									"    if(responseJson.client_metadata && responseJson.client_metadata.display_name) {\r",
-									"        console.log(\"Logged in using App=\", responseJson.client_metadata.display_name);\r",
-									"    }\r",
+									"\r",
+									"    // import functions from collection variables\r",
+									"    eval(pm.collectionVariables.get(\"paypal_postman_scripts\"));\r",
+									"\r",
+									"    this.PayPalPostmanUtils.storeAccessToken(pm.response.json(), {\r",
+									"        accessTokenVar: 'access_token',\r",
+									"        accessTokenExpiryVar: 'access_token_expiry', \r",
+									"        forClientIdVar: 'for_client_id',\r",
+									"        clientIdVar: 'client_id'\r",
+									"    });\r",
 									"});"
 								],
 								"type": "text/javascript",
-								"packages": {},
-								"id": "f9283020-b521-494c-b510-88ad0d4de674"
+								"packages": {}
 							}
 						},
 						{
 							"listen": "prerequest",
 							"script": {
+								"id": "ff189508-dccf-45a2-b3cf-1cc106c933e5",
 								"exec": [
 									""
 								],
 								"type": "text/javascript",
-								"packages": {},
-								"id": "ff189508-dccf-45a2-b3cf-1cc106c933e5"
+								"packages": {}
 							}
 						}
 					],
@@ -11768,44 +11769,27 @@
 									"script": {
 										"id": "61ce251c-35c1-451f-be37-e941fded2eaa",
 										"exec": [
+											"// import functions from environment\r",
+											"eval(pm.collectionVariables.get(\"paypal_postman_scripts\"));\r",
+											"\r",
 											"//--Check Seller Status--\r",
 											"//--If false, then the seller should not onboard.--\r",
-											"let payments_receivable = JSON.parse(pm.response.text()).payments_receivable;\r",
-											"let primary_email_confirmed = JSON.parse(pm.response.text()).primary_email_confirmed;\r",
+											"const payments_receivable = JSON.parse(pm.response.text()).payments_receivable;\r",
+											"const primary_email_confirmed = JSON.parse(pm.response.text()).primary_email_confirmed;\r",
+											"const sellerPayerId = pm.collectionVariables.get('merchant_id');\r",
+											"const clientId = pm.variables.get('client_id');\r",
 											"\r",
 											"if (payments_receivable && primary_email_confirmed == true) {\r",
-											"        console.log(\"Seller Account: \" + pm.collectionVariables.get('merchant_id') + \" is ready to process payments!\");\r",
+											"        console.log(\"Seller Account: \" + sellerPayerId + \" is ready to process payments!\");\r",
 											"}\r",
 											"else {\r",
-											"    console.log(\"Seller Account: \" + pm.collectionVariables.get('merchant_id') + \" is still pending\")\r",
+											"    console.log(\"Seller Account: \" + sellerPayerId + \" is still pending\")\r",
 											"}\r",
 											"\r",
-											"const clientId = pm.variables.get('client_id');\r",
-											"const sellerPayerId = pm.collectionVariables.get('merchant_id')\r",
-											"\r",
-											"const jwt = getAuthAssertionValue(clientId, sellerPayerId);\r",
-											"\r",
+											"const jwt = this.PayPalPostmanUtils.getAuthAssertionFor(clientId, sellerPayerId);\r",
 											"pm.collectionVariables.set('paypal_auth_assertion', jwt);\r",
 											"\r",
-											"function getAuthAssertionValue(clientId, sellerPayerId) {\r",
-											"    const header = {\r",
-											"        \"alg\": \"none\"\r",
-											"    };\r",
-											"    const encodedHeader = base64url(header);\r",
-											"    const payload = {\r",
-											"        \"iss\": clientId,\r",
-											"        \"payer_id\": sellerPayerId\r",
-											"    };\r",
-											"    const encodedPayload = base64url(payload);\r",
-											"    return `${encodedHeader}.${encodedPayload}.`;\r",
-											"}\r",
-											"\r",
-											"function base64url(json) {\r",
-											"    return Buffer.from(JSON.stringify(json)).toString('base64')\r",
-											"        .replace(/=+$/, '')\r",
-											"        .replace(/\\+/g, '-')\r",
-											"        .replace(/\\//g, '_');\r",
-											"}"
+											""
 										],
 										"type": "text/javascript",
 										"packages": {}
@@ -30794,9 +30778,11 @@
 							"script": {
 								"id": "59636df9-5965-407f-a602-dbf7b1407da2",
 								"exec": [
-									"const _ = require(\"lodash\")",
+									"// import functions from collection variables",
+									"eval(pm.collectionVariables.get(\"paypal_postman_scripts\"));",
 									"",
-									"if(_.isSandbox()) { // avoid live data on public endpoint even by accident",
+									"",
+									"if(this.PayPalPostmanUtils.isSandbox()) { // avoid live data on public endpoint even by accident",
 									"    const postRequest = {",
 									"        url: 'https://webhook.site/token',",
 									"        method: 'POST',",
@@ -31654,10 +31640,10 @@
 							"script": {
 								"id": "e793549a-1a90-44a8-a85b-eb42b961219b",
 								"exec": [
-									"// globally import the btoa library to base64 encoding text",
-									"require(\"atob\");",
+									"// import functions from collection variables",
+									"eval(pm.collectionVariables.get(\"paypal_postman_scripts\"));",
 									"",
-									"if(_.isSandbox() && pm.collectionVariables.get(\"webhook_site_token\") !== \"\") { ",
+									"if(this.PayPalPostmanUtils.isSandbox() && pm.collectionVariables.get(\"webhook_site_token\") !== \"\") { ",
 									"    pm.test(\"event must be sent\", function() {",
 									"        var jsonData = pm.response.json();",
 									"        pm.expect(jsonData).to.have.property('id');",
@@ -31676,7 +31662,7 @@
 									"                if(!isReceived) {",
 									"                    var webhooksView = \"https://webhook.site/#!/view/\"+pm.collectionVariables.get(\"webhook_site_token\");",
 									"                    console.warn(\"Failed to receive webhook event at \", webhooksView, \" in time. Skipping validation\");",
-									"                    postman.setNextRequest(\"Resend event notification\");",
+									"                    pm.setNextRequest(\"Resend event notification\")",
 									"                }",
 									"                pm.expect(true).to.equal(isReceived);",
 									"            });",
@@ -32485,17 +32471,15 @@
 									"console.log(\"request payload\", pm.request.body.raw);",
 									"",
 									"pm.test(\"Webhook verification status should be successful\", function() {",
+									"",
+									"    // import functions from environment",
+									"    eval(pm.collectionVariables.get(\"paypal_postman_scripts\"));",
+									"",
 									"    var jsonData = pm.response.json();",
 									"    pm.expect(jsonData).to.have.property('verification_status');",
-									"    pm.expect(\"SUCCESS\").to.eql(jsonData.verification_status, \"Paypal-Debug-Id=\"+getPayPalDebugId());",
+									"    pm.expect(\"SUCCESS\").to.eql(jsonData.verification_status, \"Paypal-Debug-Id=\"+this.PayPalPostmanUtils.getPayPalDebugId());",
 									"",
-									"});",
-									"",
-									"function getPayPalDebugId() {",
-									"    if(pm && pm.response && pm.response.headers) {",
-									"        return pm.response.headers.get('Paypal-Debug-Id');",
-									"    } ",
-									"}"
+									"});"
 								],
 								"type": "text/javascript",
 								"packages": {}
@@ -34699,78 +34683,31 @@
 		{
 			"listen": "prerequest",
 			"script": {
-				"id": "799bdb3f-97f7-459f-bf8f-fce23fb3c0cb",
+				"id": "ab1b4d83-ec80-4ddf-aa10-683656fdd6e0",
 				"type": "text/javascript",
 				"packages": {},
+				"requests": {},
 				"exec": [
-					"// Following script is executed before every request in this collection. ",
+					"// import functions from environment",
+					"eval(pm.collectionVariables.get(\"paypal_postman_scripts\"));",
 					"",
-					"// This script obtains access_token by invoking PayPal OAuth 2 API and stores it in the collection variable with same name `access_token`. This token is then reused as an Bearer Token for each API invocation until. The script obtains a new access_token automatically when the original one is expired. When the client_id is changed, original access_token is discarded and replaced with new one obtained against that new client_id and client_secret pair.",
-					"const auth_request = {",
-					"    url: pm.variables.get(\"base_url\")+'/v1/oauth2/token',",
-					"    method: 'POST',",
-					"    header: {",
-					"        'content-type': 'application/x-www-form-urlencoded',",
-					"        'authorization': 'Basic ' + Buffer.from(pm.variables.get(\"client_id\") + ':' +",
-					"            pm.variables.get(\"client_secret\")).toString(\"base64\")",
-					"    },",
-					"    body: {",
-					"        mode: 'urlencoded',",
-					"        urlencoded: [{",
-					"            key: 'grant_type',",
-					"            value: 'client_credentials'",
-					"        }]",
-					"    }",
-					"};",
-					"",
-					"if(pm.request.url.path.join('/').includes('/oauth2/token')) {",
-					"    // exclude token generation API from reusing the token.",
-					"    return;",
+					"// set up accessTokenConfig with environment variable names",
+					"const accessTokenConfig = {",
+					"  accessTokenVar: 'access_token',",
+					"  accessTokenExpiryVar: 'access_token_expiry', ",
+					"  forClientIdVar: 'access_token_for',",
+					"  clientIdVar: 'client_id'",
 					"}",
 					"",
-					"let needNewToken = true;",
-					"if (!pm.collectionVariables.get('access_token_expiry') ||",
-					"    !pm.collectionVariables.get('access_token') ||",
-					"    !pm.collectionVariables.get('access_token_for')) {",
-					"    console.log('access_token or its expiry date are missing.');",
-					"} else if (pm.collectionVariables.get('access_token_expiry') <= (new Date()).getTime()) {",
-					"    console.log('access_token is expired')",
-					"} else if (pm.collectionVariables.get('access_token_for') != pm.variables.get(\"client_id\")) {",
-					"    console.log('client_id is changed', ",
-					"        pm.collectionVariables.get('access_token_for'), ",
-					"        pm.variables.get(\"client_id\"))",
-					"} else {",
-					"    needNewToken = false;",
-					"}",
+					"// Check if access token needs refresh",
+					"if (this.PayPalPostmanUtils.needsNewAccessToken(accessTokenConfig)) {",
 					"",
-					"if (needNewToken === true) {",
-					"",
-					"    // clear cached token before obtaining a new one",
-					"    pm.collectionVariables.unset('access_token');",
-					"    pm.collectionVariables.unset('access_token_expiry');",
-					"    pm.collectionVariables.unset('access_token_for');",
-					"",
-					"    pm.sendRequest(auth_request, function(err, response) {",
-					"        if (response.code === 200) {",
-					"            console.log('Saving the access_token')",
-					"            var responseJson = response.json();",
-					"            pm.collectionVariables.set('access_token', responseJson.access_token)",
-					"",
-					"            var expiryDate = new Date();",
-					"            expiryDate.setSeconds(expiryDate.getSeconds() + responseJson.expires_in);",
-					"            //console.log('Saving the access_token_expiry', expiryDate.getTime());",
-					"            pm.collectionVariables.set('access_token_expiry', expiryDate.getTime());",
-					"            //console.log('Saving the access_token_for');",
-					"            pm.collectionVariables.set('access_token_for', pm.variables.get(\"client_id\"));",
-					"",
-					"        } else {",
-					"            console.error(\"Failed to obtain access_token\", err, response.code, response.headers.get('Paypal-Debug-Id'), response.json());",
-					"        }",
-					"    });",
-					"}",
-					"",
-					"Object.prototype.isSandbox = function() {",
-					"    return pm.variables.get(\"base_url\").includes(\"sandbox.paypal.com\");",
+					"  // Refresh the token",
+					"  this.PayPalPostmanUtils.refreshAccessToken({",
+					"    ...accessTokenConfig,",
+					"    clientSecretVar: 'client_secret',",
+					"    baseUrlVar: 'base_url'",
+					"  });",
 					"}",
 					""
 				]
@@ -34779,28 +34716,26 @@
 		{
 			"listen": "test",
 			"script": {
-				"id": "5cc7dfcf-e08c-448b-9b94-04727a588b35",
+				"id": "745a69e4-6389-41ec-bcc4-9f192dad7361",
 				"type": "text/javascript",
 				"packages": {},
+				"requests": {},
 				"exec": [
+					"// import functions from collection variables",
+					"eval(pm.collectionVariables.get(\"paypal_postman_scripts\"));",
+					"",
 					"let successHttpStatuses = [200, 201, 202, 204];",
-					"let message = pm.response.code +\", Paypal-Debug-Id=\"+getPayPalDebugId();",
+					"let message = pm.response.code +\", Paypal-Debug-Id=\"+this.PayPalPostmanUtils.getPayPalDebugId();",
 					"",
 					"if(!isSuccessful()) {",
 					"    console.error(\"Unexpected HTTP Status Code: \", message, pm.response.text());",
-					"    console.error(\"https://developer.paypal.com/developer/dashboard/sandbox?Paypal-Debug-Id=\"+getPayPalDebugId());",
+					"    console.error(\"https://developer.paypal.com/developer/dashboard/sandbox?Paypal-Debug-Id=\"+this.PayPalPostmanUtils.getPayPalDebugId());",
 					"    message = message + \", \"+pm.response.text();",
 					"}",
 					"",
 					"pm.test(\"HTTP Status Code must be one of \"+successHttpStatuses+\", actual is \"+message, function () {",
 					"    pm.expect(pm.response.code).to.be.oneOf(successHttpStatuses);",
 					"});",
-					"",
-					"function getPayPalDebugId() {",
-					"    if(pm && pm.response && pm.response.headers) {",
-					"        return pm.response.headers.get('Paypal-Debug-Id');",
-					"    } ",
-					"}",
 					"",
 					"function isSuccessful() {",
 					"    return successHttpStatuses.includes(pm.response.code);",
@@ -34811,229 +34746,188 @@
 	],
 	"variable": [
 		{
-			"id": "964bfe87-974b-448c-b96c-0d7beb944e67",
 			"key": "PLEASE NOTE -->",
 			"value": "< PayPal Public Collection comes with following default public set of credentials stored at the Collection level. \nYou may choose to override these values via environment level variables. You may bring your own credentials from PayPal Developer Dashboard there."
 		},
 		{
-			"id": "4daf7d0b-577a-4efa-8bfa-4b1ff98de4ae",
 			"key": "base_url",
 			"value": "https://api-m.sandbox.paypal.com"
 		},
 		{
-			"id": "5d9a388d-7fb0-4038-9003-d7f43270216d",
 			"key": "client_id",
 			"value": "ASJ7ZDtuc9fT8cDWY-EEt6xtnUCe0QiJa9Zn5Eme_rb3SfVIlbWZlu4KU87hKKFl8wxUCMRZ-HP49FTd"
 		},
 		{
-			"id": "332723dc-1398-430a-a8e0-4185d627c5f9",
 			"key": "client_secret",
 			"value": "EN3AlrRVld1MnsZwYK1o2RJAxSAdv9DnrwNQCo3s3HOm45NAFQtzQhc4U5HsmwBpikVfX8uXUF7Ajb3t"
 		},
 		{
-			"id": "3e2f2d00-a9fa-4adc-a1cd-33968fd813f2",
 			"key": "access_token",
 			"value": ""
 		},
 		{
-			"id": "c9591143-03e8-4b88-b18e-71539072cadd",
 			"key": "access_token_expiry",
 			"value": ""
 		},
 		{
-			"id": "01c1922f-8553-44ee-a6c0-6a1b65e70567",
 			"key": "access_token_for",
 			"value": ""
 		},
 		{
-			"id": "01014c47-bbd6-4028-a2a9-26a333a9541f",
 			"key": "auth_code",
 			"value": ""
 		},
 		{
-			"id": "5536b5df-7466-4398-a29b-ebbc2fa8dd91",
 			"key": "authorization_id",
 			"value": ""
 		},
 		{
-			"id": "0bfebe10-e342-4220-b21e-fe68495b52a7",
 			"key": "bn_code",
 			"value": ""
 		},
 		{
-			"id": "d295eae3-99db-4754-9d02-3237a3e1810b",
 			"key": "capture_id",
 			"value": ""
 		},
 		{
-			"id": "d800d9be-87dc-49b3-b173-b4904f78b1a1",
 			"key": "event_auth_algo",
 			"value": ""
 		},
 		{
-			"id": "6a443784-b44d-4791-97b9-7693eeb4ed6a",
 			"key": "event_cert_url",
 			"value": ""
 		},
 		{
-			"id": "5638e15d-b4b3-4036-8dbd-58a74f5daf93",
 			"key": "event_id",
 			"value": ""
 		},
 		{
-			"id": "28c1c35b-cde5-4011-9e88-3a0687129497",
 			"key": "event_transmission_id",
 			"value": ""
 		},
 		{
-			"id": "5aa05196-e049-475c-8a93-2de7dcb2125e",
 			"key": "event_transmission_sig",
 			"value": ""
 		},
 		{
-			"id": "232a946f-629b-4c57-9f9e-6ea018ee064f",
 			"key": "event_transmission_time",
 			"value": ""
 		},
 		{
-			"id": "c6eb88c6-eb9f-434e-862f-3fe24ddc5fde",
 			"key": "event_webhook_payload",
 			"value": ""
 		},
 		{
-			"id": "e5927b9d-1720-4121-9d61-ea14337f5b3e",
 			"key": "legacy_billing_agreement_id",
 			"value": ""
 		},
 		{
-			"id": "1236ee13-fbb3-4904-8ed4-1147478e7425",
 			"key": "managed_path_account_id",
 			"value": ""
 		},
 		{
-			"id": "1872dd6c-75ab-4d5b-8ec4-59146bb5a37b",
 			"key": "managed_path_organization",
 			"value": "us"
 		},
 		{
-			"id": "b37bf9b9-b0ea-4c29-ad58-07eb515b1d18",
 			"key": "managed_path_external_id",
 			"value": ""
 		},
 		{
-			"id": "5f50909e-95fa-4f4a-92aa-2210a081a3b7",
 			"key": "managed_path_person_id",
 			"value": ""
 		},
 		{
-			"id": "8d7d4462-09d7-42d2-ba60-3d0f9eb0ee4e",
 			"key": "merchant_id",
 			"value": ""
 		},
 		{
-			"id": "c59e1bb2-ec7b-4c07-9c78-202621d2b179",
 			"key": "mock_issue",
 			"value": ""
 		},
 		{
-			"id": "f9df031a-254c-4cde-90e8-61559b285433",
 			"key": "order_id",
 			"value": ""
 		},
 		{
-			"id": "0dc5db65-6059-4e69-a0bd-6f619442f216",
 			"key": "partner_id",
 			"value": ""
 		},
 		{
-			"id": "c7e89d24-cf17-4814-af3f-79da55560c83",
 			"key": "partner_referral_id",
 			"value": ""
 		},
 		{
-			"id": "7643cf5b-a7e8-4cce-b89f-8d9590b8fadb",
 			"key": "payment_token_id",
 			"value": ""
 		},
 		{
-			"id": "351ec0b0-c571-4eaf-9ba7-4b58ad496ff5",
 			"key": "paypal_auth_assertion",
 			"value": ""
 		},
 		{
-			"id": "4c9cd066-6f05-4334-a223-36e614af7c01",
 			"key": "paypal_client_metadata_id",
 			"value": ""
 		},
 		{
-			"id": "7a31276f-385b-4d3a-b0d4-b4eda7079974",
 			"key": "prefer_representation_detailed",
 			"value": "return=representation"
 		},
 		{
-			"id": "99665690-e76d-4191-a913-967f3d2ee41f",
 			"key": "prefer_representation_min",
 			"value": "return=minimal"
 		},
 		{
-			"id": "36075ae0-8884-41df-95ef-901e7e963d8b",
 			"key": "refund_id",
 			"value": ""
 		},
 		{
-			"id": "630f6ec8-d87d-43a4-a1b4-c5596b98433a",
 			"key": "seller_access_token",
 			"value": ""
 		},
 		{
-			"id": "92097956-ff61-45fc-a50d-46fc83e8d8e6",
 			"key": "seller_single_use_token",
 			"value": ""
 		},
 		{
-			"id": "076bee77-46b8-43ac-95f7-fe25aebe1bc1",
 			"key": "setup_token_id",
 			"value": ""
 		},
 		{
-			"id": "b39ab7c5-205d-46df-af5e-3a383e12c045",
 			"key": "shared_id",
 			"value": ""
 		},
 		{
-			"id": "2f78751b-ded7-44a7-868b-3e36d9e80555",
 			"key": "todays_date",
 			"value": ""
 		},
 		{
-			"id": "fb70c97b-e78d-4393-9b07-c6d4032c1a0e",
 			"key": "tracking_id",
 			"value": ""
 		},
 		{
-			"id": "d7875364-e394-4c7a-b4f8-fe4bf42c5a57",
 			"key": "tracking_number",
 			"value": ""
 		},
 		{
-			"id": "db71b5e1-e3c2-43f8-86f6-b4590d2af75f",
 			"key": "vault_customer_id",
 			"value": ""
 		},
 		{
-			"id": "654f509f-9b14-486f-b4c4-f2925d84eb9d",
 			"key": "webhook_id",
 			"value": ""
 		},
 		{
-			"id": "37555027-19f5-47da-85d5-418ff4dfed51",
 			"key": "webhook_site_token",
 			"value": ""
 		},
 		{
-			"id": "06d67f9a-ec8d-4c4c-84c4-829ef3f13f6a",
 			"key": "webhook_url",
 			"value": ""
+		},
+		{
+			"key": "paypal_postman_scripts",
+			"value": "!function(e,t){\"object\"==typeof exports&&\"object\"==typeof module?module.exports=t():\"function\"==typeof define&&define.amd?define([],t):\"object\"==typeof exports?exports.PayPalPostmanUtils=t():e.PayPalPostmanUtils=t()}(this,()=>(()=>{\"use strict\";var e={d:(t,o)=>{for(var n in o)e.o(o,n)&&!e.o(t,n)&&Object.defineProperty(t,n,{enumerable:!0,get:o[n]})},o:(e,t)=>Object.prototype.hasOwnProperty.call(e,t)},t={};function o(e,t,o,a){const s={alg:o},r={iss:e,...t},c=`${n(JSON.stringify(s))}.${n(JSON.stringify(r))}`;return`${c}.${o&&\"none\"!==o?n(CryptoJS.HmacSHA256(c,a||\"\").toString()):\"\"}`}function n(e){return Buffer.from(e).toString(\"base64\").replace(/=+$/,\"\").replace(/\\+/g,\"-\").replace(/\\//g,\"_\")}e.d(t,{default:()=>a});const a={needsNewAccessToken:function({accessTokenVar:e,accessTokenExpiryVar:t,forClientIdVar:o,clientIdVar:n}){const a=pm.collectionVariables.get(t),s=pm.collectionVariables.get(e),r=pm.variables.get(n),c=pm.collectionVariables.get(o),i=a?parseInt(a,10):0,l=!a||i<=Date.now(),p=!s||!c||c!==r;return!pm.request.url.path.join(\"/\").includes(\"/oauth2/token\")&&(l||p)},refreshAccessToken:function(e,t){const{accessTokenVar:o,accessTokenExpiryVar:n,forClientIdVar:a,clientIdVar:s,clientSecretVar:r,baseUrlVar:c}=e,i=pm.variables.get(s),l=pm.variables.get(r),p={url:pm.variables.get(c)+\"/v1/oauth2/token\",method:\"POST\",header:{\"content-type\":\"application/x-www-form-urlencoded\",authorization:\"Basic \"+Buffer.from(i+\":\"+l).toString(\"base64\")},body:{mode:\"urlencoded\",urlencoded:[{key:\"grant_type\",value:\"client_credentials\"}]}};pm.collectionVariables.unset(o),pm.collectionVariables.unset(n),pm.collectionVariables.unset(a),pm.sendRequest(p,function(e,s){if(200===s.code){const e=s.json();console.log(\"Saving the access_token\"),pm.collectionVariables.set(o,e.access_token);const t=new Date;t.setSeconds(t.getSeconds()+e.expires_in),pm.collectionVariables.set(n,t.getTime()),pm.collectionVariables.set(a,i)}else console.error(\"Failed to obtain access_token\",e,s.code,s.headers.get(\"Paypal-Debug-Id\"),s.json());t&&t()})},storeAccessToken:function(e,t){var o;const{accessTokenVar:n,accessTokenExpiryVar:a,forClientIdVar:s,clientIdVar:r}=t,c=pm.variables.get(r);pm.collectionVariables.set(n,e.access_token);const i=new Date;i.setSeconds(i.getSeconds()+e.expires_in),pm.collectionVariables.set(a,i.getTime()),pm.collectionVariables.set(s,c),(null===(o=e.client_metadata)||void 0===o?void 0:o.display_name)&&console.log(\"Logged in using App =\",e.client_metadata.display_name)},isSandbox:function(){return pm.variables.get(\"base_url\").includes(\"sandbox.paypal.com\")},getPayPalDebugId:function(){if(pm&&pm.response&&pm.response.headers)return pm.response.headers.get(\"Paypal-Debug-Id\")},base64Url:n,getJWT:o,getAuthAssertionFor:function(e,t){return o(e,{payer_id:t},\"none\")}};return t.default})());"
 		}
 	]
 }
