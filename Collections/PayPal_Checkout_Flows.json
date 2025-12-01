@@ -2432,8 +2432,13 @@
 						{
 							"listen": "prerequest",
 							"script": {
+								"id": "3439be55-dbe0-4f37-aa37-53a86f94dbfa",
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
 								"packages": {},
-								"type": "text/javascript"
+								"requests": {}
 							}
 						}
 					],
@@ -2455,38 +2460,9 @@
 								"value": "application/json"
 							},
 							{
-								"key": "Prefer",
-								"value": "{{prefer_representation_detailed}}",
-								"description": "The preferred server response upon successful completion of the request. Value is:<ul><li><code>return=minimal</code>. The server returns a minimal response to optimize communication between the API caller and the server. A minimal response includes the <code>id</code>, <code>status</code> and HATEOAS links.</li><li><code>return=representation</code>. The server returns a complete resource representation, including the current state of the resource.</li></ul>"
-							},
-							{
 								"key": "PayPal-Request-Id",
 								"value": "{{$guid}}",
 								"description": "The server stores keys for 6 hours. The API callers can request the times to up to 72 hours by speaking to their Account Manager."
-							},
-							{
-								"key": "PayPal-Client-Metadata-Id",
-								"value": "{{paypal_client_metadata_Id}}",
-								"description": "Optional. Verifies that the payment originates from a valid, user-consented device and application. Reduces fraud and decreases declines. Transactions that do not include a client metadata ID are not eligible for PayPal Seller Protection.",
-								"disabled": true
-							},
-							{
-								"key": "PayPal-Partner-Attribution-Id",
-								"value": "{{paypal_partner_attribution_id}}",
-								"description": "Optional. Identifies the caller as a PayPal partner. To receive revenue attribution, specify a unique build notation (BN) code. BN codes provide tracking on all transactions that originate or are associated with a particular partner. To find your BN code, see Code and Credential Reference.",
-								"disabled": true
-							},
-							{
-								"key": "PayPal-Auth-Assertion",
-								"value": "{{paypal_auth_assertion}}",
-								"description": "An API client-provided JSON Web Token (JWT) assertion that identifies the merchant. To use this header, you must get consent to act on behalf of a merchant.",
-								"disabled": true
-							},
-							{
-								"key": "PayPal-Mock-Response",
-								"value": "{ \"mock_application_codes\": \"{{mock_issue}}\" }",
-								"description": "For a list of error codes to test for see https://developer.paypal.com/api/rest/reference/orders/v2/errors/#link-captureorder",
-								"disabled": true
 							}
 						],
 						"body": {
