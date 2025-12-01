@@ -2197,6 +2197,62 @@
 			"name": "Currency Exchange",
 			"item": [
 				{
+					"name": "Generate access_token",
+					"id": "f9b9749e-a7b9-4db0-8bf7-5b7596c49ccf",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": {
+								"password": "{{client_secret}}",
+								"username": "{{client_id}}"
+							}
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "grant_type",
+									"value": "client_credentials",
+									"type": "text",
+									"description": "The credential type to exchange for an access token."
+								},
+								{
+									"key": "ignoreCache",
+									"value": "true",
+									"type": "text",
+									"description": "A new token is issued ignoring the previously issued and still not expired token."
+								},
+								{
+									"key": "return_authn_schemes",
+									"value": "true",
+									"description": "Lists user authentication options and returns a first-party access token to authenticate an end user. Valid for all grant types except the `authzcode` authorization code, which indicates that the user is already authenticated.",
+									"type": "text"
+								},
+								{
+									"key": "return_client_metadata",
+									"value": "true",
+									"description": "Lists client metadata attributes. Valid for all grant types.",
+									"type": "text"
+								},
+								{
+									"key": "return_unconsented_scopes",
+									"value": "true",
+									"description": "Lists unconsented scopes between the user and client. Valid for all grant types except `client_credentials`.",
+									"type": "text"
+								}
+							]
+						},
+						"url": "{{base_url}}/v1/oauth2/token",
+						"description": "Shows user profile information. Filters the response by a schema. Supported schema value is `paypalv1.1`."
+					},
+					"response": []
+				},
+				{
 					"name": "Create Currency Exchange quote",
 					"id": "d4825796-5edc-42ec-8890-a47b3b9dfd07",
 					"protocolProfileBehavior": {
