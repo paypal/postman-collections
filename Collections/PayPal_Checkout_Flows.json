@@ -2329,6 +2329,12 @@
 						"disableBodyPruning": true
 					},
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{access_token}}"
+							}
+						},
 						"method": "POST",
 						"header": [
 							{
@@ -2407,6 +2413,12 @@
 						"disableBodyPruning": true
 					},
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{access_token}}"
+							}
+						},
 						"method": "POST",
 						"header": [
 							{
@@ -2449,7 +2461,9 @@
 									"    pm.collectionVariables.set(\"capture_id\", jsonData.purchase_units[0].payments.captures[0].id);",
 									"});"
 								],
-								"type": "text/javascript"
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
 							}
 						}
 					],
@@ -2458,6 +2472,12 @@
 						"disableBodyPruning": true
 					},
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{access_token}}"
+							}
+						},
 						"method": "POST",
 						"header": [
 							{
@@ -2522,7 +2542,6 @@
 							],
 							"variable": [
 								{
-									"id": "ee4d76b3-cde6-462b-9e65-c24065ffb65d",
 									"key": "order_id",
 									"value": "{{order_id}}"
 								}
