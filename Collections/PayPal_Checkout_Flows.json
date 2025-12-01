@@ -2328,11 +2328,6 @@
 								"description": "The Content-Type header field is used to specify the nature of the data in the body of an entity. PayPal REST APIs support application/json."
 							},
 							{
-								"key": "Prefer",
-								"value": "{{prefer_representation_detailed}}",
-								"description": "The preferred server response upon successful completion of the request. Value is:<ul><li><code>return=minimal</code>. The server returns a minimal response to optimize communication between the API caller and the server. A minimal response includes the <code>id</code>, <code>status</code> and HATEOAS links.</li><li><code>return=representation</code>. The server returns a complete resource representation, including the current state of the resource.</li></ul>"
-							},
-							{
 								"key": "PayPal-Request-Id",
 								"value": "{{$guid}}",
 								"description": "The server stores keys for 6 hours. The API callers can request the times to up to 72 hours by speaking to their Account Manager."
@@ -2340,7 +2335,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"intent\": \"{{order_intent}}\",\n    \"payment_source\": {\n        \"paypal\": {\n            \"experience_context\": {\n                \"return_url\": \"https://developer.paypal.com\",\n                \"cancel_url\": \"https://www.bing.com\",\n                \"user_action\": \"PAY_NOW\"\n            }\n        }\n    },\n    \"purchase_units\": [\n        {\n            \"amount\": {\n                \"currency_code\": \"CAD\",\n                \"value\": \"16.80\"\n            },\n            \"payment_instruction\": {\n                \"payee_receivable_fx_rate_id\": \"{{fx_id}}\"\n            }\n        }\n    ]\n}",
+							"raw": "{\n    \"intent\": \"CAPTURE\",\n    \"payment_source\": {\n        \"paypal\": {\n            \"experience_context\": {\n                \"return_url\": \"https://developer.paypal.com\",\n                \"cancel_url\": \"https://www.bing.com\",\n                \"user_action\": \"PAY_NOW\"\n            }\n        }\n    },\n    \"purchase_units\": [\n        {\n            \"amount\": {\n                \"currency_code\": \"CAD\",\n                \"value\": \"16.80\"\n            },\n            \"payment_instruction\": {\n                \"payee_receivable_fx_rate_id\": \"{{fx_id}}\"\n            }\n        }\n    ]\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -2421,7 +2416,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"intent\": \"{{order_intent}}\",\r\n    \"payment_source\": {\r\n        \"card\": {\r\n            \"number\": \"{{card_number}}\",\r\n            \"expiry\": \"{{expiry}}\",\r\n            \"name\": \"John Doe\",\r\n            \"billing_address\": {\r\n                \"address_line_1\": \"2211 N First Street\",\r\n                \"address_line_2\": \"Building 17\",\r\n                \"admin_area_2\": \"San Jose\",\r\n                \"admin_area_1\": \"CA\",\r\n                \"postal_code\": \"95131\",\r\n                \"country_code\": \"US\"\r\n            },\r\n            \"attributes\": {\r\n                \"verification\": {\r\n                    \"method\": \"SCA_ALWAYS\"\r\n                }\r\n            },\r\n            \"experience_context\": {\r\n                \"return_url\": \"https://www.example.com/success/\",\r\n                \"cancel_url\": \"https://www.example.com/cancelled/\"\r\n            }\r\n        }\r\n    },\r\n    \"purchase_units\": [\r\n        {\r\n            \"amount\": {\r\n                \"currency_code\": \"CAD\",\r\n                \"value\": \"16.80\"\r\n            },\r\n            \"payment_instruction\": {\r\n                \"payee_receivable_fx_rate_id\": \"{{fx_id}}\"\r\n            }\r\n        }\r\n    ]\r\n}",
+							"raw": "{\r\n    \"intent\": \"CAPTURE\",\r\n    \"payment_source\": {\r\n        \"card\": {\r\n            \"number\": \"378282246310005\",\r\n            \"expiry\": \"{{expiry}}\",\r\n            \"name\": \"John Doe\",\r\n            \"billing_address\": {\r\n                \"address_line_1\": \"2211 N First Street\",\r\n                \"address_line_2\": \"Building 17\",\r\n                \"admin_area_2\": \"San Jose\",\r\n                \"admin_area_1\": \"CA\",\r\n                \"postal_code\": \"95131\",\r\n                \"country_code\": \"US\"\r\n            },\r\n            \"attributes\": {\r\n                \"verification\": {\r\n                    \"method\": \"SCA_ALWAYS\"\r\n                }\r\n            },\r\n            \"experience_context\": {\r\n                \"return_url\": \"https://www.example.com/success/\",\r\n                \"cancel_url\": \"https://www.example.com/cancelled/\"\r\n            }\r\n        }\r\n    },\r\n    \"purchase_units\": [\r\n        {\r\n            \"amount\": {\r\n                \"currency_code\": \"CAD\",\r\n                \"value\": \"16.80\"\r\n            },\r\n            \"payment_instruction\": {\r\n                \"payee_receivable_fx_rate_id\": \"{{fx_id}}\"\r\n            }\r\n        }\r\n    ]\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
