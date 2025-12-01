@@ -2355,10 +2355,6 @@
 							"script": {
 								"id": "e0b15f14-8a51-47e4-b4f7-ce163335e29c",
 								"exec": [
-									"responseData = JSON.parse(responseBody);\r",
-									"\r",
-									"pm.collectionVariables.set(\"order_id\", responseData.id);\r",
-									"\r",
 									""
 								],
 								"type": "text/javascript",
@@ -2371,15 +2367,6 @@
 							"script": {
 								"id": "bec4dcb5-0003-4488-a122-cf07cac48c4c",
 								"exec": [
-									"//These test card numbers comes from here - https://developer.paypal.com/braintree/docs/guides/credit-cards/testing-go-live/java",
-									"var cards = [",
-									"'378282246310005',",
-									"'371449635398431'];",
-									"",
-									"pm.variables.set(\"card_number\", cards[Math.floor(Math.random() * 2)]);",
-									"const expiry = new Date(new Date().setFullYear(new Date().getFullYear() + 10)).toISOString().slice(0, 7);",
-									"pm.variables.set(\"expiry\", expiry);",
-									"pm.variables.set(\"order_intent\", \"CAPTURE\");",
 									""
 								],
 								"type": "text/javascript",
@@ -2416,7 +2403,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"intent\": \"CAPTURE\",\r\n    \"payment_source\": {\r\n        \"card\": {\r\n            \"number\": \"378282246310005\",\r\n            \"expiry\": \"{{expiry}}\",\r\n            \"name\": \"John Doe\",\r\n            \"billing_address\": {\r\n                \"address_line_1\": \"2211 N First Street\",\r\n                \"address_line_2\": \"Building 17\",\r\n                \"admin_area_2\": \"San Jose\",\r\n                \"admin_area_1\": \"CA\",\r\n                \"postal_code\": \"95131\",\r\n                \"country_code\": \"US\"\r\n            },\r\n            \"attributes\": {\r\n                \"verification\": {\r\n                    \"method\": \"SCA_ALWAYS\"\r\n                }\r\n            },\r\n            \"experience_context\": {\r\n                \"return_url\": \"https://www.example.com/success/\",\r\n                \"cancel_url\": \"https://www.example.com/cancelled/\"\r\n            }\r\n        }\r\n    },\r\n    \"purchase_units\": [\r\n        {\r\n            \"amount\": {\r\n                \"currency_code\": \"CAD\",\r\n                \"value\": \"16.80\"\r\n            },\r\n            \"payment_instruction\": {\r\n                \"payee_receivable_fx_rate_id\": \"{{fx_id}}\"\r\n            }\r\n        }\r\n    ]\r\n}",
+							"raw": "{\r\n    \"intent\": \"CAPTURE\",\r\n    \"payment_source\": {\r\n        \"card\": {\r\n            \"number\": \"378282246310005\",\r\n            \"expiry\": \"2035-01\",\r\n            \"name\": \"John Doe\",\r\n            \"billing_address\": {\r\n                \"address_line_1\": \"2211 N First Street\",\r\n                \"address_line_2\": \"Building 17\",\r\n                \"admin_area_2\": \"San Jose\",\r\n                \"admin_area_1\": \"CA\",\r\n                \"postal_code\": \"95131\",\r\n                \"country_code\": \"US\"\r\n            },\r\n            \"attributes\": {\r\n                \"verification\": {\r\n                    \"method\": \"SCA_ALWAYS\"\r\n                }\r\n            },\r\n            \"experience_context\": {\r\n                \"return_url\": \"https://www.example.com/success/\",\r\n                \"cancel_url\": \"https://www.example.com/cancelled/\"\r\n            }\r\n        }\r\n    },\r\n    \"purchase_units\": [\r\n        {\r\n            \"amount\": {\r\n                \"currency_code\": \"CAD\",\r\n                \"value\": \"16.80\"\r\n            },\r\n            \"payment_instruction\": {\r\n                \"payee_receivable_fx_rate_id\": \"{{fx_id}}\"\r\n            }\r\n        }\r\n    ]\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -2435,15 +2422,18 @@
 							"script": {
 								"id": "d099a489-67b8-47b0-98ce-5fb2c6e63b78",
 								"exec": [
-									"pm.test(\"Extract resource_id\", function () {",
-									"    var jsonData = pm.response.json();",
-									"    pm.expect(jsonData).to.have.property('purchase_units');",
-									"    pm.collectionVariables.set(\"capture_id\", jsonData.purchase_units[0].payments.captures[0].id);",
-									"});"
+									""
 								],
 								"type": "text/javascript",
 								"packages": {},
 								"requests": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"packages": {},
+								"type": "text/javascript"
 							}
 						}
 					],
