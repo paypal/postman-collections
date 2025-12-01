@@ -2289,21 +2289,7 @@
 							"script": {
 								"id": "10fb9cd7-0f5f-452b-ad97-a3ef040382cb",
 								"exec": [
-									"pm.test(\"Extract resource_id\", function() {",
-									"    var jsonData = pm.response.json();",
-									"    pm.expect(jsonData).to.have.property('id');",
-									"    pm.collectionVariables.set(\"order_id\", jsonData.id);",
-									"",
-									"    if (jsonData.purchase_units && jsonData.purchase_units[0] && jsonData.purchase_units[0].payments) {",
-									"        var payments = jsonData.purchase_units && jsonData.purchase_units[0] && jsonData.purchase_units[0].payments;",
-									"        if (payments.authorizations && payments.authorizations[0]) {",
-									"            pm.collectionVariables.set(\"authorization_id\", payments.authorizations[0].id);",
-									"        }",
-									"        if (payments.captures && payments.captures[0]) {",
-									"            pm.collectionVariables.set(\"capture_id\", payments.captures[0].id);",
-									"        }",
-									"    }",
-									"});"
+									""
 								],
 								"type": "text/javascript",
 								"packages": {},
@@ -2315,8 +2301,7 @@
 							"script": {
 								"id": "2a152015-7bd1-4d49-9cbd-394fb4c141fc",
 								"exec": [
-									"// first API in the folder enable delay subsequent APIs only during folder/collection run.",
-									"pm.variables.set('delayed_run', 'true');"
+									""
 								],
 								"type": "text/javascript",
 								"packages": {},
