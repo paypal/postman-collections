@@ -2499,6 +2499,102 @@
 				}
 			],
 			"id": "e55fc847-d283-47d0-93c8-9be09b876753"
+		},
+		{
+			"name": "Payment Links and Buttons",
+			"item": [
+				{
+					"name": "Generate access_token",
+					"id": "51bfb2f8-afc6-4a61-91d0-a8cc2d8c88bc",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": {
+								"password": "{{client_secret}}",
+								"username": "{{client_id}}"
+							}
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "grant_type",
+									"value": "client_credentials",
+									"type": "text",
+									"description": "The credential type to exchange for an access token."
+								},
+								{
+									"key": "ignoreCache",
+									"value": "true",
+									"type": "text",
+									"description": "A new token is issued ignoring the previously issued and still not expired token."
+								},
+								{
+									"key": "return_authn_schemes",
+									"value": "true",
+									"description": "Lists user authentication options and returns a first-party access token to authenticate an end user. Valid for all grant types except the `authzcode` authorization code, which indicates that the user is already authenticated.",
+									"type": "text"
+								},
+								{
+									"key": "return_client_metadata",
+									"value": "true",
+									"description": "Lists client metadata attributes. Valid for all grant types.",
+									"type": "text"
+								},
+								{
+									"key": "return_unconsented_scopes",
+									"value": "true",
+									"description": "Lists unconsented scopes between the user and client. Valid for all grant types except `client_credentials`.",
+									"type": "text"
+								}
+							]
+						},
+						"url": "{{base_url}}/v1/oauth2/token",
+						"description": "Shows user profile information. Filters the response by a schema. Supported schema value is `paypalv1.1`."
+					},
+					"response": []
+				},
+				{
+					"name": "Creates a payment resource for a single-item purchase",
+					"id": "0b621ca4-4b8e-4daf-8a60-ad7ae8781c53",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{access_token}}"
+							}
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "PayPal-Request-Id",
+								"value": "{{$guid}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"integration_mode\": \"LINK\",\n    \"type\": \"BUY_NOW\",\n    \"reusable\": \"MULTIPLE\",\n    \"return_url\": \"https://example-merchant.com/payment/return-success\",\n    \"line_items\": [\n        {\n            \"name\": \"Premium Wireless Headphones with Noise Cancellation\",\n            \"product_id\": \"PROD-WH-NC-2024-12345\",\n            \"description\": \"Experience crystal-clear sound with our premium wireless headphones featuring active noise cancellation, 30-hour battery life\",\n            \"taxes\": [\n                {\n                    \"name\": \"State Sales Tax\",\n                    \"type\": \"PERCENTAGE\",\n                    \"value\": \"8.25\"\n                }\n            ],\n            \"shipping\": [\n                {\n                    \"type\": \"FLAT\",\n                    \"value\": \"12.50\"\n                }\n            ],\n            \"collect_shipping_address\": true,\n            \"customer_notes\": [\n                {\n                    \"label\": \"Gift Message (Optional)\",\n                    \"required\": false\n                }\n            ],\n            \"variants\": {\n                \"dimensions\": [\n                    {\n                        \"name\": \"Color\",\n                        \"primary\": true,\n                        \"options\": [\n                            {\n                                \"label\": \"Midnight Black\",\n                                \"unit_amount\": {\n                                    \"currency_code\": \"USD\",\n                                    \"value\": \"149.99\"\n                                }\n                            },\n                            {\n                                \"label\": \"Silver Gray\",\n                                \"unit_amount\": {\n                                    \"currency_code\": \"USD\",\n                                    \"value\": \"149.99\"\n                                }\n                            },\n                            {\n                                \"label\": \"Rose Gold\",\n                                \"unit_amount\": {\n                                    \"currency_code\": \"USD\",\n                                    \"value\": \"169.99\"\n                                }\n                            },\n                            {\n                                \"label\": \"Navy Blue\",\n                                \"unit_amount\": {\n                                    \"currency_code\": \"USD\",\n                                    \"value\": \"159.99\"\n                                }\n                            }\n                        ]\n                    },\n                    {\n                        \"name\": \"Warranty\",\n                        \"primary\": false,\n                        \"options\": [\n                            {\n                                \"label\": \"Standard 1-Year\"\n                            },\n                            {\n                                \"label\": \"Extended 2-Year\"\n                            },\n                            {\n                                \"label\": \"Premium 3-Year\"\n                            }\n                        ]\n                    },\n                    {\n                        \"name\": \"Package Type\",\n                        \"primary\": false,\n                        \"options\": [\n                            {\n                                \"label\": \"Standard Box\"\n                            },\n                            {\n                                \"label\": \"Gift Wrapped\"\n                            }\n                        ]\n                    }\n                ]\n            },\n            \"adjustable_quantity\": {\n                \"maximum\": 10\n            }\n        }\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{base_url}}/v1/checkout/payment-resources"
+					},
+					"response": []
+				}
+			],
+			"id": "97ce53c3-9d19-405d-b523-d89b3c2d50cb",
+			"description": "The Payment Links and Buttons API enables you to programmatically create and manage payment links and buttons. Use this API to generate shareable URLs, retrieve payment details, and update configurations without building custom checkout flows."
 		}
 	],
 	"auth": {
